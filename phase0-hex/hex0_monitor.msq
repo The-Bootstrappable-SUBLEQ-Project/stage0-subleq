@@ -1,0 +1,141 @@
+rem Copyright (C) 2022 NyanCatTW1
+rem This file is part of stage0-subleq.
+rem
+rem stage0-subleq is free software: you can redistribute it and/or modify
+rem it under the terms of the GNU General Public License as published by
+rem the Free Software Foundation, either version 3 of the License, or
+rem (at your option) any later version.
+rem
+rem stage0-subleq is distributed in the hope that it will be useful,
+rem but WITHOUT ANY WARRANTY; without even the implied warranty of
+rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+rem GNU General Public License for more details.
+rem
+rem You should have received a copy of the GNU General Public License
+rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
+
+rem Standard program start
+lblsq 0 0 EP
+var tmp 0
+addr SERIAL_IN 0
+
+label EP
+rem MAIN is the main routine for handling inputs
+label MAIN
+rem val is intentionally kept negative to make it easier to add to cur
+var val 0
+var c 0
+getchar c tmp
+
+rem Handle NUL ~ "
+decleq c 22 MAIN
+
+rem Handle #
+decleq c 1 COMMENT
+
+rem Handle $ ~ /
+decleq c c MAIN
+
+rem Handle 0 ~ 9
+movneg val c
+inc val 1
+decleq c a WRITE
+
+rem Handle :
+decleq c 1 MAIN
+
+rem Handle ;
+decleq c 1 COMMENT
+
+rem Handle < ~ @
+decleq c 5 MAIN
+
+rem Handle A ~ F
+movneg val c
+dec val 9
+decleq c 6 WRITE
+
+rem Handle G ~ `
+decleq c 1a MAIN
+
+rem Handle a ~ f
+movneg val c
+dec val 9
+decleq c 6 WRITE
+
+rem Handle g ~ ~
+decleq c 24 MAIN
+
+rem Handle DEL (0x7f)
+lbljmp COPY
+
+
+rem COMMENT ignores characters until \r or \n is fed
+label COMMENT
+getchar c tmp
+decleq c 9 COMMENT
+rem Handle LF
+decleq c 1 MAIN
+decleq c 2 COMMENT
+rem Handle CR
+decleq c 1 MAIN
+lbljmp COMMENT
+
+
+rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
+label WRITE
+var cur 0
+rem The following multiplies cur by 16
+rem tmp = -5 * cur
+movneg tmp cur
+sub tmp cur
+sub tmp cur
+sub tmp cur
+sub tmp cur
+
+rem cur -= 3 * tmp = -15 * cur
+sub cur tmp
+sub cur tmp
+sub cur tmp
+
+sub cur val
+
+rem i will turn positive every 16 iterations
+var i -15
+incleq i 1 MAIN
+
+rem Copy to the buffer and increase its address
+addr dstEnd 0
+addr bufEnd 100000
+rem The buffer is also intentionally kept negative to ease copying
+movneg bufEnd cur
+zero cur
+decaddr dstEnd -8
+decaddr bufEnd -8
+decleq i 15 MAIN
+
+
+rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
+rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
+addr loaderOrg 0
+addr loaderDst 200000
+var loaderLen 68
+mov loaderDst loaderOrg tmp
+decaddr loaderOrg -8
+decaddr loaderDst -8
+rem Jump to loaderDst once loaderLen is <= 0
+decleq loaderLen 8 loaderDst
+lbljmp COPY
+
+
+rem LOADER copies the buffer to the highest memory (0~...) and jumps to 0
+rem No external variables are used within LOADER, as those would be overridden by the new program
+rem The addresses are also hardcoded based on loaderDst
+label LOADER
+relsq dstEnd bufEnd 1
+rem Decrease bufEnd by 8
+raw 0000000000200010 0000000000200060 0000000000200030
+rem Decrease dstEnd by 8, and jump to 0 if dstEnd <= 0
+raw 0000000000200008 0000000000200060 0000000000000000
+rem CONST_8
+raw 0000000000000008 0000000000000000 0000000000000000

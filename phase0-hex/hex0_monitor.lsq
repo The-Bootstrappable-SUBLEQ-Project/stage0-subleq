@@ -1,0 +1,194 @@
+rem Copyright (C) 2022 NyanCatTW1
+rem This file is part of stage0-subleq.
+rem
+rem stage0-subleq is free software: you can redistribute it and/or modify
+rem it under the terms of the GNU General Public License as published by
+rem the Free Software Foundation, either version 3 of the License, or
+rem (at your option) any later version.
+rem
+rem stage0-subleq is distributed in the hope that it will be useful,
+rem but WITHOUT ANY WARRANTY; without even the implied warranty of
+rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+rem GNU General Public License for more details.
+rem
+rem You should have received a copy of the GNU General Public License
+rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
+
+rem Standard program start
+lblsq 0 0 EP
+var tmp 0
+addr SERIAL_IN 0
+
+label EP
+rem MAIN is the main routine for handling inputs
+label MAIN
+rem val is intentionally kept negative to make it easier to add to cur
+var val 0
+var c 0
+
+rem Start getchar c tmp
+
+rem Start set tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+rem End set
+
+relsq tmp SERIAL_IN 2
+rem reljmp -1
+relsq 0 0 -1
+rem zero SERIAL_IN
+relsq SERIAL_IN SERIAL_IN 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End getchar
+
+
+rem Handle NUL ~ "
+lblsq c CONST_22 MAIN
+
+rem Handle #
+lblsq c CONST_1 COMMENT
+
+rem Handle $ ~ /
+lblsq c CONST_c MAIN
+
+rem Handle 0 ~ 9
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_-1 1
+lblsq c CONST_a WRITE
+
+rem Handle :
+lblsq c CONST_1 MAIN
+
+rem Handle ;
+lblsq c CONST_1 COMMENT
+
+rem Handle < ~ @
+lblsq c CONST_5 MAIN
+
+rem Handle A ~ F
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_9 1
+lblsq c CONST_6 WRITE
+
+rem Handle G ~ `
+lblsq c CONST_1a MAIN
+
+rem Handle a ~ f
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_9 1
+lblsq c CONST_6 WRITE
+
+rem Handle g ~ ~
+lblsq c CONST_24 MAIN
+
+rem Handle DEL (0x7f)
+lblsq 0 0 COPY
+
+
+rem COMMENT ignores characters until \r or \n is fed
+label COMMENT
+
+rem Start getchar c tmp
+
+rem Start set tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+rem End set
+
+relsq tmp SERIAL_IN 2
+rem reljmp -1
+relsq 0 0 -1
+rem zero SERIAL_IN
+relsq SERIAL_IN SERIAL_IN 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End getchar
+
+lblsq c CONST_9 COMMENT
+rem Handle LF
+lblsq c CONST_1 MAIN
+lblsq c CONST_2 COMMENT
+rem Handle CR
+lblsq c CONST_1 MAIN
+lblsq 0 0 COMMENT
+
+
+rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
+label WRITE
+var cur 0
+rem The following multiplies cur by 16
+rem tmp = -5 * cur
+rem movneg tmp cur
+relsq tmp tmp 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+
+rem cur -= 3 * tmp = -15 * cur
+relsq cur tmp 1
+relsq cur tmp 1
+relsq cur tmp 1
+
+relsq cur val 1
+
+rem i will turn positive every 16 iterations
+var i -15
+lblsq i CONST_-1 MAIN
+
+rem Copy to the buffer and increase its address
+addr dstEnd 0
+addr bufEnd 100000
+rem The buffer is also intentionally kept negative to ease copying
+rem movneg bufEnd cur
+relsq bufEnd bufEnd 1
+relsq bufEnd cur 1
+relsq cur cur 1
+decaddr dstEnd -8
+decaddr bufEnd -8
+lblsq i CONST_15 MAIN
+
+
+rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
+rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
+addr loaderOrg 0
+addr loaderDst 200000
+var loaderLen 68
+
+rem Start mov loaderDst loaderOrg tmp
+rem movneg tmp loaderOrg
+relsq tmp tmp 1
+relsq tmp loaderOrg 1
+rem movneg loaderDst tmp
+relsq loaderDst loaderDst 1
+relsq loaderDst tmp 1
+rem End mov
+
+decaddr loaderOrg -8
+decaddr loaderDst -8
+rem Jump to loaderDst once loaderLen is <= 0
+lblsq loaderLen CONST_8 loaderDst
+lblsq 0 0 COPY
+
+
+rem LOADER copies the buffer to the highest memory (0~...) and jumps to 0
+rem No external variables are used within LOADER, as those would be overridden by the new program
+rem The addresses are also hardcoded based on loaderDst
+label LOADER
+relsq dstEnd bufEnd 1
+rem Decrease bufEnd by 8
+raw 0000000000200010 0000000000200060 0000000000200030
+rem Decrease dstEnd by 8, and jump to 0 if dstEnd <= 0
+raw 0000000000200008 0000000000200060 0000000000000000
+rem CONST_8
+raw 0000000000000008 0000000000000000 0000000000000000
