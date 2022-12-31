@@ -15,9 +15,10 @@ rem You should have received a copy of the GNU General Public License
 rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 
 rem Standard program start
-lblsq 0 0 EP
+addr ZERO 0
 var tmp 0
 addr SERIAL_IN 0
+lblsq ZERO ZERO EP
 
 label EP
 rem MAIN is the main routine for handling inputs
@@ -35,7 +36,7 @@ rem End set
 
 relsq tmp SERIAL_IN 2
 rem reljmp -1
-relsq 0 0 -1
+relsq ZERO ZERO -1
 rem zero SERIAL_IN
 relsq SERIAL_IN SERIAL_IN 1
 rem movneg c tmp
@@ -90,7 +91,7 @@ rem Handle g ~ ~
 lblsq c CONST_24 MAIN
 
 rem Handle DEL (0x7f)
-lblsq 0 0 COPY
+lblsq ZERO ZERO COPY
 
 
 rem COMMENT ignores characters until \r or \n is fed
@@ -105,7 +106,7 @@ rem End set
 
 relsq tmp SERIAL_IN 2
 rem reljmp -1
-relsq 0 0 -1
+relsq ZERO ZERO -1
 rem zero SERIAL_IN
 relsq SERIAL_IN SERIAL_IN 1
 rem movneg c tmp
@@ -119,7 +120,7 @@ lblsq c CONST_1 MAIN
 lblsq c CONST_2 COMMENT
 rem Handle CR
 lblsq c CONST_1 MAIN
-lblsq 0 0 COMMENT
+lblsq ZERO ZERO COMMENT
 
 
 rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
@@ -178,7 +179,7 @@ subaddr loaderOrg CONST_-8
 subaddr loaderDst CONST_-8
 rem Jump to loaderDst once loaderLen is <= 0
 lblsq loaderLen CONST_8 loaderDst
-lblsq 0 0 COPY
+lblsq ZERO ZERO COPY
 
 
 rem LOADER copies the buffer to the highest memory (0~...) and jumps to 0

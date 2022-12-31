@@ -15,9 +15,10 @@ rem You should have received a copy of the GNU General Public License
 rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 
 rem Standard program start
-lblsq 0 0 EP
+addr ZERO 0
 var tmp 0
 addr SERIAL_IN 0
+lblsq ZERO ZERO EP
 
 label EP
 rem MAIN is the main routine for handling inputs

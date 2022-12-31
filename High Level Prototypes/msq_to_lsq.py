@@ -104,14 +104,14 @@ def inst_set(a, val, verbosity=1):
 def reljmp(a, verbosity=0):
     if verbosity > 0:
         print(f"rem reljmp {a}")
-    print(f"relsq 0 0 {a}")
+    print(f"relsq ZERO ZERO {a}")
 
 
 # Jumps to label
 def lbljmp(lbl, verbosity=0):
     if verbosity > 0:
         print(f"rem lbljmp {lbl}")
-    print(f"lblsq 0 0 {lbl}")
+    print(f"lblsq ZERO ZERO {lbl}")
 
 
 # Sets a to -b
