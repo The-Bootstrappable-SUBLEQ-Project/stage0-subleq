@@ -2,7 +2,7 @@
 A place for public review of the SUBLEQ port of stage0. The goal is to bootstrap a GNU/Linux system on an emulated/physical Noontide SUBLEQ Computer.
 
 # Manually written files
-### **Do not trust any files of this category without manually reviewing it first!**
+### **Do not trust any files of this category without manually reviewing them first!**
 ### High Level Prototypes/msq_to_lsq.py
 Expands an msq (Macro SUBLEQ) program to an lsq (Lesser SUBLEQ) program
 ### High Level Prototypes/lsq_to_hex.py
