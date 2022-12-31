@@ -154,8 +154,8 @@ rem movneg bufEnd cur
 relsq bufEnd bufEnd 1
 relsq bufEnd cur 1
 relsq cur cur 1
-decaddr dstEnd -8
-decaddr bufEnd -8
+subaddr dstEnd CONST_-8
+subaddr bufEnd CONST_-8
 lblsq i CONST_15 MAIN
 
 
@@ -174,8 +174,8 @@ relsq loaderDst loaderDst 1
 relsq loaderDst tmp 1
 rem End mov
 
-decaddr loaderOrg -8
-decaddr loaderDst -8
+subaddr loaderOrg CONST_-8
+subaddr loaderDst CONST_-8
 rem Jump to loaderDst once loaderLen is <= 0
 lblsq loaderLen CONST_8 loaderDst
 lblsq 0 0 COPY
@@ -204,5 +204,6 @@ var CONST_6 6
 var CONST_1a 1a
 var CONST_24 24
 var CONST_2 2
+var CONST_-8 -8
 var CONST_15 15
 var CONST_8 8

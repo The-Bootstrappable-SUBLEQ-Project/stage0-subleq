@@ -21,7 +21,7 @@ import sys
 # Let lsq_to_hex worry about these instructions instead
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
-             "decaddr", "setaddr",
+             "subaddr", "zeroaddr",
              "raw", "rem"]
 consts = []
 
@@ -149,6 +149,12 @@ def getchar(a, tmp, verbosity=2):
         print()
 
 
+# Decreases all references of a symbol by b
+def decaddr(sym, b, verbosity=0):
+    if verbosity > 0:
+        print(f"rem decaddr {sym} {b}")
+    print(f"subaddr {sym} {recordConst(b)}")
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
@@ -198,6 +204,9 @@ for line in lines:
     elif inst == "getchar":
         assert argc == 2
         getchar(args[0], args[1])
+    elif inst == "decaddr":
+        assert argc == 2
+        decaddr(args[0], args[1])
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 
