@@ -2,13 +2,13 @@
 A place for public review of the SUBLEQ port of stage0. The goal is to bootstrap a GNU/Linux system on an emulated/physical Noontide SUBLEQ Computer.
 
 # Manually written files
+### **Do not trust any files of this category without manually reviewing it first!**
 ### High Level Prototypes/msq_to_lsq.py
 Expands an msq (Macro SUBLEQ) program to an lsq (Lesser SUBLEQ) program
 ### High Level Prototypes/lsq_to_hex.py
 Assembles an lsq (Lesser SUBLEQ) program and outputs hex{0,1,2} files (TODO)
 ### phase0-hex/hex0_monitor.msq
 This is just like a regular hex0_monitor, except it copies the assembled file to 0x0 of the memory and executes it. This is because we don't have any filesystem support at this stage.
-### **Be sure to use this file to check if the lsq/hex0 versions of it are correct!**
 
 # Automatically generated files
 ### **Do not trust any files of this category without either manually reviewing or regenerating them under a trusted environment first!**
