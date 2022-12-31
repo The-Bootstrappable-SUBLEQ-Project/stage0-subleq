@@ -200,3 +200,7 @@ for line in lines:
         getchar(args[0], args[1])
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
+
+print()
+for const in consts:
+    print(f"var CONST_{const:x} {const:x}")

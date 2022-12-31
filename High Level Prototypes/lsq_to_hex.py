@@ -25,6 +25,11 @@ lsq_insts = ["var", "label", "addr",
              "raw", "rem"]
 lines = []
 
+# TODO: Take hex_version as a parameter
+hex_version = 0
+# Only hex0 is supported currently
+assert hex_version == 0
+
 inp = open(sys.argv[1]).read().split("\n")
 for line in inp:
     if len(line.strip()) == 0:
@@ -41,3 +46,8 @@ for line in inp:
         raise SyntaxError(f"Unknown instruction: {tokens[0]}")
 
 print(lines)
+symbols = {}
+for line in lines:
+    if line[0] in ["var", "label", "addr"]:
+        symbols.append(line[1][0])
+print(symbols)
