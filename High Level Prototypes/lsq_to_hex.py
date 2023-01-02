@@ -21,8 +21,10 @@ import sys
 # Well...now I have to worry about these
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
-             "decaddr", "setaddr",
+             "subaddr", "zeroaddr",
              "raw", "rem"]
+
+# Entry format: [Inst, Tokens, Comment]
 lines = []
 
 # TODO: Take hex_version as a parameter
@@ -33,21 +35,42 @@ assert hex_version == 0
 inp = open(sys.argv[1]).read().split("\n")
 for line in inp:
     if len(line.strip()) == 0:
-        lines.append(("newline", [], ""))
+        lines.append(["newline", [], ""])
         continue
 
     tokens = line.split()
     if tokens[0] == "rem":
-        lines.append(("rem", [], " ".join(tokens[1:])))
+        lines.append(["rem", [], " ".join(tokens[1:])])
         continue
     elif tokens[0] in lsq_insts:
-        lines.append((tokens[0], tokens[1:], ""))
+        lines.append([tokens[0], tokens[1:], ""])
     else:
         raise SyntaxError(f"Unknown instruction: {tokens[0]}")
 
-print(lines)
+# Entry format: [Address, RefCount, References (LineNum, TokenId)]
 symbols = {}
 for line in lines:
     if line[0] in ["var", "label", "addr"]:
-        symbols.append(line[1][0])
+        symbols[line[1][0]] = [int(line[1][1], 16) if line[0] == "addr" else None, 0, []]
+
+# Count references
+for line in lines:
+    if line[0] in ["abssq", "relsq", "lblsq"]:
+        symbols[line[1][0]][1] += 1
+        symbols[line[1][1]][1] += 1
+        if line[0] == "lblsq":
+            symbols[line[1][2]][1] += 1
+    elif line[0] == "subaddr":
+        symbols[line[1][1]][1] += 1
 print(symbols)
+
+i = 0
+while i < len(lines):
+    if lines[i][0] not in ["subaddr", "zeroaddr"]:
+        i += 1
+        continue
+    sym = lines[i][1][0]
+    if lines[i][0] == "subaddr":
+        lines[i:i+1] = [f"relsq {sym}_decaddr_{x} {lines[i][1][1]} 1"]
+    i += 1
+    pass
