@@ -47,9 +47,10 @@ class Reference:
 
 @dataclass
 class Symbol:
-    addr: int
+    addr: int = None
     refCount: int = 0
     refs: list[Reference] = field(default_factory=list)
+    val: int = None
 
 
 # TODO: Take hex_version as a parameter
@@ -79,8 +80,10 @@ symbols = {}
 for line in lines:
     if line.inst in ["var", "label", "addr"]:
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
+        if line.inst == "var":
+            symbols[line.tokens[0]].val = int(line.tokens[1], 16)
 
-# 2. Count symbol references
+# 2. Count symbol references (Pass 1)
 for line in lines:
     if line.inst in ["abssq", "relsq", "lblsq"]:
         symbols[line.tokens[0]].refCount += 1
@@ -89,7 +92,6 @@ for line in lines:
             symbols[line.tokens[2]].refCount += 1
     elif line.inst == "subaddr":
         symbols[line.tokens[1]].refCount += 1
-pp.pprint(symbols)
 
 # 3. Create subaddr/zeroaddr stubs
 i = 0
@@ -103,7 +105,32 @@ while i < len(lines):
     addrSymbols[sym] = 0
 
     if lines[i].inst == "subaddr":
-        lines[i:i + 1] = [Line("relsq", [f"{sym}_{lines[i].inst}_{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
+        stubSym = f"{sym}_addrRef_"
+        lines[i:i + 1] = [Line("relsq", [f"{stubSym}{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
+        for k in range(symbols[sym].refCount):
+            curSym = f"{stubSym}{k}"
+            if curSym in symbols:
+                symbols[curSym].refCount += 1
+            else:
+                symbols[curSym] = Symbol(None, 1)
     i += 1
+
+# 4. Find label+stub addresses
+size = 0
+for line in lines:
+    if line.inst in ["abssq", "relsq", "lblsq", "raw"]:
+        for i in range(3):
+            sym = line.tokens[i]
+            if (line.inst == "lblsq" or i < 2) and sym in addrSymbols:
+                stubSym = f"{sym}_addrRef_{addrSymbols[sym]}"
+                symbols[stubSym].addr = size
+                addrSymbols[sym] += 1
+            size += 8
+    elif line.inst == "raw":
+        size += 24
+    elif line.inst == "label":
+        symbols[line.tokens[0]].addr = size
 pp.pprint(lines)
-print(addrSymbols)
+pp.pprint(symbols)
+print()
+pp.pprint([x for x in symbols.items() if x[1].addr is None])
