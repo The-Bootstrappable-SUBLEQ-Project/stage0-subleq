@@ -118,7 +118,7 @@ while i < len(lines):
 # 4. Find label+stub addresses
 size = 0
 for line in lines:
-    if line.inst in ["abssq", "relsq", "lblsq", "raw"]:
+    if line.inst in ["abssq", "relsq", "lblsq"]:
         for i in range(3):
             sym = line.tokens[i]
             if (line.inst == "lblsq" or i < 2) and sym in addrSymbols:
@@ -127,7 +127,7 @@ for line in lines:
                 addrSymbols[sym] += 1
             size += 8
     elif line.inst == "raw":
-        size += 24
+        size += 8 * len(line.tokens)
     elif line.inst == "label":
         symbols[line.tokens[0]].addr = size
 pp.pprint(lines)
