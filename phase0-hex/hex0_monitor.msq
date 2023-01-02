@@ -118,6 +118,7 @@ decleq i 15 MAIN
 
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
 rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
+label COPY
 addr loaderOrg 0
 addr loaderDst 200000
 var loaderLen 68
