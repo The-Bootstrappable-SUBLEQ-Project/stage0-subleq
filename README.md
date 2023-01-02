@@ -26,3 +26,10 @@ This file can be regenerated via the following methods:
 2. Running `./High_Level_Prototypes/lsq_to_hex.py phase0-hex/hex0_monitor.lsq > phase0-hex/hex0_monitor.hex0` on a Python-enabled + Trusted computer
 3. Using the SUBLEQ implementation of lsq_to_hex to assemble it (TODO)
 4. Converting it yourself manually (See High Level Prototypes/lsq_to_hex.py for what each instruction should do)
+
+### phase0-hex/hex0_monitor.bin
+This file can be regenerated via the following methods:
+1. Running `make -B phase0-hex/hex0_monitor.bin` on a Makefile-enabled + Trusted POSIX computer
+2. Running `sed 's/[;#].*$//g' phase0-hex/hex0_monitor.hex0 | xxd -r -p > phase0-hex/hex0_monitor.bin` on a Trusted POSIX computer (You might need to escape the $)
+3. Using the SUBLEQ implementation of hex0 to assemble it (TODO)
+4. Converting it yourself manually
