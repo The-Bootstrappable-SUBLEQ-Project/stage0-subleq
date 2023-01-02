@@ -19,7 +19,10 @@ along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 # https://stackoverflow.com/a/62775680
 from __future__ import annotations
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+import pprint
+
+pp = pprint.PrettyPrinter()
 
 # Well...now I have to worry about these
 lsq_insts = ["var", "label", "addr",
@@ -31,7 +34,8 @@ lsq_insts = ["var", "label", "addr",
 @dataclass
 class Line:
     inst: str
-    tokens: list[str]
+    # https://stackoverflow.com/a/74292633
+    tokens: list[str] = field(default_factory=list)
     comment: str = ""
 
 
@@ -45,7 +49,7 @@ class Reference:
 class Symbol:
     addr: int
     refCount: int = 0
-    refs: list[Reference] = []
+    refs: list[Reference] = field(default_factory=list)
 
 
 # TODO: Take hex_version as a parameter
@@ -66,35 +70,38 @@ for line in inp:
         lines.append(Line("rem", [], " ".join(tokens[1:])))
         continue
     elif inst in lsq_insts:
-        lines.append(line(inst, tokens[1:]))
+        lines.append(Line(inst, tokens[1:]))
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 
 # Entry format: [Address, RefCount, References (LineNum, TokenId)]
 symbols = {}
 for line in lines:
-    if line[0] in ["var", "label", "addr"]:
-        symbols[line.tokens[0]] = Symbol(int(line[1][1], 16) if line[0] == "addr" else None)
+    if line.inst in ["var", "label", "addr"]:
+        symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
 
 # Count references
 for line in lines:
-    if line[0] in ["abssq", "relsq", "lblsq"]:
+    if line.inst in ["abssq", "relsq", "lblsq"]:
         symbols[line.tokens[0]].refCount += 1
         symbols[line.tokens[1]].refCount += 1
-        if line[0] == "lblsq":
+        if line.inst == "lblsq":
             symbols[line.tokens[2]].refCount += 1
-    elif line[0] == "subaddr":
+    elif line.inst == "subaddr":
         symbols[line.tokens[1]].refCount += 1
-print(symbols)
+pp.pprint(symbols)
 
 i = 0
+addrSymbols = []
 while i < len(lines):
     if lines[i].inst not in ["subaddr", "zeroaddr"]:
         i += 1
         continue
     sym = lines[i].tokens[0]
+    addrSymbols.append(sym)
+
     if lines[i].inst == "subaddr":
-        lines[i:i + 1] = [Line("relsq", [f"{sym}_subaddr_{x}", f"{lines[i][1][1]}", "1"]) for x in range(symbols[sym].refCount)]
+        lines[i:i + 1] = [Line("relsq", [f"{sym}_{lines[i].inst}_{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
     i += 1
-    pass
-print(lines)
+pp.pprint(lines)
+print(addrSymbols)
