@@ -52,14 +52,14 @@ rem Handle #
 lblsq c CONST_1 COMMENT
 
 rem Handle $ ~ /
-lblsq c CONST_c MAIN
+lblsq c CONST_C MAIN
 
 rem Handle 0 ~ 9
 rem movneg val c
 relsq val val 1
 relsq val c 1
 relsq val CONST_-1 1
-lblsq c CONST_a WRITE
+lblsq c CONST_A WRITE
 
 rem Handle :
 lblsq c CONST_1 MAIN
@@ -78,7 +78,7 @@ relsq val CONST_9 1
 lblsq c CONST_6 WRITE
 
 rem Handle G ~ `
-lblsq c CONST_1a MAIN
+lblsq c CONST_1A MAIN
 
 rem Handle a ~ f
 rem movneg val c
@@ -198,12 +198,12 @@ raw 0000000000000008
 var CONST_-1 -1
 var CONST_22 22
 var CONST_1 1
-var CONST_c c
-var CONST_a a
+var CONST_C c
+var CONST_A a
 var CONST_5 5
 var CONST_9 9
 var CONST_6 6
-var CONST_1a 1a
+var CONST_1A 1a
 var CONST_24 24
 var CONST_2 2
 var CONST_-8 -8

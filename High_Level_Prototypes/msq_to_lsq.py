@@ -38,7 +38,7 @@ def recordConst(a):
     a = ensureInt(a)
     if a not in consts:
         consts.append(a)
-    return f"CONST_{a:x}"
+    return f"CONST_{a:X}"
 
 
 # Subtracts a by b
@@ -213,4 +213,4 @@ for line in lines:
 
 print()
 for const in consts:
-    print(f"var CONST_{const:x} {const:x}")
+    print(f"var CONST_{const:X} {const:x}")
