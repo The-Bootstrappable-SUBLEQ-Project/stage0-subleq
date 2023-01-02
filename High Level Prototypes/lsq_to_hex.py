@@ -21,6 +21,7 @@ from __future__ import annotations
 import sys
 from dataclasses import dataclass, field
 import pprint
+import struct
 
 pp = pprint.PrettyPrinter()
 
@@ -37,6 +38,7 @@ class Line:
     # https://stackoverflow.com/a/74292633
     tokens: list[str] = field(default_factory=list)
     comment: str = ""
+    offset: int = 0
 
 
 @dataclass
@@ -53,11 +55,16 @@ class Symbol:
     val: int = None
 
 
+def toLong(inp):
+    return struct.pack(">q", inp).hex().ljust(16, "0")
+
+
 # TODO: Take hex_version as a parameter
 hex_version = 0
 # Only hex0 is supported currently
 assert hex_version == 0
 
+# 0. Parse file into lines
 lines = []
 inp = open(sys.argv[1]).read().split("\n")
 for line in inp:
@@ -115,9 +122,10 @@ while i < len(lines):
                 symbols[curSym] = Symbol(None, 1)
     i += 1
 
-# 4. Find label+stub addresses
+# 4. Find label+stub addresses and convert relsq to abssq on hex0
 size = 0
 for line in lines:
+    line.offset = size
     if line.inst in ["abssq", "relsq", "lblsq"]:
         for i in range(3):
             sym = line.tokens[i]
@@ -130,7 +138,46 @@ for line in lines:
         size += 8 * len(line.tokens)
     elif line.inst == "label":
         symbols[line.tokens[0]].addr = size
-pp.pprint(lines)
-pp.pprint(symbols)
-print()
-pp.pprint([x for x in symbols.items() if x[1].addr is None])
+    print(line, size, file=sys.stderr)
+
+# 5. Assign addresses to variables
+for name, sym in symbols.items():
+    if sym.addr is None:
+        assert sym.val is not None
+        sym.addr = size
+        lines.append(Line("raw", [toLong(sym.val)], name))
+        size += 8
+
+# TODO: Utilize hex1/hex2 features
+# 6. Output hex0
+"""
+lsq_insts = ["var", "label", "addr",
+             "abssq", "relsq", "lblsq",
+             "subaddr", "zeroaddr",
+             "raw", "rem"]
+"""
+for line in lines:
+    out = []
+    if line.inst in ["var", "label", "addr", "rem", "newline"]:
+        pass
+    elif line.inst in ["abssq", "relsq", "lblsq"]:
+        out.append(f"{toLong(symbols[line.tokens[0]].addr)} {toLong(symbols[line.tokens[1]].addr)}")
+        if line.inst == "abssq":
+            out.append(toLong(int(line.tokens[2], 16)))
+        elif line.inst == "relsq":
+            out.append(toLong(line.offset + 24 * (int(line.tokens[2], 16))))
+        elif line.inst == "lblsq":
+            out.append(toLong(symbols[line.tokens[2]].addr))
+    elif line.inst == "raw":
+        out.append(" ".join(line.tokens))
+    else:
+        raise RuntimeError(f"Instruction {line.inst} shouldn't have appeared at this step!")
+
+    if line.inst not in ["rem", "newline"]:
+        out.append(f"; {line.inst} {' '.join(line.tokens)}")
+    if len(line.comment) != 0:
+        out.append(f"# {line.comment}")
+
+    print(" ".join(out))
+
+print(f"Final binary size: {size} (0x{size:x}) bytes", file=sys.stderr)
