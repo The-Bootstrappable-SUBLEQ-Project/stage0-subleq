@@ -102,7 +102,7 @@ sub cur tmp
 sub cur val
 
 rem i will turn positive every 16 iterations
-var i -15
+var i -f
 incleq i 1 MAIN
 
 rem Copy to the buffer and increase its address

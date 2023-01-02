@@ -144,7 +144,7 @@ relsq cur tmp 1
 relsq cur val 1
 
 rem i will turn positive every 16 iterations
-var i -15
+var i -f
 lblsq i CONST_-1 MAIN
 
 rem Copy to the buffer and increase its address
