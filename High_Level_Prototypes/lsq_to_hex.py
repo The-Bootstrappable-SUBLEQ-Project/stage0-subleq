@@ -138,7 +138,7 @@ for line in lines:
         size += 8 * len(line.tokens)
     elif line.inst == "label":
         symbols[line.tokens[0]].addr = size
-    print(line, size, file=sys.stderr)
+    # print(line, size, file=sys.stderr)
 
 # 5. Assign addresses to variables
 for name, sym in symbols.items():

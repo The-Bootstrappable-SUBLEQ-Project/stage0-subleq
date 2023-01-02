@@ -15,12 +15,14 @@ This is just like a regular hex0_monitor, except it copies the assembled file to
 
 ### phase0-hex/hex0_monitor.lsq
 This file can be regenerated via the following methods:
-1. Running `./High\ Level\ Prototypes/msq_to_lsq.py phase0-hex/hex0_monitor.msq > phase0-hex/hex0_monitor.lsq` on a Python-enabled+Trusted computer
-2. Using the SUBLEQ implementation of msq_to_lsq to expand it (TODO)
-3. Converting it yourself manually (See High Level Prototypes/msq_to_lsq.py for what each instruction should do)
+1. Running `make -B phase0-hex/hex0_monitor.lsq` on a Makefile-enabled + Python-enabled + Trusted computer
+2. Running `./High_Level_Prototypes/msq_to_lsq.py phase0-hex/hex0_monitor.msq > phase0-hex/hex0_monitor.lsq` on a Python-enabled + Trusted computer
+3. Using the SUBLEQ implementation of msq_to_lsq to expand it (TODO)
+4. Converting it yourself manually (See High Level Prototypes/msq_to_lsq.py for what each instruction should do)
 
 ### phase0-hex/hex0_monitor.hex0
 This file can be regenerated via the following methods:
-1. Running `./High\ Level\ Prototypes/lsq_to_hex.py phase0-hex/hex0_monitor.lsq > phase0-hex/hex0_monitor.hex0` on a Python-enabled+Trusted computer
-2. Using the SUBLEQ implementation of lsq_to_hex to assemble it (TODO)
-3. Converting it yourself manually (See High Level Prototypes/lsq_to_hex.py for what each instruction should do)
+1. Running `make -B phase0-hex/hex0_monitor.hex0` on a Makefile-enabled + Python-enabled + Trusted computer
+2. Running `./High_Level_Prototypes/lsq_to_hex.py phase0-hex/hex0_monitor.lsq > phase0-hex/hex0_monitor.hex0` on a Python-enabled + Trusted computer
+3. Using the SUBLEQ implementation of lsq_to_hex to assemble it (TODO)
+4. Converting it yourself manually (See High Level Prototypes/lsq_to_hex.py for what each instruction should do)
