@@ -74,13 +74,13 @@ for line in inp:
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 
-# Entry format: [Address, RefCount, References (LineNum, TokenId)]
+# 1. Find symbols
 symbols = {}
 for line in lines:
     if line.inst in ["var", "label", "addr"]:
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
 
-# Count references
+# 2. Count symbol references
 for line in lines:
     if line.inst in ["abssq", "relsq", "lblsq"]:
         symbols[line.tokens[0]].refCount += 1
@@ -91,14 +91,16 @@ for line in lines:
         symbols[line.tokens[1]].refCount += 1
 pp.pprint(symbols)
 
+# 3. Create subaddr/zeroaddr stubs
 i = 0
-addrSymbols = []
+# Format: {SymbolName: NextId}
+addrSymbols = {}
 while i < len(lines):
     if lines[i].inst not in ["subaddr", "zeroaddr"]:
         i += 1
         continue
     sym = lines[i].tokens[0]
-    addrSymbols.append(sym)
+    addrSymbols[sym] = 0
 
     if lines[i].inst == "subaddr":
         lines[i:i + 1] = [Line("relsq", [f"{sym}_{lines[i].inst}_{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
