@@ -65,7 +65,7 @@ dec val 9
 decleq c 6 WRITE
 
 rem Handle g ~ }
-decleq c 22 MAIN
+decleq c 17 MAIN
 
 rem Handle ~ and DEL (0x7f)
 lbljmp COPY
