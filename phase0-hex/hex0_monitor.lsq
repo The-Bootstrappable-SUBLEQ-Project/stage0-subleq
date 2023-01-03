@@ -88,7 +88,7 @@ relsq val CONST_9 1
 lblsq c CONST_6 WRITE
 
 rem Handle g ~ }
-lblsq c CONST_23 MAIN
+lblsq c CONST_22 MAIN
 
 rem Handle ~ and DEL (0x7f)
 lblsq ZERO ZERO COPY
@@ -204,7 +204,6 @@ var CONST_5 5
 var CONST_9 9
 var CONST_6 6
 var CONST_1A 1a
-var CONST_23 23
 var CONST_2 2
 var CONST_-8 -8
 var CONST_15 15
