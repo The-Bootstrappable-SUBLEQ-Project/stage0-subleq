@@ -17,7 +17,7 @@ rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 rem Standard program start
 addr ZERO 0
 var tmp 0
-addr SERIAL_IN 0
+addr SERIAL_IN 13ED27E8
 lblsq ZERO ZERO EP
 
 label EP
@@ -163,7 +163,7 @@ lblsq i CONST_15 MAIN
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
 rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 label COPY
-addr loaderOrg 0
+addr loaderOrg 6c0
 addr loaderDst 200000
 var loaderLen 68
 

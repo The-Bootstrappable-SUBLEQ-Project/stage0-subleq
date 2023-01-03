@@ -51,7 +51,6 @@ class Reference:
 class Symbol:
     addr: int = None
     refCount: int = 0
-    refs: list[Reference] = field(default_factory=list)
     val: int = None
 
 
@@ -181,3 +180,4 @@ for line in lines:
     print(" ".join(out))
 
 print(f"Final binary size: {size} (0x{size:x}) bytes", file=sys.stderr)
+print(f"LOADER offset: {symbols['LOADER'].addr:x} bytes", file=sys.stderr)
