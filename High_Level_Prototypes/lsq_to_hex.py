@@ -180,4 +180,6 @@ for line in lines:
     print(" ".join(out))
 
 print(f"Final binary size: {size} (0x{size:x}) bytes", file=sys.stderr)
-print(f"LOADER offset: {symbols['LOADER'].addr:x} bytes", file=sys.stderr)
+
+if "LOADER" in symbols:
+    print(f"LOADER offset: {symbols['LOADER'].addr:x} bytes", file=sys.stderr)
