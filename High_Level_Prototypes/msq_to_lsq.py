@@ -149,6 +149,19 @@ def getchar(a, tmp, verbosity=2):
         print()
 
 
+# Outputs a character into SERIAL_IN, using tmp as a temporary storage
+def putchar(a, tmp, verbosity=2):
+    if verbosity > 0:
+        print()
+        print(f"rem Start putchar {a} {tmp}")
+    print("relsq SERIAL_OUT ZERO 2")
+    reljmp(-1, verbosity - 1)
+    inst_set("SERIAL_OUT", a)
+    if verbosity > 0:
+        print("rem End putchar")
+        print()
+
+
 # Decreases all references of a symbol by b
 def decaddr(sym, b, verbosity=0):
     if verbosity > 0:
@@ -205,6 +218,9 @@ for line in lines:
     elif inst == "getchar":
         assert argc == 2
         getchar(args[0], args[1])
+    elif inst == "putchar":
+        assert argc == 2
+        putchar(args[0], args[1])
     elif inst == "decaddr":
         assert argc == 2
         decaddr(args[0], args[1])
