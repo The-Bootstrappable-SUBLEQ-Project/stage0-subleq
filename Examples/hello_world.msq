@@ -1,0 +1,80 @@
+rem Copyright (C) 2022 NyanCatTW1
+rem This file is part of stage0-subleq.
+rem
+rem stage0-subleq is free software: you can redistribute it and/or modify
+rem it under the terms of the GNU General Public License as published by
+rem the Free Software Foundation, either version 3 of the License, or
+rem (at your option) any later version.
+rem
+rem stage0-subleq is distributed in the hope that it will be useful,
+rem but WITHOUT ANY WARRANTY; without even the implied warranty of
+rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+rem GNU General Public License for more details.
+rem
+rem You should have received a copy of the GNU General Public License
+rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
+
+rem Standard program start
+addr ZERO 0
+var tmp 0
+addr SERIAL_IN 13ED27E8
+addr SERIAL_OUT 13ED27F0
+lblsq ZERO ZERO EP
+
+label EP
+var c 0
+
+rem Output 'H'
+set c 48
+putchar c tmp
+
+rem Output 'e'
+set c 65
+putchar c tmp
+
+rem Output 'l'
+set c 6c
+putchar c tmp
+
+rem Output 'l'
+set c 6c
+putchar c tmp
+
+rem Output 'o'
+set c 6f
+putchar c tmp
+
+rem Output ','
+set c 2c
+putchar c tmp
+
+rem Output ' '
+set c 20
+putchar c tmp
+
+rem Output 'w'
+set c 57
+putchar c tmp
+
+rem Output 'o'
+set c 6f
+putchar c tmp
+
+rem Output 'r'
+set c 72
+putchar c tmp
+
+rem Output 'l'
+set c 6c
+putchar c tmp
+
+rem Output 'd'
+set c 64
+putchar c tmp
+
+rem Output '!'
+set c 21
+putchar c tmp
+
+rem Infinite loop
+relsq ZERO ZERO 0
