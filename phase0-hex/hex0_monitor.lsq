@@ -18,6 +18,7 @@ rem Standard program start
 addr ZERO 0
 var tmp 0
 addr SERIAL_IN 13ED27E8
+addr SERIAL_OUT 13ED27F0
 lblsq ZERO ZERO EP
 
 label EP
@@ -43,6 +44,21 @@ rem movneg c tmp
 relsq c c 1
 relsq c tmp 1
 rem End getchar
+
+
+rem Start putchar c tmp
+relsq SERIAL_OUT ZERO 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem movneg tmp c
+relsq tmp tmp 1
+relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
+rem movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem End putchar
 
 
 rem Handle NUL ~ "
@@ -114,6 +130,21 @@ relsq c c 1
 relsq c tmp 1
 rem End getchar
 
+
+rem Start putchar c tmp
+relsq SERIAL_OUT ZERO 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem movneg tmp c
+relsq tmp tmp 1
+relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
+rem movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem End putchar
+
 lblsq c CONST_9 COMMENT
 rem Handle LF
 lblsq c CONST_1 MAIN
@@ -163,7 +194,7 @@ lblsq i CONST_15 MAIN
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
 rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 label COPY
-addr loaderOrg 6c0
+addr loaderOrg 810
 addr loaderDst 200000
 var loaderLen 68
 
@@ -196,8 +227,8 @@ rem CONST_8
 raw 0000000000000008
 
 var CONST_-1 -1
-var CONST_22 22
 var CONST_1 1
+var CONST_22 22
 var CONST_C c
 var CONST_A a
 var CONST_5 5

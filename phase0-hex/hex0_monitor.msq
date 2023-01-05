@@ -18,6 +18,7 @@ rem Standard program start
 addr ZERO 0
 var tmp 0
 addr SERIAL_IN 13ED27E8
+addr SERIAL_OUT 13ED27F0
 lblsq ZERO ZERO EP
 
 label EP
@@ -27,6 +28,7 @@ rem val is intentionally kept negative to make it easier to add to cur
 var val 0
 var c 0
 getchar c tmp
+putchar c tmp
 
 rem Handle NUL ~ "
 decleq c 22 MAIN
@@ -74,6 +76,7 @@ lbljmp COPY
 rem COMMENT ignores characters until \r or \n is fed
 label COMMENT
 getchar c tmp
+putchar c tmp
 decleq c 9 COMMENT
 rem Handle LF
 decleq c 1 MAIN
@@ -119,7 +122,7 @@ decleq i 15 MAIN
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
 rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 label COPY
-addr loaderOrg 6c0
+addr loaderOrg 810
 addr loaderDst 200000
 var loaderLen 68
 mov loaderDst loaderOrg tmp
