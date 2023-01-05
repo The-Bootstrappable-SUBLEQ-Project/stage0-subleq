@@ -36,16 +36,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -61,16 +59,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -86,16 +82,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -111,16 +105,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -136,16 +128,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -161,16 +151,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -186,16 +174,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -211,16 +197,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -236,16 +220,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -261,16 +243,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -286,16 +266,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -311,16 +289,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -336,16 +312,14 @@ rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
 rem reljmp -1
 relsq ZERO ZERO -1
-
-rem Start mov SERIAL_OUT c tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
 rem movneg SERIAL_OUT tmp
 relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
-rem End mov
-
 rem End putchar
 
 
@@ -353,6 +327,7 @@ rem Infinite loop
 relsq ZERO ZERO 0
 
 var CONST_-48 -48
+var CONST_1 1
 var CONST_-65 -65
 var CONST_-6C -6c
 var CONST_-6F -6f

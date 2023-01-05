@@ -156,7 +156,9 @@ def putchar(a, tmp, verbosity=2):
         print(f"rem Start putchar {a} {tmp}")
     print("relsq SERIAL_OUT ZERO 2")
     reljmp(-1, verbosity - 1)
-    mov("SERIAL_OUT", a, tmp)
+    movneg(tmp, a, verbosity - 1)
+    dec(tmp, 1, verbosity - 1)
+    movneg("SERIAL_OUT", tmp, verbosity - 1)
     if verbosity > 0:
         print("rem End putchar")
         print()
