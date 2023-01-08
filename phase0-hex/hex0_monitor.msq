@@ -116,7 +116,7 @@ movneg bufEnd cur
 zero cur
 decaddr dstEnd -8
 decaddr bufEnd -8
-decleq i 15 MAIN
+decleq i 10 MAIN
 
 
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader

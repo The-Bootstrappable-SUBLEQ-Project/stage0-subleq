@@ -188,7 +188,7 @@ relsq bufEnd cur 1
 relsq cur cur 1
 subaddr dstEnd CONST_-8
 subaddr bufEnd CONST_-8
-lblsq i CONST_15 MAIN
+lblsq i CONST_10 MAIN
 
 
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
@@ -238,5 +238,5 @@ var CONST_1A 1a
 var CONST_17 17
 var CONST_2 2
 var CONST_-8 -8
-var CONST_15 15
+var CONST_10 10
 var CONST_8 8
