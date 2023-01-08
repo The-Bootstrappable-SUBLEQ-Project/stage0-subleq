@@ -28,7 +28,7 @@ rem val is intentionally kept negative to make it easier to add to cur
 var val 0
 var c 0
 getchar c tmp
-putchar c tmp
+rem putchar c tmp
 
 rem Handle NUL ~ "
 decleq c 22 MAIN
@@ -76,7 +76,7 @@ lbljmp COPY
 rem COMMENT ignores characters until \r or \n is fed
 label COMMENT
 getchar c tmp
-putchar c tmp
+rem putchar c tmp
 decleq c 9 COMMENT
 rem Handle LF
 decleq c 1 MAIN
@@ -122,14 +122,15 @@ decleq i 10 MAIN
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
 rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 label COPY
-addr loaderOrg 810
+addr loaderOrg 6a8
 addr loaderDst 200000
+addr loaderStart 200000
 var loaderLen 68
 mov loaderDst loaderOrg tmp
 decaddr loaderOrg -8
 decaddr loaderDst -8
 rem Jump to loaderDst once loaderLen is <= 0
-decleq loaderLen 8 loaderDst
+decleq loaderLen 8 loaderStart
 lbljmp COPY
 
 
@@ -137,7 +138,7 @@ rem LOADER copies the buffer to the highest memory (0~...) and jumps to 0
 rem No external variables are used within LOADER, as those would be overridden by the new program
 rem The addresses are also hardcoded based on loaderDst
 label LOADER
-relsq dstEnd bufEnd 1
+abssq dstEnd bufEnd 200018
 rem Decrease bufEnd by 8
 raw 0000000000200008 0000000000200048 0000000000200030
 rem Decrease dstEnd by 8, and jump to 0 if dstEnd <= 0
