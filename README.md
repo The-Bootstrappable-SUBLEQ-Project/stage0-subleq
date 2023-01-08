@@ -33,3 +33,5 @@ This file can be regenerated via the following methods:
 2. Running `sed 's/[;#].*$//g' phase0-hex/hex0_monitor.hex0 | xxd -r -p > phase0-hex/hex0_monitor.bin` on a Trusted POSIX computer (You might need to escape the $)
 3. Using the SUBLEQ implementation of hex0 to assemble it (TODO)
 4. Converting it yourself manually
+
+Programs such as Examples/hello_world can similarly be regenerated using the methods above.
