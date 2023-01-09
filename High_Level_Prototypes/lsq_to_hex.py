@@ -61,7 +61,7 @@ def toLong(inp):
     return struct.pack(">q", inp).hex().ljust(16, "0")
 
 
-parser = argparse.ArgumentParser(prog="lsq_to_hex", description="Assembles a lsq program into hex0~hex1 codes")
+parser = argparse.ArgumentParser(prog="lsq_to_hex", description="Assembles a lsq program into hex0~hex2 codes")
 parser.add_argument("lsq_path", help="Path to the lsq file")
 parser.add_argument("--hex-version", dest="hex_version", metavar="N", type=int, default=0, help="The hex version to output (0~2, default is 0)")
 args = parser.parse_args()
