@@ -22,6 +22,9 @@ import sys
 from dataclasses import dataclass, field
 import pprint
 import struct
+import string
+import itertools
+import argparse
 
 pp = pprint.PrettyPrinter()
 
@@ -58,14 +61,17 @@ def toLong(inp):
     return struct.pack(">q", inp).hex().ljust(16, "0")
 
 
-# TODO: Take hex_version as a parameter
-hex_version = 0
-# Only hex0 is supported currently
-assert hex_version == 0
+parser = argparse.ArgumentParser(prog="lsq_to_hex", description="Assembles a lsq program into hex0~hex1 codes")
+parser.add_argument("lsq_path", help="Path to the lsq file")
+parser.add_argument("--hex-version", dest="hex_version", metavar="N", type=int, default=0, help="The hex version to output (0~2, default is 0)")
+args = parser.parse_args()
+
+hex_version = args.hex_version
+assert hex_version in [0, 1, 2]
 
 # 0. Parse file into lines
 lines = []
-inp = open(sys.argv[1]).read().split("\n")
+inp = open(args.lsq_path).read().split("\n")
 for line in inp:
     if len(line.strip()) == 0:
         lines.append(Line("newline"))
@@ -140,12 +146,17 @@ for line in lines:
     # print(line, size, file=sys.stderr)
 
 # 5. Assign addresses to variables
+symsAtAddr = {}
 for name, sym in symbols.items():
     if sym.addr is None:
         assert sym.val is not None
         sym.addr = size
         lines.append(Line("raw", [toLong(sym.val)], name))
         size += 8
+
+    if sym.addr not in symsAtAddr:
+        symsAtAddr[sym.addr] = []
+    symsAtAddr[sym.addr].append(name)
 
 # TODO: Utilize hex1/hex2 features
 # 6. Output hex0
@@ -155,20 +166,60 @@ lsq_insts = ["var", "label", "addr",
              "subaddr", "zeroaddr",
              "raw", "rem"]
 """
+
+out = []
+offset = 0
+availShortNames = ["".join(p) for p in itertools.product(string.ascii_letters, repeat=2)]
+shortNames = {}
+
+
+def addToken(token):
+    global offset
+    if offset in symsAtAddr:
+        for name in symsAtAddr[offset]:
+            if hex_version == 1:
+                if name not in shortNames:
+                    shortNames[name] = availShortNames.pop(0)
+                out.append(f":{shortNames[name]}")
+            elif hex_version == 2:
+                out.append(f":{name}")
+    out.append(token)
+    offset += 8
+
+
+def resolveSymbol(name):
+    addr = symbols[name].addr
+    if hex_version == 0 or addr >= size:
+        return toLong(addr)
+    elif hex_version == 1:
+        if name not in shortNames:
+            shortNames[name] = availShortNames.pop(0)
+        return f"&{shortNames[name]}"
+    else:
+        return f"&{name}"
+
+
 for line in lines:
     out = []
     if line.inst in ["var", "label", "addr", "rem", "newline"]:
         pass
     elif line.inst in ["abssq", "relsq", "lblsq"]:
-        out.append(f"{toLong(symbols[line.tokens[0]].addr)} {toLong(symbols[line.tokens[1]].addr)}")
+        addToken(resolveSymbol(line.tokens[0]))
+        addToken(resolveSymbol(line.tokens[1]))
         if line.inst == "abssq":
-            out.append(toLong(int(line.tokens[2], 16)))
+            addToken(toLong(int(line.tokens[2], 16)))
         elif line.inst == "relsq":
-            out.append(toLong(line.offset + 24 * (int(line.tokens[2], 16))))
+            target = line.offset + 24 * (int(line.tokens[2], 16))
+            if hex_version == 0:
+                addToken(toLong(target))
+            else:
+                diff = target - offset
+                addToken(f"?{diff:+x}")
         elif line.inst == "lblsq":
-            out.append(toLong(symbols[line.tokens[2]].addr))
+            addToken(resolveSymbol(line.tokens[2]))
     elif line.inst == "raw":
-        out.append(" ".join(line.tokens))
+        for token in line.tokens:
+            addToken(token)
     else:
         raise RuntimeError(f"Instruction {line.inst} shouldn't have appeared at this step!")
 

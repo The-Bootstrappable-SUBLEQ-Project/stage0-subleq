@@ -1,0 +1,353 @@
+# Copyright (C) 2022 NyanCatTW1
+# This file is part of stage0-subleq.
+
+# stage0-subleq is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# stage0-subleq is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with stage0-subleq. If not, see <http://www.gnu.org/licenses/>.
+
+# Standard program start
+; addr ZERO 0
+; var tmp 0
+; addr SERIAL_IN 13ED27E8
+; addr SERIAL_OUT 13ED27F0
+:aa &aa &aa &ab ; lblsq ZERO ZERO EP
+
+; label EP
+; var c 0
+
+# Output 'H'
+
+# Start set c 72
+:ab &ac &ac ?+8 ; relsq c c 1
+&ac &ad ?+8 ; relsq c CONST_-48 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'e'
+
+# Start set c 101
+&ac &ac ?+8 ; relsq c c 1
+&ac &ag ?+8 ; relsq c CONST_-65 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'l'
+
+# Start set c 108
+&ac &ac ?+8 ; relsq c c 1
+&ac &ah ?+8 ; relsq c CONST_-6C 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'l'
+
+# Start set c 108
+&ac &ac ?+8 ; relsq c c 1
+&ac &ah ?+8 ; relsq c CONST_-6C 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'o'
+
+# Start set c 111
+&ac &ac ?+8 ; relsq c c 1
+&ac &ai ?+8 ; relsq c CONST_-6F 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output ','
+
+# Start set c 44
+&ac &ac ?+8 ; relsq c c 1
+&ac &aj ?+8 ; relsq c CONST_-2C 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output ' '
+
+# Start set c 32
+&ac &ac ?+8 ; relsq c c 1
+&ac &ak ?+8 ; relsq c CONST_-20 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'w'
+
+# Start set c 87
+&ac &ac ?+8 ; relsq c c 1
+&ac &al ?+8 ; relsq c CONST_-57 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'o'
+
+# Start set c 111
+&ac &ac ?+8 ; relsq c c 1
+&ac &ai ?+8 ; relsq c CONST_-6F 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'r'
+
+# Start set c 114
+&ac &ac ?+8 ; relsq c c 1
+&ac &am ?+8 ; relsq c CONST_-72 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'l'
+
+# Start set c 108
+&ac &ac ?+8 ; relsq c c 1
+&ac &ah ?+8 ; relsq c CONST_-6C 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output 'd'
+
+# Start set c 100
+&ac &ac ?+8 ; relsq c c 1
+&ac &an ?+8 ; relsq c CONST_-64 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Output '!'
+
+# Start set c 33
+&ac &ac ?+8 ; relsq c c 1
+&ac &ao ?+8 ; relsq c CONST_-21 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &ac ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ae &af ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ae ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
+# Infinite loop
+&aa &aa ?-10 ; relsq ZERO ZERO 0
+
+; var CONST_-48 -48
+; var CONST_1 1
+; var CONST_-65 -65
+; var CONST_-6C -6c
+; var CONST_-6F -6f
+; var CONST_-2C -2c
+; var CONST_-20 -20
+; var CONST_-57 -57
+; var CONST_-72 -72
+; var CONST_-64 -64
+; var CONST_-21 -21
+
+:ae 0000000000000000 ; raw 0000000000000000 # tmp
+:ac 0000000000000000 ; raw 0000000000000000 # c
+:ad ffffffffffffffb8 ; raw ffffffffffffffb8 # CONST_-48
+:af 0000000000000001 ; raw 0000000000000001 # CONST_1
+:ag ffffffffffffff9b ; raw ffffffffffffff9b # CONST_-65
+:ah ffffffffffffff94 ; raw ffffffffffffff94 # CONST_-6C
+:ai ffffffffffffff91 ; raw ffffffffffffff91 # CONST_-6F
+:aj ffffffffffffffd4 ; raw ffffffffffffffd4 # CONST_-2C
+:ak ffffffffffffffe0 ; raw ffffffffffffffe0 # CONST_-20
+:al ffffffffffffffa9 ; raw ffffffffffffffa9 # CONST_-57
+:am ffffffffffffff8e ; raw ffffffffffffff8e # CONST_-72
+:an ffffffffffffff9c ; raw ffffffffffffff9c # CONST_-64
+:ao ffffffffffffffdf ; raw ffffffffffffffdf # CONST_-21
