@@ -9,6 +9,8 @@ Expands an msq (Macro SUBLEQ) program to an lsq (Lesser SUBLEQ) program
 Assembles an lsq (Lesser SUBLEQ) program and outputs hex0 files (TODO: Output in hex1/hex2 format)
 ### phase0-hex/hex0_monitor.msq
 This is just like a regular hex0_monitor, except it copies the assembled file to 0x0 of the memory and executes it. This is because we don't have any filesystem support at this stage.
+### Examples/hello_world.msq
+This prints the string "Hello, world!" and then proceeds to halt the CPU by running the same instruction forever.
 
 # Automatically generated files
 ### **Do not trust any files of this category without either manually reviewing or regenerating them under a trusted environment first!**
