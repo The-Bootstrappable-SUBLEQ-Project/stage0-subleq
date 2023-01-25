@@ -14,12 +14,12 @@ def test_hello_world_repeat_100():
 
 
 @pytest.mark.slow
-def test_hello_world_repeat_1000():
-    for _i in tqdm.trange(1000):
+def test_hello_world_repeat_2000():
+    for _i in tqdm.trange(2000):
         test_hello_world()
 
 
 @pytest.mark.slower
-def test_hello_world_repeat_5000():
-    for _i in tqdm.trange(5000):
+def test_hello_world_repeat_10000():
+    for _i in tqdm.trange(10000):
         test_hello_world()

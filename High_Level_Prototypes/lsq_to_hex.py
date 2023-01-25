@@ -233,7 +233,4 @@ for line in lines:
 # ~ is the terminator of hex files
 print("~")
 
-print(f"Final binary size: {size} (0x{size:x}) bytes", file=sys.stderr)
-
-if "LOADER" in symbols:
-    print(f"LOADER offset: {symbols['LOADER'].addr:x} bytes", file=sys.stderr)
+print(f"Binary size of {args.lsq_path}: {size} (0x{size:x}) bytes", file=sys.stderr)

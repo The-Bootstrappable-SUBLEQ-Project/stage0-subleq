@@ -164,23 +164,21 @@ lblsq i CONST_10 MAIN
 
 
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
-rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 label COPY
-addr loaderOrg 6d8
 addr loaderDst 200000
 addr loaderStart 200000
 var loaderLen b0
 
-rem Start mov loaderDst loaderOrg tmp
-rem movneg tmp loaderOrg
+rem Start mov loaderDst LOADER tmp
+rem movneg tmp LOADER
 relsq tmp tmp 1
-relsq tmp loaderOrg 1
+relsq tmp LOADER 1
 rem movneg loaderDst tmp
 relsq loaderDst loaderDst 1
 relsq loaderDst tmp 1
 rem End mov
 
-subaddr loaderOrg CONST_-8
+subaddr LOADER CONST_-8
 subaddr loaderDst CONST_-8
 rem Jump to loaderDst once loaderLen is <= 0
 lblsq loaderLen CONST_8 loaderStart

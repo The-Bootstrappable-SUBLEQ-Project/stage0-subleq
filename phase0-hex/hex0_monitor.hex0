@@ -169,23 +169,21 @@
 
 
 # COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
-# loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 ; label COPY
-; addr loaderOrg 6d8
 ; addr loaderDst 200000
 ; addr loaderStart 200000
 ; var loaderLen b0
 
-# Start mov loaderDst loaderOrg tmp
-# movneg tmp loaderOrg
+# Start mov loaderDst LOADER tmp
+# movneg tmp LOADER
 0000000000000788 0000000000000788 0000000000000600 ; relsq tmp tmp 1
-0000000000000788 00000000000006d8 0000000000000618 ; relsq tmp loaderOrg 1
+0000000000000788 00000000000006d8 0000000000000618 ; relsq tmp LOADER 1
 # movneg loaderDst tmp
 0000000000200000 0000000000200000 0000000000000630 ; relsq loaderDst loaderDst 1
 0000000000200000 0000000000000788 0000000000000648 ; relsq loaderDst tmp 1
 # End mov
 
-0000000000000608 0000000000000810 0000000000000660 ; relsq loaderOrg_addrRef_0 CONST_-8 1
+0000000000000608 0000000000000810 0000000000000660 ; relsq LOADER_addrRef_0 CONST_-8 1
 0000000000000618 0000000000000810 0000000000000678 ; relsq loaderDst_addrRef_0 CONST_-8 1
 0000000000000620 0000000000000810 0000000000000690 ; relsq loaderDst_addrRef_1 CONST_-8 1
 0000000000000630 0000000000000810 00000000000006a8 ; relsq loaderDst_addrRef_2 CONST_-8 1

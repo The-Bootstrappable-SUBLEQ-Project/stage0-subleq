@@ -120,14 +120,12 @@ decleq i 10 MAIN
 
 
 rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
-rem loaderOrg is currently hardcoded due to limitations of the lsq_to_sq tool
 label COPY
-addr loaderOrg 6d8
 addr loaderDst 200000
 addr loaderStart 200000
 var loaderLen b0
-mov loaderDst loaderOrg tmp
-decaddr loaderOrg -8
+mov loaderDst LOADER tmp
+decaddr LOADER -8
 decaddr loaderDst -8
 rem Jump to loaderDst once loaderLen is <= 0
 decleq loaderLen 8 loaderStart

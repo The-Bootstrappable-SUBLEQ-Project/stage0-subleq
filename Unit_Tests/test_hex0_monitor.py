@@ -11,14 +11,13 @@ def test_hex0_monitor_load_one_pass():
     assert runEmu("../phase0-hex/hex0_monitor", ["../phase0-hex/hex0_monitor.hex0", "../Examples/hello_world.hex0"], 30) == b"Hello, World!\n"
 
 
-@pytest.mark.slow
 def test_hex0_monitor_load_two_pass():
     assert runEmu("../phase0-hex/hex0_monitor",
                   ["../phase0-hex/hex0_monitor.hex0"] * 2 + ["../Examples/hello_world.hex0"],
                   30) == b"Hello, World!\n"
 
 
-@pytest.mark.slower
+@pytest.mark.slow
 def test_hex0_monitor_load_ten_pass():
     assert runEmu("../phase0-hex/hex0_monitor",
                   ["../phase0-hex/hex0_monitor.hex0"] * 10 + ["../Examples/hello_world.hex0"],
