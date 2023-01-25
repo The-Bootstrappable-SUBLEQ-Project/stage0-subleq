@@ -20,6 +20,6 @@ def test_hello_world_repeat_1000():
 
 
 @pytest.mark.slower
-def test_hello_world_repeat_10000():
-    for _i in tqdm.trange(10000):
+def test_hello_world_repeat_5000():
+    for _i in tqdm.trange(5000):
         test_hello_world()

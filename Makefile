@@ -33,18 +33,18 @@ Examples/hello_world.lsq: High_Level_Prototypes/msq_to_lsq.py Examples/hello_wor
 
 test: ../noontide-emu/src/main.rs all
 	cd ../noontide-emu && cargo build --release
-	cd Unit_Tests && pytest || true
+	cd Unit_Tests && pytest -v -n $$(nproc) || true
 
 check: test
 
 slowtest:
 	cd ../noontide-emu && cargo build --release
-	cd Unit_Tests && pytest --runslow -s || true
+	cd Unit_Tests && pytest -v --runslow -n $$(nproc) || true
 
 slowcheck: slowtest
 
 slowertest:
 	cd ../noontide-emu && cargo build --release
-	cd Unit_Tests && pytest --runslower -s || true
+	cd Unit_Tests && pytest -v --runslower -n $$(nproc) || true
 
 slowercheck: slowertest

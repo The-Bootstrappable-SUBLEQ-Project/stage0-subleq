@@ -13,7 +13,7 @@ def runEmu(base_path, inps=None, timeout=1):
     else:
         with open(tempFilePath, "wb") as tempFile:
             for path in inps:
-                with open(path, "b") as f:
+                with open(path, "rb") as f:
                     tempFile.write(f.read())
         batch_input = tempFilePath
 
