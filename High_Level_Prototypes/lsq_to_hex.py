@@ -158,8 +158,7 @@ for name, sym in symbols.items():
         symsAtAddr[sym.addr] = []
     symsAtAddr[sym.addr].append(name)
 
-# TODO: Utilize hex1/hex2 features
-# 6. Output hex0
+# 6. Output
 """
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
