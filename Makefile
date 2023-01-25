@@ -31,7 +31,7 @@ Examples/hello_world.hex2: High_Level_Prototypes/lsq_to_hex.py Examples/hello_wo
 Examples/hello_world.lsq: High_Level_Prototypes/msq_to_lsq.py Examples/hello_world.msq
 	./High_Level_Prototypes/msq_to_lsq.py Examples/hello_world.msq > Examples/hello_world.lsq
 
-test: ../noontide-emu/src/main.rs
+test: ../noontide-emu/src/main.rs all
 	cd ../noontide-emu && cargo build --release
 	cd Unit_Tests && pytest || true
 
