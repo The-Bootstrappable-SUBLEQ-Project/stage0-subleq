@@ -76,5 +76,9 @@ rem Output '!'
 set c 21
 putchar c tmp
 
+rem Output '\n'
+set c a
+putchar c tmp
+
 rem Infinite loop
 relsq ZERO ZERO 0

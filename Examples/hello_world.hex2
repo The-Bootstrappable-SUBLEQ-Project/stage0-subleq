@@ -323,6 +323,29 @@
 # End putchar
 
 
+# Output '\n'
+
+# Start set c 10
+&c &c ?+8 ; relsq c c 1
+&c &CONST_-A ?+8 ; relsq c CONST_-A 1
+# End set
+
+
+# Start putchar c tmp
+0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&ZERO &ZERO ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&tmp &tmp ?+8 ; relsq tmp tmp 1
+&tmp &c ?+8 ; relsq tmp c 1
+# dec tmp 1
+&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &tmp ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+
 # Infinite loop
 &ZERO &ZERO ?-10 ; relsq ZERO ZERO 0
 
@@ -337,6 +360,7 @@
 ; var CONST_-72 -72
 ; var CONST_-64 -64
 ; var CONST_-21 -21
+; var CONST_-A -a
 
 :tmp 0000000000000000 ; raw 0000000000000000 # tmp
 :c 0000000000000000 ; raw 0000000000000000 # c
@@ -351,4 +375,5 @@
 :CONST_-72 ffffffffffffff8e ; raw ffffffffffffff8e # CONST_-72
 :CONST_-64 ffffffffffffff9c ; raw ffffffffffffff9c # CONST_-64
 :CONST_-21 ffffffffffffffdf ; raw ffffffffffffffdf # CONST_-21
+:CONST_-A fffffffffffffff6 ; raw fffffffffffffff6 # CONST_-A
 ~

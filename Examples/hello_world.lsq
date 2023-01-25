@@ -323,6 +323,29 @@ relsq SERIAL_OUT tmp 1
 rem End putchar
 
 
+rem Output '\n'
+
+rem Start set c 10
+relsq c c 1
+relsq c CONST_-A 1
+rem End set
+
+
+rem Start putchar c tmp
+relsq SERIAL_OUT ZERO 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem movneg tmp c
+relsq tmp tmp 1
+relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
+rem movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem End putchar
+
+
 rem Infinite loop
 relsq ZERO ZERO 0
 
@@ -337,3 +360,4 @@ var CONST_-57 -57
 var CONST_-72 -72
 var CONST_-64 -64
 var CONST_-21 -21
+var CONST_-A -a
