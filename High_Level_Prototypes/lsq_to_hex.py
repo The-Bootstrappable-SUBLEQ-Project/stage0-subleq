@@ -230,6 +230,9 @@ for line in lines:
 
     print(" ".join(out))
 
+# ~ is the terminator of hex files
+print("~")
+
 print(f"Final binary size: {size} (0x{size:x}) bytes", file=sys.stderr)
 
 if "LOADER" in symbols:
