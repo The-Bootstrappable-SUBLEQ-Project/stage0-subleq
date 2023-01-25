@@ -19,6 +19,7 @@
 ; var tmp 0
 ; addr SERIAL_IN 13ED27E8
 ; addr SERIAL_OUT 13ED27F0
+; addr CPU_CONTROL_START 13EE0000
 :ZERO &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
 
 ; label EP
@@ -346,6 +347,14 @@
 # End putchar
 
 
+# Stop CPU 0
+
+# Start set CPU_CONTROL_START 2
+0000000013ee0000 0000000013ee0000 ?+8 ; relsq CPU_CONTROL_START CPU_CONTROL_START 1
+0000000013ee0000 &CONST_-2 ?+8 ; relsq CPU_CONTROL_START CONST_-2 1
+# End set
+
+
 # Infinite loop
 &ZERO &ZERO ?-10 ; relsq ZERO ZERO 0
 
@@ -361,6 +370,7 @@
 ; var CONST_-64 -64
 ; var CONST_-21 -21
 ; var CONST_-A -a
+; var CONST_-2 -2
 
 :tmp 0000000000000000 ; raw 0000000000000000 # tmp
 :c 0000000000000000 ; raw 0000000000000000 # c
@@ -376,4 +386,5 @@
 :CONST_-64 ffffffffffffff9c ; raw ffffffffffffff9c # CONST_-64
 :CONST_-21 ffffffffffffffdf ; raw ffffffffffffffdf # CONST_-21
 :CONST_-A fffffffffffffff6 ; raw fffffffffffffff6 # CONST_-A
+:CONST_-2 fffffffffffffffe ; raw fffffffffffffffe # CONST_-2
 ~

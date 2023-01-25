@@ -19,6 +19,7 @@ addr ZERO 0
 var tmp 0
 addr SERIAL_IN 13ED27E8
 addr SERIAL_OUT 13ED27F0
+addr CPU_CONTROL_START 13EE0000
 lblsq ZERO ZERO EP
 
 label EP
@@ -79,6 +80,9 @@ putchar c tmp
 rem Output '\n'
 set c a
 putchar c tmp
+
+rem Stop CPU 0
+set CPU_CONTROL_START 2
 
 rem Infinite loop
 relsq ZERO ZERO 0

@@ -19,6 +19,7 @@ addr ZERO 0
 var tmp 0
 addr SERIAL_IN 13ED27E8
 addr SERIAL_OUT 13ED27F0
+addr CPU_CONTROL_START 13EE0000
 lblsq ZERO ZERO EP
 
 label EP
@@ -346,6 +347,14 @@ relsq SERIAL_OUT tmp 1
 rem End putchar
 
 
+rem Stop CPU 0
+
+rem Start set CPU_CONTROL_START 2
+relsq CPU_CONTROL_START CPU_CONTROL_START 1
+relsq CPU_CONTROL_START CONST_-2 1
+rem End set
+
+
 rem Infinite loop
 relsq ZERO ZERO 0
 
@@ -361,3 +370,4 @@ var CONST_-72 -72
 var CONST_-64 -64
 var CONST_-21 -21
 var CONST_-A -a
+var CONST_-2 -2
