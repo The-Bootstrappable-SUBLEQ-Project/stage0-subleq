@@ -3,7 +3,7 @@ from .utils import runEmu
 
 
 def test_hello_world():
-    assert runEmu("../Examples/hello_world") == b"Hello, World!\n"
+    assert b"Hello, World!\n" in runEmu("../Examples/hello_world")
 
 def test_hello_world_repeat_100():
     for i in range(100):

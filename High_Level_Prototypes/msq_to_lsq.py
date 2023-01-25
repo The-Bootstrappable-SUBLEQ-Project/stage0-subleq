@@ -171,6 +171,19 @@ def decaddr(sym, b, verbosity=0):
     print(f"subaddr {sym} {recordConst(b)}")
 
 
+# Sets a to val in one operation, instead of setting it to 0 first
+def set_safe(a, val, tmp, tmp2, verbosity=2):
+    val = ensureInt(val)
+    if verbosity > 0:
+        print()
+        print(f"rem Start set_safe {a} {val} {tmp} {tmp2}")
+    mov(tmp, a, tmp2, verbosity - 1)
+    dec(tmp, val, verbosity - 1)
+    sub(a, tmp, verbosity - 1)
+    if verbosity > 0:
+        print("rem End set_safe")
+        print()
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
@@ -226,6 +239,9 @@ for line in lines:
     elif inst == "decaddr":
         assert argc == 2
         decaddr(args[0], args[1])
+    elif inst == "set_safe":
+        assert argc == 4
+        set_safe(args[0], args[1], args[2], args[3])
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 

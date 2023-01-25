@@ -17,6 +17,7 @@
 # Standard program start
 ; addr ZERO 0
 ; var tmp 0
+; var tmp2 0
 ; addr SERIAL_IN 13ED27E8
 ; addr SERIAL_OUT 13ED27F0
 ; addr CPU_CONTROL_START 13EE0000
@@ -209,7 +210,7 @@
 # End putchar
 
 
-# Output 'o'
+# Output 'o'set_safe
 
 # Start set c 111
 &ac &ac ?+8 ; relsq c c 1
@@ -349,10 +350,20 @@
 
 # Stop CPU 0
 
-# Start set CPU_CONTROL_START 2
-0000000013ee0000 0000000013ee0000 ?+8 ; relsq CPU_CONTROL_START CPU_CONTROL_START 1
-0000000013ee0000 &aq ?+8 ; relsq CPU_CONTROL_START CONST_-2 1
-# End set
+# Start set_safe CPU_CONTROL_START 2 tmp tmp2
+
+# Start mov tmp CPU_CONTROL_START tmp2
+&aq &aq ?+8 ; relsq tmp2 tmp2 1
+&aq 0000000013ee0000 ?+8 ; relsq tmp2 CPU_CONTROL_START 1
+&ae &ae ?+8 ; relsq tmp tmp 1
+&ae &aq ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# dec tmp 2
+&ae &ar ?+8 ; relsq tmp CONST_2 1
+# sub CPU_CONTROL_START tmp
+0000000013ee0000 &ae ?+8 ; relsq CPU_CONTROL_START tmp 1
+# End set_safe
 
 
 # Infinite loop
@@ -370,9 +381,10 @@
 ; var CONST_-64 -64
 ; var CONST_-21 -21
 ; var CONST_-A -a
-; var CONST_-2 -2
+; var CONST_2 2
 
 :ae 0000000000000000 ; raw 0000000000000000 # tmp
+:aq 0000000000000000 ; raw 0000000000000000 # tmp2
 :ac 0000000000000000 ; raw 0000000000000000 # c
 :ad ffffffffffffffb8 ; raw ffffffffffffffb8 # CONST_-48
 :af 0000000000000001 ; raw 0000000000000001 # CONST_1
@@ -386,5 +398,5 @@
 :an ffffffffffffff9c ; raw ffffffffffffff9c # CONST_-64
 :ao ffffffffffffffdf ; raw ffffffffffffffdf # CONST_-21
 :ap fffffffffffffff6 ; raw fffffffffffffff6 # CONST_-A
-:aq fffffffffffffffe ; raw fffffffffffffffe # CONST_-2
+:ar 0000000000000002 ; raw 0000000000000002 # CONST_2
 ~

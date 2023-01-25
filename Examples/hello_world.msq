@@ -17,6 +17,7 @@ rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 rem Standard program start
 addr ZERO 0
 var tmp 0
+var tmp2 0
 addr SERIAL_IN 13ED27E8
 addr SERIAL_OUT 13ED27F0
 addr CPU_CONTROL_START 13EE0000
@@ -57,7 +58,7 @@ rem Output 'w'
 set c 57
 putchar c tmp
 
-rem Output 'o'
+rem Output 'o'set_safe
 set c 6f
 putchar c tmp
 
@@ -82,7 +83,7 @@ set c a
 putchar c tmp
 
 rem Stop CPU 0
-set CPU_CONTROL_START 2
+set_safe CPU_CONTROL_START 2 tmp tmp2
 
 rem Infinite loop
 relsq ZERO ZERO 0
