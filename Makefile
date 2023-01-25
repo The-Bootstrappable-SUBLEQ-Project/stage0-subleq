@@ -36,3 +36,15 @@ test: ../noontide-emu/src/main.rs all
 	cd Unit_Tests && pytest || true
 
 check: test
+
+slowtest:
+	cd ../noontide-emu && cargo build --release
+	cd Unit_Tests && pytest --runslow -s || true
+
+slowcheck: slowtest
+
+slowertest:
+	cd ../noontide-emu && cargo build --release
+	cd Unit_Tests && pytest --runslower -s || true
+
+slowercheck: slowertest

@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 import subprocess
-import multiprocessing.pool
-import functools
 
 tempFilePath = "/tmp/stage0_subleq_test_batch_input"
 

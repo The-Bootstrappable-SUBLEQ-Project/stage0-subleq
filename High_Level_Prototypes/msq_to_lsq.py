@@ -184,6 +184,7 @@ def set_safe(a, val, tmp, tmp2, verbosity=2):
         print("rem End set_safe")
         print()
 
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
