@@ -17,25 +17,25 @@ This prints the string "Hello, world!" and then proceeds to halt the CPU.
 # Automatically generated files
 ### **Do not trust any files of this category without either manually reviewing or regenerating them under a trusted environment first!**
 
-### phase0-hex/hex0_monitor.lsq
+### Examples/hello_world.lsq
 This file can be regenerated via the following methods:
-1. Running `make -B phase0-hex/hex0_monitor.lsq` on a Makefile-enabled + Python-enabled + Trusted computer
-2. Running `./High_Level_Prototypes/msq_to_lsq.py phase0-hex/hex0_monitor.msq > phase0-hex/hex0_monitor.lsq` on a Python-enabled + Trusted computer
+1. Running `make -B Examples/hello_world.lsq` on a Makefile-enabled + Python-enabled + Trusted computer
+2. Running `./High_Level_Prototypes/msq_to_lsq.py Examples/hello_world.msq > Examples/hello_world.lsq` on a Python-enabled + Trusted computer
 3. Using the SUBLEQ implementation of msq_to_lsq to expand it (TODO)
-4. Converting it yourself manually (See High Level Prototypes/msq_to_lsq.py for what each instruction should do)
+4. Converting it yourself manually (See High_Level_Prototypes/msq_to_lsq.py for what each instruction should do)
 
-### phase0-hex/hex0_monitor.hex0
+### Examples/hello_world.hex$HEX_VER
 This file can be regenerated via the following methods:
-1. Running `make -B phase0-hex/hex0_monitor.hex0` on a Makefile-enabled + Python-enabled + Trusted computer
-2. Running `./High_Level_Prototypes/lsq_to_hex.py phase0-hex/hex0_monitor.lsq > phase0-hex/hex0_monitor.hex0` on a Python-enabled + Trusted computer
+1. Running `make -B Examples/hello_world.hex$HEX_VER` on a Makefile-enabled + Python-enabled + Trusted computer
+2. Running `./High_Level_Prototypes/lsq_to_hex.py --hex-version $HEX_VER Examples/hello_world.lsq > Examples/hello_world.hex$HEX_VER` on a Python-enabled + Trusted computer
 3. Using the SUBLEQ implementation of lsq_to_hex to assemble it (TODO)
-4. Converting it yourself manually (See High Level Prototypes/lsq_to_hex.py for what each instruction should do)
+4. Converting it yourself manually (See High_Level_Prototypes/lsq_to_hex.py for what each instruction should do)
 
-### phase0-hex/hex0_monitor.bin
+### Examples/hello_world.bin
 This file can be regenerated via the following methods:
-1. Running `make -B phase0-hex/hex0_monitor.bin` on a Makefile-enabled + Trusted POSIX computer
-2. Running `sed 's/[;#].*$//g' phase0-hex/hex0_monitor.hex0 | xxd -r -p > phase0-hex/hex0_monitor.bin` on a Trusted POSIX computer (You might need to escape the $)
-3. Using the SUBLEQ implementation of hex0 to assemble it (TODO)
+1. Running `make -B Examples/hello_world.bin` on a Makefile-enabled + Trusted POSIX computer
+2. Running `sed 's/[;#].*$//g' Examples/hello_world.hex0 | xxd -r -p > Examples/hello_world.bin` on a Trusted POSIX computer (You might need to escape the $)
+3. Running `noontide-emu -b Examples/hello_world.hex$HEX_VER phase0-hex/hex$HEX_VER > Examples/hello_world.bin` on a Trusted computer with noontide-emu available
 4. Converting it yourself manually
 
-Programs such as Examples/hello_world and phase0-hex/hex0 can similarly be regenerated using the methods above.
+Programs such as phase0-hex/hex0_monitor and phase0-hex/hex0 can similarly be regenerated using the methods above.
