@@ -1,7 +1,8 @@
-.PHONY: check test
+.PHONY: check test slowtest slowcheck slowertest slowercheck
 
 ALL_DEPS := phase0-hex/hex0_monitor.bin phase0-hex/hex0_monitor.hex0 phase0-hex/hex0_monitor.lsq
 ALL_DEPS += Examples/hello_world.bin Examples/hello_world.hex0 Examples/hello_world.hex1 Examples/hello_world.hex2 Examples/hello_world.lsq
+ALL_DEPS += phase0-hex/hex0.bin phase0-hex/hex0.hex0 phase0-hex/hex0.lsq
 
 all: $(ALL_DEPS)
 
@@ -31,19 +32,29 @@ Examples/hello_world.hex2: High_Level_Prototypes/lsq_to_hex.py Examples/hello_wo
 Examples/hello_world.lsq: High_Level_Prototypes/msq_to_lsq.py Examples/hello_world.msq
 	./High_Level_Prototypes/msq_to_lsq.py Examples/hello_world.msq > Examples/hello_world.lsq
 
+phase0-hex/hex0.bin: phase0-hex/hex0.hex0
+	sed 's/[;#].*$$//g' phase0-hex/hex0.hex0 | xxd -r -p > phase0-hex/hex0.bin
+	ls -al phase0-hex/hex0.bin
+
+phase0-hex/hex0.hex0: High_Level_Prototypes/lsq_to_hex.py phase0-hex/hex0.lsq
+	./High_Level_Prototypes/lsq_to_hex.py phase0-hex/hex0.lsq > phase0-hex/hex0.hex0
+
+phase0-hex/hex0.lsq: High_Level_Prototypes/msq_to_lsq.py phase0-hex/hex0.msq
+	./High_Level_Prototypes/msq_to_lsq.py phase0-hex/hex0.msq > phase0-hex/hex0.lsq
+
 test: ../noontide-emu/src/main.rs all
 	cd ../noontide-emu && cargo build --release
 	cd Unit_Tests && pytest -v -n $$(nproc) || true
 
 check: test
 
-slowtest:
+slowtest: ../noontide-emu/src/main.rs all
 	cd ../noontide-emu && cargo build --release
 	cd Unit_Tests && pytest -v --runslow -n $$(nproc) || true
 
 slowcheck: slowtest
 
-slowertest:
+slowertest: ../noontide-emu/src/main.rs all
 	cd ../noontide-emu && cargo build --release
 	cd Unit_Tests && pytest -v --runslower -n $$(nproc) || true
 

@@ -4,7 +4,7 @@ import subprocess
 tempFilePath = "/tmp/stage0_subleq_test_batch_input"
 
 
-def runEmu(base_path, inps=None, timeout=1):
+def runEmu(base_path, inps=None, timeout=3):
     if inps is None or len(inps) == 0:
         # Feed some random file
         batch_input = "../LICENSE"

@@ -185,6 +185,59 @@ def set_safe(a, val, tmp, tmp2, verbosity=2):
         print()
 
 
+# Jumps to dst's address if a < b
+def jl(a, b, dst, tmp, tmp2, verbosity=2):
+    if verbosity > 0:
+        print()
+        print(f"rem Start jl {a} {b} {dst} {tmp} {tmp2}")
+    mov(tmp, a, tmp2, verbosity - 1)
+    # Don't jump if a == b
+    inc(tmp, 1, verbosity - 1)
+    print(f"lblsq {tmp} {b} {dst}")
+    if verbosity > 0:
+        print("rem End jl")
+        print()
+
+
+# Multiplies a by 16
+def mul_16(a, tmp, verbosity=1):
+    if verbosity > 0:
+        print()
+        print(f"rem Start mul_16 {a} {tmp}")
+    zero(tmp, verbosity - 1)
+    for _i in range(5):
+        sub(tmp, a, verbosity - 1)
+    for _i in range(3):
+        sub(a, tmp, verbosity - 1)
+    if verbosity > 0:
+        print("rem End mul_16")
+        print()
+
+
+# Multiplies a by 16
+def mul_256(a, tmp, verbosity=1):
+    if verbosity > 0:
+        print()
+        print(f"rem Start mul_256 {a} {tmp}")
+    mul_16(a, tmp, verbosity - 1)
+    mul_16(a, tmp, verbosity - 1)
+    if verbosity > 0:
+        print("rem End mul_256")
+        print()
+
+
+# Does a = -a
+def neg(a, tmp, tmp2, verbosity=1):
+    if verbosity > 0:
+        print()
+        print(f"rem Start neg {a} {tmp} {tmp2}")
+    movneg(tmp, a)
+    mov(a, tmp, tmp2)
+    if verbosity > 0:
+        print("rem End neg")
+        print()
+
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
@@ -243,6 +296,18 @@ for line in lines:
     elif inst == "set_safe":
         assert argc == 4
         set_safe(args[0], args[1], args[2], args[3])
+    elif inst == "jl":
+        assert argc == 5
+        jl(args[0], args[1], args[2], args[3], args[4])
+    elif inst == "mul_16":
+        assert argc == 2
+        mul_16(args[0], args[1])
+    elif inst == "mul_256":
+        assert argc == 2
+        mul_256(args[0], args[1])
+    elif inst == "neg":
+        assert argc == 3
+        neg(args[0], args[1], args[2])
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 

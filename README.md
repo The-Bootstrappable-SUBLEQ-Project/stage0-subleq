@@ -6,11 +6,13 @@ A place for public review of the SUBLEQ port of stage0. The goal is to bootstrap
 ### High Level Prototypes/msq_to_lsq.py
 Expands an msq (Macro SUBLEQ) program to an lsq (Lesser SUBLEQ) program
 ### High Level Prototypes/lsq_to_hex.py
-Assembles an lsq (Lesser SUBLEQ) program and outputs hex0 files (TODO: Output in hex1/hex2 format)
+Assembles an lsq (Lesser SUBLEQ) program and outputs hex0, hex1, or hex2 files
+### phase0-hex/hex0.msq
+Takes a hex0 program from serial input and outputs the assembled file into serial output.
 ### phase0-hex/hex0_monitor.msq
 This is just like a regular hex0_monitor, except it copies the assembled file to 0x0 of the memory and executes it. This is because we don't have any filesystem support at this stage.
 ### Examples/hello_world.msq
-This prints the string "Hello, world!" and then proceeds to halt the CPU by running the same instruction forever.
+This prints the string "Hello, world!" and then proceeds to halt the CPU.
 
 # Automatically generated files
 ### **Do not trust any files of this category without either manually reviewing or regenerating them under a trusted environment first!**
@@ -36,4 +38,4 @@ This file can be regenerated via the following methods:
 3. Using the SUBLEQ implementation of hex0 to assemble it (TODO)
 4. Converting it yourself manually
 
-Programs such as Examples/hello_world can similarly be regenerated using the methods above.
+Programs such as Examples/hello_world and phase0-hex/hex0 can similarly be regenerated using the methods above.

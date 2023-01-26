@@ -129,20 +129,18 @@ lblsq ZERO ZERO COMMENT
 rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
 label WRITE
 var cur 0
-rem The following multiplies cur by 16
-rem tmp = -5 * cur
-rem movneg tmp cur
+
+rem Start mul_16 cur tmp
 relsq tmp tmp 1
 relsq tmp cur 1
 relsq tmp cur 1
 relsq tmp cur 1
 relsq tmp cur 1
 relsq tmp cur 1
-
-rem cur -= 3 * tmp = -15 * cur
 relsq cur tmp 1
 relsq cur tmp 1
 relsq cur tmp 1
+rem End mul_16
 
 relsq cur val 1
 
