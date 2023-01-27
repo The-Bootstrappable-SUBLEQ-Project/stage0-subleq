@@ -258,19 +258,12 @@
 :aF &aB &aJ &aK ; lblsq isNeg CONST_0 REL_FIN
 
 # Start neg cur tmp tmp2
-# movneg tmp cur
 &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aI ?+8 ; relsq tmp cur 1
-
-# Start mov cur tmp tmp2
-# movneg tmp2 tmp
 &aL &aL ?+8 ; relsq tmp2 tmp2 1
 &aL &ah ?+8 ; relsq tmp2 tmp 1
-# movneg cur tmp2
 &aI &aI ?+8 ; relsq cur cur 1
 &aI &aL ?+8 ; relsq cur tmp2 1
-# End mov
-
 # End neg
 
 

@@ -42,21 +42,25 @@ def recordConst(a):
 
 
 # Subtracts a by b
-def sub(a, b, verbosity=0):
+def sub(args, verbosity=0):
+    a, b = args
     if verbosity > 0:
         print(f"rem sub {a} {b}")
     print(f"relsq {a} {b} 1")
 
 
 # Sets a to 0
-def zero(a, verbosity=0):
+def zero(args, verbosity=0):
+    assert len(args) == 1
+    a = args[0]
     if verbosity > 0:
         print(f"rem zero {a}")
-    sub(a, a, verbosity - 1)
+    sub([a, a], verbosity - 1)
 
 
 # Decreases a by val (Constant)
-def dec(a, val, verbosity=0):
+def dec(args, verbosity=0):
+    a, val = args
     val = ensureInt(val)
     if verbosity > 0:
         print(f"rem dec {a} {val}")
@@ -64,7 +68,8 @@ def dec(a, val, verbosity=0):
 
 
 # Decreases a by val (Constant), and jumps to lbl if a <= 0 after operation
-def decleq(a, val, lbl, verbosity=0):
+def decleq(args, verbosity=0):
+    a, val, lbl = args
     val = ensureInt(val)
     if verbosity > 0:
         print(f"rem decleq {a} {val} {lbl}")
@@ -72,127 +77,141 @@ def decleq(a, val, lbl, verbosity=0):
 
 
 # Increases a by val (Constant)
-def inc(a, val, verbosity=0):
+def inc(args, verbosity=0):
+    a, val = args
     val = ensureInt(val)
     if verbosity > 0:
         print(f"rem inc {a} {recordConst(val)}")
-    dec(a, -val, verbosity - 1)
+    dec([a, -val], verbosity - 1)
 
 
 # Increases a by val (Constant), and jumps to lbl if a <= 0 after operation
-def incleq(a, val, lbl, verbosity=0):
+def incleq(args, verbosity=0):
+    a, val, lbl = args
     val = ensureInt(val)
     if verbosity > 0:
         print(f"rem incleq {a} {val} {lbl}")
-    decleq(a, -val, lbl, verbosity - 1)
+    decleq([a, -val, lbl], verbosity - 1)
 
 
 # Sets a to val (Constant)
-def inst_set(a, val, verbosity=1):
+def inst_set(args, verbosity=1):
+    a, val = args
     val = ensureInt(val)
     if verbosity > 0:
         print()
         print(f"rem Start set {a} {val}")
-    zero(a, verbosity - 1)
-    inc(a, val, verbosity - 1)
+    zero([a], verbosity - 1)
+    inc([a, val], verbosity - 1)
     if verbosity > 0:
         print("rem End set")
         print()
 
 
 # Relatively jumps by a instructions
-def reljmp(a, verbosity=0):
+def reljmp(args, verbosity=0):
+    assert len(args) == 1
+    a = args[0]
     if verbosity > 0:
         print(f"rem reljmp {a}")
     print(f"relsq ZERO ZERO {a}")
 
 
-# Jumps to label
-def lbljmp(lbl, verbosity=0):
+# Jumps to a label
+def lbljmp(args, verbosity=0):
+    assert len(args) == 1
+    lbl = args[0]
     if verbosity > 0:
         print(f"rem lbljmp {lbl}")
     print(f"lblsq ZERO ZERO {lbl}")
 
 
 # Sets a to -b
-def movneg(a, b, verbosity=1):
+def movneg(args, verbosity=1):
+    a, b = args
     if verbosity > 0:
         print(f"rem movneg {a} {b}")
-    zero(a, verbosity - 1)
-    sub(a, b, verbosity - 1)
+    zero([a], verbosity - 1)
+    sub([a, b], verbosity - 1)
 
 
 # Sets a to b, using tmp as a temporary storage
-def mov(a, b, tmp, verbosity=2):
+def mov(args, verbosity=2):
+    a, b, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start mov {a} {b} {tmp}")
-    movneg(tmp, b, verbosity - 1)
-    movneg(a, tmp, verbosity - 1)
+    movneg([tmp, b], verbosity - 1)
+    movneg([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End mov")
         print()
 
 
 # Fetches a character from SERIAL_IN into a, using tmp as a temporary storage
-def getchar(a, tmp, verbosity=2):
+def getchar(args, verbosity=2):
+    a, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start getchar {a} {tmp}")
-    inst_set(tmp, 1, verbosity - 1)
+    inst_set([tmp, 1], verbosity - 1)
     print(f"relsq {tmp} SERIAL_IN 2")
-    reljmp(-1, verbosity - 1)
-    zero("SERIAL_IN", verbosity - 1)
-    movneg(a, tmp, verbosity - 1)
+    reljmp([-1], verbosity - 1)
+    zero(["SERIAL_IN"], verbosity - 1)
+    movneg([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End getchar")
         print()
 
 
 # Outputs a character into SERIAL_IN, using tmp as a temporary storage
-def putchar(a, tmp, verbosity=2):
+def putchar(args, verbosity=2):
+    a, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start putchar {a} {tmp}")
     print("relsq SERIAL_OUT ZERO 2")
-    reljmp(-1, verbosity - 1)
-    movneg(tmp, a, verbosity - 1)
-    dec(tmp, 1, verbosity - 1)
-    movneg("SERIAL_OUT", tmp, verbosity - 1)
+    reljmp([-1], verbosity - 1)
+    movneg([tmp, a], verbosity - 1)
+    dec([tmp, 1], verbosity - 1)
+    movneg(["SERIAL_OUT", tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End putchar")
         print()
 
 
 # Decreases all references of a symbol by b
-def decaddr(sym, b, verbosity=0):
+def decaddr(args, verbosity=0):
+    sym, b = args
     if verbosity > 0:
         print(f"rem decaddr {sym} {b}")
     print(f"subaddr {sym} {recordConst(b)}")
 
 
 # Sets a to val in one operation, instead of setting it to 0 first
-def set_safe(a, val, tmp, tmp2, verbosity=2):
+def set_safe(args, verbosity=2):
+    a, val, tmp, tmp2 = args
     val = ensureInt(val)
     if verbosity > 0:
         print()
         print(f"rem Start set_safe {a} {val} {tmp} {tmp2}")
-    mov(tmp, a, tmp2, verbosity - 1)
-    dec(tmp, val, verbosity - 1)
-    sub(a, tmp, verbosity - 1)
+    mov([tmp, a, tmp2], verbosity - 1)
+    dec([tmp, val], verbosity - 1)
+    sub([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End set_safe")
         print()
 
 
 # Jumps to dst's address if a < b
-def jl(a, b, dst, tmp, tmp2, verbosity=2):
+def jl(args, verbosity=2):
+    a, b, dst, tmp, tmp2 = args
     if verbosity > 0:
         print()
         print(f"rem Start jl {a} {b} {dst} {tmp} {tmp2}")
-    mov(tmp, a, tmp2, verbosity - 1)
+    mov([tmp, a, tmp2], verbosity - 1)
     # Don't jump if a == b
-    inc(tmp, 1, verbosity - 1)
+    inc([tmp, 1], verbosity - 1)
     print(f"lblsq {tmp} {b} {dst}")
     if verbosity > 0:
         print("rem End jl")
@@ -200,51 +219,55 @@ def jl(a, b, dst, tmp, tmp2, verbosity=2):
 
 
 # Multiplies a by 16
-def mul_16(a, tmp, verbosity=1):
+def mul_16(args, verbosity=1):
+    a, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start mul_16 {a} {tmp}")
-    zero(tmp, verbosity - 1)
+    zero([tmp], verbosity - 1)
     for _i in range(5):
-        sub(tmp, a, verbosity - 1)
+        sub([tmp, a], verbosity - 1)
     for _i in range(3):
-        sub(a, tmp, verbosity - 1)
+        sub([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End mul_16")
         print()
 
 
 # Multiplies a by 16
-def mul_256(a, tmp, verbosity=1):
+def mul_256(args, verbosity=1):
+    a, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start mul_256 {a} {tmp}")
-    mul_16(a, tmp, verbosity - 1)
-    mul_16(a, tmp, verbosity - 1)
+    mul_16([a, tmp], verbosity - 1)
+    mul_16([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End mul_256")
         print()
 
 
 # Does a = -a
-def neg(a, tmp, tmp2, verbosity=1):
+def neg(args, verbosity=1):
+    a, tmp, tmp2 = args
     if verbosity > 0:
         print()
         print(f"rem Start neg {a} {tmp} {tmp2}")
-    movneg(tmp, a)
-    mov(a, tmp, tmp2)
+    movneg([tmp, a], verbosity - 1)
+    mov([a, tmp, tmp2], verbosity - 1)
     if verbosity > 0:
         print("rem End neg")
         print()
 
 
 # Sets the address of sym to the value of val
-def setaddr(sym, val, tmp, verbosity=2):
+def setaddr(args, verbosity=2):
+    sym, val, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start setaddr {sym} {val} {tmp}")
     print(f"zeroaddr {sym}")
-    movneg(tmp, val, verbosity - 1)
+    movneg([tmp, val], verbosity - 1)
     print(f"subaddr {sym} {tmp}")
     if verbosity > 0:
         print("rem End setaddr")
@@ -252,25 +275,27 @@ def setaddr(sym, val, tmp, verbosity=2):
 
 
 # Does a += b
-def add(a, b, tmp, verbosity=2):
+def add(args, verbosity=2):
+    a, b, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start add {a} {b} {tmp}")
-    movneg(tmp, b, verbosity - 1)
-    sub(a, tmp, verbosity - 1)
+    movneg([tmp, b], verbosity - 1)
+    sub([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem End add")
         print()
 
 
 # Does a *= 8
-def mul_8(a, tmp, verbosity=1):
+def mul_8(args, verbosity=1):
+    a, tmp = args
     if verbosity > 0:
         print()
         print(f"rem Start mul_8 {a} {tmp}")
-    movneg(tmp, a, verbosity - 1)
+    movneg([tmp, a], verbosity - 1)
     for _i in range(7):
-        sub(a, tmp, verbosity - 1)
+        sub([a, tmp], verbosity - 1)
     if verbosity > 0:
         print("rem end mul_8")
         print()
@@ -285,78 +310,16 @@ for line in lines:
 
     inst = line.split(" ")[0]
     args = line.split(" ")[1:]
-    argc = len(args)
 
     if inst in lsq_insts:
         print(line)
-    elif inst == "sub":
-        assert argc == 2
-        sub(args[0], args[1])
-    elif inst == "zero":
-        assert argc == 1
-        zero(args[0])
-    elif inst == "dec":
-        assert argc == 2
-        dec(args[0], args[1])
-    elif inst == "decleq":
-        assert argc == 3
-        decleq(args[0], args[1], args[2])
-    elif inst == "inc":
-        assert argc == 2
-        inc(args[0], args[1])
-    elif inst == "incleq":
-        assert argc == 3
-        incleq(args[0], args[1], args[2])
-    elif inst == "set":
-        assert argc == 2
-        inst_set(args[0], args[1])
-    elif inst == "reljmp":
-        assert argc == 1
-        reljmp(args[0])
-    elif inst == "lbljmp":
-        assert argc == 1
-        lbljmp(args[0])
-    elif inst == "movneg":
-        assert argc == 2
-        movneg(args[0], args[1])
-    elif inst == "mov":
-        assert argc == 3
-        mov(args[0], args[1], args[2])
-    elif inst == "getchar":
-        assert argc == 2
-        getchar(args[0], args[1])
-    elif inst == "putchar":
-        assert argc == 2
-        putchar(args[0], args[1])
-    elif inst == "decaddr":
-        assert argc == 2
-        decaddr(args[0], args[1])
-    elif inst == "set_safe":
-        assert argc == 4
-        set_safe(args[0], args[1], args[2], args[3])
-    elif inst == "jl":
-        assert argc == 5
-        jl(args[0], args[1], args[2], args[3], args[4])
-    elif inst == "mul_16":
-        assert argc == 2
-        mul_16(args[0], args[1])
-    elif inst == "mul_256":
-        assert argc == 2
-        mul_256(args[0], args[1])
-    elif inst == "neg":
-        assert argc == 3
-        neg(args[0], args[1], args[2])
-    elif inst == "setaddr":
-        assert argc == 3
-        setaddr(args[0], args[1], args[2])
-    elif inst == "add":
-        assert argc == 3
-        add(args[0], args[1], args[2])
-    elif inst == "mul_8":
-        assert argc == 2
-        mul_8(args[0], args[1])
     else:
-        raise SyntaxError(f"Unknown instruction: {inst}")
+        if inst == "set":
+            inst = "inst_set"
+        try:
+            globals()[inst](args)
+        except KeyError:
+            raise SyntaxError(f"Unknown instruction: {inst}")
 
 print()
 for const in consts:

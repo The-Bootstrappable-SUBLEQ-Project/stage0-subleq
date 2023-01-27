@@ -258,19 +258,12 @@ label REL_NEG
 lblsq isNeg CONST_0 REL_FIN
 
 rem Start neg cur tmp tmp2
-rem movneg tmp cur
 relsq tmp tmp 1
 relsq tmp cur 1
-
-rem Start mov cur tmp tmp2
-rem movneg tmp2 tmp
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-rem movneg cur tmp2
 relsq cur cur 1
 relsq cur tmp2 1
-rem End mov
-
 rem End neg
 
 

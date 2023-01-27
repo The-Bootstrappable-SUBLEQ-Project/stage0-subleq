@@ -259,19 +259,12 @@
 :aE &aA &aI &aJ ; lblsq isNeg CONST_0 REL_FIN
 
 # Start neg cur tmp tmp2
-# movneg tmp cur
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &aH ?+8 ; relsq tmp cur 1
-
-# Start mov cur tmp tmp2
-# movneg tmp2 tmp
 &aK &aK ?+8 ; relsq tmp2 tmp2 1
 &aK &ag ?+8 ; relsq tmp2 tmp 1
-# movneg cur tmp2
 &aH &aH ?+8 ; relsq cur cur 1
 &aH &aK ?+8 ; relsq cur tmp2 1
-# End mov
-
 # End neg
 
 
@@ -618,19 +611,12 @@
 &aj &am ?+8 ; relsq c CONST_1 1
 
 # Start neg c tmp tmp2
-# movneg tmp c
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &aj ?+8 ; relsq tmp c 1
-
-# Start mov c tmp tmp2
-# movneg tmp2 tmp
 &aK &aK ?+8 ; relsq tmp2 tmp2 1
 &aK &ag ?+8 ; relsq tmp2 tmp 1
-# movneg c tmp2
 &aj &aj ?+8 ; relsq c c 1
 &aj &aK ?+8 ; relsq c tmp2 1
-# End mov
-
 # End neg
 
 &aa &aa &bw ; lblsq ZERO ZERO MOD256_START
