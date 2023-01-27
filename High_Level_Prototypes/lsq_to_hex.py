@@ -116,15 +116,19 @@ while i < len(lines):
     sym = lines[i].tokens[0]
     addrSymbols[sym] = 0
 
+    stubSym = f"{sym}_addrRef_"
+
     if lines[i].inst == "subaddr":
-        stubSym = f"{sym}_addrRef_"
         lines[i:i + 1] = [Line("relsq", [f"{stubSym}{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
-        for k in range(symbols[sym].refCount):
-            curSym = f"{stubSym}{k}"
-            if curSym in symbols:
-                symbols[curSym].refCount += 1
-            else:
-                symbols[curSym] = Symbol(None, 1)
+    elif lines[i].inst == "zeroaddr":
+        lines[i:i + 1] = [Line("relsq", [f"{stubSym}{x}", f"{stubSym}{x}", "1"]) for x in range(symbols[sym].refCount)]
+
+    for k in range(symbols[sym].refCount):
+        curSym = f"{stubSym}{k}"
+        if curSym in symbols:
+            symbols[curSym].refCount += 1
+        else:
+            symbols[curSym] = Symbol(None, 1)
     i += 1
 
 # 4. Find label+stub addresses and convert relsq to abssq on hex0
