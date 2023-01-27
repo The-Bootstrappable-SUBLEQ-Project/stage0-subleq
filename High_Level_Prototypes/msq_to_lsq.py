@@ -238,6 +238,44 @@ def neg(a, tmp, tmp2, verbosity=1):
         print()
 
 
+# Sets the address of sym to the value of val
+def setaddr(sym, val, tmp, verbosity=2):
+    if verbosity > 0:
+        print()
+        print(f"rem Start setaddr {sym} {val} {tmp}")
+    print(f"zeroaddr {sym}")
+    movneg(tmp, val, verbosity - 1)
+    print(f"subaddr {sym} {tmp}")
+    if verbosity > 0:
+        print("rem End setaddr")
+        print()
+
+
+# Does a += b
+def add(a, b, tmp, verbosity=2):
+    if verbosity > 0:
+        print()
+        print(f"rem Start add {a} {b} {tmp}")
+    movneg(tmp, b, verbosity - 1)
+    sub(a, tmp, verbosity - 1)
+    if verbosity > 0:
+        print("rem End add")
+        print()
+
+
+# Does a *= 8
+def mul_8(a, tmp, verbosity=1):
+    if verbosity > 0:
+        print()
+        print(f"rem Start mul_8 {a} {tmp}")
+    movneg(tmp, a, verbosity - 1)
+    for _i in range(7):
+        sub(a, tmp, verbosity - 1)
+    if verbosity > 0:
+        print("rem end mul_8")
+        print()
+
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
@@ -308,6 +346,15 @@ for line in lines:
     elif inst == "neg":
         assert argc == 3
         neg(args[0], args[1], args[2])
+    elif inst == "setaddr":
+        assert argc == 3
+        setaddr(args[0], args[1], args[2])
+    elif inst == "add":
+        assert argc == 3
+        add(args[0], args[1], args[2])
+    elif inst == "mul_8":
+        assert argc == 2
+        mul_8(args[0], args[1])
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 
