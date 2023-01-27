@@ -33,12 +33,9 @@
 ; var c 0
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 :af :ah &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -127,12 +124,9 @@
 ; label COMMENT
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 :an &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -161,12 +155,9 @@
 :av &aA &aA ?+8 ; relsq isNeg isNeg 1
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -187,12 +178,9 @@
 ; label REL_INP
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 :aC &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -289,12 +277,9 @@
 ; var labelOffset 0
 
 # Start getchar labelOffset tmp
-
-# Start set tmp 1
+# set tmp 1
 :ap &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -333,12 +318,9 @@
 
 
 # Start getchar tmp2 tmp
-
-# Start set tmp 1
+# set tmp 1
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -369,7 +351,7 @@
 &aN &ag ?+8 ; relsq labelOffset tmp 1
 &aN &ag ?+8 ; relsq labelOffset tmp 1
 &aN &ag ?+8 ; relsq labelOffset tmp 1
-# end mul_8
+# End mul_8
 
 
 # Start add labelOffset labelArrStart tmp
@@ -578,12 +560,9 @@
 ; addr charToPrint 100000
 
 # Start from the most significant byte
-
-# Start set i 8
+# set i 8
 :bl &bg &bg ?+8 ; relsq i i 1
 &bg &aX ?+8 ; relsq i CONST_-8 1
-# End set
-
 &br &bm ?+8 ; relsq charToPrint_addrRef_0 CONST_8 1
 
 ; label PRINT_CHAR_START
@@ -625,12 +604,9 @@
 
 ; label MOD256_START
 ; var subber 0
-
-# Start set subber 256
+# set subber 100
 :bw &bx &bx ?+8 ; relsq subber subber 1
 &bx &by ?+8 ; relsq subber CONST_-100 1
-# End set
-
 # Finish if c < 256
 
 # Start jl c subber MOD256_CHECKNEG tmp tmp2
@@ -642,7 +618,7 @@
 &ag &aK ?+8 ; relsq tmp tmp2 1
 # End mov
 
-# inc tmp CONST_1
+# inc tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
 &ag &bx &bz ; lblsq tmp subber MOD256_CHECKNEG
 # End jl
@@ -650,12 +626,9 @@
 
 # Multiply subbers by 256 until the next multiplication makes subber > c
 ; var nextSubber 0
-
-# Start set nextSubber 65536
+# set nextSubber 10000
 &bA &bA ?+8 ; relsq nextSubber nextSubber 1
 &bA &bB ?+8 ; relsq nextSubber CONST_-10000 1
-# End set
-
 ; label MULT_SUBBER_START
 
 # Start jl c nextSubber MULT_SUBBER_END tmp tmp2
@@ -667,7 +640,7 @@
 &ag &aK ?+8 ; relsq tmp tmp2 1
 # End mov
 
-# inc tmp CONST_1
+# inc tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
 &ag &bA &bD ; lblsq tmp nextSubber MULT_SUBBER_END
 # End jl
@@ -733,7 +706,7 @@
 &ag &aK ?+8 ; relsq tmp tmp2 1
 # End mov
 
-# inc tmp CONST_1
+# inc tmp 1
 &ag &ai ?+8 ; relsq tmp CONST_-1 1
 &ag &bx &bw ; lblsq tmp subber MOD256_START
 # End jl
@@ -756,12 +729,9 @@
 &ag &aK ?+8 ; relsq tmp tmp2 1
 # End mov
 
-
-# Start set c 256
+# set c 100
 &aj &aj ?+8 ; relsq c c 1
 &aj &by ?+8 ; relsq c CONST_-100 1
-# End set
-
 &aj &ag ?+8 ; relsq c tmp 1
 
 ; label MOD256_END

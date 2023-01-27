@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 """
 import sys
+from inspect import currentframe
 
 # Let lsq_to_hex worry about these instructions instead
 lsq_insts = ["var", "label", "addr",
@@ -41,264 +42,237 @@ def recordConst(a):
     return f"CONST_{a:X}"
 
 
+def getInstName(frame):
+    ret = frame.f_code.co_name
+    if ret == "inst_set":
+        ret = "set"
+    return ret
+
+
+def printArgs(args):
+    args = [f"{x:x}" if type(x) == int else x for x in args]
+    return " ".join(args)
+
+
+def logSimple():
+    frame = currentframe().f_back
+    if frame.f_locals["v"] > 0:
+        print(f"rem {getInstName(frame)} {printArgs(frame.f_locals['args'])}")
+
+
+def logStart():
+    frame = currentframe().f_back
+    if frame.f_locals["v"] > 0:
+        print()
+        print(f"rem Start {getInstName(frame)} {printArgs(frame.f_locals['args'])}")
+
+
+def logEnd():
+    frame = currentframe().f_back
+    if frame.f_locals["v"] > 0:
+        print(f"rem End {getInstName(frame)}")
+        print()
+
+
 # Subtracts a by b
-def sub(args, verbosity=0):
+def sub(args, v=0):
     a, b = args
-    if verbosity > 0:
-        print(f"rem sub {a} {b}")
+    logSimple()
     print(f"relsq {a} {b} 1")
 
 
 # Sets a to 0
-def zero(args, verbosity=0):
+def zero(args, v=0):
     assert len(args) == 1
     a = args[0]
-    if verbosity > 0:
-        print(f"rem zero {a}")
-    sub([a, a], verbosity - 1)
+    logSimple()
+    sub([a, a], v - 1)
 
 
 # Decreases a by val (Constant)
-def dec(args, verbosity=0):
+def dec(args, v=0):
     a, val = args
     val = ensureInt(val)
-    if verbosity > 0:
-        print(f"rem dec {a} {val}")
+    logSimple()
     print(f"relsq {a} {recordConst(val)} 1")
 
 
 # Decreases a by val (Constant), and jumps to lbl if a <= 0 after operation
-def decleq(args, verbosity=0):
+def decleq(args, v=0):
     a, val, lbl = args
     val = ensureInt(val)
-    if verbosity > 0:
-        print(f"rem decleq {a} {val} {lbl}")
+    logSimple()
     print(f"lblsq {a} {recordConst(val)} {lbl}")
 
 
 # Increases a by val (Constant)
-def inc(args, verbosity=0):
+def inc(args, v=0):
     a, val = args
     val = ensureInt(val)
-    if verbosity > 0:
-        print(f"rem inc {a} {recordConst(val)}")
-    dec([a, -val], verbosity - 1)
+    logSimple()
+    dec([a, -val], v - 1)
 
 
 # Increases a by val (Constant), and jumps to lbl if a <= 0 after operation
-def incleq(args, verbosity=0):
+def incleq(args, v=0):
     a, val, lbl = args
     val = ensureInt(val)
-    if verbosity > 0:
-        print(f"rem incleq {a} {val} {lbl}")
-    decleq([a, -val, lbl], verbosity - 1)
+    logSimple()
+    decleq([a, -val, lbl], v - 1)
 
 
 # Sets a to val (Constant)
-def inst_set(args, verbosity=1):
+def inst_set(args, v=1):
     a, val = args
     val = ensureInt(val)
-    if verbosity > 0:
-        print()
-        print(f"rem Start set {a} {val}")
-    zero([a], verbosity - 1)
-    inc([a, val], verbosity - 1)
-    if verbosity > 0:
-        print("rem End set")
-        print()
+    logSimple()
+    zero([a], v - 1)
+    inc([a, val], v - 1)
 
 
 # Relatively jumps by a instructions
-def reljmp(args, verbosity=0):
+def reljmp(args, v=0):
     assert len(args) == 1
     a = args[0]
-    if verbosity > 0:
-        print(f"rem reljmp {a}")
+    logSimple()
     print(f"relsq ZERO ZERO {a}")
 
 
 # Jumps to a label
-def lbljmp(args, verbosity=0):
+def lbljmp(args, v=0):
     assert len(args) == 1
     lbl = args[0]
-    if verbosity > 0:
-        print(f"rem lbljmp {lbl}")
+    logSimple()
     print(f"lblsq ZERO ZERO {lbl}")
 
 
 # Sets a to -b
-def movneg(args, verbosity=1):
+def movneg(args, v=1):
     a, b = args
-    if verbosity > 0:
-        print(f"rem movneg {a} {b}")
-    zero([a], verbosity - 1)
-    sub([a, b], verbosity - 1)
+    logSimple()
+    zero([a], v - 1)
+    sub([a, b], v - 1)
 
 
 # Sets a to b, using tmp as a temporary storage
-def mov(args, verbosity=2):
+def mov(args, v=2):
     a, b, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start mov {a} {b} {tmp}")
-    movneg([tmp, b], verbosity - 1)
-    movneg([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End mov")
-        print()
+    logStart()
+    movneg([tmp, b], v - 1)
+    movneg([a, tmp], v - 1)
+    logEnd()
 
 
 # Fetches a character from SERIAL_IN into a, using tmp as a temporary storage
-def getchar(args, verbosity=2):
+def getchar(args, v=2):
     a, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start getchar {a} {tmp}")
-    inst_set([tmp, 1], verbosity - 1)
+    logStart()
+    inst_set([tmp, 1], v - 1)
     print(f"relsq {tmp} SERIAL_IN 2")
-    reljmp([-1], verbosity - 1)
-    zero(["SERIAL_IN"], verbosity - 1)
-    movneg([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End getchar")
-        print()
+    reljmp([-1], v - 1)
+    zero(["SERIAL_IN"], v - 1)
+    movneg([a, tmp], v - 1)
+    logEnd()
 
 
 # Outputs a character into SERIAL_IN, using tmp as a temporary storage
-def putchar(args, verbosity=2):
+def putchar(args, v=2):
     a, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start putchar {a} {tmp}")
+    logStart()
     print("relsq SERIAL_OUT ZERO 2")
-    reljmp([-1], verbosity - 1)
-    movneg([tmp, a], verbosity - 1)
-    dec([tmp, 1], verbosity - 1)
-    movneg(["SERIAL_OUT", tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End putchar")
-        print()
+    reljmp([-1], v - 1)
+    movneg([tmp, a], v - 1)
+    dec([tmp, 1], v - 1)
+    movneg(["SERIAL_OUT", tmp], v - 1)
+    logEnd()
 
 
 # Decreases all references of a symbol by b
-def decaddr(args, verbosity=0):
+def decaddr(args, v=0):
     sym, b = args
-    if verbosity > 0:
-        print(f"rem decaddr {sym} {b}")
+    logSimple()
     print(f"subaddr {sym} {recordConst(b)}")
 
 
 # Sets a to val in one operation, instead of setting it to 0 first
-def set_safe(args, verbosity=2):
+def set_safe(args, v=2):
     a, val, tmp, tmp2 = args
     val = ensureInt(val)
-    if verbosity > 0:
-        print()
-        print(f"rem Start set_safe {a} {val} {tmp} {tmp2}")
-    mov([tmp, a, tmp2], verbosity - 1)
-    dec([tmp, val], verbosity - 1)
-    sub([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End set_safe")
-        print()
+    logStart()
+    mov([tmp, a, tmp2], v - 1)
+    dec([tmp, val], v - 1)
+    sub([a, tmp], v - 1)
+    logEnd()
 
 
 # Jumps to dst's address if a < b
-def jl(args, verbosity=2):
+def jl(args, v=2):
     a, b, dst, tmp, tmp2 = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start jl {a} {b} {dst} {tmp} {tmp2}")
-    mov([tmp, a, tmp2], verbosity - 1)
+    logStart()
+    mov([tmp, a, tmp2], v - 1)
     # Don't jump if a == b
-    inc([tmp, 1], verbosity - 1)
+    inc([tmp, 1], v - 1)
     print(f"lblsq {tmp} {b} {dst}")
-    if verbosity > 0:
-        print("rem End jl")
-        print()
+    logEnd()
 
 
 # Multiplies a by 16
-def mul_16(args, verbosity=1):
+def mul_16(args, v=1):
     a, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start mul_16 {a} {tmp}")
-    zero([tmp], verbosity - 1)
+    logStart()
+    zero([tmp], v - 1)
     for _i in range(5):
-        sub([tmp, a], verbosity - 1)
+        sub([tmp, a], v - 1)
     for _i in range(3):
-        sub([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End mul_16")
-        print()
+        sub([a, tmp], v - 1)
+    logEnd()
 
 
-# Multiplies a by 16
-def mul_256(args, verbosity=1):
+# Multiplies a by 256
+def mul_256(args, v=1):
     a, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start mul_256 {a} {tmp}")
-    mul_16([a, tmp], verbosity - 1)
-    mul_16([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End mul_256")
-        print()
+    logStart()
+    mul_16([a, tmp], v - 1)
+    mul_16([a, tmp], v - 1)
+    logEnd()
 
 
 # Does a = -a
-def neg(args, verbosity=1):
+def neg(args, v=1):
     a, tmp, tmp2 = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start neg {a} {tmp} {tmp2}")
-    movneg([tmp, a], verbosity - 1)
-    mov([a, tmp, tmp2], verbosity - 1)
-    if verbosity > 0:
-        print("rem End neg")
-        print()
+    logStart()
+    movneg([tmp, a], v - 1)
+    mov([a, tmp, tmp2], v - 1)
+    logEnd()
 
 
 # Sets the address of sym to the value of val
-def setaddr(args, verbosity=2):
+def setaddr(args, v=2):
     sym, val, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start setaddr {sym} {val} {tmp}")
+    logStart()
     print(f"zeroaddr {sym}")
-    movneg([tmp, val], verbosity - 1)
+    movneg([tmp, val], v - 1)
     print(f"subaddr {sym} {tmp}")
-    if verbosity > 0:
-        print("rem End setaddr")
-        print()
+    logEnd()
 
 
 # Does a += b
-def add(args, verbosity=2):
+def add(args, v=2):
     a, b, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start add {a} {b} {tmp}")
-    movneg([tmp, b], verbosity - 1)
-    sub([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem End add")
-        print()
+    logStart()
+    movneg([tmp, b], v - 1)
+    sub([a, tmp], v - 1)
+    logEnd()
 
 
 # Does a *= 8
-def mul_8(args, verbosity=1):
+def mul_8(args, v=1):
     a, tmp = args
-    if verbosity > 0:
-        print()
-        print(f"rem Start mul_8 {a} {tmp}")
-    movneg([tmp, a], verbosity - 1)
+    logStart()
+    movneg([tmp, a], v - 1)
     for _i in range(7):
-        sub([a, tmp], verbosity - 1)
-    if verbosity > 0:
-        print("rem end mul_8")
-        print()
+        sub([a, tmp], v - 1)
+    logEnd()
 
 
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")

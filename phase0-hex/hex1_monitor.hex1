@@ -32,12 +32,9 @@
 ; var c 0
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 :ag :ai &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ah 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -126,12 +123,9 @@
 ; label COMMENT
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 :ao &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ah 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -160,12 +154,9 @@
 :aw &aB &aB ?+8 ; relsq isNeg isNeg 1
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ah 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -186,12 +177,9 @@
 ; label REL_INP
 
 # Start getchar c tmp
-
-# Start set tmp 1
+# set tmp 1
 :aD &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ah 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -288,12 +276,9 @@
 ; var labelOffset 0
 
 # Start getchar labelOffset tmp
-
-# Start set tmp 1
+# set tmp 1
 :aq &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ah 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -332,12 +317,9 @@
 
 
 # Start getchar tmp2 tmp
-
-# Start set tmp 1
+# set tmp 1
 &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-# End set
-
 &ah 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
@@ -368,7 +350,7 @@
 &aO &ah ?+8 ; relsq labelOffset tmp 1
 &aO &ah ?+8 ; relsq labelOffset tmp 1
 &aO &ah ?+8 ; relsq labelOffset tmp 1
-# end mul_8
+# End mul_8
 
 
 # Start add labelOffset labelArrStart tmp

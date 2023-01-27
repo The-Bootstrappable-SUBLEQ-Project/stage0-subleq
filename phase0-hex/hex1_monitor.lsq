@@ -32,12 +32,9 @@ var val 0
 var c 0
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -126,12 +123,9 @@ rem COMMENT ignores characters until \r or \n is fed
 label COMMENT
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -160,12 +154,9 @@ var isNeg 0
 relsq isNeg isNeg 1
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -186,12 +177,9 @@ relsq isNeg isNeg 1
 label REL_INP
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -288,12 +276,9 @@ rem Transform label name to offset
 var labelOffset 0
 
 rem Start getchar labelOffset tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -332,12 +317,9 @@ rem End mul_16
 
 
 rem Start getchar tmp2 tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -368,7 +350,7 @@ relsq labelOffset tmp 1
 relsq labelOffset tmp 1
 relsq labelOffset tmp 1
 relsq labelOffset tmp 1
-rem end mul_8
+rem End mul_8
 
 
 rem Start add labelOffset labelArrStart tmp

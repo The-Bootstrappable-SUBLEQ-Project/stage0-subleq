@@ -27,12 +27,9 @@
 ; var c 0
 
 # Output 'H'
-
-# Start set c 72
+# set c 48
 :EP &c &c ?+8 ; relsq c c 1
 &c &CONST_-48 ?+8 ; relsq c CONST_-48 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -50,12 +47,9 @@
 
 
 # Output 'e'
-
-# Start set c 101
+# set c 65
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-65 ?+8 ; relsq c CONST_-65 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -73,12 +67,9 @@
 
 
 # Output 'l'
-
-# Start set c 108
+# set c 6c
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-6C ?+8 ; relsq c CONST_-6C 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -96,12 +87,9 @@
 
 
 # Output 'l'
-
-# Start set c 108
+# set c 6c
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-6C ?+8 ; relsq c CONST_-6C 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -119,12 +107,9 @@
 
 
 # Output 'o'
-
-# Start set c 111
+# set c 6f
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-6F ?+8 ; relsq c CONST_-6F 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -142,12 +127,9 @@
 
 
 # Output ','
-
-# Start set c 44
+# set c 2c
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-2C ?+8 ; relsq c CONST_-2C 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -165,12 +147,9 @@
 
 
 # Output ' '
-
-# Start set c 32
+# set c 20
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-20 ?+8 ; relsq c CONST_-20 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -188,12 +167,9 @@
 
 
 # Output 'w'
-
-# Start set c 87
+# set c 57
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-57 ?+8 ; relsq c CONST_-57 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -211,12 +187,9 @@
 
 
 # Output 'o'set_safe
-
-# Start set c 111
+# set c 6f
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-6F ?+8 ; relsq c CONST_-6F 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -234,12 +207,9 @@
 
 
 # Output 'r'
-
-# Start set c 114
+# set c 72
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-72 ?+8 ; relsq c CONST_-72 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -257,12 +227,9 @@
 
 
 # Output 'l'
-
-# Start set c 108
+# set c 6c
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-6C ?+8 ; relsq c CONST_-6C 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -280,12 +247,9 @@
 
 
 # Output 'd'
-
-# Start set c 100
+# set c 64
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-64 ?+8 ; relsq c CONST_-64 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -303,12 +267,9 @@
 
 
 # Output '!'
-
-# Start set c 33
+# set c 21
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-21 ?+8 ; relsq c CONST_-21 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2
@@ -326,12 +287,9 @@
 
 
 # Output '\n'
-
-# Start set c 10
+# set c a
 &c &c ?+8 ; relsq c c 1
 &c &CONST_-A ?+8 ; relsq c CONST_-A 1
-# End set
-
 
 # Start putchar c tmp
 0000000013ed27f0 &ZERO ?+20 ; relsq SERIAL_OUT ZERO 2

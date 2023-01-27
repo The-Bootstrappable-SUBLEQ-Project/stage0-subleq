@@ -33,12 +33,9 @@ var val 0
 var c 0
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -127,12 +124,9 @@ rem COMMENT ignores characters until \r or \n is fed
 label COMMENT
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -161,12 +155,9 @@ var isNeg 0
 relsq isNeg isNeg 1
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -187,12 +178,9 @@ relsq isNeg isNeg 1
 label REL_INP
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -289,12 +277,9 @@ rem Transform label name to offset
 var labelOffset 0
 
 rem Start getchar labelOffset tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -333,12 +318,9 @@ rem End mul_16
 
 
 rem Start getchar tmp2 tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -369,7 +351,7 @@ relsq labelOffset tmp 1
 relsq labelOffset tmp 1
 relsq labelOffset tmp 1
 relsq labelOffset tmp 1
-rem end mul_8
+rem End mul_8
 
 
 rem Start add labelOffset labelArrStart tmp
@@ -536,12 +518,9 @@ label PRINT
 addr charToPrint 100000
 
 rem Start from the most significant byte
-
-rem Start set i 8
+rem set i 8
 relsq i i 1
 relsq i CONST_-8 1
-rem End set
-
 subaddr charToPrint CONST_8
 
 label PRINT_CHAR_START
@@ -583,12 +562,9 @@ relsq c CONST_1 1
 
 label MOD256_START
 var subber 0
-
-rem Start set subber 256
+rem set subber 100
 relsq subber subber 1
 relsq subber CONST_-100 1
-rem End set
-
 rem Finish if c < 256
 
 rem Start jl c subber MOD256_CHECKNEG tmp tmp2
@@ -600,7 +576,7 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem inc tmp CONST_1
+rem inc tmp 1
 relsq tmp CONST_-1 1
 lblsq tmp subber MOD256_CHECKNEG
 rem End jl
@@ -608,12 +584,9 @@ rem End jl
 
 rem Multiply subbers by 256 until the next multiplication makes subber > c
 var nextSubber 0
-
-rem Start set nextSubber 65536
+rem set nextSubber 10000
 relsq nextSubber nextSubber 1
 relsq nextSubber CONST_-10000 1
-rem End set
-
 label MULT_SUBBER_START
 
 rem Start jl c nextSubber MULT_SUBBER_END tmp tmp2
@@ -625,7 +598,7 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem inc tmp CONST_1
+rem inc tmp 1
 relsq tmp CONST_-1 1
 lblsq tmp nextSubber MULT_SUBBER_END
 rem End jl
@@ -691,7 +664,7 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem inc tmp CONST_1
+rem inc tmp 1
 relsq tmp CONST_-1 1
 lblsq tmp subber MOD256_START
 rem End jl
@@ -714,12 +687,9 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-
-rem Start set c 256
+rem set c 100
 relsq c c 1
 relsq c CONST_-100 1
-rem End set
-
 relsq c tmp 1
 
 label MOD256_END

@@ -27,12 +27,9 @@ label EP
 var c 0
 
 rem Output 'H'
-
-rem Start set c 72
+rem set c 48
 relsq c c 1
 relsq c CONST_-48 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -50,12 +47,9 @@ rem End putchar
 
 
 rem Output 'e'
-
-rem Start set c 101
+rem set c 65
 relsq c c 1
 relsq c CONST_-65 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -73,12 +67,9 @@ rem End putchar
 
 
 rem Output 'l'
-
-rem Start set c 108
+rem set c 6c
 relsq c c 1
 relsq c CONST_-6C 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -96,12 +87,9 @@ rem End putchar
 
 
 rem Output 'l'
-
-rem Start set c 108
+rem set c 6c
 relsq c c 1
 relsq c CONST_-6C 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -119,12 +107,9 @@ rem End putchar
 
 
 rem Output 'o'
-
-rem Start set c 111
+rem set c 6f
 relsq c c 1
 relsq c CONST_-6F 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -142,12 +127,9 @@ rem End putchar
 
 
 rem Output ','
-
-rem Start set c 44
+rem set c 2c
 relsq c c 1
 relsq c CONST_-2C 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -165,12 +147,9 @@ rem End putchar
 
 
 rem Output ' '
-
-rem Start set c 32
+rem set c 20
 relsq c c 1
 relsq c CONST_-20 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -188,12 +167,9 @@ rem End putchar
 
 
 rem Output 'w'
-
-rem Start set c 87
+rem set c 57
 relsq c c 1
 relsq c CONST_-57 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -211,12 +187,9 @@ rem End putchar
 
 
 rem Output 'o'set_safe
-
-rem Start set c 111
+rem set c 6f
 relsq c c 1
 relsq c CONST_-6F 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -234,12 +207,9 @@ rem End putchar
 
 
 rem Output 'r'
-
-rem Start set c 114
+rem set c 72
 relsq c c 1
 relsq c CONST_-72 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -257,12 +227,9 @@ rem End putchar
 
 
 rem Output 'l'
-
-rem Start set c 108
+rem set c 6c
 relsq c c 1
 relsq c CONST_-6C 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -280,12 +247,9 @@ rem End putchar
 
 
 rem Output 'd'
-
-rem Start set c 100
+rem set c 64
 relsq c c 1
 relsq c CONST_-64 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -303,12 +267,9 @@ rem End putchar
 
 
 rem Output '!'
-
-rem Start set c 33
+rem set c 21
 relsq c c 1
 relsq c CONST_-21 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2
@@ -326,12 +287,9 @@ rem End putchar
 
 
 rem Output '\n'
-
-rem Start set c 10
+rem set c a
 relsq c c 1
 relsq c CONST_-A 1
-rem End set
-
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2

@@ -29,12 +29,9 @@ var val 0
 var c 0
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
@@ -100,12 +97,9 @@ rem COMMENT ignores characters until \r or \n is fed
 label COMMENT
 
 rem Start getchar c tmp
-
-rem Start set tmp 1
+rem set tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_-1 1
-rem End set
-
 relsq tmp SERIAL_IN 2
 rem reljmp -1
 relsq ZERO ZERO -1
