@@ -1,0 +1,886 @@
+# Copyright (C) 2022 NyanCatTW1
+# This file is part of stage0-subleq.
+
+# stage0-subleq is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# stage0-subleq is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with stage0-subleq. If not, see <http://www.gnu.org/licenses/>.
+
+# Standard program start
+; addr ZERO 0
+; var tmp 0
+; var tmp2 0
+; addr tmp_addr 0
+; addr SERIAL_IN 13ED27E8
+; addr SERIAL_OUT 13ED27F0
+; addr CPU_CONTROL_START 13EE0000
+:aa :ab :ac :ad :ae &aa &aa &af ; lblsq ZERO ZERO EP
+
+; label EP
+; var codeLen 0
+# MAIN is the main routine for handling inputs
+; label MAIN
+# val is intentionally kept negative to make it easier to add to cur
+; var val 0
+; var c 0
+
+# Start getchar c tmp
+
+# Start set tmp 1
+:af :ah &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+# End set
+
+&ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# zero SERIAL_IN
+0000000013ed27e8 0000000013ed27e8 ?+8 ; relsq SERIAL_IN SERIAL_IN 1
+# movneg c tmp
+&aj &aj ?+8 ; relsq c c 1
+&aj &ag ?+8 ; relsq c tmp 1
+# End getchar
+
+# Keep a backup of c for INPUT_LABEL
+; var c2 0
+
+# Start mov c2 c tmp
+# movneg tmp c
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aj ?+8 ; relsq tmp c 1
+# movneg c2 tmp
+&ak &ak ?+8 ; relsq c2 c2 1
+&ak &ag ?+8 ; relsq c2 tmp 1
+# End mov
+
+
+# Handle NUL ~ "
+&aj &al &ah ; lblsq c CONST_22 MAIN
+
+# Handle #
+&aj &am &an ; lblsq c CONST_1 COMMENT
+
+# Handle $ and %
+&aj &ao &ah ; lblsq c CONST_2 MAIN
+
+# Handle &
+&aj &am &ap ; lblsq c CONST_1 INPUT_LABEL
+
+# Handle ' ~ /
+&aj &aq &ah ; lblsq c CONST_9 MAIN
+
+# Handle 0 ~ 9
+# movneg val c
+&ar &ar ?+8 ; relsq val val 1
+&ar &aj ?+8 ; relsq val c 1
+&ar &ai ?+8 ; relsq val CONST_-1 1
+&aj &as &at ; lblsq c CONST_A WRITE
+
+# Handle :
+&aj &am &ap ; lblsq c CONST_1 INPUT_LABEL
+
+# Handle ;
+&aj &am &an ; lblsq c CONST_1 COMMENT
+
+# Handle < ~ >
+&aj &au &ah ; lblsq c CONST_3 MAIN
+
+# Handle ?
+&aj &am &av ; lblsq c CONST_1 HANDLE_REL
+
+# Handle @
+&aj &am &ah ; lblsq c CONST_1 MAIN
+
+# Handle A ~ F
+# movneg val c
+&ar &ar ?+8 ; relsq val val 1
+&ar &aj ?+8 ; relsq val c 1
+&ar &aq ?+8 ; relsq val CONST_9 1
+&aj &aw &at ; lblsq c CONST_6 WRITE
+
+# Handle G ~ `
+&aj &ax &ah ; lblsq c CONST_1A MAIN
+
+# Handle a ~ f
+# movneg val c
+&ar &ar ?+8 ; relsq val val 1
+&ar &aj ?+8 ; relsq val c 1
+&ar &aq ?+8 ; relsq val CONST_9 1
+&aj &aw &at ; lblsq c CONST_6 WRITE
+
+# Handle g ~ }
+&aj &ay &ah ; lblsq c CONST_17 MAIN
+
+# Handle ~ and DEL (0x7f)
+&aa &aa &az ; lblsq ZERO ZERO RESOLVE_REF
+
+
+# COMMENT ignores characters until \r or \n is fed
+; label COMMENT
+
+# Start getchar c tmp
+
+# Start set tmp 1
+:an &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+# End set
+
+&ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# zero SERIAL_IN
+0000000013ed27e8 0000000013ed27e8 ?+8 ; relsq SERIAL_IN SERIAL_IN 1
+# movneg c tmp
+&aj &aj ?+8 ; relsq c c 1
+&aj &ag ?+8 ; relsq c tmp 1
+# End getchar
+
+# putchar c tmp
+&aj &aq &an ; lblsq c CONST_9 COMMENT
+# Handle LF
+&aj &am &ah ; lblsq c CONST_1 MAIN
+&aj &ao &an ; lblsq c CONST_2 COMMENT
+# Handle CR
+&aj &am &ah ; lblsq c CONST_1 MAIN
+&aa &aa &an ; lblsq ZERO ZERO COMMENT
+
+
+# HANDLE_REL handles relative labels
+; label HANDLE_REL
+
+# Handle sign (+-)
+; var isNeg 0
+:av &aA &aA ?+8 ; relsq isNeg isNeg 1
+
+# Start getchar c tmp
+
+# Start set tmp 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+# End set
+
+&ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# zero SERIAL_IN
+0000000013ed27e8 0000000013ed27e8 ?+8 ; relsq SERIAL_IN SERIAL_IN 1
+# movneg c tmp
+&aj &aj ?+8 ; relsq c c 1
+&aj &ag ?+8 ; relsq c tmp 1
+# End getchar
+
+# Handle NUL ~ ,
+&aj &aB &aC ; lblsq c CONST_2C REL_INP
+&aA &ai ?+8 ; relsq isNeg CONST_-1 1
+# Handle -
+&aj &am &aC ; lblsq c CONST_1 REL_INP
+&aA &aA ?+8 ; relsq isNeg isNeg 1
+
+; label REL_INP
+
+# Start getchar c tmp
+
+# Start set tmp 1
+:aC &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+# End set
+
+&ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# zero SERIAL_IN
+0000000013ed27e8 0000000013ed27e8 ?+8 ; relsq SERIAL_IN SERIAL_IN 1
+# movneg c tmp
+&aj &aj ?+8 ; relsq c c 1
+&aj &ag ?+8 ; relsq c tmp 1
+# End getchar
+
+
+# Handle NUL ~ /
+&aj &aD &aE ; lblsq c CONST_2F REL_NEG
+
+# Handle 0 ~ 9
+# movneg val c
+&ar &ar ?+8 ; relsq val val 1
+&ar &aj ?+8 ; relsq val c 1
+&ar &ai ?+8 ; relsq val CONST_-1 1
+&aj &as &aF ; lblsq c CONST_A REL_WRITE
+
+# Handle : ~ @
+&aj &aG &aE ; lblsq c CONST_7 REL_NEG
+
+# Handle A ~ F
+# movneg val c
+&ar &ar ?+8 ; relsq val val 1
+&ar &aj ?+8 ; relsq val c 1
+&ar &aq ?+8 ; relsq val CONST_9 1
+&aj &aw &aF ; lblsq c CONST_6 REL_WRITE
+
+# Handle G ~ `
+&aj &ax &aE ; lblsq c CONST_1A REL_NEG
+
+# Handle a ~ f
+# movneg val c
+&ar &ar ?+8 ; relsq val val 1
+&ar &aj ?+8 ; relsq val c 1
+&ar &aq ?+8 ; relsq val CONST_9 1
+&aj &aw &aF ; lblsq c CONST_6 REL_WRITE
+
+# Handle g ~ DEL
+&aa &aa &aC ; lblsq ZERO ZERO REL_INP
+
+; label REL_WRITE
+
+# Start mul_16 cur tmp
+:aF &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&aH &ag ?+8 ; relsq cur tmp 1
+&aH &ag ?+8 ; relsq cur tmp 1
+&aH &ag ?+8 ; relsq cur tmp 1
+# End mul_16
+
+&aH &ar ?+8 ; relsq cur val 1
+&aa &aa &aC ; lblsq ZERO ZERO REL_INP
+
+# Negate cur if the relative jump is negative
+; label REL_NEG
+:aE &aA &aI &aJ ; lblsq isNeg CONST_0 REL_FIN
+
+# Start neg cur tmp tmp2
+# movneg tmp cur
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aH ?+8 ; relsq tmp cur 1
+
+# Start mov cur tmp tmp2
+# movneg tmp2 tmp
+&aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &ag ?+8 ; relsq tmp2 tmp 1
+# movneg cur tmp2
+&aH &aH ?+8 ; relsq cur cur 1
+&aH &aK ?+8 ; relsq cur tmp2 1
+# End mov
+
+# End neg
+
+
+; label REL_FIN
+
+# Start add cur codeLen tmp
+# movneg tmp codeLen
+:aJ &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aL ?+8 ; relsq tmp codeLen 1
+# sub cur tmp
+&aH &ag ?+8 ; relsq cur tmp 1
+# End add
+
+&aa &aa &aM ; lblsq ZERO ZERO WRITE_QWORD
+
+
+; var labelArrStart 300000
+
+# INPUT_LABEL handles both labels (:) and references to them (&)
+; label INPUT_LABEL
+# Transform label name to offset
+; var labelOffset 0
+
+# Start getchar labelOffset tmp
+
+# Start set tmp 1
+:ap &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+# End set
+
+&ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# zero SERIAL_IN
+0000000013ed27e8 0000000013ed27e8 ?+8 ; relsq SERIAL_IN SERIAL_IN 1
+# movneg labelOffset tmp
+&aN &aN ?+8 ; relsq labelOffset labelOffset 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+# End getchar
+
+
+# Start mul_16 labelOffset tmp
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+# End mul_16
+
+
+# Start mul_16 labelOffset tmp
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+# End mul_16
+
+
+# Start getchar tmp2 tmp
+
+# Start set tmp 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+# End set
+
+&ag 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# zero SERIAL_IN
+0000000013ed27e8 0000000013ed27e8 ?+8 ; relsq SERIAL_IN SERIAL_IN 1
+# movneg tmp2 tmp
+&aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &ag ?+8 ; relsq tmp2 tmp 1
+# End getchar
+
+
+# Start add labelOffset tmp2 tmp
+# movneg tmp tmp2
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aK ?+8 ; relsq tmp tmp2 1
+# sub labelOffset tmp
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+# End add
+
+
+# Start mul_8 labelOffset tmp
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+# end mul_8
+
+
+# Start add labelOffset labelArrStart tmp
+# movneg tmp labelArrStart
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aO ?+8 ; relsq tmp labelArrStart 1
+# sub labelOffset tmp
+&aN &ag ?+8 ; relsq labelOffset tmp 1
+# End add
+
+
+&ak &aP &aQ ; lblsq c2 CONST_26 RECORD_REF
+
+# Handle label (:)
+; addr curLabel 0
+
+# Start setaddr curLabel labelOffset tmp
+&aR &aR ?+8 ; relsq curLabel_addrRef_0 curLabel_addrRef_0 1
+&aS &aS ?+8 ; relsq curLabel_addrRef_1 curLabel_addrRef_1 1
+&aT &aT ?+8 ; relsq curLabel_addrRef_2 curLabel_addrRef_2 1
+# movneg tmp labelOffset
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+&aR &ag ?+8 ; relsq curLabel_addrRef_0 tmp 1
+&aS &ag ?+8 ; relsq curLabel_addrRef_1 tmp 1
+&aT &ag ?+8 ; relsq curLabel_addrRef_2 tmp 1
+# End setaddr
+
+
+# Start mov curLabel codeLen tmp
+# movneg tmp codeLen
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aL ?+8 ; relsq tmp codeLen 1
+# movneg curLabel tmp
+:aR &ac :aS &ac ?+8 ; relsq curLabel curLabel 1
+:aT &ac &ag ?+8 ; relsq curLabel tmp 1
+# End mov
+
+&aa &aa &ah ; lblsq ZERO ZERO MAIN
+
+# Handle reference (&)
+; label RECORD_REF
+; var refs 0
+; addr nextRef 400000
+
+# Start mov nextRef labelOffset tmp
+# movneg tmp labelOffset
+:aQ &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aN ?+8 ; relsq tmp labelOffset 1
+# movneg nextRef tmp
+:aU 0000000000400000 :aV 0000000000400000 ?+8 ; relsq nextRef nextRef 1
+:aW 0000000000400000 &ag ?+8 ; relsq nextRef tmp 1
+# End mov
+
+&aU &aX ?+8 ; relsq nextRef_addrRef_0 CONST_-8 1
+&aV &aX ?+8 ; relsq nextRef_addrRef_1 CONST_-8 1
+&aW &aX ?+8 ; relsq nextRef_addrRef_2 CONST_-8 1
+&aY &aX ?+8 ; relsq nextRef_addrRef_3 CONST_-8 1
+&aZ &aX ?+8 ; relsq nextRef_addrRef_4 CONST_-8 1
+&ba &aX ?+8 ; relsq nextRef_addrRef_5 CONST_-8 1
+&bb &aX ?+8 ; relsq nextRef_addrRef_6 CONST_-8 1
+&bc &aX ?+8 ; relsq nextRef_addrRef_7 CONST_-8 1
+&bd &aX ?+8 ; relsq nextRef_addrRef_8 CONST_-8 1
+
+# Start mov nextRef codeLen tmp
+# movneg tmp codeLen
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aL ?+8 ; relsq tmp codeLen 1
+# movneg nextRef tmp
+:aY 0000000000400000 :aZ 0000000000400000 ?+8 ; relsq nextRef nextRef 1
+:ba 0000000000400000 &ag ?+8 ; relsq nextRef tmp 1
+# End mov
+
+
+# Start add nextRef bufStart tmp
+# movneg tmp bufStart
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &be ?+8 ; relsq tmp bufStart 1
+# sub nextRef tmp
+:bb 0000000000400000 &ag ?+8 ; relsq nextRef tmp 1
+# End add
+
+&aU &aX ?+8 ; relsq nextRef_addrRef_0 CONST_-8 1
+&aV &aX ?+8 ; relsq nextRef_addrRef_1 CONST_-8 1
+&aW &aX ?+8 ; relsq nextRef_addrRef_2 CONST_-8 1
+&aY &aX ?+8 ; relsq nextRef_addrRef_3 CONST_-8 1
+&aZ &aX ?+8 ; relsq nextRef_addrRef_4 CONST_-8 1
+&ba &aX ?+8 ; relsq nextRef_addrRef_5 CONST_-8 1
+&bb &aX ?+8 ; relsq nextRef_addrRef_6 CONST_-8 1
+&bc &aX ?+8 ; relsq nextRef_addrRef_7 CONST_-8 1
+&bd &aX ?+8 ; relsq nextRef_addrRef_8 CONST_-8 1
+&bf &ai ?+8 ; relsq refs CONST_-1 1
+&aa &aa &aM ; lblsq ZERO ZERO WRITE_QWORD
+
+
+# WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
+; label WRITE
+; var cur 0
+
+# Start mul_16 cur tmp
+:at &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&ag &aH ?+8 ; relsq tmp cur 1
+&aH &ag ?+8 ; relsq cur tmp 1
+&aH &ag ?+8 ; relsq cur tmp 1
+&aH &ag ?+8 ; relsq cur tmp 1
+# End mul_16
+
+&aH &ar ?+8 ; relsq cur val 1
+
+# i will turn positive every 16 iterations
+; var i -f
+&bg &ai &ah ; lblsq i CONST_-1 MAIN
+&bg &bh ?+8 ; relsq i CONST_10 1
+
+; label WRITE_QWORD
+; var bufStart 100000
+; addr bufEnd 100000
+# Copy to the buffer and increase its address
+
+# Start mov bufEnd cur tmp
+# movneg tmp cur
+:aM &ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aH ?+8 ; relsq tmp cur 1
+# movneg bufEnd tmp
+:bi 0000000000100000 :bj 0000000000100000 ?+8 ; relsq bufEnd bufEnd 1
+:bk 0000000000100000 &ag ?+8 ; relsq bufEnd tmp 1
+# End mov
+
+&aH &aH ?+8 ; relsq cur cur 1
+&bi &aX ?+8 ; relsq bufEnd_addrRef_0 CONST_-8 1
+&bj &aX ?+8 ; relsq bufEnd_addrRef_1 CONST_-8 1
+&bk &aX ?+8 ; relsq bufEnd_addrRef_2 CONST_-8 1
+&aL &aX ?+8 ; relsq codeLen CONST_-8 1
+&aa &aa &ah ; lblsq ZERO ZERO MAIN
+
+
+# RESOLVE_REF resolves references by setting their value to the label's address
+; label RESOLVE_REF
+:az &bf &aI &bl ; lblsq refs CONST_0 PRINT
+&bf &am ?+8 ; relsq refs CONST_1 1
+&aU &bm ?+8 ; relsq nextRef_addrRef_0 CONST_8 1
+&aV &bm ?+8 ; relsq nextRef_addrRef_1 CONST_8 1
+&aW &bm ?+8 ; relsq nextRef_addrRef_2 CONST_8 1
+&aY &bm ?+8 ; relsq nextRef_addrRef_3 CONST_8 1
+&aZ &bm ?+8 ; relsq nextRef_addrRef_4 CONST_8 1
+&ba &bm ?+8 ; relsq nextRef_addrRef_5 CONST_8 1
+&bb &bm ?+8 ; relsq nextRef_addrRef_6 CONST_8 1
+&bc &bm ?+8 ; relsq nextRef_addrRef_7 CONST_8 1
+&bd &bm ?+8 ; relsq nextRef_addrRef_8 CONST_8 1
+
+; addr refAt 0
+
+# Start setaddr refAt nextRef tmp
+&bn &bn ?+8 ; relsq refAt_addrRef_0 refAt_addrRef_0 1
+&bo &bo ?+8 ; relsq refAt_addrRef_1 refAt_addrRef_1 1
+&bp &bp ?+8 ; relsq refAt_addrRef_2 refAt_addrRef_2 1
+# movneg tmp nextRef
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag :bc 0000000000400000 ?+8 ; relsq tmp nextRef 1
+&bn &ag ?+8 ; relsq refAt_addrRef_0 tmp 1
+&bo &ag ?+8 ; relsq refAt_addrRef_1 tmp 1
+&bp &ag ?+8 ; relsq refAt_addrRef_2 tmp 1
+# End setaddr
+
+&aU &bm ?+8 ; relsq nextRef_addrRef_0 CONST_8 1
+&aV &bm ?+8 ; relsq nextRef_addrRef_1 CONST_8 1
+&aW &bm ?+8 ; relsq nextRef_addrRef_2 CONST_8 1
+&aY &bm ?+8 ; relsq nextRef_addrRef_3 CONST_8 1
+&aZ &bm ?+8 ; relsq nextRef_addrRef_4 CONST_8 1
+&ba &bm ?+8 ; relsq nextRef_addrRef_5 CONST_8 1
+&bb &bm ?+8 ; relsq nextRef_addrRef_6 CONST_8 1
+&bc &bm ?+8 ; relsq nextRef_addrRef_7 CONST_8 1
+&bd &bm ?+8 ; relsq nextRef_addrRef_8 CONST_8 1
+
+; addr refVal 0
+
+# Start setaddr refVal nextRef tmp
+&bq &bq ?+8 ; relsq refVal_addrRef_0 refVal_addrRef_0 1
+# movneg tmp nextRef
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag :bd 0000000000400000 ?+8 ; relsq tmp nextRef 1
+&bq &ag ?+8 ; relsq refVal_addrRef_0 tmp 1
+# End setaddr
+
+
+
+# Start mov refAt refVal tmp
+# movneg tmp refVal
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag :bq &ae ?+8 ; relsq tmp refVal 1
+# movneg refAt tmp
+:bn &ad :bo &ad ?+8 ; relsq refAt refAt 1
+:bp &ad &ag ?+8 ; relsq refAt tmp 1
+# End mov
+
+&aa &aa &az ; lblsq ZERO ZERO RESOLVE_REF
+
+
+# PRINT prints the assembled binary file to the serial
+; label PRINT
+
+; addr charToPrint 100000
+
+# Start from the most significant byte
+
+# Start set i 8
+:bl &bg &bg ?+8 ; relsq i i 1
+&bg &aX ?+8 ; relsq i CONST_-8 1
+# End set
+
+&br &bm ?+8 ; relsq charToPrint_addrRef_0 CONST_8 1
+
+; label PRINT_CHAR_START
+:bs &br &ai ?+8 ; relsq charToPrint_addrRef_0 CONST_-1 1
+
+# Start mov c charToPrint tmp
+# movneg tmp charToPrint
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag :br 0000000000100000 ?+8 ; relsq tmp charToPrint 1
+# movneg c tmp
+&aj &aj ?+8 ; relsq c c 1
+&aj &ag ?+8 ; relsq c tmp 1
+# End mov
+
+# putchar c tmp
+
+# c %= 256
+
+; var mod256IsNeg 0
+&bt &bt ?+8 ; relsq mod256IsNeg mod256IsNeg 1
+&aj &ai &bu ; lblsq c CONST_-1 MOD256_IS_NEG
+&aa &aa &bv ; lblsq ZERO ZERO MOD256_IS_POS
+; label MOD256_IS_NEG
+:bu &bt &ai ?+8 ; relsq mod256IsNeg CONST_-1 1
+&aj &am ?+8 ; relsq c CONST_1 1
+
+# Start neg c tmp tmp2
+# movneg tmp c
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aj ?+8 ; relsq tmp c 1
+
+# Start mov c tmp tmp2
+# movneg tmp2 tmp
+&aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &ag ?+8 ; relsq tmp2 tmp 1
+# movneg c tmp2
+&aj &aj ?+8 ; relsq c c 1
+&aj &aK ?+8 ; relsq c tmp2 1
+# End mov
+
+# End neg
+
+&aa &aa &bw ; lblsq ZERO ZERO MOD256_START
+; label MOD256_IS_POS
+:bv &aj &am ?+8 ; relsq c CONST_1 1
+
+; label MOD256_START
+; var subber 0
+
+# Start set subber 256
+:bw &bx &bx ?+8 ; relsq subber subber 1
+&bx &by ?+8 ; relsq subber CONST_-100 1
+# End set
+
+# Finish if c < 256
+
+# Start jl c subber MOD256_CHECKNEG tmp tmp2
+
+# Start mov tmp c tmp2
+&aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &aj ?+8 ; relsq tmp2 c 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aK ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# inc tmp CONST_1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+&ag &bx &bz ; lblsq tmp subber MOD256_CHECKNEG
+# End jl
+
+
+# Multiply subbers by 256 until the next multiplication makes subber > c
+; var nextSubber 0
+
+# Start set nextSubber 65536
+&bA &bA ?+8 ; relsq nextSubber nextSubber 1
+&bA &bB ?+8 ; relsq nextSubber CONST_-10000 1
+# End set
+
+; label MULT_SUBBER_START
+
+# Start jl c nextSubber MULT_SUBBER_END tmp tmp2
+
+# Start mov tmp c tmp2
+:bC &aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &aj ?+8 ; relsq tmp2 c 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aK ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# inc tmp CONST_1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+&ag &bA &bD ; lblsq tmp nextSubber MULT_SUBBER_END
+# End jl
+
+
+# Start mul_256 subber tmp
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&bx &ag ?+8 ; relsq subber tmp 1
+&bx &ag ?+8 ; relsq subber tmp 1
+&bx &ag ?+8 ; relsq subber tmp 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&ag &bx ?+8 ; relsq tmp subber 1
+&bx &ag ?+8 ; relsq subber tmp 1
+&bx &ag ?+8 ; relsq subber tmp 1
+&bx &ag ?+8 ; relsq subber tmp 1
+# End mul_256
+
+
+# Start mul_256 nextSubber tmp
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&bA &ag ?+8 ; relsq nextSubber tmp 1
+&bA &ag ?+8 ; relsq nextSubber tmp 1
+&bA &ag ?+8 ; relsq nextSubber tmp 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&ag &bA ?+8 ; relsq tmp nextSubber 1
+&bA &ag ?+8 ; relsq nextSubber tmp 1
+&bA &ag ?+8 ; relsq nextSubber tmp 1
+&bA &ag ?+8 ; relsq nextSubber tmp 1
+# End mul_256
+
+# nextSubber overflowed
+&bA &aI &bD ; lblsq nextSubber CONST_0 MULT_SUBBER_END
+&aa &aa &bC ; lblsq ZERO ZERO MULT_SUBBER_START
+; label MULT_SUBBER_END
+
+# Subtract c by subber until the next subtraction makes c < 0
+; label SUBTRACT_C
+
+# Start jl c subber MOD256_START tmp tmp2
+
+# Start mov tmp c tmp2
+:bD :bE &aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &aj ?+8 ; relsq tmp2 c 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aK ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# inc tmp CONST_1
+&ag &ai ?+8 ; relsq tmp CONST_-1 1
+&ag &bx &bw ; lblsq tmp subber MOD256_START
+# End jl
+
+&aj &bx ?+8 ; relsq c subber 1
+&aa &aa &bE ; lblsq ZERO ZERO SUBTRACT_C
+
+; label MOD256_CHECKNEG
+:bz &bt &aI &bF ; lblsq mod256IsNeg CONST_0 MOD256_END
+# No need to invert if c == 0
+&aj &aI &bF ; lblsq c CONST_0 MOD256_END
+# c = 256 - c
+
+# Start mov tmp c tmp2
+# movneg tmp2 c
+&aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK &aj ?+8 ; relsq tmp2 c 1
+# movneg tmp tmp2
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aK ?+8 ; relsq tmp tmp2 1
+# End mov
+
+
+# Start set c 256
+&aj &aj ?+8 ; relsq c c 1
+&aj &by ?+8 ; relsq c CONST_-100 1
+# End set
+
+&aj &ag ?+8 ; relsq c tmp 1
+
+; label MOD256_END
+
+
+# Start putchar c tmp
+:bF 0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+# reljmp -1
+&aa &aa ?-28 ; relsq ZERO ZERO -1
+# movneg tmp c
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aj ?+8 ; relsq tmp c 1
+# dec tmp 1
+&ag &am ?+8 ; relsq tmp CONST_1 1
+# movneg SERIAL_OUT tmp
+0000000013ed27f0 0000000013ed27f0 ?+8 ; relsq SERIAL_OUT SERIAL_OUT 1
+0000000013ed27f0 &ag ?+8 ; relsq SERIAL_OUT tmp 1
+# End putchar
+
+&bg &am &bG ; lblsq i CONST_1 PRINT_CHAR_END
+&aa &aa &bs ; lblsq ZERO ZERO PRINT_CHAR_START
+
+; label PRINT_CHAR_END
+# Go to the next qword
+:bG &br &aX ?+8 ; relsq charToPrint_addrRef_0 CONST_-8 1
+&aL &bm &bH ; lblsq codeLen CONST_8 HALT
+&aa &aa &bl ; lblsq ZERO ZERO PRINT
+
+; label HALT
+# Stop CPU 0
+
+# Start set_safe CPU_CONTROL_START 2 tmp tmp2
+
+# Start mov tmp CPU_CONTROL_START tmp2
+:bH &aK &aK ?+8 ; relsq tmp2 tmp2 1
+&aK 0000000013ee0000 ?+8 ; relsq tmp2 CPU_CONTROL_START 1
+&ag &ag ?+8 ; relsq tmp tmp 1
+&ag &aK ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# dec tmp 2
+&ag &ao ?+8 ; relsq tmp CONST_2 1
+# sub CPU_CONTROL_START tmp
+0000000013ee0000 &ag ?+8 ; relsq CPU_CONTROL_START tmp 1
+# End set_safe
+
+
+# Infinite loop
+&aa &aa ?-10 ; relsq ZERO ZERO 0
+
+; var CONST_-1 -1
+; var CONST_22 22
+; var CONST_1 1
+; var CONST_2 2
+; var CONST_9 9
+; var CONST_A a
+; var CONST_3 3
+; var CONST_6 6
+; var CONST_1A 1a
+; var CONST_17 17
+; var CONST_2C 2c
+; var CONST_2F 2f
+; var CONST_7 7
+; var CONST_0 0
+; var CONST_26 26
+; var CONST_-8 -8
+; var CONST_10 10
+; var CONST_8 8
+; var CONST_-100 -100
+; var CONST_-10000 -10000
+
+:ag 0000000000000000 ; raw 0000000000000000 # tmp
+:aK 0000000000000000 ; raw 0000000000000000 # tmp2
+:aL 0000000000000000 ; raw 0000000000000000 # codeLen
+:ar 0000000000000000 ; raw 0000000000000000 # val
+:aj 0000000000000000 ; raw 0000000000000000 # c
+:ak 0000000000000000 ; raw 0000000000000000 # c2
+:aA 0000000000000000 ; raw 0000000000000000 # isNeg
+:aO 0000000000300000 ; raw 0000000000300000 # labelArrStart
+:aN 0000000000000000 ; raw 0000000000000000 # labelOffset
+:bf 0000000000000000 ; raw 0000000000000000 # refs
+:aH 0000000000000000 ; raw 0000000000000000 # cur
+:bg fffffffffffffff1 ; raw fffffffffffffff1 # i
+:be 0000000000100000 ; raw 0000000000100000 # bufStart
+:bt 0000000000000000 ; raw 0000000000000000 # mod256IsNeg
+:bx 0000000000000000 ; raw 0000000000000000 # subber
+:bA 0000000000000000 ; raw 0000000000000000 # nextSubber
+:ai ffffffffffffffff ; raw ffffffffffffffff # CONST_-1
+:al 0000000000000022 ; raw 0000000000000022 # CONST_22
+:am 0000000000000001 ; raw 0000000000000001 # CONST_1
+:ao 0000000000000002 ; raw 0000000000000002 # CONST_2
+:aq 0000000000000009 ; raw 0000000000000009 # CONST_9
+:as 000000000000000a ; raw 000000000000000a # CONST_A
+:au 0000000000000003 ; raw 0000000000000003 # CONST_3
+:aw 0000000000000006 ; raw 0000000000000006 # CONST_6
+:ax 000000000000001a ; raw 000000000000001a # CONST_1A
+:ay 0000000000000017 ; raw 0000000000000017 # CONST_17
+:aB 000000000000002c ; raw 000000000000002c # CONST_2C
+:aD 000000000000002f ; raw 000000000000002f # CONST_2F
+:aG 0000000000000007 ; raw 0000000000000007 # CONST_7
+:aI 0000000000000000 ; raw 0000000000000000 # CONST_0
+:aP 0000000000000026 ; raw 0000000000000026 # CONST_26
+:aX fffffffffffffff8 ; raw fffffffffffffff8 # CONST_-8
+:bh 0000000000000010 ; raw 0000000000000010 # CONST_10
+:bm 0000000000000008 ; raw 0000000000000008 # CONST_8
+:by ffffffffffffff00 ; raw ffffffffffffff00 # CONST_-100
+:bB ffffffffffff0000 ; raw ffffffffffff0000 # CONST_-10000
+~

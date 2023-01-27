@@ -1,10 +1,11 @@
 .PHONY: noontide-emu check test slowtest slowcheck slowertest slowercheck
 .DELETE_ON_ERROR:
 
-ALL_DEPS := phase0-hex/hex0_monitor.bin phase0-hex/hex0_monitor.hex0 phase0-hex/hex0_monitor.lsq
 ALL_DEPS += Examples/hello_world.bin Examples/hello_world.hex0 Examples/hello_world.hex1 Examples/hello_world.hex2 Examples/hello_world.lsq
 ALL_DEPS += phase0-hex/hex0.bin phase0-hex/hex0.hex0 phase0-hex/hex0.lsq
+ALL_DEPS := phase0-hex/hex0_monitor.bin phase0-hex/hex0_monitor.hex0 phase0-hex/hex0_monitor.lsq
 ALL_DEPS += phase0-hex/hex1_monitor.bin phase0-hex/hex1_monitor.hex0 phase0-hex/hex1_monitor.hex1 phase0-hex/hex1_monitor.lsq
+ALL_DEPS += phase0-hex/hex1.bin phase0-hex/hex1.hex0 phase0-hex/hex1.hex1 phase0-hex/hex1.lsq
 
 all: $(ALL_DEPS)
 
