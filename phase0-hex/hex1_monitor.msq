@@ -18,7 +18,6 @@ rem Standard program start
 addr ZERO 0
 var tmp 0
 var tmp2 0
-addr tmp_addr 0
 addr SERIAL_IN 13ED27E8
 addr SERIAL_OUT 13ED27F0
 lblsq ZERO ZERO EP
