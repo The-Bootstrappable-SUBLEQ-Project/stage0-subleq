@@ -269,7 +269,7 @@
 
 &ZERO &ZERO &WRITE_QWORD ; lblsq ZERO ZERO WRITE_QWORD
 
-# A log is made of three components
+# A log is made of three components, adding to a total of 0x28 bytes:
 # 0x0 A string containing the symbol name
 # 0x18 The offset on which the log occured
 # 0x20 Whether the log is a label (0x0) or a reference (0x1)

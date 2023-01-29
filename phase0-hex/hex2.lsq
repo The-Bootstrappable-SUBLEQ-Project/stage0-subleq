@@ -268,7 +268,7 @@ rem End add
 
 lblsq ZERO ZERO WRITE_QWORD
 
-rem A log is made of three components
+rem A log is made of three components, adding to a total of 0x28 bytes:
 rem 0x0 A string containing the symbol name
 rem 0x18 The offset on which the log occured
 rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
