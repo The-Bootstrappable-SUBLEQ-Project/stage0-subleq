@@ -1,0 +1,972 @@
+rem Copyright (C) 2022 NyanCatTW1
+rem This file is part of stage0-subleq.
+rem
+rem stage0-subleq is free software: you can redistribute it and/or modify
+rem it under the terms of the GNU General Public License as published by
+rem the Free Software Foundation, either version 3 of the License, or
+rem (at your option) any later version.
+rem
+rem stage0-subleq is distributed in the hope that it will be useful,
+rem but WITHOUT ANY WARRANTY; without even the implied warranty of
+rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+rem GNU General Public License for more details.
+rem
+rem You should have received a copy of the GNU General Public License
+rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
+
+rem Standard program start
+addr ZERO 0
+var tmp 0
+var tmp2 0
+addr SERIAL_IN 13ED27E8
+addr SERIAL_OUT 13ED27F0
+addr CPU_CONTROL_START 13EE0000
+var FREE_START 1000000
+lblsq ZERO ZERO EP
+
+label EP
+var codeLen 0
+rem MAIN is the main routine for handling inputs
+label MAIN
+rem val is intentionally kept negative to make it easier to add to cur
+var val 0
+var c 0
+
+rem Start getchar c tmp
+rem set tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+relsq tmp SERIAL_IN 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem zero SERIAL_IN
+relsq SERIAL_IN SERIAL_IN 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End getchar
+
+rem Keep a backup of c for INPUT_LABEL
+var c2 0
+
+rem Start mov c2 c tmp
+rem movneg tmp c
+relsq tmp tmp 1
+relsq tmp c 1
+rem movneg c2 tmp
+relsq c2 c2 1
+relsq c2 tmp 1
+rem End mov
+
+
+rem Handle NUL ~ "
+lblsq c CONST_22 MAIN
+
+rem Handle #
+lblsq c CONST_1 COMMENT
+
+rem Handle $ and %
+lblsq c CONST_2 MAIN
+
+rem Handle &
+lblsq c CONST_1 INPUT_LABEL
+
+rem Handle ' ~ /
+lblsq c CONST_9 MAIN
+
+rem Handle 0 ~ 9
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_-1 1
+lblsq c CONST_A WRITE
+
+rem Handle :
+lblsq c CONST_1 INPUT_LABEL
+
+rem Handle ;
+lblsq c CONST_1 COMMENT
+
+rem Handle < ~ >
+lblsq c CONST_3 MAIN
+
+rem Handle ?
+lblsq c CONST_1 HANDLE_REL
+
+rem Handle @
+lblsq c CONST_1 MAIN
+
+rem Handle A ~ F
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_9 1
+lblsq c CONST_6 WRITE
+
+rem Handle G ~ `
+lblsq c CONST_1A MAIN
+
+rem Handle a ~ f
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_9 1
+lblsq c CONST_6 WRITE
+
+rem Handle g ~ }
+lblsq c CONST_17 MAIN
+
+rem Handle ~ and DEL (0x7f)
+lblsq ZERO ZERO RESOLVE_REF
+
+
+rem COMMENT ignores characters until \r or \n is fed
+label COMMENT
+
+rem Start getchar c tmp
+rem set tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+relsq tmp SERIAL_IN 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem zero SERIAL_IN
+relsq SERIAL_IN SERIAL_IN 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End getchar
+
+rem putchar c tmp
+lblsq c CONST_9 COMMENT
+rem Handle LF
+lblsq c CONST_1 MAIN
+lblsq c CONST_2 COMMENT
+rem Handle CR
+lblsq c CONST_1 MAIN
+lblsq ZERO ZERO COMMENT
+
+
+rem HANDLE_REL handles relative labels
+label HANDLE_REL
+
+rem Handle sign (+-)
+var isNeg 0
+relsq isNeg isNeg 1
+
+rem Start getchar c tmp
+rem set tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+relsq tmp SERIAL_IN 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem zero SERIAL_IN
+relsq SERIAL_IN SERIAL_IN 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End getchar
+
+rem Handle NUL ~ ,
+lblsq c CONST_2C REL_INP
+relsq isNeg CONST_-1 1
+rem Handle -
+lblsq c CONST_1 REL_INP
+relsq isNeg isNeg 1
+
+label REL_INP
+
+rem Start getchar c tmp
+rem set tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+relsq tmp SERIAL_IN 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem zero SERIAL_IN
+relsq SERIAL_IN SERIAL_IN 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End getchar
+
+
+rem Handle NUL ~ /
+lblsq c CONST_2F REL_NEG
+
+rem Handle 0 ~ 9
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_-1 1
+lblsq c CONST_A REL_WRITE
+
+rem Handle : ~ @
+lblsq c CONST_7 REL_NEG
+
+rem Handle A ~ F
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_9 1
+lblsq c CONST_6 REL_WRITE
+
+rem Handle G ~ `
+lblsq c CONST_1A REL_NEG
+
+rem Handle a ~ f
+rem movneg val c
+relsq val val 1
+relsq val c 1
+relsq val CONST_9 1
+lblsq c CONST_6 REL_WRITE
+
+rem Handle g ~ DEL
+lblsq ZERO ZERO REL_INP
+
+label REL_WRITE
+
+rem Start mul_16 cur tmp
+relsq tmp tmp 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq cur tmp 1
+relsq cur tmp 1
+relsq cur tmp 1
+rem End mul_16
+
+relsq cur val 1
+lblsq ZERO ZERO REL_INP
+
+rem Negate cur if the relative jump is negative
+label REL_NEG
+lblsq isNeg CONST_0 REL_FIN
+
+rem Start neg cur tmp tmp2
+relsq tmp tmp 1
+relsq tmp cur 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+relsq cur cur 1
+relsq cur tmp2 1
+rem End neg
+
+
+label REL_FIN
+
+rem Start add cur codeLen tmp
+rem movneg tmp codeLen
+relsq tmp tmp 1
+relsq tmp codeLen 1
+rem sub cur tmp
+relsq cur tmp 1
+rem End add
+
+lblsq ZERO ZERO WRITE_QWORD
+
+rem A log is made of three components
+rem 0x0 A string containing the symbol name
+rem 0x18 The offset on which the log occured
+rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+
+var logArrStart 300000
+addr logArrNext 300000
+var logCount 0
+
+rem INPUT_LABEL handles both labels (:) and references to them (&)
+label INPUT_LABEL
+relsq logCount CONST_-1 1
+
+rem Start alloc_str logArrNext 1000 tmp
+
+rem Start malloc_const logArrNext 1000 tmp
+relsq tmp tmp 1
+relsq tmp FREE_START 1
+relsq logArrNext logArrNext 1
+relsq logArrNext tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_1000 1
+relsq FREE_START tmp 1
+rem End malloc_const
+
+rem incaddr logArrNext 8
+subaddr logArrNext CONST_-8
+rem zero logArrNext
+relsq logArrNext logArrNext 1
+rem incaddr logArrNext 8
+subaddr logArrNext CONST_-8
+
+rem Start mov logArrNext CONST_1000 tmp
+relsq tmp tmp 1
+relsq tmp CONST_1000 1
+relsq logArrNext logArrNext 1
+relsq logArrNext tmp 1
+rem End mov
+
+rem decaddr logArrNext 10
+subaddr logArrNext CONST_10
+rem End alloc_str
+
+
+rem Start inp_token logArrNext tmp tmp2
+addr inp_token_0_str 0
+
+rem Start setaddr inp_token_0_str logArrNext tmp
+zeroaddr inp_token_0_str
+relsq tmp tmp 1
+relsq tmp logArrNext 1
+subaddr inp_token_0_str tmp
+rem End setaddr
+
+var inp_token_0_len 0
+rem zero inp_token_0_len
+relsq inp_token_0_len inp_token_0_len 1
+label inp_token_0_LOOP
+
+rem Start getchar inp_token_0_str tmp
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+relsq tmp SERIAL_IN 2
+relsq ZERO ZERO -1
+relsq SERIAL_IN SERIAL_IN 1
+relsq inp_token_0_str inp_token_0_str 1
+relsq inp_token_0_str tmp 1
+rem End getchar
+
+
+rem Start jeq_const inp_token_0_str 20 inp_token_0_TERM tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_0_str 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_20 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 JZ_0_END
+lblsq tmp CONST_-1 JZ_0_REVERT_A
+relsq tmp CONST_1 1
+lblsq ZERO ZERO inp_token_0_TERM
+label JZ_0_REVERT_A
+relsq tmp CONST_1 1
+label JZ_0_END
+rem End jeq_const
+
+
+rem Start jeq_const inp_token_0_str d inp_token_0_TERM tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_0_str 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_D 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 JZ_1_END
+lblsq tmp CONST_-1 JZ_1_REVERT_A
+relsq tmp CONST_1 1
+lblsq ZERO ZERO inp_token_0_TERM
+label JZ_1_REVERT_A
+relsq tmp CONST_1 1
+label JZ_1_END
+rem End jeq_const
+
+
+rem Start jeq_const inp_token_0_str a inp_token_0_TERM tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_0_str 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_A 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 JZ_2_END
+lblsq tmp CONST_-1 JZ_2_REVERT_A
+relsq tmp CONST_1 1
+lblsq ZERO ZERO inp_token_0_TERM
+label JZ_2_REVERT_A
+relsq tmp CONST_1 1
+label JZ_2_END
+rem End jeq_const
+
+rem inc inp_token_0_len 1
+relsq inp_token_0_len CONST_-1 1
+rem incaddr inp_token_0_str 8
+subaddr inp_token_0_str CONST_-8
+rem lbljmp inp_token_0_LOOP
+lblsq ZERO ZERO inp_token_0_LOOP
+label inp_token_0_TERM
+rem decleq inp_token_0_len 0 inp_token_0_LOOP
+lblsq inp_token_0_len CONST_0 inp_token_0_LOOP
+rem incaddr logArrNext 8
+subaddr logArrNext CONST_-8
+
+rem Start mov logArrNext inp_token_0_len tmp
+relsq tmp tmp 1
+relsq tmp inp_token_0_len 1
+relsq logArrNext logArrNext 1
+relsq logArrNext tmp 1
+rem End mov
+
+rem decaddr logArrNext 8
+subaddr logArrNext CONST_8
+rem End inp_token
+
+subaddr logArrNext CONST_-18
+
+rem Start mov logArrNext codeLen tmp
+rem movneg tmp codeLen
+relsq tmp tmp 1
+relsq tmp codeLen 1
+rem movneg logArrNext tmp
+relsq logArrNext logArrNext 1
+relsq logArrNext tmp 1
+rem End mov
+
+subaddr logArrNext CONST_-8
+
+lblsq c2 CONST_26 RECORD_REF
+
+rem Handle label (:)
+rem Set log type to 0
+relsq logArrNext logArrNext 1
+subaddr logArrNext CONST_-8
+lblsq ZERO ZERO MAIN
+
+rem Handle reference (&)
+label RECORD_REF
+rem set logArrNext 1
+relsq logArrNext logArrNext 1
+relsq logArrNext CONST_-1 1
+subaddr logArrNext CONST_-8
+lblsq ZERO ZERO WRITE_QWORD
+
+
+rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
+label WRITE
+var cur 0
+
+rem Start mul_16 cur tmp
+relsq tmp tmp 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq tmp cur 1
+relsq cur tmp 1
+relsq cur tmp 1
+relsq cur tmp 1
+rem End mul_16
+
+relsq cur val 1
+
+rem i will turn positive every 16 iterations
+var i -f
+lblsq i CONST_-1 MAIN
+relsq i CONST_10 1
+
+label WRITE_QWORD
+var bufStart 100000
+addr bufEnd 100000
+rem Copy to the buffer and increase its address
+
+rem Start mov bufEnd cur tmp
+rem movneg tmp cur
+relsq tmp tmp 1
+relsq tmp cur 1
+rem movneg bufEnd tmp
+relsq bufEnd bufEnd 1
+relsq bufEnd tmp 1
+rem End mov
+
+relsq cur cur 1
+subaddr bufEnd CONST_-8
+relsq codeLen CONST_-8 1
+lblsq ZERO ZERO MAIN
+
+
+rem A log is made of three components, adding to a total of 0x28 bytes:
+rem 0x0 A string containing the symbol name
+rem 0x18 The offset on which the log occured
+rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+
+rem RESOLVE_REF resolves references by setting their value to the label's address
+label RESOLVE_REF
+var logsToCheck 0
+
+rem Start mov logsToCheck logCount tmp
+rem movneg tmp logCount
+relsq tmp tmp 1
+relsq tmp logCount 1
+rem movneg logsToCheck tmp
+relsq logsToCheck logsToCheck 1
+relsq logsToCheck tmp 1
+rem End mov
+
+addr curRef 300000
+
+label RESOLVE_REF_LOOP
+lblsq logsToCheck CONST_0 PRINT
+relsq logsToCheck CONST_1 1
+
+rem Check if the log is a reference
+subaddr curRef CONST_-20
+lblsq curRef CONST_0 RESOLVE_REF_NOT_REF
+
+rem Store the reference address and restore the curRef address
+subaddr curRef CONST_8
+
+rem Start add curRef bufStart tmp
+rem movneg tmp bufStart
+relsq tmp tmp 1
+relsq tmp bufStart 1
+rem sub curRef tmp
+relsq curRef tmp 1
+rem End add
+
+addr refAt 0
+
+rem Start setaddr refAt curRef tmp
+zeroaddr refAt
+rem movneg tmp curRef
+relsq tmp tmp 1
+relsq tmp curRef 1
+subaddr refAt tmp
+rem End setaddr
+
+subaddr curRef CONST_18
+
+rem puts resMsg1 tmp
+rem puts curRef tmp
+rem set tmp a
+rem putchar tmp tmp2
+
+addr curLabel 0
+
+rem Start setaddr curLabel logArrStart tmp
+zeroaddr curLabel
+rem movneg tmp logArrStart
+relsq tmp tmp 1
+relsq tmp logArrStart 1
+subaddr curLabel tmp
+rem End setaddr
+
+
+label RESOLVE_REF_FIND_LABEL
+subaddr curLabel CONST_-20
+lblsq curLabel CONST_0 RESOLVE_REF_CHECK_LABEL
+
+rem This is not a label. Try the next one
+subaddr curLabel CONST_-8
+lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
+
+label RESOLVE_REF_CHECK_LABEL
+subaddr curLabel CONST_20
+
+rem puts resMsg2 tmp
+rem puts curLabel tmp
+rem set tmp a
+rem putchar tmp tmp2
+
+
+rem Start strcmp curRef curLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
+rem incaddr curRef 8
+subaddr curRef CONST_-8
+rem incaddr curLabel 8
+subaddr curLabel CONST_-8
+
+rem Start jne curRef curLabel STRCMP_0_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curRef tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curRef 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp curLabel
+relsq tmp curLabel 1
+
+rem Start jnz tmp STRCMP_0_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_0_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_0_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_0_END
+label JNZ_0_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_0_REVERT_ADDR
+label JNZ_0_END
+rem End jnz
+
+rem End jne
+
+var strcmp_0_len 0
+
+rem Start mov strcmp_0_len curRef tmp
+rem movneg tmp curRef
+relsq tmp tmp 1
+relsq tmp curRef 1
+rem movneg strcmp_0_len tmp
+relsq strcmp_0_len strcmp_0_len 1
+relsq strcmp_0_len tmp 1
+rem End mov
+
+rem decaddr curRef 8
+subaddr curRef CONST_8
+rem decaddr curLabel 8
+subaddr curLabel CONST_8
+addr strcmp_0_aStr 0
+addr strcmp_0_bStr 0
+
+rem Start setaddr strcmp_0_aStr curRef tmp
+zeroaddr strcmp_0_aStr
+rem movneg tmp curRef
+relsq tmp tmp 1
+relsq tmp curRef 1
+subaddr strcmp_0_aStr tmp
+rem End setaddr
+
+
+rem Start setaddr strcmp_0_bStr curLabel tmp
+zeroaddr strcmp_0_bStr
+rem movneg tmp curLabel
+relsq tmp tmp 1
+relsq tmp curLabel 1
+subaddr strcmp_0_bStr tmp
+rem End setaddr
+
+label STRCMP_0_LOOP
+rem decleq strcmp_0_len 0 RESOLVE_REF_FOUND_LABEL
+lblsq strcmp_0_len CONST_0 RESOLVE_REF_FOUND_LABEL
+rem dec strcmp_0_len 1
+relsq strcmp_0_len CONST_1 1
+
+rem Start jne strcmp_0_aStr strcmp_0_bStr STRCMP_0_END tmp tmp2
+
+rem Start mov tmp strcmp_0_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_0_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_0_bStr
+relsq tmp strcmp_0_bStr 1
+
+rem Start jnz tmp STRCMP_0_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_0_END
+lblsq tmp CONST_-1 JNZ_1_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_1_END
+label JNZ_1_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_0_END
+label JNZ_1_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_0_aStr 8
+subaddr strcmp_0_aStr CONST_-8
+rem incaddr strcmp_0_bStr 8
+subaddr strcmp_0_bStr CONST_-8
+rem lbljmp STRCMP_0_LOOP
+lblsq ZERO ZERO STRCMP_0_LOOP
+label STRCMP_0_REVERT_ADDR
+rem decaddr curRef 8
+subaddr curRef CONST_8
+rem decaddr curLabel 8
+subaddr curLabel CONST_8
+label STRCMP_0_END
+rem End strcmp
+
+
+rem This is a wrong label. Try the next one
+subaddr curLabel CONST_-28
+lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
+
+label RESOLVE_REF_FOUND_LABEL
+subaddr curLabel CONST_-18
+
+
+rem Start mov refAt curLabel tmp
+rem movneg tmp curLabel
+relsq tmp tmp 1
+relsq tmp curLabel 1
+rem movneg refAt tmp
+relsq refAt refAt 1
+relsq refAt tmp 1
+rem End mov
+
+subaddr curRef CONST_-28
+lblsq ZERO ZERO RESOLVE_REF_LOOP
+
+label RESOLVE_REF_NOT_REF
+subaddr curRef CONST_-8
+lblsq ZERO ZERO RESOLVE_REF_LOOP
+
+
+rem PRINT prints the assembled binary file to the serial
+label PRINT
+
+addr charToPrint 100000
+
+rem Start from the most significant byte
+rem set i 8
+relsq i i 1
+relsq i CONST_-8 1
+subaddr charToPrint CONST_8
+
+label PRINT_CHAR_START
+subaddr charToPrint CONST_-1
+
+rem Start mov c charToPrint tmp
+rem movneg tmp charToPrint
+relsq tmp tmp 1
+relsq tmp charToPrint 1
+rem movneg c tmp
+relsq c c 1
+relsq c tmp 1
+rem End mov
+
+rem putchar c tmp
+
+rem c %= 256
+
+var mod256IsNeg 0
+relsq mod256IsNeg mod256IsNeg 1
+lblsq c CONST_-1 MOD256_IS_NEG
+lblsq ZERO ZERO MOD256_IS_POS
+label MOD256_IS_NEG
+relsq mod256IsNeg CONST_-1 1
+relsq c CONST_1 1
+
+rem Start neg c tmp tmp2
+relsq tmp tmp 1
+relsq tmp c 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+relsq c c 1
+relsq c tmp2 1
+rem End neg
+
+lblsq ZERO ZERO MOD256_START
+label MOD256_IS_POS
+relsq c CONST_1 1
+
+label MOD256_START
+var subber 0
+rem set subber 100
+relsq subber subber 1
+relsq subber CONST_-100 1
+rem Finish if c < 256
+
+rem Start jl c subber MOD256_CHECKNEG tmp tmp2
+
+rem Start mov tmp c tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 c 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem inc tmp 1
+relsq tmp CONST_-1 1
+lblsq tmp subber MOD256_CHECKNEG
+rem End jl
+
+
+rem Multiply subbers by 256 until the next multiplication makes subber > c
+var nextSubber 0
+rem set nextSubber 10000
+relsq nextSubber nextSubber 1
+relsq nextSubber CONST_-10000 1
+label MULT_SUBBER_START
+
+rem Start jl c nextSubber MULT_SUBBER_END tmp tmp2
+
+rem Start mov tmp c tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 c 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem inc tmp 1
+relsq tmp CONST_-1 1
+lblsq tmp nextSubber MULT_SUBBER_END
+rem End jl
+
+
+rem Start mul_256 subber tmp
+relsq tmp tmp 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq subber tmp 1
+relsq subber tmp 1
+relsq subber tmp 1
+relsq tmp tmp 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq tmp subber 1
+relsq subber tmp 1
+relsq subber tmp 1
+relsq subber tmp 1
+rem End mul_256
+
+
+rem Start mul_256 nextSubber tmp
+relsq tmp tmp 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq nextSubber tmp 1
+relsq nextSubber tmp 1
+relsq nextSubber tmp 1
+relsq tmp tmp 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq tmp nextSubber 1
+relsq nextSubber tmp 1
+relsq nextSubber tmp 1
+relsq nextSubber tmp 1
+rem End mul_256
+
+rem nextSubber overflowed
+lblsq nextSubber CONST_0 MULT_SUBBER_END
+lblsq ZERO ZERO MULT_SUBBER_START
+label MULT_SUBBER_END
+
+rem Subtract c by subber until the next subtraction makes c < 0
+label SUBTRACT_C
+
+rem Start jl c subber MOD256_START tmp tmp2
+
+rem Start mov tmp c tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 c 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem inc tmp 1
+relsq tmp CONST_-1 1
+lblsq tmp subber MOD256_START
+rem End jl
+
+relsq c subber 1
+lblsq ZERO ZERO SUBTRACT_C
+
+label MOD256_CHECKNEG
+lblsq mod256IsNeg CONST_0 MOD256_END
+rem No need to invert if c == 0
+lblsq c CONST_0 MOD256_END
+rem c = 256 - c
+
+rem Start mov tmp c tmp2
+rem movneg tmp2 c
+relsq tmp2 tmp2 1
+relsq tmp2 c 1
+rem movneg tmp tmp2
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem set c 100
+relsq c c 1
+relsq c CONST_-100 1
+relsq c tmp 1
+
+label MOD256_END
+
+
+rem Start putchar c tmp
+relsq SERIAL_OUT ZERO 2
+rem reljmp -1
+relsq ZERO ZERO -1
+rem movneg tmp c
+relsq tmp tmp 1
+relsq tmp c 1
+rem dec tmp 1
+relsq tmp CONST_1 1
+rem movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem End putchar
+
+lblsq i CONST_1 PRINT_CHAR_END
+lblsq ZERO ZERO PRINT_CHAR_START
+
+label PRINT_CHAR_END
+rem Go to the next qword
+subaddr charToPrint CONST_-8
+lblsq codeLen CONST_8 HALT
+lblsq ZERO ZERO PRINT
+
+label HALT
+rem Stop CPU 0
+
+rem Start set_safe CPU_CONTROL_START 2 tmp tmp2
+
+rem Start mov tmp CPU_CONTROL_START tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 CPU_CONTROL_START 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem dec tmp 2
+relsq tmp CONST_2 1
+rem sub CPU_CONTROL_START tmp
+relsq CPU_CONTROL_START tmp 1
+rem End set_safe
+
+
+rem Infinite loop
+relsq ZERO ZERO 0
+
+rem def_string resMsg1 Resolving reference to 
+rem def_string resMsg2 Found label 
+
+var CONST_-1 -1
+var CONST_22 22
+var CONST_1 1
+var CONST_2 2
+var CONST_9 9
+var CONST_A a
+var CONST_3 3
+var CONST_6 6
+var CONST_1A 1a
+var CONST_17 17
+var CONST_2C 2c
+var CONST_2F 2f
+var CONST_7 7
+var CONST_0 0
+var CONST_1000 1000
+var CONST_-8 -8
+var CONST_10 10
+var CONST_20 20
+var CONST_D d
+var CONST_8 8
+var CONST_-18 -18
+var CONST_26 26
+var CONST_-20 -20
+var CONST_18 18
+var CONST_-28 -28
+var CONST_-100 -100
+var CONST_-10000 -10000

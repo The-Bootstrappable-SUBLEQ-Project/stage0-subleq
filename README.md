@@ -7,10 +7,10 @@ A place for public review of the SUBLEQ port of stage0. The goal is to bootstrap
 Expands an msq (Macro SUBLEQ) program to an lsq (Lesser SUBLEQ) program
 ### High Level Prototypes/lsq_to_hex.py
 Assembles an lsq (Lesser SUBLEQ) program and outputs hex0, hex1, or hex2 files
-### phase0-hex/hex{0,1}.msq
-Takes a hex{0,1} program from serial input and outputs the assembled file into serial output.
-### phase0-hex/hex{0,1}_monitor.msq
-This is just like a regular hex0_monitor, except it copies the assembled file to 0x0 of the memory and executes it. This is because we don't have any filesystem support at this stage.
+### phase0-hex/hex{0,1,2}.msq
+Takes a hex{0,1,2} program from serial input and outputs the assembled file into serial output.
+### phase0-hex/hex{0,1,2}_monitor.msq
+This is just like a regular hex*_monitor, except it copies the assembled file to 0x0 of the memory and executes it. This is because we don't have any filesystem support at this stage.
 ### Examples/hello_world.msq
 This prints the string "Hello, world!" and then proceeds to halt the CPU.
 ### Examples/test_*.msq
