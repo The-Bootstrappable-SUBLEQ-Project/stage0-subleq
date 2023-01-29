@@ -1,0 +1,322 @@
+rem Copyright (C) 2022 NyanCatTW1
+rem This file is part of stage0-subleq.
+rem
+rem stage0-subleq is free software: you can redistribute it and/or modify
+rem it under the terms of the GNU General Public License as published by
+rem the Free Software Foundation, either version 3 of the License, or
+rem (at your option) any later version.
+rem
+rem stage0-subleq is distributed in the hope that it will be useful,
+rem but WITHOUT ANY WARRANTY; without even the implied warranty of
+rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+rem GNU General Public License for more details.
+rem
+rem You should have received a copy of the GNU General Public License
+rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
+
+rem Standard program start
+addr ZERO 0
+var tmp 0
+var tmp2 0
+addr SERIAL_IN 13ED27E8
+addr SERIAL_OUT 13ED27F0
+var FREE_START 1000000
+lblsq ZERO ZERO EP
+
+label EP
+var codeLen 0
+rem MAIN is the main routine for handling inputs
+label MAIN
+rem val is intentionally kept negative to make it easier to add to cur
+var val 0
+var c 0
+getchar c tmp
+rem Keep a backup of c for INPUT_LABEL
+var c2 0
+mov c2 c tmp
+
+rem Handle NUL ~ "
+decleq c 22 MAIN
+
+rem Handle #
+decleq c 1 COMMENT
+
+rem Handle $ and %
+decleq c 2 MAIN
+
+rem Handle &
+decleq c 1 INPUT_LABEL
+
+rem Handle ' ~ /
+decleq c 9 MAIN
+
+rem Handle 0 ~ 9
+movneg val c
+inc val 1
+decleq c a WRITE
+
+rem Handle :
+decleq c 1 INPUT_LABEL
+
+rem Handle ;
+decleq c 1 COMMENT
+
+rem Handle < ~ >
+decleq c 3 MAIN
+
+rem Handle ?
+decleq c 1 HANDLE_REL
+
+rem Handle @
+decleq c 1 MAIN
+
+rem Handle A ~ F
+movneg val c
+dec val 9
+decleq c 6 WRITE
+
+rem Handle G ~ `
+decleq c 1a MAIN
+
+rem Handle a ~ f
+movneg val c
+dec val 9
+decleq c 6 WRITE
+
+rem Handle g ~ }
+decleq c 17 MAIN
+
+rem Handle ~ and DEL (0x7f)
+lbljmp RESOLVE_REF
+
+
+rem COMMENT ignores characters until \r or \n is fed
+label COMMENT
+getchar c tmp
+rem putchar c tmp
+decleq c 9 COMMENT
+rem Handle LF
+decleq c 1 MAIN
+decleq c 2 COMMENT
+rem Handle CR
+decleq c 1 MAIN
+lbljmp COMMENT
+
+
+rem HANDLE_REL handles relative labels
+label HANDLE_REL
+
+rem Handle sign (+-)
+var isNeg 0
+zero isNeg
+getchar c tmp
+rem Handle NUL ~ ,
+decleq c 2c REL_INP
+inc isNeg 1
+rem Handle -
+decleq c 1 REL_INP
+zero isNeg
+
+label REL_INP
+getchar c tmp
+
+rem Handle NUL ~ /
+decleq c 2f REL_NEG
+
+rem Handle 0 ~ 9
+movneg val c
+inc val 1
+decleq c a REL_WRITE
+
+rem Handle : ~ @
+decleq c 7 REL_NEG
+
+rem Handle A ~ F
+movneg val c
+dec val 9
+decleq c 6 REL_WRITE
+
+rem Handle G ~ `
+decleq c 1a REL_NEG
+
+rem Handle a ~ f
+movneg val c
+dec val 9
+decleq c 6 REL_WRITE
+
+rem Handle g ~ DEL
+lbljmp REL_INP
+
+label REL_WRITE
+mul_16 cur tmp
+sub cur val
+lbljmp REL_INP
+
+rem Negate cur if the relative jump is negative
+label REL_NEG
+decleq isNeg 0 REL_FIN
+neg cur tmp tmp2
+
+label REL_FIN
+add cur codeLen tmp
+lbljmp WRITE_QWORD
+
+rem A log is made of three components
+rem 0x0 A string containing the symbol name
+rem 0x18 The offset on which the log occured
+rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+
+var logArrStart 300000
+addr logArrNext 300000
+var logCount 0
+
+rem INPUT_LABEL handles both labels (:) and references to them (&)
+label INPUT_LABEL
+inc logCount 1
+alloc_str logArrNext 1000 tmp
+inp_token logArrNext tmp tmp2
+incaddr logArrNext 18
+mov logArrNext codeLen tmp
+incaddr logArrNext 8
+
+decleq c2 26 RECORD_REF
+
+rem Handle label (:)
+rem Set log type to 0
+zero logArrNext
+incaddr logArrNext 8
+lbljmp MAIN
+
+rem Handle reference (&)
+label RECORD_REF
+set logArrNext 1
+incaddr logArrNext 8
+lbljmp WRITE_QWORD
+
+
+rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
+label WRITE
+var cur 0
+mul_16 cur tmp
+sub cur val
+
+rem i will turn positive every 16 iterations
+var i -f
+incleq i 1 MAIN
+dec i 10
+
+label WRITE_QWORD
+addr dstEnd 0
+var bufStart 100000
+addr bufEnd 100000
+rem Copy to the buffer and increase its address
+rem The buffer is also intentionally kept negative to ease copying
+movneg bufEnd cur
+zero cur
+decaddr dstEnd -8
+decaddr bufEnd -8
+inc codeLen 8
+lbljmp MAIN
+
+
+rem A log is made of three components, adding to a total of 0x28 bytes:
+rem 0x0 A string containing the symbol name
+rem 0x18 The offset on which the log occured
+rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+
+rem RESOLVE_REF resolves references by setting their value to the label's address
+label RESOLVE_REF
+var logsToCheck 0
+mov logsToCheck logCount tmp
+addr curRef 300000
+
+label RESOLVE_REF_LOOP
+decleq logsToCheck 0 COPY
+dec logsToCheck 1
+
+rem Check if the log is a reference
+incaddr curRef 20
+decleq curRef 0 RESOLVE_REF_NOT_REF
+
+rem Store the reference address and restore the curRef address
+decaddr curRef 8
+add curRef bufStart tmp
+addr refAt 0
+setaddr refAt curRef tmp
+decaddr curRef 18
+
+rem puts resMsg1 tmp
+rem puts curRef tmp
+rem set tmp a
+rem putchar tmp tmp2
+
+addr curLabel 0
+setaddr curLabel logArrStart tmp
+
+label RESOLVE_REF_FIND_LABEL
+incaddr curLabel 20
+decleq curLabel 0 RESOLVE_REF_CHECK_LABEL
+
+rem This is not a label. Try the next one
+incaddr curLabel 8
+lbljmp RESOLVE_REF_FIND_LABEL
+
+label RESOLVE_REF_CHECK_LABEL
+decaddr curLabel 20
+
+rem puts resMsg2 tmp
+rem puts curLabel tmp
+rem set tmp a
+rem putchar tmp tmp2
+
+strcmp curRef curLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
+
+rem This is a wrong label. Try the next one
+incaddr curLabel 28
+lbljmp RESOLVE_REF_FIND_LABEL
+
+label RESOLVE_REF_FOUND_LABEL
+incaddr curLabel 18
+
+rem The buffer is kept negative
+movneg refAt curLabel
+incaddr curRef 28
+lbljmp RESOLVE_REF_LOOP
+
+label RESOLVE_REF_NOT_REF
+incaddr curRef 8
+lbljmp RESOLVE_REF_LOOP
+
+
+rem COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
+label COPY
+addr loaderDst 200000
+addr loaderStart 200000
+var loaderLen b0
+mov loaderDst LOADER tmp
+decaddr LOADER -8
+decaddr loaderDst -8
+rem Jump to loaderDst once loaderLen is <= 0
+decleq loaderLen 8 loaderStart
+lbljmp COPY
+
+
+rem LOADER copies the buffer to the highest memory (0~...) and jumps to 0
+rem No external variables are used within LOADER, as those would be overridden by the new program
+rem The addresses are also hardcoded based on loaderStart
+label LOADER
+abssq dstEnd dstEnd 200018
+abssq dstEnd bufEnd 200030
+rem Decrease bufEnd by 8
+raw 0000000000200020 00000000002000a8 0000000000200048
+rem Decrease dstEnd by 8, and jump to 0 if dstEnd <= 0
+raw 0000000000200000 00000000002000a8 0000000000200060
+raw 0000000000200008 00000000002000a8 0000000000200078
+raw 0000000000200018 00000000002000a8 0000000000000000
+rem Rerun the loop
+raw 0000000000000000 0000000000000000 0000000000200000
+rem CONST_8
+raw 0000000000000008
+
+rem def_string resMsg1 Resolving reference to 
+rem def_string resMsg2 Found label 
