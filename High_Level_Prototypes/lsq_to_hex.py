@@ -84,6 +84,8 @@ for line in inp:
         continue
     elif inst in lsq_insts:
         lines.append(Line(inst, tokens[1:]))
+    elif inst == "end":
+        break
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 

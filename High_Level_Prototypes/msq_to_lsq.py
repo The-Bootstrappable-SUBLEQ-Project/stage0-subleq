@@ -592,3 +592,6 @@ for line in lines:
 print()
 for const in consts:
     print(f"var CONST_{const:X} {const:x}")
+
+print()
+print("end")
