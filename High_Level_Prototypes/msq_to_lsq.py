@@ -221,6 +221,7 @@ def decaddr(args, v=0):
 # Increases sym's address by b
 def incaddr(args, v=0):
     sym, b = args
+    b = ensureInt(b)
     logSimple()
     print(f"subaddr {sym} {recordConst(-b)}")
 
