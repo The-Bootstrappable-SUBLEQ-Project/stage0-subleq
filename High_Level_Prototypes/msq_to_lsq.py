@@ -225,7 +225,7 @@ def incaddr(args, v=0):
     print(f"subaddr {sym} {recordConst(-b)}")
 
 
-# Sets a to val in one operation, ins"{varHeader}_len"tead of setting it to 0 first
+# Sets a to val in one operation, instead of setting it to 0 first
 def set_safe(args, v=2):
     a, val, tmp, tmp2 = args
     logStart()
