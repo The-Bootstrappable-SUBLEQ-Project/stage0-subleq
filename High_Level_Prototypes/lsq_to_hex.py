@@ -32,7 +32,7 @@ pp = pprint.PrettyPrinter()
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
-             "raw", "rem"]
+             "raw", "raw_ref", "rem"]
 
 
 @dataclass
@@ -104,6 +104,9 @@ for line in lines:
             symbols[line.tokens[2]].refCount += 1
     elif line.inst == "subaddr":
         symbols[line.tokens[1]].refCount += 1
+    elif line.inst == "raw_ref":
+        for token in line.tokens:
+            symbols[token].refCount += 1
 
 # 3. Create subaddr/zeroaddr stubs
 i = 0
@@ -145,6 +148,8 @@ for line in lines:
             size += 8
     elif line.inst == "raw":
         size += 8 * len(line.tokens)
+    elif line.inst == "raw_ref":
+        size += 8 * len(line.tokens)
     elif line.inst == "label":
         symbols[line.tokens[0]].addr = size
     # print(line, size, file=sys.stderr)
@@ -167,7 +172,7 @@ for name, sym in symbols.items():
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
-             "raw", "rem"]
+             "raw", "raw_ref", "rem"]
 """
 
 out = []
@@ -223,6 +228,9 @@ for line in lines:
     elif line.inst == "raw":
         for token in line.tokens:
             addToken(token)
+    elif line.inst == "raw_ref":
+        for token in line.tokens:
+            addToken(resolveSymbol(token))
     else:
         raise RuntimeError(f"Instruction {line.inst} shouldn't have appeared at this step!")
 

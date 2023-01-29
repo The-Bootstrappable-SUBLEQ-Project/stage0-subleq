@@ -23,8 +23,9 @@ from inspect import currentframe
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
-             "raw", "rem"]
+             "raw", "raw_ref", "rem"]
 consts = []
+callCounts = {}
 
 
 # Converts a from hex string to int if it's not already int type
@@ -62,16 +63,42 @@ def logSimple():
 
 def logStart():
     frame = currentframe().f_back
+    inst = getInstName(frame)
+    if inst not in callCounts:
+        callCounts[inst] = 0
+
     if frame.f_locals["v"] > 0:
         print()
-        print(f"rem Start {getInstName(frame)} {printArgs(frame.f_locals['args'])}")
+        print(f"rem Start {inst} {printArgs(frame.f_locals['args'])}")
+
+    return callCounts[inst]
 
 
 def logEnd():
     frame = currentframe().f_back
+    inst = getInstName(frame)
     if frame.f_locals["v"] > 0:
-        print(f"rem End {getInstName(frame)}")
+        print(f"rem End {inst}")
         print()
+    callCounts[inst] += 1
+
+
+# Assigns a unique symbol name for differents calls of an instruction.
+# This decreases the performance impact of subaddr/zeroaddr instructions
+# by minimizing references to the symbols.
+# It also allows for usages of labels inside calls, which makes it easier
+# to implement control flow.
+def nameSym(suffix, uppercase=False):
+    inst = getInstName(currentframe().f_back)
+    ret = f"{inst}_{callCounts[inst]}_{suffix}"
+    if uppercase:
+        ret = ret.upper()
+    return ret
+
+
+# Converts and pads a number to be used in raw instructions
+def numToRawInst(num):
+    return f"{num:0{16}x}"
 
 
 # Subtracts a by b
@@ -92,7 +119,6 @@ def zero(args, v=0):
 # Decreases a by val (Constant)
 def dec(args, v=0):
     a, val = args
-    val = ensureInt(val)
     logSimple()
     print(f"relsq {a} {recordConst(val)} 1")
 
@@ -100,7 +126,6 @@ def dec(args, v=0):
 # Decreases a by val (Constant), and jumps to lbl if a <= 0 after operation
 def decleq(args, v=0):
     a, val, lbl = args
-    val = ensureInt(val)
     logSimple()
     print(f"lblsq {a} {recordConst(val)} {lbl}")
 
@@ -124,7 +149,6 @@ def incleq(args, v=0):
 # Sets a to val (Constant)
 def inst_set(args, v=1):
     a, val = args
-    val = ensureInt(val)
     logSimple()
     zero([a], v - 1)
     inc([a, val], v - 1)
@@ -187,17 +211,23 @@ def putchar(args, v=2):
     logEnd()
 
 
-# Decreases all references of a symbol by b
+# Decreases sym's address by b
 def decaddr(args, v=0):
     sym, b = args
     logSimple()
     print(f"subaddr {sym} {recordConst(b)}")
 
 
-# Sets a to val in one operation, instead of setting it to 0 first
+# Increases sym's address by b
+def incaddr(args, v=0):
+    sym, b = args
+    logSimple()
+    print(f"subaddr {sym} {recordConst(-b)}")
+
+
+# Sets a to val in one operation, ins"{varHeader}_len"tead of setting it to 0 first
 def set_safe(args, v=2):
     a, val, tmp, tmp2 = args
-    val = ensureInt(val)
     logStart()
     mov([tmp, a, tmp2], v - 1)
     dec([tmp, val], v - 1)
@@ -213,6 +243,89 @@ def jl(args, v=2):
     # Don't jump if a == b
     inc([tmp, 1], v - 1)
     print(f"lblsq {tmp} {b} {dst}")
+    logEnd()
+
+
+# Jumps to dst's address if a == 0
+def jz(args, v=2):
+    a, dst, tmp = args
+    logStart()
+    revertLabel = nameSym("REVERT_A", True)
+    endLabel = nameSym("END", True)
+
+    # Do not jump if a > 0
+    movneg([tmp, a], v - 1)
+    incleq([tmp, 1, endLabel], v - 1)
+
+    # Do not jump if a < 0
+    incleq([a, 1, revertLabel], v - 1)
+
+    # Jump to the label
+    dec([a, 1], v - 1)
+    lbljmp([dst], v - 1)
+
+    # Revert a to its original value
+    print(f"label {revertLabel}")
+    dec([a, 1], v - 1)
+
+    print(f"label {endLabel}")
+    logEnd()
+
+
+# Jumps to dst's address if a == b
+def jeq(args, v=2):
+    a, b, dst, tmp, tmp2 = args
+    logStart()
+    mov([tmp, a, tmp2], v - 1)
+    sub([tmp, b], v - 1)
+    jz([tmp, dst, tmp2], v - 1)
+    logEnd()
+
+
+# Jumps to dst's address if a == b, where b is a constant
+def jeq_const(args, v=2):
+    a, b, dst, tmp, tmp2 = args
+    logStart()
+    mov([tmp, a, tmp2], v - 1)
+    sub([tmp, recordConst(b)], v - 1)
+    jz([tmp, dst, tmp2], v - 1)
+    logEnd()
+
+
+# Jumps to dst's address if a != 0
+def jnz(args, v=2):
+    a, dst, tmp = args
+    logStart()
+    jumpLabel = nameSym("REVERT_AND_JUMP", True)
+    endLabel = nameSym("END", True)
+
+    # Jump if a > 0
+    movneg([tmp, a], v - 1)
+    incleq([tmp, 1, dst], v - 1)
+
+    # Jump if a < 0
+    incleq([a, 1, jumpLabel], v - 1)
+
+    # Revert a to its original value, but don't jump
+    dec([a, 1], v - 1)
+    lbljmp([endLabel], v - 1)
+
+    # Revert a to its original value, then jump
+    print(f"label {jumpLabel}")
+    dec([a, 1], v - 1)
+    lbljmp([dst], v - 1)
+
+    print(f"label {endLabel}")
+    logEnd()
+
+
+# Jumps to dst's address if a != b
+def jne(args, v=2):
+    a, b, dst, tmp, tmp2 = args
+    logStart()
+    mov([tmp, a, tmp2], v - 1)
+    sub([tmp, b], v - 1)
+    jnz([tmp, dst, tmp2], v - 1)
     logEnd()
 
 
@@ -272,6 +385,186 @@ def mul_8(args, v=1):
     movneg([tmp, a], v - 1)
     for _i in range(7):
         sub([a, tmp], v - 1)
+    logEnd()
+
+
+# Allocates size bytes of buffer, and sets a's value to the address
+# Freeing of memory is currently not supported
+def malloc(args, v=1):
+    a, size, tmp = args
+    logStart()
+    mov([a, "FREE_START", tmp], v - 1)
+    add(["FREE_START", size, tmp], v - 1)
+    logEnd()
+
+
+# Works just like malloc, except that size is a constant
+def malloc_const(args, v=1):
+    a, size, tmp = args
+    logStart()
+    malloc([a, recordConst(size), tmp], v - 1)
+    logEnd()
+
+
+# Creates a string on a.
+# a must be at least 24 bytes in size to prevent overwriting
+# A string is made out of three parts:
+# 1. Address of the string's buffer
+# 2. Length of the string
+# 3. Capacity of the buffer
+# See also: https://doc.rust-lang.org/std/string/struct.String.html#representation
+def alloc_str(args, v=2):
+    a, capacity, tmp = args
+    logStart()
+    malloc_const([a, capacity, tmp])
+
+    incaddr([a, 8], v - 1)
+    zero([a], v - 1)
+
+    incaddr([a, 8], v - 1)
+    mov([a, recordConst(capacity), tmp], v - 1)
+
+    decaddr([a, 16], v - 1)
+    logEnd()
+
+
+# Reads serial input into string a until space, \r, or \n is fed
+# It also ignores space, \r, or \n characters fed at the beginning, if any
+# No capacity check has been implemented yet
+def inp_token(args, v=2):
+    a, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP")
+    termLabel = nameSym("TERM")
+
+    strName = nameSym("str")
+    print(f"addr {strName} 0")
+    setaddr([strName, a, tmp], v - 1)
+
+    lenName = nameSym("len")
+    print(f"var {lenName} 0")
+    zero([lenName], v - 1)
+
+    print(f"label {loopLabel}")
+    getchar([strName, tmp], v - 1)
+    jeq_const([strName, ord(" "), termLabel, tmp, tmp2], v - 1)
+    jeq_const([strName, ord("\r"), termLabel, tmp, tmp2], v - 1)
+    jeq_const([strName, ord("\n"), termLabel, tmp, tmp2], v - 1)
+
+    inc([lenName, 1], v - 1)
+    incaddr([strName, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {termLabel}")
+    # Return to the loop if no bytes have been fed yet
+    decleq([lenName, 0, loopLabel], v - 1)
+
+    # Set a's length
+    incaddr([a, 8], v - 1)
+    mov([a, lenName, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+    logEnd()
+
+
+# Outputs the full content of string a
+def puts(args, v=2):
+    a, tmp = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    endLabel = nameSym("END", True)
+
+    strName = nameSym("str")
+    print(f"addr {strName} 0")
+    setaddr([strName, a, tmp], v - 1)
+
+    lenName = nameSym("len")
+    print(f"var {lenName} 0 ")
+    incaddr([a, 8], v - 1)
+    mov([lenName, a, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+
+    print(f"label {loopLabel}")
+
+    decleq([lenName, 0, endLabel], v - 1)
+    dec([lenName, 1], v - 1)
+
+    putchar([strName, tmp], v - 1)
+    incaddr([strName, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {endLabel}")
+    logEnd()
+
+
+# Places a sequence of ASCII characters in the memory
+# Everything after "raw_chars " and before the newline are considered part of the string.
+# Escape character (\) is not handled.
+def raw_chars(args, v=1):
+    assert len(args) != 0
+    logSimple()
+    chars = [numToRawInst(ord(x)) for x in " ".join(args)]
+    print(f"raw {' '.join(chars)}")
+
+
+# Places a well-structured string in the memory
+# The first argument is used to name the symbol, every other arguments go as part of the string.
+def def_string(args, v=1):
+    assert len(args) > 1
+    logStart()
+    sym = args[0]
+    string = " ".join(args[1:])
+    print(f"label {sym}_buf")
+    raw_chars([string], v - 1)
+    print(f"label {sym}")
+    print(f"raw_ref {sym}_buf")
+    print(f"raw {numToRawInst(len(string))} {numToRawInst(len(string) * 8)}")
+
+
+# Checks if string a and b are:
+# 1. Of the same length
+# 2. Of the same content
+# If both checks pass, it jumps to dst.
+def strcmp(args, v=3):
+    a, b, dst, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    revertLabel = nameSym("REVERT_ADDR", True)
+    endLabel = nameSym("END", True)
+
+    incaddr([a, 8], v - 1)
+    incaddr([b, 8], v - 1)
+    # Don't jump if a.length != b.length
+    jne([a, b, revertLabel, tmp, tmp2], v - 1)
+
+    lenName = nameSym("len")
+    print(f"var {lenName} 0")
+    mov([lenName, a, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+    decaddr([b, 8], v - 1)
+
+    aStr = nameSym("aStr")
+    bStr = nameSym("bStr")
+    print(f"addr {aStr} 0")
+    print(f"addr {bStr} 0")
+    setaddr([aStr, a, tmp], v - 1)
+    setaddr([bStr, b, tmp], v - 1)
+
+    print(f"label {loopLabel}")
+    # Jump if all bytes match
+    decleq([lenName, 0, dst], v - 1)
+    dec([lenName, 1], v - 1)
+
+    # Don't jump if a byte mismatches
+    jne([aStr, bStr, endLabel, tmp, tmp2], v - 1)
+    incaddr([aStr, 8], v - 1)
+    incaddr([bStr, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {revertLabel}")
+    decaddr([a, 8], v - 1)
+    decaddr([b, 8], v - 1)
+
+    print(f"label {endLabel}")
     logEnd()
 
 

@@ -6,6 +6,7 @@ ALL_DEPS += phase0-hex/hex0.bin phase0-hex/hex0.hex0 phase0-hex/hex0.lsq
 ALL_DEPS += phase0-hex/hex0_monitor.bin phase0-hex/hex0_monitor.hex0 phase0-hex/hex0_monitor.lsq
 ALL_DEPS += phase0-hex/hex1_monitor.bin phase0-hex/hex1_monitor.hex0 phase0-hex/hex1_monitor.hex1 phase0-hex/hex1_monitor.lsq
 ALL_DEPS += phase0-hex/hex1.bin phase0-hex/hex1.hex0 phase0-hex/hex1.hex1 phase0-hex/hex1.lsq
+ALL_DEPS += Examples/test_jeq.bin Examples/test_str.bin
 
 all: $(ALL_DEPS)
 
