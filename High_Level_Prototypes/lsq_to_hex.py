@@ -207,6 +207,8 @@ def resolveSymbol(name):
         return f"&{name}"
 
 
+print(f"# hex{hex_version}")
+
 for line in lines:
     out = []
     if line.inst in ["var", "label", "addr", "rem", "newline"]:
