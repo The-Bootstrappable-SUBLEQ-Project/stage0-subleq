@@ -998,39 +998,53 @@
 &ak &ah ?+8 ; relsq c tmp 1
 # End mov
 
-# putchar c tmp
 
-# c %= 256
+# Start mod_256 c tmp tmp2
+; var mod_256_0_isNeg 0
+# zero mod_256_0_isNeg
+# sub mod_256_0_isNeg mod_256_0_isNeg
+&cx &cx ?+8 ; relsq mod_256_0_isNeg mod_256_0_isNeg 1
+# jn c MOD_256_0_IS_NEG tmp tmp2
 
-; var mod256IsNeg 0
-&cx &cx ?+8 ; relsq mod256IsNeg mod256IsNeg 1
-&ak &aj &cy ; lblsq c CONST_-1 MOD256_IS_NEG
-&aa &aa &cz ; lblsq ZERO ZERO MOD256_IS_POS
-; label MOD256_IS_NEG
-:cy &cx &aj ?+8 ; relsq mod256IsNeg CONST_-1 1
-&ak &an ?+8 ; relsq c CONST_1 1
+# Start jl c ZERO MOD_256_0_IS_NEG tmp tmp2
+&aL &aL ?+8 ; relsq tmp2 tmp2 1
+&aL &ak ?+8 ; relsq tmp2 c 1
+&ah &ah ?+8 ; relsq tmp tmp 1
+&ah &aL ?+8 ; relsq tmp tmp2 1
+&ah &aj ?+8 ; relsq tmp CONST_-1 1
+&ah &aa &cy ; lblsq tmp ZERO MOD_256_0_IS_NEG
+# End jl
+
+# lbljmp MOD_256_0_START
+&aa &aa &cz ; lblsq ZERO ZERO MOD_256_0_START
+; label MOD_256_0_IS_NEG
+# inc mod_256_0_isNeg 1
+# dec mod_256_0_isNeg -1
+:cy &cx &aj ?+8 ; relsq mod_256_0_isNeg CONST_-1 1
 
 # Start neg c tmp tmp2
+# movneg tmp c
 &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &ak ?+8 ; relsq tmp c 1
+
+# Start mov c tmp tmp2
 &aL &aL ?+8 ; relsq tmp2 tmp2 1
 &aL &ah ?+8 ; relsq tmp2 tmp 1
 &ak &ak ?+8 ; relsq c c 1
 &ak &aL ?+8 ; relsq c tmp2 1
+# End mov
+
 # End neg
 
-&aa &aa &cA ; lblsq ZERO ZERO MOD256_START
-; label MOD256_IS_POS
-:cz &ak &an ?+8 ; relsq c CONST_1 1
+; label MOD_256_0_START
+; var mod_256_0_subber 0
+# set mod_256_0_subber 100
+# zero mod_256_0_subber
+:cz &cA &cA ?+8 ; relsq mod_256_0_subber mod_256_0_subber 1
+# inc mod_256_0_subber 100
+&cA &cB ?+8 ; relsq mod_256_0_subber CONST_-100 1
 
-; label MOD256_START
-; var subber 0
-# set subber 100
-:cA &cB &cB ?+8 ; relsq subber subber 1
-&cB &cC ?+8 ; relsq subber CONST_-100 1
-# Finish if c < 256
-
-# Start jl c subber MOD256_CHECKNEG tmp tmp2
+# Start jl c mod_256_0_subber MOD_256_0_CHECK_NEG tmp tmp2
 
 # Start mov tmp c tmp2
 &aL &aL ?+8 ; relsq tmp2 tmp2 1
@@ -1041,18 +1055,98 @@
 
 # inc tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-&ah &cB &cD ; lblsq tmp subber MOD256_CHECKNEG
+&ah &cA &cC ; lblsq tmp mod_256_0_subber MOD_256_0_CHECK_NEG
+# End jl
+
+; var mod_256_0_nextSubber 0
+# set mod_256_0_nextSubber 10000
+# zero mod_256_0_nextSubber
+&cD &cD ?+8 ; relsq mod_256_0_nextSubber mod_256_0_nextSubber 1
+# inc mod_256_0_nextSubber 10000
+&cD &cE ?+8 ; relsq mod_256_0_nextSubber CONST_-10000 1
+; label MOD_256_0_MULT_SUBBER_START
+
+# Start jl c mod_256_0_nextSubber MOD_256_0_SUBTRACT_A tmp tmp2
+
+# Start mov tmp c tmp2
+:cF &aL &aL ?+8 ; relsq tmp2 tmp2 1
+&aL &ak ?+8 ; relsq tmp2 c 1
+&ah &ah ?+8 ; relsq tmp tmp 1
+&ah &aL ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# inc tmp 1
+&ah &aj ?+8 ; relsq tmp CONST_-1 1
+&ah &cD &cG ; lblsq tmp mod_256_0_nextSubber MOD_256_0_SUBTRACT_A
 # End jl
 
 
-# Multiply subbers by 256 until the next multiplication makes subber > c
-; var nextSubber 0
-# set nextSubber 10000
-&cE &cE ?+8 ; relsq nextSubber nextSubber 1
-&cE &cF ?+8 ; relsq nextSubber CONST_-10000 1
-; label MULT_SUBBER_START
+# Start mul_256 mod_256_0_subber tmp
 
-# Start jl c nextSubber MULT_SUBBER_END tmp tmp2
+# Start mul_16 mod_256_0_subber tmp
+&ah &ah ?+8 ; relsq tmp tmp 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&cA &ah ?+8 ; relsq mod_256_0_subber tmp 1
+&cA &ah ?+8 ; relsq mod_256_0_subber tmp 1
+&cA &ah ?+8 ; relsq mod_256_0_subber tmp 1
+# End mul_16
+
+
+# Start mul_16 mod_256_0_subber tmp
+&ah &ah ?+8 ; relsq tmp tmp 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&ah &cA ?+8 ; relsq tmp mod_256_0_subber 1
+&cA &ah ?+8 ; relsq mod_256_0_subber tmp 1
+&cA &ah ?+8 ; relsq mod_256_0_subber tmp 1
+&cA &ah ?+8 ; relsq mod_256_0_subber tmp 1
+# End mul_16
+
+# End mul_256
+
+
+# Start mul_256 mod_256_0_nextSubber tmp
+
+# Start mul_16 mod_256_0_nextSubber tmp
+&ah &ah ?+8 ; relsq tmp tmp 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&cD &ah ?+8 ; relsq mod_256_0_nextSubber tmp 1
+&cD &ah ?+8 ; relsq mod_256_0_nextSubber tmp 1
+&cD &ah ?+8 ; relsq mod_256_0_nextSubber tmp 1
+# End mul_16
+
+
+# Start mul_16 mod_256_0_nextSubber tmp
+&ah &ah ?+8 ; relsq tmp tmp 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&ah &cD ?+8 ; relsq tmp mod_256_0_nextSubber 1
+&cD &ah ?+8 ; relsq mod_256_0_nextSubber tmp 1
+&cD &ah ?+8 ; relsq mod_256_0_nextSubber tmp 1
+&cD &ah ?+8 ; relsq mod_256_0_nextSubber tmp 1
+# End mul_16
+
+# End mul_256
+
+# decleq mod_256_0_nextSubber 0 MOD_256_0_SUBTRACT_A
+&cD &aJ &cG ; lblsq mod_256_0_nextSubber CONST_0 MOD_256_0_SUBTRACT_A
+# lbljmp MOD_256_0_MULT_SUBBER_START
+&aa &aa &cF ; lblsq ZERO ZERO MOD_256_0_MULT_SUBBER_START
+; label MOD_256_0_SUBTRACT_A
+
+# Start jl c mod_256_0_subber MOD_256_0_START tmp tmp2
 
 # Start mov tmp c tmp2
 :cG &aL &aL ?+8 ; relsq tmp2 tmp2 1
@@ -1063,83 +1157,18 @@
 
 # inc tmp 1
 &ah &aj ?+8 ; relsq tmp CONST_-1 1
-&ah &cE &cH ; lblsq tmp nextSubber MULT_SUBBER_END
+&ah &cA &cz ; lblsq tmp mod_256_0_subber MOD_256_0_START
 # End jl
 
-
-# Start mul_256 subber tmp
-&ah &ah ?+8 ; relsq tmp tmp 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&cB &ah ?+8 ; relsq subber tmp 1
-&cB &ah ?+8 ; relsq subber tmp 1
-&cB &ah ?+8 ; relsq subber tmp 1
-&ah &ah ?+8 ; relsq tmp tmp 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&ah &cB ?+8 ; relsq tmp subber 1
-&cB &ah ?+8 ; relsq subber tmp 1
-&cB &ah ?+8 ; relsq subber tmp 1
-&cB &ah ?+8 ; relsq subber tmp 1
-# End mul_256
-
-
-# Start mul_256 nextSubber tmp
-&ah &ah ?+8 ; relsq tmp tmp 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&cE &ah ?+8 ; relsq nextSubber tmp 1
-&cE &ah ?+8 ; relsq nextSubber tmp 1
-&cE &ah ?+8 ; relsq nextSubber tmp 1
-&ah &ah ?+8 ; relsq tmp tmp 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&ah &cE ?+8 ; relsq tmp nextSubber 1
-&cE &ah ?+8 ; relsq nextSubber tmp 1
-&cE &ah ?+8 ; relsq nextSubber tmp 1
-&cE &ah ?+8 ; relsq nextSubber tmp 1
-# End mul_256
-
-# nextSubber overflowed
-&cE &aJ &cH ; lblsq nextSubber CONST_0 MULT_SUBBER_END
-&aa &aa &cG ; lblsq ZERO ZERO MULT_SUBBER_START
-; label MULT_SUBBER_END
-
-# Subtract c by subber until the next subtraction makes c < 0
-; label SUBTRACT_C
-
-# Start jl c subber MOD256_START tmp tmp2
-
-# Start mov tmp c tmp2
-:cH :cI &aL &aL ?+8 ; relsq tmp2 tmp2 1
-&aL &ak ?+8 ; relsq tmp2 c 1
-&ah &ah ?+8 ; relsq tmp tmp 1
-&ah &aL ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# inc tmp 1
-&ah &aj ?+8 ; relsq tmp CONST_-1 1
-&ah &cB &cA ; lblsq tmp subber MOD256_START
-# End jl
-
-&ak &cB ?+8 ; relsq c subber 1
-&aa &aa &cI ; lblsq ZERO ZERO SUBTRACT_C
-
-; label MOD256_CHECKNEG
-:cD &cx &aJ &cJ ; lblsq mod256IsNeg CONST_0 MOD256_END
-# No need to invert if c == 0
-&ak &aJ &cJ ; lblsq c CONST_0 MOD256_END
-# c = 256 - c
+# sub c mod_256_0_subber
+&ak &cA ?+8 ; relsq c mod_256_0_subber 1
+# lbljmp MOD_256_0_SUBTRACT_A
+&aa &aa &cG ; lblsq ZERO ZERO MOD_256_0_SUBTRACT_A
+; label MOD_256_0_CHECK_NEG
+# decleq mod_256_0_isNeg 0 MOD_256_0_END
+:cC &cx &aJ &cH ; lblsq mod_256_0_isNeg CONST_0 MOD_256_0_END
+# decleq c 0 MOD_256_0_END
+&ak &aJ &cH ; lblsq c CONST_0 MOD_256_0_END
 
 # Start mov tmp c tmp2
 # movneg tmp2 c
@@ -1151,15 +1180,16 @@
 # End mov
 
 # set c 100
+# zero c
 &ak &ak ?+8 ; relsq c c 1
-&ak &cC ?+8 ; relsq c CONST_-100 1
+# inc c 100
+&ak &cB ?+8 ; relsq c CONST_-100 1
+# sub c tmp
 &ak &ah ?+8 ; relsq c tmp 1
-
-; label MOD256_END
-
+; label MOD_256_0_END
 
 # Start putchar c tmp
-:cJ 0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+:cH 0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
 # movneg tmp c
@@ -1172,13 +1202,13 @@
 0000000013ed27f0 &ah ?+8 ; relsq SERIAL_OUT tmp 1
 # End putchar
 
-&bI &an &cK ; lblsq i CONST_1 PRINT_CHAR_END
+&bI &an &cI ; lblsq i CONST_1 PRINT_CHAR_END
 &aa &aa &cw ; lblsq ZERO ZERO PRINT_CHAR_START
 
 ; label PRINT_CHAR_END
 # Go to the next qword
-:cK &cv &aU ?+8 ; relsq charToPrint_addrRef_0 CONST_-8 1
-&aM &bE &cL ; lblsq codeLen CONST_8 HALT
+:cI &cv &aU ?+8 ; relsq charToPrint_addrRef_0 CONST_-8 1
+&aM &bE &cJ ; lblsq codeLen CONST_8 HALT
 &aa &aa &bO ; lblsq ZERO ZERO PRINT
 
 ; label HALT
@@ -1187,7 +1217,7 @@
 # Start set_safe CPU_CONTROL_START 2 tmp tmp2
 
 # Start mov tmp CPU_CONTROL_START tmp2
-:cL &aL &aL ?+8 ; relsq tmp2 tmp2 1
+:cJ &aL &aL ?+8 ; relsq tmp2 tmp2 1
 &aL 0000000013ee0000 ?+8 ; relsq tmp2 CPU_CONTROL_START 1
 &ah &ah ?+8 ; relsq tmp tmp 1
 &ah &aL ?+8 ; relsq tmp tmp2 1
@@ -1250,9 +1280,9 @@
 :bX 0000000000100000 ; raw 0000000000100000 # bufStart
 :bM 0000000000000000 ; raw 0000000000000000 # logsToCheck
 :cm 0000000000000000 ; raw 0000000000000000 # strcmp_0_len
-:cx 0000000000000000 ; raw 0000000000000000 # mod256IsNeg
-:cB 0000000000000000 ; raw 0000000000000000 # subber
-:cE 0000000000000000 ; raw 0000000000000000 # nextSubber
+:cx 0000000000000000 ; raw 0000000000000000 # mod_256_0_isNeg
+:cA 0000000000000000 ; raw 0000000000000000 # mod_256_0_subber
+:cD 0000000000000000 ; raw 0000000000000000 # mod_256_0_nextSubber
 :aj ffffffffffffffff ; raw ffffffffffffffff # CONST_-1
 :am 0000000000000022 ; raw 0000000000000022 # CONST_22
 :an 0000000000000001 ; raw 0000000000000001 # CONST_1
@@ -1278,6 +1308,6 @@
 :bQ ffffffffffffffe0 ; raw ffffffffffffffe0 # CONST_-20
 :cb 0000000000000018 ; raw 0000000000000018 # CONST_18
 :cu ffffffffffffffd8 ; raw ffffffffffffffd8 # CONST_-28
-:cC ffffffffffffff00 ; raw ffffffffffffff00 # CONST_-100
-:cF ffffffffffff0000 ; raw ffffffffffff0000 # CONST_-10000
+:cB ffffffffffffff00 ; raw ffffffffffffff00 # CONST_-100
+:cE ffffffffffff0000 ; raw ffffffffffff0000 # CONST_-10000
 ~

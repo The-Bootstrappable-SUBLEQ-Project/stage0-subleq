@@ -120,57 +120,7 @@ decaddr charToPrint 8
 label PRINT_CHAR_START
 decaddr charToPrint -1
 mov c charToPrint tmp
-rem putchar c tmp
-
-rem c %= 256
-
-var mod256IsNeg 0
-zero mod256IsNeg
-incleq c 1 MOD256_IS_NEG
-lbljmp MOD256_IS_POS
-label MOD256_IS_NEG
-inc mod256IsNeg 1
-dec c 1
-neg c tmp tmp2
-lbljmp MOD256_START
-label MOD256_IS_POS
-dec c 1
-
-label MOD256_START
-var subber 0
-set subber 100
-rem Finish if c < 256
-jl c subber MOD256_CHECKNEG tmp tmp2
-
-rem Multiply subbers by 256 until the next multiplication makes subber > c
-var nextSubber 0
-set nextSubber 10000
-label MULT_SUBBER_START
-jl c nextSubber MULT_SUBBER_END tmp tmp2
-mul_256 subber tmp
-mul_256 nextSubber tmp
-rem nextSubber overflowed
-decleq nextSubber 0 MULT_SUBBER_END
-lbljmp MULT_SUBBER_START
-label MULT_SUBBER_END
-
-rem Subtract c by subber until the next subtraction makes c < 0
-label SUBTRACT_C
-jl c subber MOD256_START tmp tmp2
-sub c subber
-lbljmp SUBTRACT_C
-
-label MOD256_CHECKNEG
-decleq mod256IsNeg 0 MOD256_END
-rem No need to invert if c == 0
-decleq c 0 MOD256_END
-rem c = 256 - c
-mov tmp c tmp2
-set c 100
-sub c tmp
-
-label MOD256_END
-
+mod_256 c tmp tmp2
 putchar c tmp
 decleq i 1 PRINT_CHAR_END
 lbljmp PRINT_CHAR_START

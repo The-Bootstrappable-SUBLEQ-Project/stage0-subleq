@@ -735,39 +735,53 @@ relsq c c 1
 relsq c tmp 1
 rem End mov
 
-rem putchar c tmp
 
-rem c %= 256
+rem Start mod_256 c tmp tmp2
+var mod_256_0_isNeg 0
+rem zero mod_256_0_isNeg
+rem sub mod_256_0_isNeg mod_256_0_isNeg
+relsq mod_256_0_isNeg mod_256_0_isNeg 1
+rem jn c MOD_256_0_IS_NEG tmp tmp2
 
-var mod256IsNeg 0
-relsq mod256IsNeg mod256IsNeg 1
-lblsq c CONST_-1 MOD256_IS_NEG
-lblsq ZERO ZERO MOD256_IS_POS
-label MOD256_IS_NEG
-relsq mod256IsNeg CONST_-1 1
-relsq c CONST_1 1
+rem Start jl c ZERO MOD_256_0_IS_NEG tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 c 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_-1 1
+lblsq tmp ZERO MOD_256_0_IS_NEG
+rem End jl
+
+rem lbljmp MOD_256_0_START
+lblsq ZERO ZERO MOD_256_0_START
+label MOD_256_0_IS_NEG
+rem inc mod_256_0_isNeg 1
+rem dec mod_256_0_isNeg -1
+relsq mod_256_0_isNeg CONST_-1 1
 
 rem Start neg c tmp tmp2
+rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
+
+rem Start mov c tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 relsq c c 1
 relsq c tmp2 1
+rem End mov
+
 rem End neg
 
-lblsq ZERO ZERO MOD256_START
-label MOD256_IS_POS
-relsq c CONST_1 1
+label MOD_256_0_START
+var mod_256_0_subber 0
+rem set mod_256_0_subber 100
+rem zero mod_256_0_subber
+relsq mod_256_0_subber mod_256_0_subber 1
+rem inc mod_256_0_subber 100
+relsq mod_256_0_subber CONST_-100 1
 
-label MOD256_START
-var subber 0
-rem set subber 100
-relsq subber subber 1
-relsq subber CONST_-100 1
-rem Finish if c < 256
-
-rem Start jl c subber MOD256_CHECKNEG tmp tmp2
+rem Start jl c mod_256_0_subber MOD_256_0_CHECK_NEG tmp tmp2
 
 rem Start mov tmp c tmp2
 relsq tmp2 tmp2 1
@@ -778,18 +792,18 @@ rem End mov
 
 rem inc tmp 1
 relsq tmp CONST_-1 1
-lblsq tmp subber MOD256_CHECKNEG
+lblsq tmp mod_256_0_subber MOD_256_0_CHECK_NEG
 rem End jl
 
+var mod_256_0_nextSubber 0
+rem set mod_256_0_nextSubber 10000
+rem zero mod_256_0_nextSubber
+relsq mod_256_0_nextSubber mod_256_0_nextSubber 1
+rem inc mod_256_0_nextSubber 10000
+relsq mod_256_0_nextSubber CONST_-10000 1
+label MOD_256_0_MULT_SUBBER_START
 
-rem Multiply subbers by 256 until the next multiplication makes subber > c
-var nextSubber 0
-rem set nextSubber 10000
-relsq nextSubber nextSubber 1
-relsq nextSubber CONST_-10000 1
-label MULT_SUBBER_START
-
-rem Start jl c nextSubber MULT_SUBBER_END tmp tmp2
+rem Start jl c mod_256_0_nextSubber MOD_256_0_SUBTRACT_A tmp tmp2
 
 rem Start mov tmp c tmp2
 relsq tmp2 tmp2 1
@@ -800,62 +814,76 @@ rem End mov
 
 rem inc tmp 1
 relsq tmp CONST_-1 1
-lblsq tmp nextSubber MULT_SUBBER_END
+lblsq tmp mod_256_0_nextSubber MOD_256_0_SUBTRACT_A
 rem End jl
 
 
-rem Start mul_256 subber tmp
+rem Start mul_256 mod_256_0_subber tmp
+
+rem Start mul_16 mod_256_0_subber tmp
 relsq tmp tmp 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq subber tmp 1
-relsq subber tmp 1
-relsq subber tmp 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq mod_256_0_subber tmp 1
+relsq mod_256_0_subber tmp 1
+relsq mod_256_0_subber tmp 1
+rem End mul_16
+
+
+rem Start mul_16 mod_256_0_subber tmp
 relsq tmp tmp 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq tmp subber 1
-relsq subber tmp 1
-relsq subber tmp 1
-relsq subber tmp 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq tmp mod_256_0_subber 1
+relsq mod_256_0_subber tmp 1
+relsq mod_256_0_subber tmp 1
+relsq mod_256_0_subber tmp 1
+rem End mul_16
+
 rem End mul_256
 
 
-rem Start mul_256 nextSubber tmp
+rem Start mul_256 mod_256_0_nextSubber tmp
+
+rem Start mul_16 mod_256_0_nextSubber tmp
 relsq tmp tmp 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq nextSubber tmp 1
-relsq nextSubber tmp 1
-relsq nextSubber tmp 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq mod_256_0_nextSubber tmp 1
+relsq mod_256_0_nextSubber tmp 1
+relsq mod_256_0_nextSubber tmp 1
+rem End mul_16
+
+
+rem Start mul_16 mod_256_0_nextSubber tmp
 relsq tmp tmp 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq tmp nextSubber 1
-relsq nextSubber tmp 1
-relsq nextSubber tmp 1
-relsq nextSubber tmp 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq tmp mod_256_0_nextSubber 1
+relsq mod_256_0_nextSubber tmp 1
+relsq mod_256_0_nextSubber tmp 1
+relsq mod_256_0_nextSubber tmp 1
+rem End mul_16
+
 rem End mul_256
 
-rem nextSubber overflowed
-lblsq nextSubber CONST_0 MULT_SUBBER_END
-lblsq ZERO ZERO MULT_SUBBER_START
-label MULT_SUBBER_END
+rem decleq mod_256_0_nextSubber 0 MOD_256_0_SUBTRACT_A
+lblsq mod_256_0_nextSubber CONST_0 MOD_256_0_SUBTRACT_A
+rem lbljmp MOD_256_0_MULT_SUBBER_START
+lblsq ZERO ZERO MOD_256_0_MULT_SUBBER_START
+label MOD_256_0_SUBTRACT_A
 
-rem Subtract c by subber until the next subtraction makes c < 0
-label SUBTRACT_C
-
-rem Start jl c subber MOD256_START tmp tmp2
+rem Start jl c mod_256_0_subber MOD_256_0_START tmp tmp2
 
 rem Start mov tmp c tmp2
 relsq tmp2 tmp2 1
@@ -866,17 +894,18 @@ rem End mov
 
 rem inc tmp 1
 relsq tmp CONST_-1 1
-lblsq tmp subber MOD256_START
+lblsq tmp mod_256_0_subber MOD_256_0_START
 rem End jl
 
-relsq c subber 1
-lblsq ZERO ZERO SUBTRACT_C
-
-label MOD256_CHECKNEG
-lblsq mod256IsNeg CONST_0 MOD256_END
-rem No need to invert if c == 0
-lblsq c CONST_0 MOD256_END
-rem c = 256 - c
+rem sub c mod_256_0_subber
+relsq c mod_256_0_subber 1
+rem lbljmp MOD_256_0_SUBTRACT_A
+lblsq ZERO ZERO MOD_256_0_SUBTRACT_A
+label MOD_256_0_CHECK_NEG
+rem decleq mod_256_0_isNeg 0 MOD_256_0_END
+lblsq mod_256_0_isNeg CONST_0 MOD_256_0_END
+rem decleq c 0 MOD_256_0_END
+lblsq c CONST_0 MOD_256_0_END
 
 rem Start mov tmp c tmp2
 rem movneg tmp2 c
@@ -888,12 +917,13 @@ relsq tmp tmp2 1
 rem End mov
 
 rem set c 100
+rem zero c
 relsq c c 1
+rem inc c 100
 relsq c CONST_-100 1
+rem sub c tmp
 relsq c tmp 1
-
-label MOD256_END
-
+label MOD_256_0_END
 
 rem Start putchar c tmp
 relsq SERIAL_OUT ZERO 2

@@ -247,6 +247,13 @@ def jl(args, v=2):
     logEnd()
 
 
+# Jumps to dst's address if a < 0
+def jn(args, v=2):
+    a, dst, tmp, tmp2 = args
+    logSimple()
+    jl([a, "ZERO", dst, tmp, tmp2], v - 1)
+
+
 # Jumps to dst's address if a == 0
 def jz(args, v=2):
     a, dst, tmp = args
@@ -467,6 +474,41 @@ def inp_token(args, v=2):
     logEnd()
 
 
+# Reads serial input into string a until \r or \n is fed
+# If a \r or \n is hit right at the beginning, the string will remain empty
+# No capacity check has been implemented yet
+def inp_line(args, v=2):
+    a, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP")
+    termLabel = nameSym("TERM")
+
+    strName = nameSym("str")
+    print(f"addr {strName} 0")
+    setaddr([strName, a, tmp], v - 1)
+
+    lenName = nameSym("len")
+    print(f"var {lenName} 0")
+    zero([lenName], v - 1)
+
+    print(f"label {loopLabel}")
+    getchar([strName, tmp], v - 1)
+    jeq_const([strName, ord("\r"), termLabel, tmp, tmp2], v - 1)
+    jeq_const([strName, ord("\n"), termLabel, tmp, tmp2], v - 1)
+
+    inc([lenName, 1], v - 1)
+    incaddr([strName, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {termLabel}")
+
+    # Set a's length
+    incaddr([a, 8], v - 1)
+    mov([a, lenName, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+    logEnd()
+
+
 # Outputs the full content of string a
 def puts(args, v=2):
     a, tmp = args
@@ -567,6 +609,67 @@ def strcmp(args, v=3):
 
     print(f"label {endLabel}")
     logEnd()
+
+
+# Does a %= 256
+def mod_256(args, v=3):
+    a, tmp, tmp2 = args
+    logStart()
+    startLabel = nameSym("START", True)
+    endLabel = nameSym("END", True)
+    isNegLabel = nameSym("IS_NEG", True)
+    checkNegLabel = nameSym("CHECK_NEG", True)
+    multSubberStartLabel = nameSym("MULT_SUBBER_START", True)
+    subtractALabel = nameSym("SUBTRACT_A", True)
+
+    # Negate if a < 0
+    isNeg = nameSym("isNeg")
+    print(f"var {isNeg} 0")
+    zero([isNeg], v - 1)
+    jn([a, isNegLabel, tmp, tmp2], v - 1)
+    lbljmp([startLabel], v - 1)
+
+    print(f"label {isNegLabel}")
+    inc([isNeg, 1], v - 1)
+    neg([a, tmp, tmp2], v - 1)
+
+    print(f"label {startLabel}")
+    subber = nameSym("subber")
+    print(f"var {subber} 0")
+    inst_set([subber, 0x100], v - 1)
+
+    # Finish if a < 0x100
+    jl([a, subber, checkNegLabel, tmp, tmp2], v - 1)
+
+    # Multiply subbers by 0x100 until the next multiplication makes subber > a
+    nextSubber = nameSym("nextSubber")
+    print(f"var {nextSubber} 0")
+    inst_set([nextSubber, 0x10000], v - 1)
+
+    print(f"label {multSubberStartLabel}")
+    jl([a, nextSubber, subtractALabel, tmp, tmp2], v - 1)
+    mul_256([subber, tmp], v - 1)
+    mul_256([nextSubber, tmp], v - 1)
+    # nextSubber overflowed
+    decleq([nextSubber, 0, subtractALabel], v - 1)
+    lbljmp([multSubberStartLabel], v - 1)
+
+    # Subtract a by subber until the next subtraction makes a < 0
+    print(f"label {subtractALabel}")
+    jl([a, subber, startLabel, tmp, tmp2], v - 1)
+    sub([a, subber], v - 1)
+    lbljmp([subtractALabel], v - 1)
+
+    print(f"label {checkNegLabel}")
+    decleq([isNeg, 0, endLabel], v - 1)
+    # No need to invert if a == 0
+    decleq([a, 0, endLabel], v - 1)
+    # rem c = 256 - c
+    mov([tmp, a, tmp2], v - 1)
+    inst_set([a, 0x100], v - 1)
+    sub([a, tmp], v - 1)
+
+    print(f"label {endLabel}")
 
 
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
