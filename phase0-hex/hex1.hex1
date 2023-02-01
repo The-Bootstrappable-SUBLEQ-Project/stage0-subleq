@@ -791,25 +791,18 @@
 &aa &aa &bk ; lblsq ZERO ZERO PRINT
 
 ; label HALT
-# Stop CPU 0
+
+# Start halt tmp tmp2
 
 # Start set_safe CPU_CONTROL_START 2 tmp tmp2
-
-# Start mov tmp CPU_CONTROL_START tmp2
 :bE &aJ &aJ ?+8 ; relsq tmp2 tmp2 1
 &aJ 0000000013ee0000 ?+8 ; relsq tmp2 CPU_CONTROL_START 1
 &af &af ?+8 ; relsq tmp tmp 1
 &af &aJ ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# dec tmp 2
 &af &an ?+8 ; relsq tmp CONST_2 1
-# sub CPU_CONTROL_START tmp
 0000000013ee0000 &af ?+8 ; relsq CPU_CONTROL_START tmp 1
 # End set_safe
 
-
-# Infinite loop
 &aa &aa ?-10 ; relsq ZERO ZERO 0
 
 ; var CONST_-1 -1

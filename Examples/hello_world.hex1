@@ -307,25 +307,18 @@
 # End putchar
 
 
-# Stop CPU 0
+
+# Start halt tmp tmp2
 
 # Start set_safe CPU_CONTROL_START 2 tmp tmp2
-
-# Start mov tmp CPU_CONTROL_START tmp2
 &aq &aq ?+8 ; relsq tmp2 tmp2 1
 &aq 0000000013ee0000 ?+8 ; relsq tmp2 CPU_CONTROL_START 1
 &ae &ae ?+8 ; relsq tmp tmp 1
 &ae &aq ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# dec tmp 2
 &ae &ar ?+8 ; relsq tmp CONST_2 1
-# sub CPU_CONTROL_START tmp
 0000000013ee0000 &ae ?+8 ; relsq CPU_CONTROL_START tmp 1
 # End set_safe
 
-
-# Infinite loop
 &aa &aa ?-10 ; relsq ZERO ZERO 0
 
 ; var CONST_-48 -48

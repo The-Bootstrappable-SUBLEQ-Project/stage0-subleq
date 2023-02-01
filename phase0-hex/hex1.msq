@@ -260,8 +260,4 @@ decleq codeLen 8 HALT
 lbljmp PRINT
 
 label HALT
-rem Stop CPU 0
-set_safe CPU_CONTROL_START 2 tmp tmp2
-
-rem Infinite loop
-relsq ZERO ZERO 0
+halt tmp tmp2

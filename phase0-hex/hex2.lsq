@@ -949,25 +949,18 @@ lblsq codeLen CONST_8 HALT
 lblsq ZERO ZERO PRINT
 
 label HALT
-rem Stop CPU 0
+
+rem Start halt tmp tmp2
 
 rem Start set_safe CPU_CONTROL_START 2 tmp tmp2
-
-rem Start mov tmp CPU_CONTROL_START tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 CPU_CONTROL_START 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem End mov
-
-rem dec tmp 2
 relsq tmp CONST_2 1
-rem sub CPU_CONTROL_START tmp
 relsq CPU_CONTROL_START tmp 1
 rem End set_safe
 
-
-rem Infinite loop
 relsq ZERO ZERO 0
 
 rem def_string resMsg1 Resolving reference to 

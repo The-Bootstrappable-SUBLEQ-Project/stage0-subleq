@@ -672,6 +672,15 @@ def mod_256(args, v=3):
     print(f"label {endLabel}")
 
 
+def halt(args, v=2):
+    tmp, tmp2 = args
+    logStart()
+    # Stop CPU 0
+    set_safe(["CPU_CONTROL_START", 2, tmp, tmp2], v - 1)
+    # Infinite loop
+    print("relsq ZERO ZERO 0")
+
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
