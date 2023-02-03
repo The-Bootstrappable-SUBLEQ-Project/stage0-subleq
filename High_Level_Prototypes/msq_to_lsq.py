@@ -664,7 +664,7 @@ def mod_256(args, v=3):
     decleq([isNeg, 0, endLabel], v - 1)
     # No need to invert if a == 0
     decleq([a, 0, endLabel], v - 1)
-    # rem c = 256 - c
+    # a = 256 - a
     mov([tmp, a, tmp2], v - 1)
     inst_set([a, 0x100], v - 1)
     sub([a, tmp], v - 1)
@@ -672,6 +672,7 @@ def mod_256(args, v=3):
     print(f"label {endLabel}")
 
 
+# Halts the system.
 def halt(args, v=2):
     tmp, tmp2 = args
     logStart()
@@ -679,6 +680,116 @@ def halt(args, v=2):
     set_safe(["CPU_CONTROL_START", 2, tmp, tmp2], v - 1)
     # Infinite loop
     print("relsq ZERO ZERO 0")
+
+
+# Prints a nibble into the serial output in hex format.
+# This function assumes that 0 <= a <= 15
+def print_nibble(args, v=2):
+    a, tmp, tmp2 = args
+    logStart()
+    startLabel = nameSym("START", True)
+    charset = nameSym("HEX_CHARSET", True)
+
+    lbljmp([startLabel], v - 1)
+    print(f"label {charset}")
+    raw_chars(["0123456789abcdef"], v - 1)
+
+    print(f"label {startLabel}")
+    movneg([tmp, a], v - 1)
+    mul_8([tmp, tmp2], v - 1)
+    print(f"subaddr {charset} {tmp}")
+
+    putchar([charset, tmp2], v - 1)
+
+    # Revert the address
+    movneg([tmp2, tmp], v - 1)
+    print(f"subaddr {charset} {tmp2}")
+    logEnd()
+
+
+# Prints a qword into the serial output in hex format.
+# Handles negative numbers.
+def print_qword(args, v=3):
+    a_orig, a_copy, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    isNegLabel = nameSym("IS_NEG", True)
+    subtractALabel = nameSym("SUBTRACT_A", True)
+    handleNibbleLabel = nameSym("HANDLE_NIBBLE", True)
+    printNibbleLabel = nameSym("PRINT_NIBBLE", True)
+    handleLowNibbleLabel = nameSym("HANDLE_LOW_NIBBLE", True)
+    endLabel = nameSym("END", True)
+
+    mov([a_copy, a_orig, tmp], v - 1)
+
+    # Negate if a < 0
+    isNeg = nameSym("isNeg")
+    print(f"var {isNeg} 0")
+    zero([isNeg], v - 1)
+    jn([a_copy, isNegLabel, tmp, tmp2], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {isNegLabel}")
+    inc([isNeg, 1], v - 1)
+    neg([a_copy, tmp, tmp2], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    subbersLabel = nameSym("SUBBERS", True)
+    # The array of subbers is terminated with 0
+    subbers = [numToRawInst(0)]
+    curSubber = 1
+    for _i in range(16):
+        subbers.append(numToRawInst(curSubber))
+        curSubber *= 16
+    print(f"label {subbersLabel}")
+    print(f"raw {' '.join(subbers[::-1])}")
+
+    print(f"label {loopLabel}")
+    # Finish if the current subber is 0
+    jz([subbersLabel, endLabel, tmp], v - 1)
+
+    nibbleVal = nameSym("nibbleVal")
+    print(f"var {nibbleVal} 0")
+    zero([nibbleVal], v - 1)
+
+    # Subtract a by subber until the next subtraction makes a < 0
+    print(f"label {subtractALabel}")
+    jl([a_copy, subbersLabel, handleNibbleLabel, tmp, tmp2], v - 1)
+    inc([nibbleVal, 1], v - 1)
+    sub([a_copy, subbersLabel], v - 1)
+    lbljmp([subtractALabel], v - 1)
+
+    print(f"label {handleNibbleLabel}")
+    # The least significant nibble and the zeroes that follow it require special treatment
+    jz([a_copy, handleLowNibbleLabel, tmp], v - 1)
+
+    # Handle high nibbles
+    decleq([isNeg, 0, printNibbleLabel])
+    # nibble = 15 - nibble
+    mov([tmp, nibbleVal, tmp2], v - 1)
+    inst_set([nibbleVal, 0xf], v - 1)
+    sub([nibbleVal, tmp], v - 1)
+    lbljmp([printNibbleLabel], v - 1)
+
+    # Handle low nibbles
+    print(f"label {handleLowNibbleLabel}")
+    decleq([isNeg, 0, printNibbleLabel], v - 1)
+    # No need to invert a zero nibble
+    decleq([nibbleVal, 0, printNibbleLabel], v - 1)
+    # nibble = 16 - nibble
+    mov([tmp, nibbleVal, tmp2], v - 1)
+    inst_set([nibbleVal, 0x10], v - 1)
+    sub([nibbleVal, tmp], v - 1)
+
+    print(f"label {printNibbleLabel}")
+    print_nibble([nibbleVal, tmp, tmp2], v - 1)
+
+    incaddr([subbersLabel, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {endLabel}")
+    decaddr([subbersLabel, 8 * len(subbers)], v - 1)
+    logEnd()
 
 
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")

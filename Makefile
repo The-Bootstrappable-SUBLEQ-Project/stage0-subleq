@@ -8,8 +8,8 @@ ALL_DEPS += phase0-hex/hex2_monitor.bin phase0-hex/hex2_monitor.hex0 phase0-hex/
 ALL_DEPS += phase0-hex/hex0.bin phase0-hex/hex0.hex0 phase0-hex/hex0.lsq
 ALL_DEPS += phase0-hex/hex1.bin phase0-hex/hex1.hex0 phase0-hex/hex1.hex1 phase0-hex/hex1.lsq
 ALL_DEPS += phase0-hex/hex2.bin phase0-hex/hex2.hex0 phase0-hex/hex2.hex1 phase0-hex/hex2.hex2 phase0-hex/hex2.lsq
-ALL_DEPS += phase1-lsq-msq/lsq_to_hex.bin phase1-lsq-msq/lsq_to_hex.hex2 phase1-lsq-msq/lsq_to_hex.lsq
-ALL_DEPS += Examples/test_jeq.bin Examples/test_str.bin
+# ALL_DEPS += phase1-lsq-msq/lsq_to_hex.bin phase1-lsq-msq/lsq_to_hex.hex2 phase1-lsq-msq/lsq_to_hex.lsq
+ALL_DEPS += Examples/test_jeq.bin Examples/test_str.bin Examples/test_print_qword.bin
 
 all: $(ALL_DEPS)
 
