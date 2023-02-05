@@ -9,11 +9,11 @@
 
 # stage0-subleq is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with stage0-subleq. If not, see <http://www.gnu.org/licenses/>.
+# along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 
 # Standard program start
 ; addr ZERO 0
@@ -392,10 +392,10 @@
 ; var inp_token_0_len 0
 # zero inp_token_0_len
 &inp_token_0_len &inp_token_0_len ?+8 ; relsq inp_token_0_len inp_token_0_len 1
-; label inp_token_0_LOOP
+; label INP_TOKEN_0_LOOP
 
 # Start getchar inp_token_0_str tmp
-:inp_token_0_LOOP &tmp &tmp ?+8 ; relsq tmp tmp 1
+:INP_TOKEN_0_LOOP &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &CONST_-1 ?+8 ; relsq tmp CONST_-1 1
 &tmp 0000000013ed27e8 ?+20 ; relsq tmp SERIAL_IN 2
 &ZERO &ZERO ?-28 ; relsq ZERO ZERO -1
@@ -405,7 +405,7 @@
 # End getchar
 
 
-# Start jeq_const inp_token_0_str 20 inp_token_0_TERM tmp tmp2
+# Start jeq_const inp_token_0_str 20 INP_TOKEN_0_TERM tmp tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 :inp_token_0_str_addrRef_3 &inp_token_0_str ?+8 ; relsq tmp2 inp_token_0_str 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
@@ -416,14 +416,14 @@
 &tmp2 &CONST_-1 &JZ_0_END ; lblsq tmp2 CONST_-1 JZ_0_END
 &tmp &CONST_-1 &JZ_0_REVERT_A ; lblsq tmp CONST_-1 JZ_0_REVERT_A
 &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &inp_token_0_TERM ; lblsq ZERO ZERO inp_token_0_TERM
+&ZERO &ZERO &INP_TOKEN_0_TERM ; lblsq ZERO ZERO INP_TOKEN_0_TERM
 ; label JZ_0_REVERT_A
 :JZ_0_REVERT_A &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
 ; label JZ_0_END
 # End jeq_const
 
 
-# Start jeq_const inp_token_0_str d inp_token_0_TERM tmp tmp2
+# Start jeq_const inp_token_0_str d INP_TOKEN_0_TERM tmp tmp2
 :JZ_0_END &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 :inp_token_0_str_addrRef_4 &inp_token_0_str ?+8 ; relsq tmp2 inp_token_0_str 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
@@ -434,14 +434,14 @@
 &tmp2 &CONST_-1 &JZ_1_END ; lblsq tmp2 CONST_-1 JZ_1_END
 &tmp &CONST_-1 &JZ_1_REVERT_A ; lblsq tmp CONST_-1 JZ_1_REVERT_A
 &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &inp_token_0_TERM ; lblsq ZERO ZERO inp_token_0_TERM
+&ZERO &ZERO &INP_TOKEN_0_TERM ; lblsq ZERO ZERO INP_TOKEN_0_TERM
 ; label JZ_1_REVERT_A
 :JZ_1_REVERT_A &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
 ; label JZ_1_END
 # End jeq_const
 
 
-# Start jeq_const inp_token_0_str a inp_token_0_TERM tmp tmp2
+# Start jeq_const inp_token_0_str a INP_TOKEN_0_TERM tmp tmp2
 :JZ_1_END &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 :inp_token_0_str_addrRef_5 &inp_token_0_str ?+8 ; relsq tmp2 inp_token_0_str 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
@@ -452,7 +452,7 @@
 &tmp2 &CONST_-1 &JZ_2_END ; lblsq tmp2 CONST_-1 JZ_2_END
 &tmp &CONST_-1 &JZ_2_REVERT_A ; lblsq tmp CONST_-1 JZ_2_REVERT_A
 &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &inp_token_0_TERM ; lblsq ZERO ZERO inp_token_0_TERM
+&ZERO &ZERO &INP_TOKEN_0_TERM ; lblsq ZERO ZERO INP_TOKEN_0_TERM
 ; label JZ_2_REVERT_A
 :JZ_2_REVERT_A &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
 ; label JZ_2_END
@@ -467,11 +467,11 @@
 &inp_token_0_str_addrRef_3 &CONST_-8 ?+8 ; relsq inp_token_0_str_addrRef_3 CONST_-8 1
 &inp_token_0_str_addrRef_4 &CONST_-8 ?+8 ; relsq inp_token_0_str_addrRef_4 CONST_-8 1
 &inp_token_0_str_addrRef_5 &CONST_-8 ?+8 ; relsq inp_token_0_str_addrRef_5 CONST_-8 1
-# lbljmp inp_token_0_LOOP
-&ZERO &ZERO &inp_token_0_LOOP ; lblsq ZERO ZERO inp_token_0_LOOP
-; label inp_token_0_TERM
-# decleq inp_token_0_len 0 inp_token_0_LOOP
-:inp_token_0_TERM &inp_token_0_len &CONST_0 &inp_token_0_LOOP ; lblsq inp_token_0_len CONST_0 inp_token_0_LOOP
+# lbljmp INP_TOKEN_0_LOOP
+&ZERO &ZERO &INP_TOKEN_0_LOOP ; lblsq ZERO ZERO INP_TOKEN_0_LOOP
+; label INP_TOKEN_0_TERM
+# decleq inp_token_0_len 0 INP_TOKEN_0_LOOP
+:INP_TOKEN_0_TERM &inp_token_0_len &CONST_0 &INP_TOKEN_0_LOOP ; lblsq inp_token_0_len CONST_0 INP_TOKEN_0_LOOP
 # incaddr logArrNext 8
 &logArrNext_addrRef_0 &CONST_-8 ?+8 ; relsq logArrNext_addrRef_0 CONST_-8 1
 &logArrNext_addrRef_1 &CONST_-8 ?+8 ; relsq logArrNext_addrRef_1 CONST_-8 1
@@ -1008,8 +1008,8 @@
 # CONST_8
 0000000000000008 ; raw 0000000000000008
 
-# def_string resMsg1 Resolving reference to
-# def_string resMsg2 Found label
+# def_string resMsg1 Resolving reference to 
+# def_string resMsg2 Found label 
 
 ; var CONST_-1 -1
 ; var CONST_22 22

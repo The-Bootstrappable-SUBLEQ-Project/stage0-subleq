@@ -1,16 +1,16 @@
 rem Copyright (C) 2022 NyanCatTW1
 rem This file is part of stage0-subleq.
-rem
+rem 
 rem stage0-subleq is free software: you can redistribute it and/or modify
 rem it under the terms of the GNU General Public License as published by
 rem the Free Software Foundation, either version 3 of the License, or
 rem (at your option) any later version.
-rem
+rem 
 rem stage0-subleq is distributed in the hope that it will be useful,
 rem but WITHOUT ANY WARRANTY; without even the implied warranty of
 rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 rem GNU General Public License for more details.
-rem
+rem 
 rem You should have received a copy of the GNU General Public License
 rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -325,7 +325,7 @@ rem End setaddr
 var inp_token_0_len 0
 rem zero inp_token_0_len
 relsq inp_token_0_len inp_token_0_len 1
-label inp_token_0_LOOP
+label INP_TOKEN_0_LOOP
 
 rem Start getchar inp_token_0_str tmp
 relsq tmp tmp 1
@@ -338,7 +338,7 @@ relsq inp_token_0_str tmp 1
 rem End getchar
 
 
-rem Start jeq_const inp_token_0_str 20 inp_token_0_TERM tmp tmp2
+rem Start jeq_const inp_token_0_str 20 INP_TOKEN_0_TERM tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_0_str 1
 relsq tmp tmp 1
@@ -349,14 +349,14 @@ relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 JZ_0_END
 lblsq tmp CONST_-1 JZ_0_REVERT_A
 relsq tmp CONST_1 1
-lblsq ZERO ZERO inp_token_0_TERM
+lblsq ZERO ZERO INP_TOKEN_0_TERM
 label JZ_0_REVERT_A
 relsq tmp CONST_1 1
 label JZ_0_END
 rem End jeq_const
 
 
-rem Start jeq_const inp_token_0_str d inp_token_0_TERM tmp tmp2
+rem Start jeq_const inp_token_0_str d INP_TOKEN_0_TERM tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_0_str 1
 relsq tmp tmp 1
@@ -367,14 +367,14 @@ relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 JZ_1_END
 lblsq tmp CONST_-1 JZ_1_REVERT_A
 relsq tmp CONST_1 1
-lblsq ZERO ZERO inp_token_0_TERM
+lblsq ZERO ZERO INP_TOKEN_0_TERM
 label JZ_1_REVERT_A
 relsq tmp CONST_1 1
 label JZ_1_END
 rem End jeq_const
 
 
-rem Start jeq_const inp_token_0_str a inp_token_0_TERM tmp tmp2
+rem Start jeq_const inp_token_0_str a INP_TOKEN_0_TERM tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_0_str 1
 relsq tmp tmp 1
@@ -385,7 +385,7 @@ relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 JZ_2_END
 lblsq tmp CONST_-1 JZ_2_REVERT_A
 relsq tmp CONST_1 1
-lblsq ZERO ZERO inp_token_0_TERM
+lblsq ZERO ZERO INP_TOKEN_0_TERM
 label JZ_2_REVERT_A
 relsq tmp CONST_1 1
 label JZ_2_END
@@ -395,11 +395,11 @@ rem inc inp_token_0_len 1
 relsq inp_token_0_len CONST_-1 1
 rem incaddr inp_token_0_str 8
 subaddr inp_token_0_str CONST_-8
-rem lbljmp inp_token_0_LOOP
-lblsq ZERO ZERO inp_token_0_LOOP
-label inp_token_0_TERM
-rem decleq inp_token_0_len 0 inp_token_0_LOOP
-lblsq inp_token_0_len CONST_0 inp_token_0_LOOP
+rem lbljmp INP_TOKEN_0_LOOP
+lblsq ZERO ZERO INP_TOKEN_0_LOOP
+label INP_TOKEN_0_TERM
+rem decleq inp_token_0_len 0 INP_TOKEN_0_LOOP
+lblsq inp_token_0_len CONST_0 INP_TOKEN_0_LOOP
 rem incaddr logArrNext 8
 subaddr logArrNext CONST_-8
 

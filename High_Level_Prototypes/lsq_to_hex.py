@@ -68,6 +68,7 @@ args = parser.parse_args()
 
 hex_version = args.hex_version
 assert hex_version in [0, 1, 2]
+print(f"# hex{hex_version}")
 
 # 0. Parse file into lines
 lines = []
@@ -77,9 +78,12 @@ for line in inp:
         lines.append(Line("newline"))
         continue
 
-    tokens = line.split()
+    tokens = line.split(" ")
     inst = tokens[0]
     if inst == "rem":
+        # Enforce compatibility with lsq_to_hex.msq
+        assert len(tokens) >= 2
+
         lines.append(Line("rem", [], " ".join(tokens[1:])))
         continue
     elif inst in lsq_insts:
@@ -208,8 +212,6 @@ def resolveSymbol(name):
     else:
         return f"&{name}"
 
-
-print(f"# hex{hex_version}")
 
 for line in lines:
     out = []

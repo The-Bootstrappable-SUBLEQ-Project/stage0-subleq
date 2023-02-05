@@ -417,7 +417,7 @@ def malloc_const(args, v=1):
 # Creates a string on a.
 # a must be at least 24 bytes in size to prevent overwriting
 # A string is made out of three parts:
-# 1. Address of the string's buffer
+# 1. Address to the string's buffer
 # 2. Length of the string
 # 3. Capacity of the buffer
 # See also: https://doc.rust-lang.org/std/string/struct.String.html#representation
@@ -436,14 +436,42 @@ def alloc_str(args, v=2):
     logEnd()
 
 
+# Creates an array on a.
+# a must be at least 32 bytes in size to prevent overwriting
+# An array is made out of three parts:
+# 1. Address to the array's buffer
+# 2. Number of elements in the array
+# 3. The size of every element in the array
+# 4. The capacity of the buffer
+def alloc_array(args, v=2):
+    a, elmSize, maxElms, tmp = args
+    logStart()
+    elmSize = ensureInt(elmSize)
+    maxElms = ensureInt(maxElms)
+    capacity = elmSize * maxElms
+    malloc_const([a, capacity, tmp])
+
+    incaddr([a, 8], v - 1)
+    zero([a], v - 1)
+
+    incaddr([a, 8], v - 1)
+    mov([a, recordConst(elmSize), tmp], v - 1)
+
+    incaddr([a, 8], v - 1)
+    mov([a, recordConst(capacity), tmp], v - 1)
+
+    decaddr([a, 24], v - 1)
+    logEnd()
+
+
 # Reads serial input into string a until space, \r, or \n is fed
 # It also ignores space, \r, or \n characters fed at the beginning, if any
 # No capacity check has been implemented yet
 def inp_token(args, v=2):
     a, tmp, tmp2 = args
     logStart()
-    loopLabel = nameSym("LOOP")
-    termLabel = nameSym("TERM")
+    loopLabel = nameSym("LOOP", True)
+    termLabel = nameSym("TERM", True)
 
     strName = nameSym("str")
     print(f"addr {strName} 0")
@@ -474,14 +502,49 @@ def inp_token(args, v=2):
     logEnd()
 
 
+# Reads serial input into string a until space, \r, or \n is fed
+# When a space, \r, or \n character is fed at the beginning, it returns an empty string.
+# No capacity check has been implemented yet
+def inp_token_allow_empty(args, v=2):
+    a, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    termLabel = nameSym("TERM", True)
+
+    strName = nameSym("str")
+    print(f"addr {strName} 0")
+    setaddr([strName, a, tmp], v - 1)
+
+    lenName = nameSym("len")
+    print(f"var {lenName} 0")
+    zero([lenName], v - 1)
+
+    print(f"label {loopLabel}")
+    getchar([strName, tmp], v - 1)
+    jeq_const([strName, ord(" "), termLabel, tmp, tmp2], v - 1)
+    jeq_const([strName, ord("\r"), termLabel, tmp, tmp2], v - 1)
+    jeq_const([strName, ord("\n"), termLabel, tmp, tmp2], v - 1)
+
+    inc([lenName, 1], v - 1)
+    incaddr([strName, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {termLabel}")
+    # Set a's length
+    incaddr([a, 8], v - 1)
+    mov([a, lenName, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+    logEnd()
+
+
 # Reads serial input into string a until \r or \n is fed
 # If a \r or \n is hit right at the beginning, the string will remain empty
 # No capacity check has been implemented yet
 def inp_line(args, v=2):
     a, tmp, tmp2 = args
     logStart()
-    loopLabel = nameSym("LOOP")
-    termLabel = nameSym("TERM")
+    loopLabel = nameSym("LOOP", True)
+    termLabel = nameSym("TERM", True)
 
     strName = nameSym("str")
     print(f"addr {strName} 0")
@@ -505,6 +568,122 @@ def inp_line(args, v=2):
     # Set a's length
     incaddr([a, 8], v - 1)
     mov([a, lenName, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+    logEnd()
+
+
+# Copies the content of string b to string a
+# No capacity check has been implemented yet
+def strcpy(args, v=2):
+    a, b, tmp = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    endLabel = nameSym("END", True)
+
+    strA = nameSym("strA")
+    print(f"addr {strA} 0")
+    setaddr([strA, a, tmp], v - 1)
+
+    strB = nameSym("strB")
+    print(f"addr {strB} 0")
+    setaddr([strB, b, tmp], v - 1)
+
+    # Copy and store the string length
+    incaddr([a, 8], v - 1)
+    incaddr([b, 8], v - 1)
+    mov([a, b, tmp], v - 1)
+    strLen = nameSym("strLen")
+    print(f"var {strLen} 0")
+    mov([strLen, b, tmp], v - 1)
+    decaddr([a, 8], v - 1)
+    decaddr([b, 8], v - 1)
+
+    # Copy the string buffer
+    print(f"label {loopLabel}")
+    decleq([strLen, 0, endLabel], v - 1)
+    dec([strLen, 1], v - 1)
+    mov([strA, strB, tmp], v - 1)
+    incaddr([strA, 8], v - 1)
+    incaddr([strB, 8], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {endLabel}")
+    logEnd()
+
+
+# Splits a string by a single-character delimiter and stores the split parts in the a array.
+# No checks are performed on a's capacity or the partCapacity.
+def str_split(args, v=2):
+    a, string, delim, partCapacity, tmp, tmp2 = args
+    partCapacity = ensureInt(partCapacity)
+    logStart()
+
+    partLooplabel = nameSym("PART_LOOP", True)
+    charLoopLabel = nameSym("CHAR_LOOP", True)
+    endPart = nameSym("END_PART", True)
+    endSplit = nameSym("END_SPLIT", True)
+
+    aBuf = nameSym("aBuf")
+    print(f"addr {aBuf} 0")
+    setaddr([aBuf, a, tmp], v - 1)
+
+    strBuf = nameSym("strBuf")
+    print(f"addr {strBuf} 0")
+    setaddr([strBuf, string, tmp], v - 1)
+
+    charsLeft = nameSym("charsLeft")
+    print(f"var {charsLeft} 0")
+    incaddr([string, 8], v - 1)
+    mov([charsLeft, string, tmp], v - 1)
+    decaddr([string, 8], v - 1)
+
+    partCount = nameSym("partCount")
+    print(f"var {partCount} 0")
+    zero([partCount], v - 1)
+
+    print(f"label {partLooplabel}")
+    decleq([charsLeft, 0, endSplit])
+    # Allocate a new part
+    alloc_str([aBuf, partCapacity, tmp], v - 1)
+    inc([partCount, 1], v - 1)
+    partLen = nameSym("partLen")
+    print(f"var {partLen} 0")
+    zero([partLen], v - 1)
+
+    partBuf = nameSym("partBuf")
+    print(f"addr {partBuf} 0")
+    setaddr([partBuf, aBuf, tmp], v - 1)
+
+    print(f"label {charLoopLabel}")
+    # End the char loop if there are no chars left
+    decleq([charsLeft, 0, endPart])
+    dec([charsLeft, 1], v - 1)
+
+    # Fetch next character and end the loop if it's the delim
+    curChar = nameSym("curChar")
+    print(f"var {curChar} 0")
+    mov([curChar, strBuf, tmp], v - 1)
+    incaddr([strBuf, 8], v - 1)
+    jeq([curChar, delim, endPart, tmp, tmp2])
+
+    # Copy the character to the part
+    mov([partBuf, curChar, tmp], v - 1)
+    incaddr([partBuf, 8], v - 1)
+    inc([partLen, 1], v - 1)
+    lbljmp([charLoopLabel], v - 1)
+
+    print(f"label {endPart}")
+    # Set the part's length
+    incaddr([aBuf, 8], v - 1)
+    mov([aBuf, partLen, tmp], v - 1)
+
+    incaddr([aBuf, 16], v - 1)
+    lbljmp([partLooplabel], v - 1)
+
+    print(f"label {endSplit}")
+    # Set the array's length
+    incaddr([a, 8], v - 1)
+    mov([a, partCount, tmp], v - 1)
     decaddr([a, 8], v - 1)
     logEnd()
 
@@ -545,8 +724,12 @@ def puts(args, v=2):
 def raw_chars(args, v=1):
     assert len(args) != 0
     logSimple()
-    chars = [numToRawInst(ord(x)) for x in " ".join(args)]
-    print(f"raw {' '.join(chars)}")
+    string = " ".join(args)
+    if len(string) != 0:
+        chars = [numToRawInst(ord(x)) for x in string]
+        print(f"raw {' '.join(chars)}")
+    else:
+        print("rem This is an empty string")
 
 
 # Places a well-structured string in the memory
@@ -788,7 +971,7 @@ def print_qword(args, v=3):
     lbljmp([loopLabel], v - 1)
 
     print(f"label {endLabel}")
-    decaddr([subbersLabel, 8 * len(subbers)], v - 1)
+    decaddr([subbersLabel, 8 * (len(subbers) - 1)], v - 1)
     logEnd()
 
 
