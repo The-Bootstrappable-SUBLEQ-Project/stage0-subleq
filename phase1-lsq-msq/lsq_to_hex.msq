@@ -1,0 +1,179 @@
+rem Copyright (C) 2022 NyanCatTW1
+rem This file is part of stage0-subleq.
+rem 
+rem stage0-subleq is free software: you can redistribute it and/or modify
+rem it under the terms of the GNU General Public License as published by
+rem the Free Software Foundation, either version 3 of the License, or
+rem (at your option) any later version.
+rem 
+rem stage0-subleq is distributed in the hope that it will be useful,
+rem but WITHOUT ANY WARRANTY; without even the implied warranty of
+rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+rem GNU General Public License for more details.
+rem 
+rem You should have received a copy of the GNU General Public License
+rem along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
+
+rem Constants
+addr ZERO 0
+var tmp 0
+var tmp2 0
+var tmp3 0
+addr SERIAL_IN 13ED27E8
+addr SERIAL_OUT 13ED27F0
+addr CPU_CONTROL_START 13EE0000
+var FREE_START 1000000
+var LINE_FEED a
+var SPACE 20
+lblsq ZERO ZERO EP
+
+label EP
+var LF a
+
+var hex_version 0
+getchar tmp tmp2
+dec tmp 30
+mov hex_version tmp tmp2
+
+rem Print the header
+puts HEX_HEADER tmp
+inc hex_version 30
+putchar hex_version tmp
+dec hex_version 30
+putchar LF tmp
+
+rem A Line is made of four components, adding to a total of 0x50 bytes:
+rem 0x0 String containing the instruction
+rem 0x18 List containing the tokens
+rem 0x38 String containing the comment
+rem 0x50 The offset of the line in the assembled program
+var linesPass1Begin 100000
+addr linesPass1Cur 100000
+
+label STEP0_INPUT_INST
+alloc_str linesPass1Cur 100 tmp
+inp_token_allow_empty linesPass1Cur tmp tmp2
+
+strcmp linesPass1Cur EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
+strcmp linesPass1Cur REM STEP0_HANDLE_REM tmp tmp2
+strcmp linesPass1Cur END STEP1_START tmp tmp2
+
+rem Handle other instructions
+incaddr linesPass1Cur 18
+alloc_array linesPass1Cur 18 20 tmp
+
+malloc_const tmp 18 tmp2
+addr tmpStr 0
+setaddr tmpStr tmp tmp2
+alloc_str tmpStr 1000 tmp
+inp_line tmpStr tmp tmp2
+str_split linesPass1Cur tmpStr SPACE 800 tmp tmp2
+
+incaddr linesPass1Cur 20
+alloc_str linesPass1Cur 0 tmp
+
+incaddr linesPass1Cur 18
+zero linesPass1Cur
+
+incaddr linesPass1Cur 8
+lbljmp STEP0_DEBUG_PRINT_LINE
+
+
+label STEP0_HANDLE_NEWLINE
+strcpy linesPass1Cur NEWLINE tmp
+
+incaddr linesPass1Cur 18
+alloc_array linesPass1Cur 18 0 tmp
+
+incaddr linesPass1Cur 20
+alloc_str linesPass1Cur 0 tmp
+
+incaddr linesPass1Cur 18
+zero linesPass1Cur
+
+incaddr linesPass1Cur 8
+lbljmp STEP0_DEBUG_PRINT_LINE
+
+
+label STEP0_HANDLE_REM
+incaddr linesPass1Cur 18
+alloc_array linesPass1Cur 18 0 tmp
+
+incaddr linesPass1Cur 20
+alloc_str linesPass1Cur 800 tmp
+inp_line linesPass1Cur tmp tmp2
+
+incaddr linesPass1Cur 18
+zero linesPass1Cur
+
+incaddr linesPass1Cur 8
+lbljmp STEP0_DEBUG_PRINT_LINE
+
+
+label STEP0_DEBUG_PRINT_LINE
+rem lbljmp STEP0_INPUT_INST
+decaddr linesPass1Cur 58
+
+puts LINE_PART_1 tmp
+puts linesPass1Cur tmp
+putchar LINE_FEED tmp
+
+
+incaddr linesPass1Cur 18
+puts LINE_PART_2 tmp
+
+addr tokensBuf 0
+setaddr tokensBuf linesPass1Cur tmp
+incaddr linesPass1Cur 8
+var tokenCount 0
+mov tokenCount linesPass1Cur tmp
+
+label TOKEN_PRINT_LOOP
+decleq tokenCount 0 TOKEN_PRINT_END
+dec tokenCount 1
+puts tokensBuf tmp
+
+set tmp 2c
+putchar tmp tmp2
+putchar SPACE tmp
+incaddr tokensBuf 18
+lbljmp TOKEN_PRINT_LOOP
+
+label TOKEN_PRINT_END
+putchar LINE_FEED tmp
+
+
+incaddr linesPass1Cur 18
+puts LINE_PART_3 tmp
+puts linesPass1Cur tmp
+putchar LINE_FEED tmp
+
+incaddr linesPass1Cur 18
+puts LINE_PART_4 tmp
+print_qword linesPass1Cur tmp tmp2 tmp3
+putchar LINE_FEED tmp
+
+incaddr linesPass1Cur 8
+putchar LINE_FEED tmp
+lbljmp STEP0_INPUT_INST
+
+
+label STEP1_START
+puts TODO tmp
+putchar LINE_FEED tmp
+halt tmp tmp2
+
+
+def_string HEX_HEADER # hex
+rem Notice the single space
+def_string EMPTY_STRING 
+def_string NEWLINE newline
+def_string REM rem
+def_string END end
+
+def_string LINE_PART_1 inst: 
+def_string LINE_PART_2 tokens: 
+def_string LINE_PART_3 comment: 
+def_string LINE_PART_4 offset: 
+
+def_string TODO TODO: Step 1
