@@ -748,10 +748,10 @@ def def_string(args, v=1):
     logStart()
     sym = args[0]
     string = " ".join(args[1:])
-    print(f"label {sym}_buf")
+    print(f"label {sym}_BUF")
     raw_chars([string], v - 1)
     print(f"label {sym}")
-    print(f"raw_ref {sym}_buf")
+    print(f"raw_ref {sym}_BUF")
     print(f"raw {numToRawInst(len(string))} {numToRawInst(len(string) * 8)}")
 
 
