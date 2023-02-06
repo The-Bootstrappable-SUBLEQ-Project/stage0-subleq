@@ -18,6 +18,7 @@ along with stage0-subleq.  If not, see <http://www.gnu.org/licenses/>.
 """
 import sys
 from inspect import currentframe
+import ctypes
 
 # Let lsq_to_hex worry about these instructions instead
 lsq_insts = ["var", "label", "addr",
@@ -98,7 +99,8 @@ def nameSym(suffix, uppercase=False):
 
 # Converts and pads a number to be used in raw instructions
 def numToRawInst(num):
-    return f"{num:0{16}x}"
+    # "__ctype_be__ Python" have 349 results on Google, smh
+    return bytearray(ctypes.c_long.__ctype_be__(num)).hex()
 
 
 # Subtracts a by b
