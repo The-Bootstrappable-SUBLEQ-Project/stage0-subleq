@@ -45,7 +45,7 @@ putchar LF tmp
 rem 0. Parse file into lines
 rem A Line is made of four components, adding to a total of 0x58 bytes:
 rem 0x0 String containing the instruction
-rem 0x18 List containing the tokens
+rem 0x18 Array containing the tokens
 rem 0x38 String containing the comment
 rem 0x50 The offset of the line in the assembled program
 var linesPass1Begin 100000
@@ -177,9 +177,91 @@ label STEP1_END
 incaddr curLine 58
 incaddr symbolsCur 8
 inc symbolsLen 1
-rem lbljmp STEP1_LOOP
+lbljmp STEP1_LOOP
 
-decaddr symbolsCur 30
+
+rem 2. Count symbol references (Pass 1)
+label STEP2_START
+setaddr curLine linesPass1Begin tmp
+mov linesLeft linesPass1Len tmp
+
+label STEP2_LOOP
+decleq linesLeft 0 STEP3_START
+dec linesLeft 1
+
+incaddr curLine 18
+setaddr curTokens curLine tmp
+decaddr curLine 18
+
+strcmp curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+strcmp curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+lbljmp STEP2_END
+
+
+label STEP2_HANDLE_SQ
+addr it 0
+
+setaddr it symbolsBegin tmp
+find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+incaddr it 20
+inc it 1
+
+incaddr curTokens 18
+setaddr it symbolsBegin tmp
+find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+incaddr it 20
+inc it 1
+
+strcmp curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+lbljmp STEP2_END
+
+
+label STEP2_HANDLE_LBLSQ_SUBADDR
+incaddr curTokens 18
+setaddr it symbolsBegin tmp
+find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+incaddr it 20
+inc it 1
+lbljmp STEP2_END
+
+
+label STEP2_HANDLE_RAW_REF
+incaddr curLine 20
+var tokensCount 0
+mov tokensCount curLine tmp
+decaddr curLine 20
+
+label STEP2_RAW_REF_LOOP
+decleq tokensCount 0 STEP2_END
+dec tokensCount 1
+
+setaddr it symbolsBegin tmp
+find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+incaddr it 20
+inc it 1
+incaddr curTokens 18
+lbljmp STEP2_RAW_REF_LOOP
+
+
+label STEP2_END
+incaddr curLine 58
+lbljmp STEP2_LOOP
+
+
+rem 3. Create subaddr/zeroaddr stubs
+label STEP3_START
+
+setaddr symbolsCur symbolsBegin tmp
+var symbolsLeft 0
+mov symbolsLeft symbolsLen tmp
+
+label LOOP
+decleq symbolsLeft 0 HALT
+dec symbolsLeft 1
+
 puts SYMBOL_PART_1 tmp
 puts symbolsCur tmp
 putchar LINE_FEED tmp
@@ -200,11 +282,9 @@ print_qword symbolsCur tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
 incaddr symbolsCur 8
-lbljmp STEP1_LOOP
+lbljmp LOOP
 
-
-rem 2. Count symbol references (Pass 1)
-label STEP2_START
+label HALT
 halt tmp tmp2
 
 
@@ -218,6 +298,12 @@ def_string END end
 def_string VAR var
 def_string LABEL label
 def_string ADDR addr
+
+def_string ABSSQ abssq
+def_string RELSQ relsq
+def_string LBLSQ lblsq
+def_string SUBADDR subaddr
+def_string RAW_REF raw_ref
 
 rem def_string LINE_PART_1 inst: 
 rem def_string LINE_PART_2 tokens: 

@@ -62,14 +62,11 @@ rem Print the header
 
 rem Start puts HEX_HEADER tmp
 addr puts_0_str 0
-
-rem Start setaddr puts_0_str HEX_HEADER tmp
+rem setaddr puts_0_str HEX_HEADER tmp
 zeroaddr puts_0_str
 relsq tmp tmp 1
 relsq tmp HEX_HEADER 1
 subaddr puts_0_str tmp
-rem End setaddr
-
 var puts_0_len 0 
 rem incaddr HEX_HEADER 8
 subaddr HEX_HEADER CONST_-8
@@ -142,7 +139,7 @@ rem End putchar
 rem 0. Parse file into lines
 rem A Line is made of four components, adding to a total of 0x58 bytes:
 rem 0x0 String containing the instruction
-rem 0x18 List containing the tokens
+rem 0x18 Array containing the tokens
 rem 0x38 String containing the comment
 rem 0x50 The offset of the line in the assembled program
 var linesPass1Begin 100000
@@ -184,14 +181,11 @@ rem End alloc_str
 
 rem Start inp_token_allow_empty linesPass1Cur tmp tmp2
 addr inp_token_allow_empty_0_str 0
-
-rem Start setaddr inp_token_allow_empty_0_str linesPass1Cur tmp
+rem setaddr inp_token_allow_empty_0_str linesPass1Cur tmp
 zeroaddr inp_token_allow_empty_0_str
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr inp_token_allow_empty_0_str tmp
-rem End setaddr
-
 var inp_token_allow_empty_0_len 0
 rem zero inp_token_allow_empty_0_len
 relsq inp_token_allow_empty_0_len inp_token_allow_empty_0_len 1
@@ -335,23 +329,23 @@ rem decaddr EMPTY_STRING 8
 subaddr EMPTY_STRING CONST_8
 addr strcmp_0_aStr 0
 addr strcmp_0_bStr 0
-
-rem Start setaddr strcmp_0_aStr linesPass1Cur tmp
+rem setaddr strcmp_0_aStr linesPass1Cur tmp
 zeroaddr strcmp_0_aStr
-rem movneg tmp linesPass1Cur
+
+rem Start addaddr strcmp_0_aStr linesPass1Cur tmp
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr strcmp_0_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_0_bStr EMPTY_STRING tmp
+rem setaddr strcmp_0_bStr EMPTY_STRING tmp
 zeroaddr strcmp_0_bStr
-rem movneg tmp EMPTY_STRING
+
+rem Start addaddr strcmp_0_bStr EMPTY_STRING tmp
 relsq tmp tmp 1
 relsq tmp EMPTY_STRING 1
 subaddr strcmp_0_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_0_LOOP
 rem decleq strcmp_0_len 0 STEP0_HANDLE_NEWLINE
@@ -451,23 +445,23 @@ rem decaddr REM 8
 subaddr REM CONST_8
 addr strcmp_1_aStr 0
 addr strcmp_1_bStr 0
-
-rem Start setaddr strcmp_1_aStr linesPass1Cur tmp
+rem setaddr strcmp_1_aStr linesPass1Cur tmp
 zeroaddr strcmp_1_aStr
-rem movneg tmp linesPass1Cur
+
+rem Start addaddr strcmp_1_aStr linesPass1Cur tmp
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr strcmp_1_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_1_bStr REM tmp
+rem setaddr strcmp_1_bStr REM tmp
 zeroaddr strcmp_1_bStr
-rem movneg tmp REM
+
+rem Start addaddr strcmp_1_bStr REM tmp
 relsq tmp tmp 1
 relsq tmp REM 1
 subaddr strcmp_1_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_1_LOOP
 rem decleq strcmp_1_len 0 STEP0_HANDLE_REM
@@ -567,23 +561,23 @@ rem decaddr END 8
 subaddr END CONST_8
 addr strcmp_2_aStr 0
 addr strcmp_2_bStr 0
-
-rem Start setaddr strcmp_2_aStr linesPass1Cur tmp
+rem setaddr strcmp_2_aStr linesPass1Cur tmp
 zeroaddr strcmp_2_aStr
-rem movneg tmp linesPass1Cur
+
+rem Start addaddr strcmp_2_aStr linesPass1Cur tmp
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr strcmp_2_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_2_bStr END tmp
+rem setaddr strcmp_2_bStr END tmp
 zeroaddr strcmp_2_bStr
-rem movneg tmp END
+
+rem Start addaddr strcmp_2_bStr END tmp
 relsq tmp tmp 1
 relsq tmp END 1
 subaddr strcmp_2_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_2_LOOP
 rem decleq strcmp_2_len 0 STEP1_START
@@ -690,14 +684,14 @@ relsq FREE_START tmp2 1
 rem End malloc_const
 
 addr tmpStr 0
-
-rem Start setaddr tmpStr tmp tmp2
+rem setaddr tmpStr tmp tmp2
 zeroaddr tmpStr
-rem movneg tmp2 tmp
+
+rem Start addaddr tmpStr tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 subaddr tmpStr tmp2
-rem End setaddr
+rem End addaddr
 
 
 rem Start alloc_str tmpStr 1000 tmp
@@ -733,14 +727,11 @@ rem End alloc_str
 
 rem Start inp_line tmpStr tmp tmp2
 addr inp_line_0_str 0
-
-rem Start setaddr inp_line_0_str tmpStr tmp
+rem setaddr inp_line_0_str tmpStr tmp
 zeroaddr inp_line_0_str
 relsq tmp tmp 1
 relsq tmp tmpStr 1
 subaddr inp_line_0_str tmp
-rem End setaddr
-
 var inp_line_0_len 0
 rem zero inp_line_0_len
 relsq inp_line_0_len inp_line_0_len 1
@@ -816,23 +807,17 @@ rem End inp_line
 
 rem Start str_split linesPass1Cur tmpStr SPACE 800 tmp tmp2
 addr str_split_0_aBuf 0
-
-rem Start setaddr str_split_0_aBuf linesPass1Cur tmp
+rem setaddr str_split_0_aBuf linesPass1Cur tmp
 zeroaddr str_split_0_aBuf
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr str_split_0_aBuf tmp
-rem End setaddr
-
 addr str_split_0_strBuf 0
-
-rem Start setaddr str_split_0_strBuf tmpStr tmp
+rem setaddr str_split_0_strBuf tmpStr tmp
 zeroaddr str_split_0_strBuf
 relsq tmp tmp 1
 relsq tmp tmpStr 1
 subaddr str_split_0_strBuf tmp
-rem End setaddr
-
 var str_split_0_charsLeft 0
 rem incaddr tmpStr 8
 subaddr tmpStr CONST_-8
@@ -880,14 +865,11 @@ var str_split_0_partLen 0
 rem zero str_split_0_partLen
 relsq str_split_0_partLen str_split_0_partLen 1
 addr str_split_0_partBuf 0
-
-rem Start setaddr str_split_0_partBuf str_split_0_aBuf tmp
+rem setaddr str_split_0_partBuf str_split_0_aBuf tmp
 zeroaddr str_split_0_partBuf
 relsq tmp tmp 1
 relsq tmp str_split_0_aBuf 1
 subaddr str_split_0_partBuf tmp
-rem End setaddr
-
 label STR_SPLIT_0_CHAR_LOOP
 lblsq str_split_0_charsLeft CONST_0 STR_SPLIT_0_END_PART
 rem dec str_split_0_charsLeft 1
@@ -1019,23 +1001,17 @@ label STEP0_HANDLE_NEWLINE
 
 rem Start strcpy linesPass1Cur NEWLINE tmp
 addr strcpy_0_strA 0
-
-rem Start setaddr strcpy_0_strA linesPass1Cur tmp
+rem setaddr strcpy_0_strA linesPass1Cur tmp
 zeroaddr strcpy_0_strA
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr strcpy_0_strA tmp
-rem End setaddr
-
 addr strcpy_0_strB 0
-
-rem Start setaddr strcpy_0_strB NEWLINE tmp
+rem setaddr strcpy_0_strB NEWLINE tmp
 zeroaddr strcpy_0_strB
 relsq tmp tmp 1
 relsq tmp NEWLINE 1
 subaddr strcpy_0_strB tmp
-rem End setaddr
-
 rem incaddr linesPass1Cur 8
 subaddr linesPass1Cur CONST_-8
 rem incaddr NEWLINE 8
@@ -1246,14 +1222,11 @@ rem End alloc_str
 
 rem Start inp_line linesPass1Cur tmp tmp2
 addr inp_line_1_str 0
-
-rem Start setaddr inp_line_1_str linesPass1Cur tmp
+rem setaddr inp_line_1_str linesPass1Cur tmp
 zeroaddr inp_line_1_str
 relsq tmp tmp 1
 relsq tmp linesPass1Cur 1
 subaddr inp_line_1_str tmp
-rem End setaddr
-
 var inp_line_1_len 0
 rem zero inp_line_1_len
 relsq inp_line_1_len inp_line_1_len 1
@@ -1346,14 +1319,14 @@ addr symbolsCur 200000
 var symbolsLen 0
 
 addr curLine 0
-
-rem Start setaddr curLine linesPass1Begin tmp
+rem setaddr curLine linesPass1Begin tmp
 zeroaddr curLine
-rem movneg tmp linesPass1Begin
+
+rem Start addaddr curLine linesPass1Begin tmp
 relsq tmp tmp 1
 relsq tmp linesPass1Begin 1
 subaddr curLine tmp
-rem End setaddr
+rem End addaddr
 
 var linesLeft 0
 
@@ -1422,23 +1395,23 @@ rem decaddr VAR 8
 subaddr VAR CONST_8
 addr strcmp_3_aStr 0
 addr strcmp_3_bStr 0
-
-rem Start setaddr strcmp_3_aStr curLine tmp
+rem setaddr strcmp_3_aStr curLine tmp
 zeroaddr strcmp_3_aStr
-rem movneg tmp curLine
+
+rem Start addaddr strcmp_3_aStr curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
 subaddr strcmp_3_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_3_bStr VAR tmp
+rem setaddr strcmp_3_bStr VAR tmp
 zeroaddr strcmp_3_bStr
-rem movneg tmp VAR
+
+rem Start addaddr strcmp_3_bStr VAR tmp
 relsq tmp tmp 1
 relsq tmp VAR 1
 subaddr strcmp_3_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_3_LOOP
 rem decleq strcmp_3_len 0 STEP1_CREATE_SYMBOL
@@ -1538,23 +1511,23 @@ rem decaddr LABEL 8
 subaddr LABEL CONST_8
 addr strcmp_4_aStr 0
 addr strcmp_4_bStr 0
-
-rem Start setaddr strcmp_4_aStr curLine tmp
+rem setaddr strcmp_4_aStr curLine tmp
 zeroaddr strcmp_4_aStr
-rem movneg tmp curLine
+
+rem Start addaddr strcmp_4_aStr curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
 subaddr strcmp_4_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_4_bStr LABEL tmp
+rem setaddr strcmp_4_bStr LABEL tmp
 zeroaddr strcmp_4_bStr
-rem movneg tmp LABEL
+
+rem Start addaddr strcmp_4_bStr LABEL tmp
 relsq tmp tmp 1
 relsq tmp LABEL 1
 subaddr strcmp_4_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_4_LOOP
 rem decleq strcmp_4_len 0 STEP1_CREATE_SYMBOL
@@ -1654,23 +1627,23 @@ rem decaddr ADDR 8
 subaddr ADDR CONST_8
 addr strcmp_5_aStr 0
 addr strcmp_5_bStr 0
-
-rem Start setaddr strcmp_5_aStr curLine tmp
+rem setaddr strcmp_5_aStr curLine tmp
 zeroaddr strcmp_5_aStr
-rem movneg tmp curLine
+
+rem Start addaddr strcmp_5_aStr curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
 subaddr strcmp_5_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_5_bStr ADDR tmp
+rem setaddr strcmp_5_bStr ADDR tmp
 zeroaddr strcmp_5_bStr
-rem movneg tmp ADDR
+
+rem Start addaddr strcmp_5_bStr ADDR tmp
 relsq tmp tmp 1
 relsq tmp ADDR 1
 subaddr strcmp_5_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_5_LOOP
 rem decleq strcmp_5_len 0 STEP1_CREATE_SYMBOL
@@ -1726,14 +1699,14 @@ label STEP1_CREATE_SYMBOL
 rem Set the symbol name
 subaddr curLine CONST_-18
 addr curTokens 0
-
-rem Start setaddr curTokens curLine tmp
+rem setaddr curTokens curLine tmp
 zeroaddr curTokens
-rem movneg tmp curLine
+
+rem Start addaddr curTokens curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
 subaddr curTokens tmp
-rem End setaddr
+rem End addaddr
 
 subaddr curLine CONST_18
 
@@ -1771,23 +1744,17 @@ rem End alloc_str
 
 rem Start strcpy symbolsCur curTokens tmp
 addr strcpy_1_strA 0
-
-rem Start setaddr strcpy_1_strA symbolsCur tmp
+rem setaddr strcpy_1_strA symbolsCur tmp
 zeroaddr strcpy_1_strA
 relsq tmp tmp 1
 relsq tmp symbolsCur 1
 subaddr strcpy_1_strA tmp
-rem End setaddr
-
 addr strcpy_1_strB 0
-
-rem Start setaddr strcpy_1_strB curTokens tmp
+rem setaddr strcpy_1_strB curTokens tmp
 zeroaddr strcpy_1_strB
 relsq tmp tmp 1
 relsq tmp curTokens 1
 subaddr strcpy_1_strB tmp
-rem End setaddr
-
 rem incaddr symbolsCur 8
 subaddr symbolsCur CONST_-8
 rem incaddr curTokens 8
@@ -1893,23 +1860,23 @@ rem decaddr ADDR 8
 subaddr ADDR CONST_8
 addr strcmp_6_aStr 0
 addr strcmp_6_bStr 0
-
-rem Start setaddr strcmp_6_aStr curLine tmp
+rem setaddr strcmp_6_aStr curLine tmp
 zeroaddr strcmp_6_aStr
-rem movneg tmp curLine
+
+rem Start addaddr strcmp_6_aStr curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
 subaddr strcmp_6_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_6_bStr ADDR tmp
+rem setaddr strcmp_6_bStr ADDR tmp
 zeroaddr strcmp_6_bStr
-rem movneg tmp ADDR
+
+rem Start addaddr strcmp_6_bStr ADDR tmp
 relsq tmp tmp 1
 relsq tmp ADDR 1
 subaddr strcmp_6_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_6_LOOP
 rem decleq strcmp_6_len 0 STEP1_SET_ADDRESS
@@ -1967,14 +1934,14 @@ rem zero symbolsCur
 rem sub symbolsCur symbolsCur
 relsq symbolsCur symbolsCur 1
 addr from_hex_0_strBuf 0
-
-rem Start setaddr from_hex_0_strBuf curTokens tmp
+rem setaddr from_hex_0_strBuf curTokens tmp
 zeroaddr from_hex_0_strBuf
-rem movneg tmp curTokens
+
+rem Start addaddr from_hex_0_strBuf curTokens tmp
 relsq tmp tmp 1
 relsq tmp curTokens 1
 subaddr from_hex_0_strBuf tmp
-rem End setaddr
+rem End addaddr
 
 var from_hex_0_strLen 0
 rem incaddr curTokens 8
@@ -2179,23 +2146,23 @@ rem decaddr VAR 8
 subaddr VAR CONST_8
 addr strcmp_7_aStr 0
 addr strcmp_7_bStr 0
-
-rem Start setaddr strcmp_7_aStr curLine tmp
+rem setaddr strcmp_7_aStr curLine tmp
 zeroaddr strcmp_7_aStr
-rem movneg tmp curLine
+
+rem Start addaddr strcmp_7_aStr curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
 subaddr strcmp_7_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_7_bStr VAR tmp
+rem setaddr strcmp_7_bStr VAR tmp
 zeroaddr strcmp_7_bStr
-rem movneg tmp VAR
+
+rem Start addaddr strcmp_7_bStr VAR tmp
 relsq tmp tmp 1
 relsq tmp VAR 1
 subaddr strcmp_7_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_7_LOOP
 rem decleq strcmp_7_len 0 STEP1_SET_VALUE
@@ -2253,14 +2220,14 @@ rem zero symbolsCur
 rem sub symbolsCur symbolsCur
 relsq symbolsCur symbolsCur 1
 addr from_hex_1_strBuf 0
-
-rem Start setaddr from_hex_1_strBuf curTokens tmp
+rem setaddr from_hex_1_strBuf curTokens tmp
 zeroaddr from_hex_1_strBuf
-rem movneg tmp curTokens
+
+rem Start addaddr from_hex_1_strBuf curTokens tmp
 relsq tmp tmp 1
 relsq tmp curTokens 1
 subaddr from_hex_1_strBuf tmp
-rem End setaddr
+rem End addaddr
 
 var from_hex_1_strLen 0
 rem incaddr curTokens 8
@@ -2411,20 +2378,1260 @@ label STEP1_END
 subaddr curLine CONST_-58
 subaddr symbolsCur CONST_-8
 relsq symbolsLen CONST_-1 1
-rem lbljmp STEP1_LOOP
+lblsq ZERO ZERO STEP1_LOOP
 
-subaddr symbolsCur CONST_30
+
+rem 2. Count symbol references (Pass 1)
+label STEP2_START
+rem setaddr curLine linesPass1Begin tmp
+zeroaddr curLine
+
+rem Start addaddr curLine linesPass1Begin tmp
+relsq tmp tmp 1
+relsq tmp linesPass1Begin 1
+subaddr curLine tmp
+rem End addaddr
+
+
+rem Start mov linesLeft linesPass1Len tmp
+rem movneg tmp linesPass1Len
+relsq tmp tmp 1
+relsq tmp linesPass1Len 1
+rem movneg linesLeft tmp
+relsq linesLeft linesLeft 1
+relsq linesLeft tmp 1
+rem End mov
+
+
+label STEP2_LOOP
+lblsq linesLeft CONST_0 STEP3_START
+relsq linesLeft CONST_1 1
+
+subaddr curLine CONST_-18
+rem setaddr curTokens curLine tmp
+zeroaddr curTokens
+
+rem Start addaddr curTokens curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr curTokens tmp
+rem End addaddr
+
+subaddr curLine CONST_18
+
+
+rem Start strcmp curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
+rem incaddr curLine 8
+subaddr curLine CONST_-8
+rem incaddr ABSSQ 8
+subaddr ABSSQ CONST_-8
+
+rem Start jne curLine ABSSQ STRCMP_8_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curLine tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLine 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp ABSSQ
+relsq tmp ABSSQ 1
+
+rem Start jnz tmp STRCMP_8_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_8_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_16_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_16_END
+label JNZ_16_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_8_REVERT_ADDR
+label JNZ_16_END
+rem End jnz
+
+rem End jne
+
+var strcmp_8_len 0
+
+rem Start mov strcmp_8_len curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg strcmp_8_len tmp
+relsq strcmp_8_len strcmp_8_len 1
+relsq strcmp_8_len tmp 1
+rem End mov
+
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr ABSSQ 8
+subaddr ABSSQ CONST_8
+addr strcmp_8_aStr 0
+addr strcmp_8_bStr 0
+rem setaddr strcmp_8_aStr curLine tmp
+zeroaddr strcmp_8_aStr
+
+rem Start addaddr strcmp_8_aStr curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr strcmp_8_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_8_bStr ABSSQ tmp
+zeroaddr strcmp_8_bStr
+
+rem Start addaddr strcmp_8_bStr ABSSQ tmp
+relsq tmp tmp 1
+relsq tmp ABSSQ 1
+subaddr strcmp_8_bStr tmp
+rem End addaddr
+
+label STRCMP_8_LOOP
+rem decleq strcmp_8_len 0 STEP2_HANDLE_SQ
+lblsq strcmp_8_len CONST_0 STEP2_HANDLE_SQ
+rem dec strcmp_8_len 1
+relsq strcmp_8_len CONST_1 1
+
+rem Start jne strcmp_8_aStr strcmp_8_bStr STRCMP_8_END tmp tmp2
+
+rem Start mov tmp strcmp_8_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_8_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_8_bStr
+relsq tmp strcmp_8_bStr 1
+
+rem Start jnz tmp STRCMP_8_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_8_END
+lblsq tmp CONST_-1 JNZ_17_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_17_END
+label JNZ_17_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_8_END
+label JNZ_17_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_8_aStr 8
+subaddr strcmp_8_aStr CONST_-8
+rem incaddr strcmp_8_bStr 8
+subaddr strcmp_8_bStr CONST_-8
+rem lbljmp STRCMP_8_LOOP
+lblsq ZERO ZERO STRCMP_8_LOOP
+label STRCMP_8_REVERT_ADDR
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr ABSSQ 8
+subaddr ABSSQ CONST_8
+label STRCMP_8_END
+rem End strcmp
+
+
+rem Start strcmp curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
+rem incaddr curLine 8
+subaddr curLine CONST_-8
+rem incaddr RELSQ 8
+subaddr RELSQ CONST_-8
+
+rem Start jne curLine RELSQ STRCMP_9_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curLine tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLine 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp RELSQ
+relsq tmp RELSQ 1
+
+rem Start jnz tmp STRCMP_9_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_9_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_18_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_18_END
+label JNZ_18_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_9_REVERT_ADDR
+label JNZ_18_END
+rem End jnz
+
+rem End jne
+
+var strcmp_9_len 0
+
+rem Start mov strcmp_9_len curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg strcmp_9_len tmp
+relsq strcmp_9_len strcmp_9_len 1
+relsq strcmp_9_len tmp 1
+rem End mov
+
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr RELSQ 8
+subaddr RELSQ CONST_8
+addr strcmp_9_aStr 0
+addr strcmp_9_bStr 0
+rem setaddr strcmp_9_aStr curLine tmp
+zeroaddr strcmp_9_aStr
+
+rem Start addaddr strcmp_9_aStr curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr strcmp_9_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_9_bStr RELSQ tmp
+zeroaddr strcmp_9_bStr
+
+rem Start addaddr strcmp_9_bStr RELSQ tmp
+relsq tmp tmp 1
+relsq tmp RELSQ 1
+subaddr strcmp_9_bStr tmp
+rem End addaddr
+
+label STRCMP_9_LOOP
+rem decleq strcmp_9_len 0 STEP2_HANDLE_SQ
+lblsq strcmp_9_len CONST_0 STEP2_HANDLE_SQ
+rem dec strcmp_9_len 1
+relsq strcmp_9_len CONST_1 1
+
+rem Start jne strcmp_9_aStr strcmp_9_bStr STRCMP_9_END tmp tmp2
+
+rem Start mov tmp strcmp_9_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_9_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_9_bStr
+relsq tmp strcmp_9_bStr 1
+
+rem Start jnz tmp STRCMP_9_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_9_END
+lblsq tmp CONST_-1 JNZ_19_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_19_END
+label JNZ_19_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_9_END
+label JNZ_19_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_9_aStr 8
+subaddr strcmp_9_aStr CONST_-8
+rem incaddr strcmp_9_bStr 8
+subaddr strcmp_9_bStr CONST_-8
+rem lbljmp STRCMP_9_LOOP
+lblsq ZERO ZERO STRCMP_9_LOOP
+label STRCMP_9_REVERT_ADDR
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr RELSQ 8
+subaddr RELSQ CONST_8
+label STRCMP_9_END
+rem End strcmp
+
+
+rem Start strcmp curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
+rem incaddr curLine 8
+subaddr curLine CONST_-8
+rem incaddr LBLSQ 8
+subaddr LBLSQ CONST_-8
+
+rem Start jne curLine LBLSQ STRCMP_10_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curLine tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLine 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp LBLSQ
+relsq tmp LBLSQ 1
+
+rem Start jnz tmp STRCMP_10_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_10_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_20_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_20_END
+label JNZ_20_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_10_REVERT_ADDR
+label JNZ_20_END
+rem End jnz
+
+rem End jne
+
+var strcmp_10_len 0
+
+rem Start mov strcmp_10_len curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg strcmp_10_len tmp
+relsq strcmp_10_len strcmp_10_len 1
+relsq strcmp_10_len tmp 1
+rem End mov
+
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr LBLSQ 8
+subaddr LBLSQ CONST_8
+addr strcmp_10_aStr 0
+addr strcmp_10_bStr 0
+rem setaddr strcmp_10_aStr curLine tmp
+zeroaddr strcmp_10_aStr
+
+rem Start addaddr strcmp_10_aStr curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr strcmp_10_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_10_bStr LBLSQ tmp
+zeroaddr strcmp_10_bStr
+
+rem Start addaddr strcmp_10_bStr LBLSQ tmp
+relsq tmp tmp 1
+relsq tmp LBLSQ 1
+subaddr strcmp_10_bStr tmp
+rem End addaddr
+
+label STRCMP_10_LOOP
+rem decleq strcmp_10_len 0 STEP2_HANDLE_SQ
+lblsq strcmp_10_len CONST_0 STEP2_HANDLE_SQ
+rem dec strcmp_10_len 1
+relsq strcmp_10_len CONST_1 1
+
+rem Start jne strcmp_10_aStr strcmp_10_bStr STRCMP_10_END tmp tmp2
+
+rem Start mov tmp strcmp_10_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_10_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_10_bStr
+relsq tmp strcmp_10_bStr 1
+
+rem Start jnz tmp STRCMP_10_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_10_END
+lblsq tmp CONST_-1 JNZ_21_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_21_END
+label JNZ_21_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_10_END
+label JNZ_21_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_10_aStr 8
+subaddr strcmp_10_aStr CONST_-8
+rem incaddr strcmp_10_bStr 8
+subaddr strcmp_10_bStr CONST_-8
+rem lbljmp STRCMP_10_LOOP
+lblsq ZERO ZERO STRCMP_10_LOOP
+label STRCMP_10_REVERT_ADDR
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr LBLSQ 8
+subaddr LBLSQ CONST_8
+label STRCMP_10_END
+rem End strcmp
+
+
+rem Start strcmp curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+rem incaddr curLine 8
+subaddr curLine CONST_-8
+rem incaddr SUBADDR 8
+subaddr SUBADDR CONST_-8
+
+rem Start jne curLine SUBADDR STRCMP_11_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curLine tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLine 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp SUBADDR
+relsq tmp SUBADDR 1
+
+rem Start jnz tmp STRCMP_11_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_11_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_22_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_22_END
+label JNZ_22_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_11_REVERT_ADDR
+label JNZ_22_END
+rem End jnz
+
+rem End jne
+
+var strcmp_11_len 0
+
+rem Start mov strcmp_11_len curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg strcmp_11_len tmp
+relsq strcmp_11_len strcmp_11_len 1
+relsq strcmp_11_len tmp 1
+rem End mov
+
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr SUBADDR 8
+subaddr SUBADDR CONST_8
+addr strcmp_11_aStr 0
+addr strcmp_11_bStr 0
+rem setaddr strcmp_11_aStr curLine tmp
+zeroaddr strcmp_11_aStr
+
+rem Start addaddr strcmp_11_aStr curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr strcmp_11_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_11_bStr SUBADDR tmp
+zeroaddr strcmp_11_bStr
+
+rem Start addaddr strcmp_11_bStr SUBADDR tmp
+relsq tmp tmp 1
+relsq tmp SUBADDR 1
+subaddr strcmp_11_bStr tmp
+rem End addaddr
+
+label STRCMP_11_LOOP
+rem decleq strcmp_11_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
+lblsq strcmp_11_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
+rem dec strcmp_11_len 1
+relsq strcmp_11_len CONST_1 1
+
+rem Start jne strcmp_11_aStr strcmp_11_bStr STRCMP_11_END tmp tmp2
+
+rem Start mov tmp strcmp_11_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_11_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_11_bStr
+relsq tmp strcmp_11_bStr 1
+
+rem Start jnz tmp STRCMP_11_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_11_END
+lblsq tmp CONST_-1 JNZ_23_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_23_END
+label JNZ_23_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_11_END
+label JNZ_23_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_11_aStr 8
+subaddr strcmp_11_aStr CONST_-8
+rem incaddr strcmp_11_bStr 8
+subaddr strcmp_11_bStr CONST_-8
+rem lbljmp STRCMP_11_LOOP
+lblsq ZERO ZERO STRCMP_11_LOOP
+label STRCMP_11_REVERT_ADDR
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr SUBADDR 8
+subaddr SUBADDR CONST_8
+label STRCMP_11_END
+rem End strcmp
+
+
+rem Start strcmp curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+rem incaddr curLine 8
+subaddr curLine CONST_-8
+rem incaddr RAW_REF 8
+subaddr RAW_REF CONST_-8
+
+rem Start jne curLine RAW_REF STRCMP_12_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curLine tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLine 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp RAW_REF
+relsq tmp RAW_REF 1
+
+rem Start jnz tmp STRCMP_12_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_12_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_24_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_24_END
+label JNZ_24_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_12_REVERT_ADDR
+label JNZ_24_END
+rem End jnz
+
+rem End jne
+
+var strcmp_12_len 0
+
+rem Start mov strcmp_12_len curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg strcmp_12_len tmp
+relsq strcmp_12_len strcmp_12_len 1
+relsq strcmp_12_len tmp 1
+rem End mov
+
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr RAW_REF 8
+subaddr RAW_REF CONST_8
+addr strcmp_12_aStr 0
+addr strcmp_12_bStr 0
+rem setaddr strcmp_12_aStr curLine tmp
+zeroaddr strcmp_12_aStr
+
+rem Start addaddr strcmp_12_aStr curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr strcmp_12_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_12_bStr RAW_REF tmp
+zeroaddr strcmp_12_bStr
+
+rem Start addaddr strcmp_12_bStr RAW_REF tmp
+relsq tmp tmp 1
+relsq tmp RAW_REF 1
+subaddr strcmp_12_bStr tmp
+rem End addaddr
+
+label STRCMP_12_LOOP
+rem decleq strcmp_12_len 0 STEP2_HANDLE_RAW_REF
+lblsq strcmp_12_len CONST_0 STEP2_HANDLE_RAW_REF
+rem dec strcmp_12_len 1
+relsq strcmp_12_len CONST_1 1
+
+rem Start jne strcmp_12_aStr strcmp_12_bStr STRCMP_12_END tmp tmp2
+
+rem Start mov tmp strcmp_12_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_12_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_12_bStr
+relsq tmp strcmp_12_bStr 1
+
+rem Start jnz tmp STRCMP_12_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_12_END
+lblsq tmp CONST_-1 JNZ_25_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_25_END
+label JNZ_25_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_12_END
+label JNZ_25_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_12_aStr 8
+subaddr strcmp_12_aStr CONST_-8
+rem incaddr strcmp_12_bStr 8
+subaddr strcmp_12_bStr CONST_-8
+rem lbljmp STRCMP_12_LOOP
+lblsq ZERO ZERO STRCMP_12_LOOP
+label STRCMP_12_REVERT_ADDR
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr RAW_REF 8
+subaddr RAW_REF CONST_8
+label STRCMP_12_END
+rem End strcmp
+
+lblsq ZERO ZERO STEP2_END
+
+
+label STEP2_HANDLE_SQ
+addr it 0
+
+rem setaddr it symbolsBegin tmp
+zeroaddr it
+
+rem Start addaddr it symbolsBegin tmp
+relsq tmp tmp 1
+relsq tmp symbolsBegin 1
+subaddr it tmp
+rem End addaddr
+
+
+rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
+
+rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
+rem incaddr it 8
+subaddr it CONST_-8
+rem incaddr curTokens 8
+subaddr curTokens CONST_-8
+
+rem Start jne it curTokens STRCMP_13_REVERT_ADDR tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 it 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp curTokens 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_13_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_26_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_26_END
+label JNZ_26_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_13_REVERT_ADDR
+label JNZ_26_END
+rem End jne
+
+var strcmp_13_len 0
+
+rem Start mov strcmp_13_len it tmp
+relsq tmp tmp 1
+relsq tmp it 1
+relsq strcmp_13_len strcmp_13_len 1
+relsq strcmp_13_len tmp 1
+rem End mov
+
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+addr strcmp_13_aStr 0
+addr strcmp_13_bStr 0
+rem setaddr strcmp_13_aStr it tmp
+zeroaddr strcmp_13_aStr
+relsq tmp tmp 1
+relsq tmp it 1
+subaddr strcmp_13_aStr tmp
+rem setaddr strcmp_13_bStr curTokens tmp
+zeroaddr strcmp_13_bStr
+relsq tmp tmp 1
+relsq tmp curTokens 1
+subaddr strcmp_13_bStr tmp
+label STRCMP_13_LOOP
+rem decleq strcmp_13_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+lblsq strcmp_13_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+rem dec strcmp_13_len 1
+relsq strcmp_13_len CONST_1 1
+
+rem Start jne strcmp_13_aStr strcmp_13_bStr STRCMP_13_END tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_13_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp strcmp_13_bStr 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_13_END
+lblsq tmp CONST_-1 JNZ_27_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_27_END
+label JNZ_27_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_13_END
+label JNZ_27_END
+rem End jne
+
+rem incaddr strcmp_13_aStr 8
+subaddr strcmp_13_aStr CONST_-8
+rem incaddr strcmp_13_bStr 8
+subaddr strcmp_13_bStr CONST_-8
+rem lbljmp STRCMP_13_LOOP
+lblsq ZERO ZERO STRCMP_13_LOOP
+label STRCMP_13_REVERT_ADDR
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+label STRCMP_13_END
+rem End strcmp
+
+rem incaddr it 30
+subaddr it CONST_-30
+rem lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
+lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+rem End find_item_in_buf_with_str_key
+
+subaddr it CONST_-20
+relsq it CONST_-1 1
+
+subaddr curTokens CONST_-18
+rem setaddr it symbolsBegin tmp
+zeroaddr it
+
+rem Start addaddr it symbolsBegin tmp
+relsq tmp tmp 1
+relsq tmp symbolsBegin 1
+subaddr it tmp
+rem End addaddr
+
+
+rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
+
+rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END tmp tmp2
+rem incaddr it 8
+subaddr it CONST_-8
+rem incaddr curTokens 8
+subaddr curTokens CONST_-8
+
+rem Start jne it curTokens STRCMP_14_REVERT_ADDR tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 it 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp curTokens 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_14_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_28_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_28_END
+label JNZ_28_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_14_REVERT_ADDR
+label JNZ_28_END
+rem End jne
+
+var strcmp_14_len 0
+
+rem Start mov strcmp_14_len it tmp
+relsq tmp tmp 1
+relsq tmp it 1
+relsq strcmp_14_len strcmp_14_len 1
+relsq strcmp_14_len tmp 1
+rem End mov
+
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+addr strcmp_14_aStr 0
+addr strcmp_14_bStr 0
+rem setaddr strcmp_14_aStr it tmp
+zeroaddr strcmp_14_aStr
+relsq tmp tmp 1
+relsq tmp it 1
+subaddr strcmp_14_aStr tmp
+rem setaddr strcmp_14_bStr curTokens tmp
+zeroaddr strcmp_14_bStr
+relsq tmp tmp 1
+relsq tmp curTokens 1
+subaddr strcmp_14_bStr tmp
+label STRCMP_14_LOOP
+rem decleq strcmp_14_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
+lblsq strcmp_14_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
+rem dec strcmp_14_len 1
+relsq strcmp_14_len CONST_1 1
+
+rem Start jne strcmp_14_aStr strcmp_14_bStr STRCMP_14_END tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_14_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp strcmp_14_bStr 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_14_END
+lblsq tmp CONST_-1 JNZ_29_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_29_END
+label JNZ_29_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_14_END
+label JNZ_29_END
+rem End jne
+
+rem incaddr strcmp_14_aStr 8
+subaddr strcmp_14_aStr CONST_-8
+rem incaddr strcmp_14_bStr 8
+subaddr strcmp_14_bStr CONST_-8
+rem lbljmp STRCMP_14_LOOP
+lblsq ZERO ZERO STRCMP_14_LOOP
+label STRCMP_14_REVERT_ADDR
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+label STRCMP_14_END
+rem End strcmp
+
+rem incaddr it 30
+subaddr it CONST_-30
+rem lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
+lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
+rem End find_item_in_buf_with_str_key
+
+subaddr it CONST_-20
+relsq it CONST_-1 1
+
+
+rem Start strcmp curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+rem incaddr curLine 8
+subaddr curLine CONST_-8
+rem incaddr LBLSQ 8
+subaddr LBLSQ CONST_-8
+
+rem Start jne curLine LBLSQ STRCMP_15_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp curLine tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLine 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp LBLSQ
+relsq tmp LBLSQ 1
+
+rem Start jnz tmp STRCMP_15_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_15_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_30_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_30_END
+label JNZ_30_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_15_REVERT_ADDR
+label JNZ_30_END
+rem End jnz
+
+rem End jne
+
+var strcmp_15_len 0
+
+rem Start mov strcmp_15_len curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg strcmp_15_len tmp
+relsq strcmp_15_len strcmp_15_len 1
+relsq strcmp_15_len tmp 1
+rem End mov
+
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr LBLSQ 8
+subaddr LBLSQ CONST_8
+addr strcmp_15_aStr 0
+addr strcmp_15_bStr 0
+rem setaddr strcmp_15_aStr curLine tmp
+zeroaddr strcmp_15_aStr
+
+rem Start addaddr strcmp_15_aStr curLine tmp
+relsq tmp tmp 1
+relsq tmp curLine 1
+subaddr strcmp_15_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_15_bStr LBLSQ tmp
+zeroaddr strcmp_15_bStr
+
+rem Start addaddr strcmp_15_bStr LBLSQ tmp
+relsq tmp tmp 1
+relsq tmp LBLSQ 1
+subaddr strcmp_15_bStr tmp
+rem End addaddr
+
+label STRCMP_15_LOOP
+rem decleq strcmp_15_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
+lblsq strcmp_15_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
+rem dec strcmp_15_len 1
+relsq strcmp_15_len CONST_1 1
+
+rem Start jne strcmp_15_aStr strcmp_15_bStr STRCMP_15_END tmp tmp2
+
+rem Start mov tmp strcmp_15_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_15_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_15_bStr
+relsq tmp strcmp_15_bStr 1
+
+rem Start jnz tmp STRCMP_15_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_15_END
+lblsq tmp CONST_-1 JNZ_31_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_31_END
+label JNZ_31_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_15_END
+label JNZ_31_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_15_aStr 8
+subaddr strcmp_15_aStr CONST_-8
+rem incaddr strcmp_15_bStr 8
+subaddr strcmp_15_bStr CONST_-8
+rem lbljmp STRCMP_15_LOOP
+lblsq ZERO ZERO STRCMP_15_LOOP
+label STRCMP_15_REVERT_ADDR
+rem decaddr curLine 8
+subaddr curLine CONST_8
+rem decaddr LBLSQ 8
+subaddr LBLSQ CONST_8
+label STRCMP_15_END
+rem End strcmp
+
+lblsq ZERO ZERO STEP2_END
+
+
+label STEP2_HANDLE_LBLSQ_SUBADDR
+subaddr curTokens CONST_-18
+rem setaddr it symbolsBegin tmp
+zeroaddr it
+
+rem Start addaddr it symbolsBegin tmp
+relsq tmp tmp 1
+relsq tmp symbolsBegin 1
+subaddr it tmp
+rem End addaddr
+
+
+rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
+
+rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END tmp tmp2
+rem incaddr it 8
+subaddr it CONST_-8
+rem incaddr curTokens 8
+subaddr curTokens CONST_-8
+
+rem Start jne it curTokens STRCMP_16_REVERT_ADDR tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 it 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp curTokens 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_16_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_32_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_32_END
+label JNZ_32_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_16_REVERT_ADDR
+label JNZ_32_END
+rem End jne
+
+var strcmp_16_len 0
+
+rem Start mov strcmp_16_len it tmp
+relsq tmp tmp 1
+relsq tmp it 1
+relsq strcmp_16_len strcmp_16_len 1
+relsq strcmp_16_len tmp 1
+rem End mov
+
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+addr strcmp_16_aStr 0
+addr strcmp_16_bStr 0
+rem setaddr strcmp_16_aStr it tmp
+zeroaddr strcmp_16_aStr
+relsq tmp tmp 1
+relsq tmp it 1
+subaddr strcmp_16_aStr tmp
+rem setaddr strcmp_16_bStr curTokens tmp
+zeroaddr strcmp_16_bStr
+relsq tmp tmp 1
+relsq tmp curTokens 1
+subaddr strcmp_16_bStr tmp
+label STRCMP_16_LOOP
+rem decleq strcmp_16_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
+lblsq strcmp_16_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
+rem dec strcmp_16_len 1
+relsq strcmp_16_len CONST_1 1
+
+rem Start jne strcmp_16_aStr strcmp_16_bStr STRCMP_16_END tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_16_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp strcmp_16_bStr 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_16_END
+lblsq tmp CONST_-1 JNZ_33_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_33_END
+label JNZ_33_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_16_END
+label JNZ_33_END
+rem End jne
+
+rem incaddr strcmp_16_aStr 8
+subaddr strcmp_16_aStr CONST_-8
+rem incaddr strcmp_16_bStr 8
+subaddr strcmp_16_bStr CONST_-8
+rem lbljmp STRCMP_16_LOOP
+lblsq ZERO ZERO STRCMP_16_LOOP
+label STRCMP_16_REVERT_ADDR
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+label STRCMP_16_END
+rem End strcmp
+
+rem incaddr it 30
+subaddr it CONST_-30
+rem lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
+lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
+rem End find_item_in_buf_with_str_key
+
+subaddr it CONST_-20
+relsq it CONST_-1 1
+lblsq ZERO ZERO STEP2_END
+
+
+label STEP2_HANDLE_RAW_REF
+subaddr curLine CONST_-20
+var tokensCount 0
+
+rem Start mov tokensCount curLine tmp
+rem movneg tmp curLine
+relsq tmp tmp 1
+relsq tmp curLine 1
+rem movneg tokensCount tmp
+relsq tokensCount tokensCount 1
+relsq tokensCount tmp 1
+rem End mov
+
+subaddr curLine CONST_20
+
+label STEP2_RAW_REF_LOOP
+lblsq tokensCount CONST_0 STEP2_END
+relsq tokensCount CONST_1 1
+
+rem setaddr it symbolsBegin tmp
+zeroaddr it
+
+rem Start addaddr it symbolsBegin tmp
+relsq tmp tmp 1
+relsq tmp symbolsBegin 1
+subaddr it tmp
+rem End addaddr
+
+
+rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
+
+rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END tmp tmp2
+rem incaddr it 8
+subaddr it CONST_-8
+rem incaddr curTokens 8
+subaddr curTokens CONST_-8
+
+rem Start jne it curTokens STRCMP_17_REVERT_ADDR tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 it 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp curTokens 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_17_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_34_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_34_END
+label JNZ_34_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_17_REVERT_ADDR
+label JNZ_34_END
+rem End jne
+
+var strcmp_17_len 0
+
+rem Start mov strcmp_17_len it tmp
+relsq tmp tmp 1
+relsq tmp it 1
+relsq strcmp_17_len strcmp_17_len 1
+relsq strcmp_17_len tmp 1
+rem End mov
+
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+addr strcmp_17_aStr 0
+addr strcmp_17_bStr 0
+rem setaddr strcmp_17_aStr it tmp
+zeroaddr strcmp_17_aStr
+relsq tmp tmp 1
+relsq tmp it 1
+subaddr strcmp_17_aStr tmp
+rem setaddr strcmp_17_bStr curTokens tmp
+zeroaddr strcmp_17_bStr
+relsq tmp tmp 1
+relsq tmp curTokens 1
+subaddr strcmp_17_bStr tmp
+label STRCMP_17_LOOP
+rem decleq strcmp_17_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
+lblsq strcmp_17_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
+rem dec strcmp_17_len 1
+relsq strcmp_17_len CONST_1 1
+
+rem Start jne strcmp_17_aStr strcmp_17_bStr STRCMP_17_END tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_17_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp strcmp_17_bStr 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_17_END
+lblsq tmp CONST_-1 JNZ_35_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_35_END
+label JNZ_35_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_17_END
+label JNZ_35_END
+rem End jne
+
+rem incaddr strcmp_17_aStr 8
+subaddr strcmp_17_aStr CONST_-8
+rem incaddr strcmp_17_bStr 8
+subaddr strcmp_17_bStr CONST_-8
+rem lbljmp STRCMP_17_LOOP
+lblsq ZERO ZERO STRCMP_17_LOOP
+label STRCMP_17_REVERT_ADDR
+rem decaddr it 8
+subaddr it CONST_8
+rem decaddr curTokens 8
+subaddr curTokens CONST_8
+label STRCMP_17_END
+rem End strcmp
+
+rem incaddr it 30
+subaddr it CONST_-30
+rem lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
+lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
+rem End find_item_in_buf_with_str_key
+
+subaddr it CONST_-20
+relsq it CONST_-1 1
+subaddr curTokens CONST_-18
+lblsq ZERO ZERO STEP2_RAW_REF_LOOP
+
+
+label STEP2_END
+subaddr curLine CONST_-58
+lblsq ZERO ZERO STEP2_LOOP
+
+
+rem 3. Create subaddr/zeroaddr stubs
+label STEP3_START
+
+rem setaddr symbolsCur symbolsBegin tmp
+zeroaddr symbolsCur
+
+rem Start addaddr symbolsCur symbolsBegin tmp
+relsq tmp tmp 1
+relsq tmp symbolsBegin 1
+subaddr symbolsCur tmp
+rem End addaddr
+
+var symbolsLeft 0
+
+rem Start mov symbolsLeft symbolsLen tmp
+rem movneg tmp symbolsLen
+relsq tmp tmp 1
+relsq tmp symbolsLen 1
+rem movneg symbolsLeft tmp
+relsq symbolsLeft symbolsLeft 1
+relsq symbolsLeft tmp 1
+rem End mov
+
+
+label LOOP
+lblsq symbolsLeft CONST_0 HALT
+relsq symbolsLeft CONST_1 1
+
 
 rem Start puts SYMBOL_PART_1 tmp
 addr puts_1_str 0
-
-rem Start setaddr puts_1_str SYMBOL_PART_1 tmp
+rem setaddr puts_1_str SYMBOL_PART_1 tmp
 zeroaddr puts_1_str
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_1 1
 subaddr puts_1_str tmp
-rem End setaddr
-
 var puts_1_len 0 
 rem incaddr SYMBOL_PART_1 8
 subaddr SYMBOL_PART_1 CONST_-8
@@ -2464,14 +3671,11 @@ rem End puts
 
 rem Start puts symbolsCur tmp
 addr puts_2_str 0
-
-rem Start setaddr puts_2_str symbolsCur tmp
+rem setaddr puts_2_str symbolsCur tmp
 zeroaddr puts_2_str
 relsq tmp tmp 1
 relsq tmp symbolsCur 1
 subaddr puts_2_str tmp
-rem End setaddr
-
 var puts_2_len 0 
 rem incaddr symbolsCur 8
 subaddr symbolsCur CONST_-8
@@ -2528,14 +3732,11 @@ subaddr symbolsCur CONST_-18
 
 rem Start puts SYMBOL_PART_2 tmp
 addr puts_3_str 0
-
-rem Start setaddr puts_3_str SYMBOL_PART_2 tmp
+rem setaddr puts_3_str SYMBOL_PART_2 tmp
 zeroaddr puts_3_str
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_2 1
 subaddr puts_3_str tmp
-rem End setaddr
-
 var puts_3_len 0 
 rem incaddr SYMBOL_PART_2 8
 subaddr SYMBOL_PART_2 CONST_-8
@@ -2805,14 +4006,11 @@ subaddr symbolsCur CONST_-8
 
 rem Start puts SYMBOL_PART_3 tmp
 addr puts_4_str 0
-
-rem Start setaddr puts_4_str SYMBOL_PART_3 tmp
+rem setaddr puts_4_str SYMBOL_PART_3 tmp
 zeroaddr puts_4_str
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_3 1
 subaddr puts_4_str tmp
-rem End setaddr
-
 var puts_4_len 0 
 rem incaddr SYMBOL_PART_3 8
 subaddr SYMBOL_PART_3 CONST_-8
@@ -3082,14 +4280,11 @@ subaddr symbolsCur CONST_-8
 
 rem Start puts SYMBOL_PART_4 tmp
 addr puts_5_str 0
-
-rem Start setaddr puts_5_str SYMBOL_PART_4 tmp
+rem setaddr puts_5_str SYMBOL_PART_4 tmp
 zeroaddr puts_5_str
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_4 1
 subaddr puts_5_str tmp
-rem End setaddr
-
 var puts_5_len 0 
 rem incaddr SYMBOL_PART_4 8
 subaddr SYMBOL_PART_4 CONST_-8
@@ -3356,11 +4551,9 @@ rem End putchar
 
 
 subaddr symbolsCur CONST_-8
-lblsq ZERO ZERO STEP1_LOOP
+lblsq ZERO ZERO LOOP
 
-
-rem 2. Count symbol references (Pass 1)
-label STEP2_START
+label HALT
 
 rem Start halt tmp tmp2
 
@@ -3434,6 +4627,42 @@ raw 0000000000000061 0000000000000064 0000000000000064 0000000000000072
 label ADDR
 raw_ref ADDR_buf
 raw 0000000000000004 0000000000000020
+
+
+rem Start def_string ABSSQ abssq
+label ABSSQ_buf
+raw 0000000000000061 0000000000000062 0000000000000073 0000000000000073 0000000000000071
+label ABSSQ
+raw_ref ABSSQ_buf
+raw 0000000000000005 0000000000000028
+
+rem Start def_string RELSQ relsq
+label RELSQ_buf
+raw 0000000000000072 0000000000000065 000000000000006c 0000000000000073 0000000000000071
+label RELSQ
+raw_ref RELSQ_buf
+raw 0000000000000005 0000000000000028
+
+rem Start def_string LBLSQ lblsq
+label LBLSQ_buf
+raw 000000000000006c 0000000000000062 000000000000006c 0000000000000073 0000000000000071
+label LBLSQ
+raw_ref LBLSQ_buf
+raw 0000000000000005 0000000000000028
+
+rem Start def_string SUBADDR subaddr
+label SUBADDR_buf
+raw 0000000000000073 0000000000000075 0000000000000062 0000000000000061 0000000000000064 0000000000000064 0000000000000072
+label SUBADDR
+raw_ref SUBADDR_buf
+raw 0000000000000007 0000000000000038
+
+rem Start def_string RAW_REF raw_ref
+label RAW_REF_buf
+raw 0000000000000072 0000000000000061 0000000000000077 000000000000005f 0000000000000072 0000000000000065 0000000000000066
+label RAW_REF
+raw_ref RAW_REF_buf
+raw 0000000000000007 0000000000000038
 
 rem def_string LINE_PART_1 inst: 
 rem def_string LINE_PART_2 tokens: 

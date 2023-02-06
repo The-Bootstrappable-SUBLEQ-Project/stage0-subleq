@@ -25,6 +25,7 @@ import struct
 import string
 import itertools
 import argparse
+# import ctypes
 
 pp = pprint.PrettyPrinter()
 
@@ -72,7 +73,12 @@ print(f"# hex{hex_version}")
 
 # 0. Parse file into lines
 lines = []
-inp = open(args.lsq_path).read().split("\n")
+inp = open(args.lsq_path).read()
+
+if args.lsq_path == "test.lsq":
+    inp = inp[1:]
+
+inp = inp.split("\n")
 for line in inp:
     if len(line.strip()) == 0:
         lines.append(Line("newline"))
@@ -113,6 +119,26 @@ for line in lines:
     elif line.inst == "raw_ref":
         for token in line.tokens:
             symbols[token].refCount += 1
+
+
+# This was used to ensure that the Step 2 implementation of lsq_to_hex.msq is correct
+"""
+if args.lsq_path == "test.lsq":
+    # Converts and pads a number to be used in raw instructions
+    def numToRawInst(num):
+        # "__ctype_be__ Python" have 349 results on Google, smh
+        return bytearray(ctypes.c_long.__ctype_be__(num)).hex()
+
+    for sym in symbols.items():
+        print("name:", sym[0])
+        addr = sym[1].addr
+        print("addr:", numToRawInst(addr) if addr is not None else numToRawInst(-1))
+        print("refCount:", numToRawInst(sym[1].refCount))
+        val = sym[1].val
+        print("val:", numToRawInst(val) if val is not None else numToRawInst(0))
+
+    sys.exit()
+"""
 
 # 3. Create subaddr/zeroaddr stubs
 i = 0
