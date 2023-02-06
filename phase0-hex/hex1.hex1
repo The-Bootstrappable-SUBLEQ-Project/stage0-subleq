@@ -367,18 +367,18 @@
 
 # Handle label (:)
 ; addr curLabel 0
-
-# Start setaddr curLabel labelOffset tmp
+# setaddr curLabel labelOffset tmp
 &aQ &aQ ?+8 ; relsq curLabel_addrRef_0 curLabel_addrRef_0 1
 &aR &aR ?+8 ; relsq curLabel_addrRef_1 curLabel_addrRef_1 1
 &aS &aS ?+8 ; relsq curLabel_addrRef_2 curLabel_addrRef_2 1
-# movneg tmp labelOffset
+
+# Start addaddr curLabel labelOffset tmp
 &af &af ?+8 ; relsq tmp tmp 1
 &af &aM ?+8 ; relsq tmp labelOffset 1
 &aQ &af ?+8 ; relsq curLabel_addrRef_0 tmp 1
 &aR &af ?+8 ; relsq curLabel_addrRef_1 tmp 1
 &aS &af ?+8 ; relsq curLabel_addrRef_2 tmp 1
-# End setaddr
+# End addaddr
 
 
 # Start mov curLabel codeLen tmp
@@ -507,18 +507,18 @@
 &bc &bl ?+8 ; relsq nextRef_addrRef_8 CONST_8 1
 
 ; addr refAt 0
-
-# Start setaddr refAt nextRef tmp
+# setaddr refAt nextRef tmp
 &bm &bm ?+8 ; relsq refAt_addrRef_0 refAt_addrRef_0 1
 &bn &bn ?+8 ; relsq refAt_addrRef_1 refAt_addrRef_1 1
 &bo &bo ?+8 ; relsq refAt_addrRef_2 refAt_addrRef_2 1
-# movneg tmp nextRef
+
+# Start addaddr refAt nextRef tmp
 &af &af ?+8 ; relsq tmp tmp 1
 &af :bb 0000000000400000 ?+8 ; relsq tmp nextRef 1
 &bm &af ?+8 ; relsq refAt_addrRef_0 tmp 1
 &bn &af ?+8 ; relsq refAt_addrRef_1 tmp 1
 &bo &af ?+8 ; relsq refAt_addrRef_2 tmp 1
-# End setaddr
+# End addaddr
 
 &aT &bl ?+8 ; relsq nextRef_addrRef_0 CONST_8 1
 &aU &bl ?+8 ; relsq nextRef_addrRef_1 CONST_8 1
@@ -531,14 +531,14 @@
 &bc &bl ?+8 ; relsq nextRef_addrRef_8 CONST_8 1
 
 ; addr refVal 0
-
-# Start setaddr refVal nextRef tmp
+# setaddr refVal nextRef tmp
 &bp &bp ?+8 ; relsq refVal_addrRef_0 refVal_addrRef_0 1
-# movneg tmp nextRef
+
+# Start addaddr refVal nextRef tmp
 &af &af ?+8 ; relsq tmp tmp 1
 &af :bc 0000000000400000 ?+8 ; relsq tmp nextRef 1
 &bp &af ?+8 ; relsq refVal_addrRef_0 tmp 1
-# End setaddr
+# End addaddr
 
 
 

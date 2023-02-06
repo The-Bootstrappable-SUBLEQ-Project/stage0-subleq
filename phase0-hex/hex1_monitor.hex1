@@ -366,18 +366,18 @@
 
 # Handle label (:)
 ; addr curLabel 0
-
-# Start setaddr curLabel labelOffset tmp
+# setaddr curLabel labelOffset tmp
 &aR &aR ?+8 ; relsq curLabel_addrRef_0 curLabel_addrRef_0 1
 &aS &aS ?+8 ; relsq curLabel_addrRef_1 curLabel_addrRef_1 1
 &aT &aT ?+8 ; relsq curLabel_addrRef_2 curLabel_addrRef_2 1
-# movneg tmp labelOffset
+
+# Start addaddr curLabel labelOffset tmp
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &aN ?+8 ; relsq tmp labelOffset 1
 &aR &ag ?+8 ; relsq curLabel_addrRef_0 tmp 1
 &aS &ag ?+8 ; relsq curLabel_addrRef_1 tmp 1
 &aT &ag ?+8 ; relsq curLabel_addrRef_2 tmp 1
-# End setaddr
+# End addaddr
 
 
 # Start mov curLabel codeLen tmp
@@ -505,18 +505,18 @@
 &bd &bq ?+8 ; relsq nextRef_addrRef_8 CONST_8 1
 
 ; addr refAt 0
-
-# Start setaddr refAt nextRef tmp
+# setaddr refAt nextRef tmp
 &br &br ?+8 ; relsq refAt_addrRef_0 refAt_addrRef_0 1
 &bs &bs ?+8 ; relsq refAt_addrRef_1 refAt_addrRef_1 1
 &bt &bt ?+8 ; relsq refAt_addrRef_2 refAt_addrRef_2 1
-# movneg tmp nextRef
+
+# Start addaddr refAt nextRef tmp
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag :bc 0000000000400000 ?+8 ; relsq tmp nextRef 1
 &br &ag ?+8 ; relsq refAt_addrRef_0 tmp 1
 &bs &ag ?+8 ; relsq refAt_addrRef_1 tmp 1
 &bt &ag ?+8 ; relsq refAt_addrRef_2 tmp 1
-# End setaddr
+# End addaddr
 
 &aU &bq ?+8 ; relsq nextRef_addrRef_0 CONST_8 1
 &aV &bq ?+8 ; relsq nextRef_addrRef_1 CONST_8 1
@@ -529,14 +529,14 @@
 &bd &bq ?+8 ; relsq nextRef_addrRef_8 CONST_8 1
 
 ; addr refVal 0
-
-# Start setaddr refVal nextRef tmp
+# setaddr refVal nextRef tmp
 &bu &bu ?+8 ; relsq refVal_addrRef_0 refVal_addrRef_0 1
-# movneg tmp nextRef
+
+# Start addaddr refVal nextRef tmp
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag :bd 0000000000400000 ?+8 ; relsq tmp nextRef 1
 &bu &ag ?+8 ; relsq refVal_addrRef_0 tmp 1
-# End setaddr
+# End addaddr
 
 
 # The buffer is kept negative

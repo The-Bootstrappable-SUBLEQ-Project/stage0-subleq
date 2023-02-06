@@ -366,18 +366,18 @@
 
 # Handle label (:)
 ; addr curLabel 0
-
-# Start setaddr curLabel labelOffset tmp
+# setaddr curLabel labelOffset tmp
 0000000000000f60 0000000000000f60 0000000000000e88 ; relsq curLabel_addrRef_0 curLabel_addrRef_0 1
 0000000000000f68 0000000000000f68 0000000000000ea0 ; relsq curLabel_addrRef_1 curLabel_addrRef_1 1
 0000000000000f78 0000000000000f78 0000000000000eb8 ; relsq curLabel_addrRef_2 curLabel_addrRef_2 1
-# movneg tmp labelOffset
+
+# Start addaddr curLabel labelOffset tmp
 00000000000019b8 00000000000019b8 0000000000000ed0 ; relsq tmp tmp 1
 00000000000019b8 00000000000019f8 0000000000000ee8 ; relsq tmp labelOffset 1
 0000000000000f60 00000000000019b8 0000000000000f00 ; relsq curLabel_addrRef_0 tmp 1
 0000000000000f68 00000000000019b8 0000000000000f18 ; relsq curLabel_addrRef_1 tmp 1
 0000000000000f78 00000000000019b8 0000000000000f30 ; relsq curLabel_addrRef_2 tmp 1
-# End setaddr
+# End addaddr
 
 
 # Start mov curLabel codeLen tmp
@@ -505,18 +505,18 @@
 00000000000017a8 0000000000001ab0 00000000000015d8 ; relsq nextRef_addrRef_8 CONST_8 1
 
 ; addr refAt 0
-
-# Start setaddr refAt nextRef tmp
+# setaddr refAt nextRef tmp
 00000000000017d0 00000000000017d0 00000000000015f0 ; relsq refAt_addrRef_0 refAt_addrRef_0 1
 00000000000017d8 00000000000017d8 0000000000001608 ; relsq refAt_addrRef_1 refAt_addrRef_1 1
 00000000000017e8 00000000000017e8 0000000000001620 ; relsq refAt_addrRef_2 refAt_addrRef_2 1
-# movneg tmp nextRef
+
+# Start addaddr refAt nextRef tmp
 00000000000019b8 00000000000019b8 0000000000001638 ; relsq tmp tmp 1
 00000000000019b8 0000000000400000 0000000000001650 ; relsq tmp nextRef 1
 00000000000017d0 00000000000019b8 0000000000001668 ; relsq refAt_addrRef_0 tmp 1
 00000000000017d8 00000000000019b8 0000000000001680 ; relsq refAt_addrRef_1 tmp 1
 00000000000017e8 00000000000019b8 0000000000001698 ; relsq refAt_addrRef_2 tmp 1
-# End setaddr
+# End addaddr
 
 0000000000000fd8 0000000000001ab0 00000000000016b0 ; relsq nextRef_addrRef_0 CONST_8 1
 0000000000000fe0 0000000000001ab0 00000000000016c8 ; relsq nextRef_addrRef_1 CONST_8 1
@@ -529,14 +529,14 @@
 00000000000017a8 0000000000001ab0 0000000000001770 ; relsq nextRef_addrRef_8 CONST_8 1
 
 ; addr refVal 0
-
-# Start setaddr refVal nextRef tmp
+# setaddr refVal nextRef tmp
 00000000000017f0 00000000000017f0 0000000000001788 ; relsq refVal_addrRef_0 refVal_addrRef_0 1
-# movneg tmp nextRef
+
+# Start addaddr refVal nextRef tmp
 00000000000019b8 00000000000019b8 00000000000017a0 ; relsq tmp tmp 1
 00000000000019b8 0000000000400000 00000000000017b8 ; relsq tmp nextRef 1
 00000000000017f0 00000000000019b8 00000000000017d0 ; relsq refVal_addrRef_0 tmp 1
-# End setaddr
+# End addaddr
 
 
 # The buffer is kept negative

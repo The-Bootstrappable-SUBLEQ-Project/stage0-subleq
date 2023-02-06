@@ -313,14 +313,11 @@ rem End alloc_str
 
 rem Start inp_token logArrNext tmp tmp2
 addr inp_token_0_str 0
-
-rem Start setaddr inp_token_0_str logArrNext tmp
+rem setaddr inp_token_0_str logArrNext tmp
 zeroaddr inp_token_0_str
 relsq tmp tmp 1
 relsq tmp logArrNext 1
 subaddr inp_token_0_str tmp
-rem End setaddr
-
 var inp_token_0_len 0
 rem zero inp_token_0_len
 relsq inp_token_0_len inp_token_0_len 1
@@ -522,14 +519,14 @@ relsq curRef tmp 1
 rem End add
 
 addr refAt 0
-
-rem Start setaddr refAt curRef tmp
+rem setaddr refAt curRef tmp
 zeroaddr refAt
-rem movneg tmp curRef
+
+rem Start addaddr refAt curRef tmp
 relsq tmp tmp 1
 relsq tmp curRef 1
 subaddr refAt tmp
-rem End setaddr
+rem End addaddr
 
 subaddr curRef CONST_18
 
@@ -539,14 +536,14 @@ rem set tmp a
 rem putchar tmp tmp2
 
 addr curLabel 0
-
-rem Start setaddr curLabel logArrStart tmp
+rem setaddr curLabel logArrStart tmp
 zeroaddr curLabel
-rem movneg tmp logArrStart
+
+rem Start addaddr curLabel logArrStart tmp
 relsq tmp tmp 1
 relsq tmp logArrStart 1
 subaddr curLabel tmp
-rem End setaddr
+rem End addaddr
 
 
 label RESOLVE_REF_FIND_LABEL
@@ -616,23 +613,23 @@ rem decaddr curLabel 8
 subaddr curLabel CONST_8
 addr strcmp_0_aStr 0
 addr strcmp_0_bStr 0
-
-rem Start setaddr strcmp_0_aStr curRef tmp
+rem setaddr strcmp_0_aStr curRef tmp
 zeroaddr strcmp_0_aStr
-rem movneg tmp curRef
+
+rem Start addaddr strcmp_0_aStr curRef tmp
 relsq tmp tmp 1
 relsq tmp curRef 1
 subaddr strcmp_0_aStr tmp
-rem End setaddr
+rem End addaddr
 
-
-rem Start setaddr strcmp_0_bStr curLabel tmp
+rem setaddr strcmp_0_bStr curLabel tmp
 zeroaddr strcmp_0_bStr
-rem movneg tmp curLabel
+
+rem Start addaddr strcmp_0_bStr curLabel tmp
 relsq tmp tmp 1
 relsq tmp curLabel 1
 subaddr strcmp_0_bStr tmp
-rem End setaddr
+rem End addaddr
 
 label STRCMP_0_LOOP
 rem decleq strcmp_0_len 0 RESOLVE_REF_FOUND_LABEL

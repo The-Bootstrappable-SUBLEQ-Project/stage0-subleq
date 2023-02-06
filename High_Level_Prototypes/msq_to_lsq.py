@@ -367,14 +367,21 @@ def neg(args, v=1):
     logEnd()
 
 
-# Sets the address of sym to the value of val
-def setaddr(args, v=2):
+# Increases the address of sym by the value of val
+def addaddr(args, v=2):
     sym, val, tmp = args
     logStart()
-    print(f"zeroaddr {sym}")
     movneg([tmp, val], v - 1)
     print(f"subaddr {sym} {tmp}")
     logEnd()
+
+
+# Sets the address of sym to the value of val
+def setaddr(args, v=2):
+    sym, val, tmp = args
+    logSimple()
+    print(f"zeroaddr {sym}")
+    addaddr([sym, val, tmp], v - 1)
 
 
 # Does a += b
@@ -1051,6 +1058,26 @@ def from_hex(args, v=3):
     print(f"label {negateLabel}")
     decleq([isNeg, 0, endLabel], v - 1)
     neg([a, tmp, tmp2], v - 1)
+
+    print(f"label {endLabel}")
+    logEnd()
+
+
+# Goes through a buffer of items until it finds an item that matches with the wanted key
+# When it exits, "it"'s address will point to the item in the buffer
+# The first component of the items must be a string that contains the key
+# "it" is the shorthand for iterator, like the one in C++
+def find_item_in_buf_with_str_key(args, v=3):
+    it, key, elmSize, tmp, tmp2 = args
+    elmSize = ensureInt(elmSize)
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    endLabel = nameSym("END", True)
+
+    print(f"label {loopLabel}")
+    strcmp([it, key, endLabel, tmp, tmp2], v - 1)
+    incaddr([it, elmSize], v - 1)
+    lbljmp([loopLabel], v - 1)
 
     print(f"label {endLabel}")
     logEnd()

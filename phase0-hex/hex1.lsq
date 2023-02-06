@@ -366,14 +366,14 @@ lblsq c2 CONST_26 RECORD_REF
 
 rem Handle label (:)
 addr curLabel 0
-
-rem Start setaddr curLabel labelOffset tmp
+rem setaddr curLabel labelOffset tmp
 zeroaddr curLabel
-rem movneg tmp labelOffset
+
+rem Start addaddr curLabel labelOffset tmp
 relsq tmp tmp 1
 relsq tmp labelOffset 1
 subaddr curLabel tmp
-rem End setaddr
+rem End addaddr
 
 
 rem Start mov curLabel codeLen tmp
@@ -476,26 +476,26 @@ relsq refs CONST_1 1
 subaddr nextRef CONST_8
 
 addr refAt 0
-
-rem Start setaddr refAt nextRef tmp
+rem setaddr refAt nextRef tmp
 zeroaddr refAt
-rem movneg tmp nextRef
+
+rem Start addaddr refAt nextRef tmp
 relsq tmp tmp 1
 relsq tmp nextRef 1
 subaddr refAt tmp
-rem End setaddr
+rem End addaddr
 
 subaddr nextRef CONST_8
 
 addr refVal 0
-
-rem Start setaddr refVal nextRef tmp
+rem setaddr refVal nextRef tmp
 zeroaddr refVal
-rem movneg tmp nextRef
+
+rem Start addaddr refVal nextRef tmp
 relsq tmp tmp 1
 relsq tmp nextRef 1
 subaddr refVal tmp
-rem End setaddr
+rem End addaddr
 
 
 
