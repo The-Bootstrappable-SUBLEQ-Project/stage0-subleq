@@ -975,6 +975,87 @@ def print_qword(args, v=3):
     logEnd()
 
 
+# Converts a hex string to integer value and stores the value in a
+# Handles negative sign (-)
+# Half of the codes here are pretty much copied from hex1_monitor.
+def from_hex(args, v=3):
+    a, string, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    negSignLabel = nameSym("NEG_SIGN", True)
+    writeLabel = nameSym("WRITE", True)
+    negateLabel = nameSym("NEGATE", True)
+    endLabel = nameSym("END", True)
+
+    zero([a], v - 1)
+
+    strBuf = nameSym("strBuf")
+    print(f"addr {strBuf} 0")
+    setaddr([strBuf, string, tmp], v - 1)
+
+    strLen = nameSym("strLen")
+    print(f"var {strLen} 0")
+    incaddr([string, 8], v - 1)
+    mov([strLen, string, tmp], v - 1)
+    decaddr([string, 8], v - 1)
+
+    # Handle sign (-)
+    isNeg = nameSym("isNeg")
+    print(f"var {isNeg} 0")
+    zero([isNeg], v - 1)
+
+    mov([tmp, strBuf, tmp2], v - 1)
+    # Handle NUL ~ ,
+    decleq([tmp, 0x2c, loopLabel], v - 1)
+    # Handle -
+    decleq([tmp, 0x1, negSignLabel], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {negSignLabel}")
+    inc([isNeg, 1], v - 1)
+    dec([strLen, 1], v - 1)
+    incaddr([strBuf, 8], v - 1)
+
+    print(f"label {loopLabel}")
+    decleq([strLen, 0, negateLabel], v - 1)
+    dec([strLen, 1], v - 1)
+    mov([tmp, strBuf, tmp2], v - 1)
+    incaddr([strBuf, 8], v - 1)
+
+    val = nameSym("val")
+    print(f"var {val} 0")
+    zero([val], v - 1)
+
+    # Handle 0 ~ 9
+    dec([tmp, 0x2f], v - 1)
+    movneg([val, tmp], v - 1)
+    inc([val, 1], v - 1)
+    decleq([tmp, 0xa, writeLabel], v - 1)
+
+    # Handle A ~ F
+    dec([tmp, 0x7], v - 1)
+    movneg([val, tmp], v - 1)
+    dec([val, 0x9], v - 1)
+    decleq([tmp, 0x6, writeLabel], v - 1)
+
+    # Handle a ~ f
+    dec([tmp, 0x1a], v - 1)
+    movneg([val, tmp], v - 1)
+    dec([val, 0x9], v - 1)
+
+    print(f"label {writeLabel}")
+    mul_16([a, tmp], v - 1)
+    sub([a, val], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {negateLabel}")
+    decleq([isNeg, 0, endLabel], v - 1)
+    neg([a, tmp, tmp2], v - 1)
+
+    print(f"label {endLabel}")
+    logEnd()
+
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:

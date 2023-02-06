@@ -42,21 +42,25 @@ putchar hex_version tmp
 dec hex_version 30
 putchar LF tmp
 
-rem A Line is made of four components, adding to a total of 0x50 bytes:
+rem 0. Parse file into lines
+rem A Line is made of four components, adding to a total of 0x58 bytes:
 rem 0x0 String containing the instruction
 rem 0x18 List containing the tokens
 rem 0x38 String containing the comment
 rem 0x50 The offset of the line in the assembled program
 var linesPass1Begin 100000
 addr linesPass1Cur 100000
+var linesPass1Len 0
 
 label STEP0_INPUT_INST
 alloc_str linesPass1Cur 100 tmp
 inp_token_allow_empty linesPass1Cur tmp tmp2
+inc linesPass1Len 1
 
 strcmp linesPass1Cur EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
 strcmp linesPass1Cur REM STEP0_HANDLE_REM tmp tmp2
 strcmp linesPass1Cur END STEP1_START tmp tmp2
+
 
 rem Handle other instructions
 incaddr linesPass1Cur 18
@@ -76,7 +80,7 @@ incaddr linesPass1Cur 18
 zero linesPass1Cur
 
 incaddr linesPass1Cur 8
-lbljmp STEP0_DEBUG_PRINT_LINE
+lbljmp STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_NEWLINE
@@ -92,7 +96,7 @@ incaddr linesPass1Cur 18
 zero linesPass1Cur
 
 incaddr linesPass1Cur 8
-lbljmp STEP0_DEBUG_PRINT_LINE
+lbljmp STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_REM
@@ -107,60 +111,100 @@ incaddr linesPass1Cur 18
 zero linesPass1Cur
 
 incaddr linesPass1Cur 8
-lbljmp STEP0_DEBUG_PRINT_LINE
-
-
-label STEP0_DEBUG_PRINT_LINE
-rem lbljmp STEP0_INPUT_INST
-decaddr linesPass1Cur 58
-
-puts LINE_PART_1 tmp
-puts linesPass1Cur tmp
-putchar LINE_FEED tmp
-
-
-incaddr linesPass1Cur 18
-puts LINE_PART_2 tmp
-
-addr tokensBuf 0
-setaddr tokensBuf linesPass1Cur tmp
-incaddr linesPass1Cur 8
-var tokenCount 0
-mov tokenCount linesPass1Cur tmp
-
-label TOKEN_PRINT_LOOP
-decleq tokenCount 0 TOKEN_PRINT_END
-dec tokenCount 1
-puts tokensBuf tmp
-
-set tmp 2c
-putchar tmp tmp2
-putchar SPACE tmp
-incaddr tokensBuf 18
-lbljmp TOKEN_PRINT_LOOP
-
-label TOKEN_PRINT_END
-putchar LINE_FEED tmp
-
-
-incaddr linesPass1Cur 18
-puts LINE_PART_3 tmp
-puts linesPass1Cur tmp
-putchar LINE_FEED tmp
-
-incaddr linesPass1Cur 18
-puts LINE_PART_4 tmp
-print_qword linesPass1Cur tmp tmp2 tmp3
-putchar LINE_FEED tmp
-
-incaddr linesPass1Cur 8
-putchar LINE_FEED tmp
 lbljmp STEP0_INPUT_INST
 
 
+rem 1. Find symbols
 label STEP1_START
-puts TODO tmp
+rem A Symbol is made of four components, adding to a total of 0x30 bytes:
+rem 0x0 String containing the name of the symbol
+rem 0x18 The address of the symbol
+rem 0x20 The reference count of the symbol
+rem 0x28 The default value of the symbol
+var symbolsBegin 200000
+addr symbolsCur 200000
+var symbolsLen 0
+
+addr curLine 0
+setaddr curLine linesPass1Begin tmp
+var linesLeft 0
+mov linesLeft linesPass1Len tmp
+
+label STEP1_LOOP
+decleq linesLeft 0 STEP2_START
+dec linesLeft 1
+
+strcmp curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
+strcmp curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
+strcmp curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
+incaddr curLine 58
+lbljmp STEP1_LOOP
+
+label STEP1_CREATE_SYMBOL
+rem Set the symbol name
+incaddr curLine 18
+addr curTokens 0
+setaddr curTokens curLine tmp
+decaddr curLine 18
+
+alloc_str symbolsCur 800 tmp
+strcpy symbolsCur curTokens tmp
+incaddr curTokens 18
+
+rem Set the symbol address
+incaddr symbolsCur 18
+set symbolsCur -1
+strcmp curLine ADDR STEP1_SET_ADDRESS tmp tmp2
+lbljmp STEP1_HANDLE_REFCOUNT
+
+label STEP1_SET_ADDRESS
+from_hex symbolsCur curTokens tmp tmp2
+
+label STEP1_HANDLE_REFCOUNT
+incaddr symbolsCur 8
+zero symbolsCur
+
+label STEP1_HANDLE_VALUE
+incaddr symbolsCur 8
+zero symbolsCur
+strcmp curLine VAR STEP1_SET_VALUE tmp tmp2
+lbljmp STEP1_END
+
+label STEP1_SET_VALUE
+from_hex symbolsCur curTokens tmp tmp2
+
+label STEP1_END
+incaddr curLine 58
+incaddr symbolsCur 8
+inc symbolsLen 1
+rem lbljmp STEP1_LOOP
+
+decaddr symbolsCur 30
+puts SYMBOL_PART_1 tmp
+puts symbolsCur tmp
 putchar LINE_FEED tmp
+
+incaddr symbolsCur 18
+puts SYMBOL_PART_2 tmp
+print_qword symbolsCur tmp tmp2 tmp3
+putchar LINE_FEED tmp
+
+incaddr symbolsCur 8
+puts SYMBOL_PART_3 tmp
+print_qword symbolsCur tmp tmp2 tmp3
+putchar LINE_FEED tmp
+
+incaddr symbolsCur 8
+puts SYMBOL_PART_4 tmp
+print_qword symbolsCur tmp tmp2 tmp3
+putchar LINE_FEED tmp
+
+incaddr symbolsCur 8
+lbljmp STEP1_LOOP
+
+
+rem 2. Count symbol references (Pass 1)
+label STEP2_START
 halt tmp tmp2
 
 
@@ -171,9 +215,16 @@ def_string NEWLINE newline
 def_string REM rem
 def_string END end
 
-def_string LINE_PART_1 inst: 
-def_string LINE_PART_2 tokens: 
-def_string LINE_PART_3 comment: 
-def_string LINE_PART_4 offset: 
+def_string VAR var
+def_string LABEL label
+def_string ADDR addr
 
-def_string TODO TODO: Step 1
+rem def_string LINE_PART_1 inst: 
+rem def_string LINE_PART_2 tokens: 
+rem def_string LINE_PART_3 comment: 
+rem def_string LINE_PART_4 offset: 
+
+def_string SYMBOL_PART_1 name: 
+def_string SYMBOL_PART_2 addr: 
+def_string SYMBOL_PART_3 refCount: 
+def_string SYMBOL_PART_4 val: 
