@@ -29,7 +29,7 @@ all: $(ALL_DEPS)
 %.lsq: %.msq High_Level_Prototypes/msq_to_lsq.py
 	./High_Level_Prototypes/msq_to_lsq.py $< > $*.lsq
 
-noontide-emu: ../noontide-emu/src/main.rs
+noontide-emu: ../noontide-emu/Cargo.toml
 	cd ../noontide-emu && cargo build --release
 
 test: noontide-emu all
