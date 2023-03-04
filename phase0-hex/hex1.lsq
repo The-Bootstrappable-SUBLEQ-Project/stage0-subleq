@@ -681,25 +681,43 @@ lblsq mod_256_0_nextSubber CONST_0 MOD_256_0_SUBTRACT_A
 rem lbljmp MOD_256_0_MULT_SUBBER_START
 lblsq ZERO ZERO MOD_256_0_MULT_SUBBER_START
 label MOD_256_0_SUBTRACT_A
-
-rem Start jl c mod_256_0_subber MOD_256_0_START tmp tmp2
-
-rem Start mov tmp c tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 c 1
-relsq tmp tmp 1
-relsq tmp tmp2 1
-rem End mov
-
-rem inc tmp 1
-relsq tmp CONST_-1 1
-lblsq tmp mod_256_0_subber MOD_256_0_START
-rem End jl
-
-rem sub c mod_256_0_subber
-relsq c mod_256_0_subber 1
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
 rem lbljmp MOD_256_0_SUBTRACT_A
 lblsq ZERO ZERO MOD_256_0_SUBTRACT_A
+label MOD_256_0_REVERT_SUB
+
+rem Start jz c MOD_256_0_START tmp
+rem movneg tmp c
+relsq tmp tmp 1
+relsq tmp c 1
+rem incleq tmp 1 JZ_0_END
+lblsq tmp CONST_-1 JZ_0_END
+rem incleq c 1 JZ_0_REVERT_A
+lblsq c CONST_-1 JZ_0_REVERT_A
+rem dec c 1
+relsq c CONST_1 1
+rem lbljmp MOD_256_0_START
+lblsq ZERO ZERO MOD_256_0_START
+label JZ_0_REVERT_A
+rem dec c 1
+relsq c CONST_1 1
+label JZ_0_END
+rem End jz
+
+
+rem Start add c mod_256_0_subber tmp
+rem movneg tmp mod_256_0_subber
+relsq tmp tmp 1
+relsq tmp mod_256_0_subber 1
+rem sub c tmp
+relsq c tmp 1
+rem End add
+
+rem lbljmp MOD_256_0_START
+lblsq ZERO ZERO MOD_256_0_START
 label MOD_256_0_CHECK_NEG
 rem decleq mod_256_0_isNeg 0 MOD_256_0_END
 lblsq mod_256_0_isNeg CONST_0 MOD_256_0_END

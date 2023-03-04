@@ -822,6 +822,7 @@ def mod_256(args, v=3):
     checkNegLabel = nameSym("CHECK_NEG", True)
     multSubberStartLabel = nameSym("MULT_SUBBER_START", True)
     subtractALabel = nameSym("SUBTRACT_A", True)
+    revertSubLabel = nameSym("REVERT_SUB", True)
 
     # Negate if a < 0
     isNeg = nameSym("isNeg")
@@ -855,11 +856,17 @@ def mod_256(args, v=3):
     decleq([nextSubber, 0, subtractALabel], v - 1)
     lbljmp([multSubberStartLabel], v - 1)
 
-    # Subtract a by subber until the next subtraction makes a < 0
+    # Subtract a by subber until a < 0
     print(f"label {subtractALabel}")
-    jl([a, subber, startLabel, tmp, tmp2], v - 1)
-    sub([a, subber], v - 1)
+    # Do some unrolling
+    for _i in range(4):
+        print(f"lblsq {a} {subber} {revertSubLabel}")
     lbljmp([subtractALabel], v - 1)
+
+    print(f"label {revertSubLabel}")
+    jz([a, startLabel, tmp], v - 1)
+    add([a, subber, tmp], v - 1)
+    lbljmp([startLabel], v - 1)
 
     print(f"label {checkNegLabel}")
     decleq([isNeg, 0, endLabel], v - 1)

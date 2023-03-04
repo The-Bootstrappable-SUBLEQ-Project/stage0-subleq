@@ -724,30 +724,48 @@
 # lbljmp MOD_256_0_MULT_SUBBER_START
 &aa &aa &bA ; lblsq ZERO ZERO MOD_256_0_MULT_SUBBER_START
 ; label MOD_256_0_SUBTRACT_A
-
-# Start jl c mod_256_0_subber MOD_256_0_START tmp tmp2
-
-# Start mov tmp c tmp2
-:bB &aJ &aJ ?+8 ; relsq tmp2 tmp2 1
-&aJ &ai ?+8 ; relsq tmp2 c 1
-&af &af ?+8 ; relsq tmp tmp 1
-&af &aJ ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# inc tmp 1
-&af &ah ?+8 ; relsq tmp CONST_-1 1
-&af &bv &bu ; lblsq tmp mod_256_0_subber MOD_256_0_START
-# End jl
-
-# sub c mod_256_0_subber
-&ai &bv ?+8 ; relsq c mod_256_0_subber 1
+:bB &ai &bv &bC ; lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+&ai &bv &bC ; lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+&ai &bv &bC ; lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+&ai &bv &bC ; lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
 # lbljmp MOD_256_0_SUBTRACT_A
 &aa &aa &bB ; lblsq ZERO ZERO MOD_256_0_SUBTRACT_A
+; label MOD_256_0_REVERT_SUB
+
+# Start jz c MOD_256_0_START tmp
+# movneg tmp c
+:bC &af &af ?+8 ; relsq tmp tmp 1
+&af &ai ?+8 ; relsq tmp c 1
+# incleq tmp 1 JZ_0_END
+&af &ah &bD ; lblsq tmp CONST_-1 JZ_0_END
+# incleq c 1 JZ_0_REVERT_A
+&ai &ah &bE ; lblsq c CONST_-1 JZ_0_REVERT_A
+# dec c 1
+&ai &al ?+8 ; relsq c CONST_1 1
+# lbljmp MOD_256_0_START
+&aa &aa &bu ; lblsq ZERO ZERO MOD_256_0_START
+; label JZ_0_REVERT_A
+# dec c 1
+:bE &ai &al ?+8 ; relsq c CONST_1 1
+; label JZ_0_END
+# End jz
+
+
+# Start add c mod_256_0_subber tmp
+# movneg tmp mod_256_0_subber
+:bD &af &af ?+8 ; relsq tmp tmp 1
+&af &bv ?+8 ; relsq tmp mod_256_0_subber 1
+# sub c tmp
+&ai &af ?+8 ; relsq c tmp 1
+# End add
+
+# lbljmp MOD_256_0_START
+&aa &aa &bu ; lblsq ZERO ZERO MOD_256_0_START
 ; label MOD_256_0_CHECK_NEG
 # decleq mod_256_0_isNeg 0 MOD_256_0_END
-:bx &bs &aH &bC ; lblsq mod_256_0_isNeg CONST_0 MOD_256_0_END
+:bx &bs &aH &bF ; lblsq mod_256_0_isNeg CONST_0 MOD_256_0_END
 # decleq c 0 MOD_256_0_END
-&ai &aH &bC ; lblsq c CONST_0 MOD_256_0_END
+&ai &aH &bF ; lblsq c CONST_0 MOD_256_0_END
 
 # Start mov tmp c tmp2
 # movneg tmp2 c
@@ -768,7 +786,7 @@
 ; label MOD_256_0_END
 
 # Start putchar c tmp
-:bC 0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
+:bF 0000000013ed27f0 &aa ?+20 ; relsq SERIAL_OUT ZERO 2
 # reljmp -1
 &aa &aa ?-28 ; relsq ZERO ZERO -1
 # movneg tmp c
@@ -781,13 +799,13 @@
 0000000013ed27f0 &af ?+8 ; relsq SERIAL_OUT tmp 1
 # End putchar
 
-&bf &al &bD ; lblsq i CONST_1 PRINT_CHAR_END
+&bf &al &bG ; lblsq i CONST_1 PRINT_CHAR_END
 &aa &aa &br ; lblsq ZERO ZERO PRINT_CHAR_START
 
 ; label PRINT_CHAR_END
 # Go to the next qword
-:bD &bq &aW ?+8 ; relsq charToPrint_addrRef_0 CONST_-8 1
-&aK &bl &bE ; lblsq codeLen CONST_8 HALT
+:bG &bq &aW ?+8 ; relsq charToPrint_addrRef_0 CONST_-8 1
+&aK &bl &bH ; lblsq codeLen CONST_8 HALT
 &aa &aa &bk ; lblsq ZERO ZERO PRINT
 
 ; label HALT
@@ -795,7 +813,7 @@
 # Start halt tmp tmp2
 
 # Start set_safe CPU_CONTROL_START 2 tmp tmp2
-:bE &aJ &aJ ?+8 ; relsq tmp2 tmp2 1
+:bH &aJ &aJ ?+8 ; relsq tmp2 tmp2 1
 &aJ 0000000013ee0000 ?+8 ; relsq tmp2 CPU_CONTROL_START 1
 &af &af ?+8 ; relsq tmp tmp 1
 &af &aJ ?+8 ; relsq tmp tmp2 1
