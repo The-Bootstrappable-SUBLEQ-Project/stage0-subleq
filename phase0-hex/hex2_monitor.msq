@@ -250,18 +250,20 @@ rem puts curRef tmp
 rem set tmp a
 rem putchar tmp tmp2
 
-addr curLabel 0
-setaddr curLabel logArrStart tmp
+addr curFindLabel 0
+setaddr curFindLabel logArrStart tmp
+incaddr curFindLabel 20
 
 label RESOLVE_REF_FIND_LABEL
-incaddr curLabel 20
-decleq curLabel 0 RESOLVE_REF_CHECK_LABEL
+decleq curFindLabel 0 RESOLVE_REF_CHECK_LABEL
 
 rem This is not a label. Try the next one
-incaddr curLabel 8
+incaddr curFindLabel 28
 lbljmp RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_CHECK_LABEL
+addr curLabel 0
+copyaddr curLabel curFindLabel tmp
 decaddr curLabel 20
 
 rem puts resMsg2 tmp
@@ -271,8 +273,8 @@ rem putchar tmp tmp2
 
 strcmp curRef curLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
 
-rem This is a wrong label. Try the next one
-incaddr curLabel 28
+rem This is the wrong label. Try the next one
+incaddr curFindLabel 28
 lbljmp RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_FOUND_LABEL

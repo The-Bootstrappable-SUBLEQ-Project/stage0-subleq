@@ -535,26 +535,34 @@ rem puts curRef tmp
 rem set tmp a
 rem putchar tmp tmp2
 
-addr curLabel 0
-rem setaddr curLabel logArrStart tmp
-zeroaddr curLabel
+addr curFindLabel 0
+rem setaddr curFindLabel logArrStart tmp
+zeroaddr curFindLabel
 
-rem Start addaddr curLabel logArrStart tmp
+rem Start addaddr curFindLabel logArrStart tmp
 relsq tmp tmp 1
 relsq tmp logArrStart 1
-subaddr curLabel tmp
+subaddr curFindLabel tmp
 rem End addaddr
 
+subaddr curFindLabel CONST_-20
 
 label RESOLVE_REF_FIND_LABEL
-subaddr curLabel CONST_-20
-lblsq curLabel CONST_0 RESOLVE_REF_CHECK_LABEL
+lblsq curFindLabel CONST_0 RESOLVE_REF_CHECK_LABEL
 
 rem This is not a label. Try the next one
-subaddr curLabel CONST_-8
+subaddr curFindLabel CONST_-28
 lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_CHECK_LABEL
+addr curLabel 0
+rem copyaddr curLabel curFindLabel tmp
+sym curFindLabel_addrRef_0
+rem setaddr curLabel curFindLabel_addrRef_0 tmp
+zeroaddr curLabel
+relsq tmp tmp 1
+relsq tmp curFindLabel_addrRef_0 1
+subaddr curLabel tmp
 subaddr curLabel CONST_20
 
 rem puts resMsg2 tmp
@@ -679,8 +687,8 @@ label STRCMP_0_END
 rem End strcmp
 
 
-rem This is a wrong label. Try the next one
-subaddr curLabel CONST_-28
+rem This is the wrong label. Try the next one
+subaddr curFindLabel CONST_-28
 lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_FOUND_LABEL
