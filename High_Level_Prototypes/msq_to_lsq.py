@@ -21,7 +21,7 @@ from inspect import currentframe
 import ctypes
 
 # Let lsq_to_hex worry about these instructions instead
-lsq_insts = ["var", "label", "addr",
+lsq_insts = ["sym", "var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
              "raw", "raw_ref", "rem"]
@@ -384,6 +384,15 @@ def setaddr(args, v=2):
     logSimple()
     print(f"zeroaddr {sym}")
     addaddr([sym, val, tmp], v - 1)
+
+
+# Sets the address of toSym to the address of fromSym
+def copyaddr(args, v=2):
+    toSym, fromSym, tmp = args
+    logSimple()
+    addrRef = f"{fromSym}_addrRef_0"
+    print(f"sym {addrRef}")
+    setaddr([toSym, addrRef, tmp], v - 1)
 
 
 # Does a += b

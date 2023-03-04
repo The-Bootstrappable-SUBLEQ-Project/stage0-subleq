@@ -30,7 +30,7 @@ import argparse
 pp = pprint.PrettyPrinter()
 
 # Well...now I have to worry about these
-lsq_insts = ["var", "label", "addr",
+lsq_insts = ["sym", "var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
              "raw", "raw_ref", "rem"]
@@ -102,7 +102,7 @@ for line in inp:
 # 1. Find symbols
 symbols = {}
 for line in lines:
-    if line.inst in ["var", "label", "addr"]:
+    if line.inst in ["sym", "var", "label", "addr"]:
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
         if line.inst == "var":
             symbols[line.tokens[0]].val = int(line.tokens[1], 16)
@@ -201,7 +201,7 @@ for name, sym in symbols.items():
 
 # 6. Output
 """
-lsq_insts = ["var", "label", "addr",
+lsq_insts = ["sym", "var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
              "raw", "raw_ref", "rem"]
@@ -241,7 +241,7 @@ def resolveSymbol(name):
 
 for line in lines:
     out = []
-    if line.inst in ["var", "label", "addr", "rem", "newline"]:
+    if line.inst in ["sym", "var", "label", "addr", "rem", "newline"]:
         pass
     elif line.inst in ["abssq", "relsq", "lblsq"]:
         addToken(resolveSymbol(line.tokens[0]))
