@@ -31,9 +31,9 @@ addr string 10000
 alloc_str string 1000 tmp
 inp_token string tmp tmp2
 
-strcmp string NYAN TEST_FAIL tmp tmp2
-strcmp string UNG TEST_FAIL tmp tmp2
-strcmp string GNU TEST_SUCCESS tmp tmp2
+strcmp_const string NYAN TEST_FAIL tmp tmp2
+strcmp_const string UNG TEST_FAIL tmp tmp2
+strcmp_const string GNU TEST_SUCCESS tmp tmp2
 
 label TEST_FAIL
 set a 46

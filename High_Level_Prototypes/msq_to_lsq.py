@@ -764,16 +764,31 @@ def def_string(args, v=1):
     print(f"raw {numToRawInst(len(string))} {numToRawInst(len(string) * 8)}")
 
 
-# Checks if string a and b are:
+# Checks if string orgA and orgB are:
 # 1. Of the same length
 # 2. Of the same content
 # If both checks pass, it jumps to dst.
 def strcmp(args, v=3):
-    a, b, dst, tmp, tmp2 = args
+    orgA, orgB, dst, tmp, tmp2 = args
+    logStart()
+    b = nameSym("b")
+    print(f"addr {b} 0")
+    copyaddr([b, orgB, tmp], v - 1)
+    strcmp_const([orgA, b, dst, tmp, tmp2], v - 1)
+    logEnd()
+
+
+# Same as strcmp, except that it doesn't run copyaddr on b
+def strcmp_const(args, v=3):
+    orgA, b, dst, tmp, tmp2 = args
     logStart()
     loopLabel = nameSym("LOOP", True)
     revertLabel = nameSym("REVERT_ADDR", True)
     endLabel = nameSym("END", True)
+
+    a = nameSym("a")
+    print(f"addr {a} 0")
+    copyaddr([a, orgA, tmp], v - 1)
 
     incaddr([a, 8], v - 1)
     incaddr([b, 8], v - 1)

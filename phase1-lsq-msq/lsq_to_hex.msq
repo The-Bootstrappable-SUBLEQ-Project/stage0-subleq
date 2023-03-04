@@ -57,9 +57,9 @@ alloc_str linesPass1Cur 100 tmp
 inp_token_allow_empty linesPass1Cur tmp tmp2
 inc linesPass1Len 1
 
-strcmp linesPass1Cur EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
-strcmp linesPass1Cur REM STEP0_HANDLE_REM tmp tmp2
-strcmp linesPass1Cur END STEP1_START tmp tmp2
+strcmp_const linesPass1Cur EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
+strcmp_const linesPass1Cur REM STEP0_HANDLE_REM tmp tmp2
+strcmp_const linesPass1Cur END STEP1_START tmp tmp2
 
 
 rem Handle other instructions
@@ -134,9 +134,9 @@ label STEP1_LOOP
 decleq linesLeft 0 STEP2_START
 dec linesLeft 1
 
-strcmp curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
-strcmp curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
-strcmp curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
+strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
+strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
+strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
 incaddr curLine 58
 lbljmp STEP1_LOOP
 
@@ -154,7 +154,7 @@ incaddr curTokens 18
 rem Set the symbol address
 incaddr symbolsCur 18
 set symbolsCur -1
-strcmp curLine ADDR STEP1_SET_ADDRESS tmp tmp2
+strcmp_const curLine ADDR STEP1_SET_ADDRESS tmp tmp2
 lbljmp STEP1_HANDLE_REFCOUNT
 
 label STEP1_SET_ADDRESS
@@ -167,7 +167,7 @@ zero symbolsCur
 label STEP1_HANDLE_VALUE
 incaddr symbolsCur 8
 zero symbolsCur
-strcmp curLine VAR STEP1_SET_VALUE tmp tmp2
+strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
 lbljmp STEP1_END
 
 label STEP1_SET_VALUE
@@ -193,11 +193,11 @@ incaddr curLine 18
 setaddr curTokens curLine tmp
 decaddr curLine 18
 
-strcmp curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
-strcmp curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+strcmp_const curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+strcmp_const curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
 lbljmp STEP2_END
 
 
@@ -215,7 +215,7 @@ find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
 incaddr it 20
 inc it 1
 
-strcmp curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 lbljmp STEP2_END
 
 
