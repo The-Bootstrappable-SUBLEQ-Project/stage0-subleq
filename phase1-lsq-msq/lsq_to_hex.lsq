@@ -1369,7 +1369,7 @@ lblsq linesLeft CONST_0 STEP2_START
 relsq linesLeft CONST_1 1
 
 
-rem Start strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
+rem Start strcmp_const curLine SYM STEP1_CREATE_SYMBOL tmp tmp2
 addr strcmp_const_3_a 0
 rem copyaddr strcmp_const_3_a curLine tmp
 sym curLine_addrRef_0
@@ -1380,10 +1380,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_3_a tmp
 rem incaddr strcmp_const_3_a 8
 subaddr strcmp_const_3_a CONST_-8
-rem incaddr VAR 8
-subaddr VAR CONST_-8
+rem incaddr SYM 8
+subaddr SYM CONST_-8
 
-rem Start jne strcmp_const_3_a VAR STRCMP_CONST_3_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_3_a SYM STRCMP_CONST_3_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_3_a tmp2
 relsq tmp2 tmp2 1
@@ -1392,8 +1392,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp VAR
-relsq tmp VAR 1
+rem sub tmp SYM
+relsq tmp SYM 1
 
 rem Start jnz tmp STRCMP_CONST_3_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -1423,8 +1423,8 @@ rem End mov
 
 rem decaddr strcmp_const_3_a 8
 subaddr strcmp_const_3_a CONST_8
-rem decaddr VAR 8
-subaddr VAR CONST_8
+rem decaddr SYM 8
+subaddr SYM CONST_8
 addr strcmp_const_3_aStr 0
 addr strcmp_const_3_bStr 0
 rem setaddr strcmp_const_3_aStr strcmp_const_3_a tmp
@@ -1436,12 +1436,12 @@ relsq tmp strcmp_const_3_a 1
 subaddr strcmp_const_3_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_3_bStr VAR tmp
+rem setaddr strcmp_const_3_bStr SYM tmp
 zeroaddr strcmp_const_3_bStr
 
-rem Start addaddr strcmp_const_3_bStr VAR tmp
+rem Start addaddr strcmp_const_3_bStr SYM tmp
 relsq tmp tmp 1
-relsq tmp VAR 1
+relsq tmp SYM 1
 subaddr strcmp_const_3_bStr tmp
 rem End addaddr
 
@@ -1487,13 +1487,13 @@ lblsq ZERO ZERO STRCMP_CONST_3_LOOP
 label STRCMP_CONST_3_REVERT_ADDR
 rem decaddr strcmp_const_3_a 8
 subaddr strcmp_const_3_a CONST_8
-rem decaddr VAR 8
-subaddr VAR CONST_8
+rem decaddr SYM 8
+subaddr SYM CONST_8
 label STRCMP_CONST_3_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
+rem Start strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
 addr strcmp_const_4_a 0
 rem copyaddr strcmp_const_4_a curLine tmp
 sym curLine_addrRef_0
@@ -1504,10 +1504,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_4_a tmp
 rem incaddr strcmp_const_4_a 8
 subaddr strcmp_const_4_a CONST_-8
-rem incaddr LABEL 8
-subaddr LABEL CONST_-8
+rem incaddr VAR 8
+subaddr VAR CONST_-8
 
-rem Start jne strcmp_const_4_a LABEL STRCMP_CONST_4_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_4_a VAR STRCMP_CONST_4_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_4_a tmp2
 relsq tmp2 tmp2 1
@@ -1516,8 +1516,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp LABEL
-relsq tmp LABEL 1
+rem sub tmp VAR
+relsq tmp VAR 1
 
 rem Start jnz tmp STRCMP_CONST_4_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -1547,8 +1547,8 @@ rem End mov
 
 rem decaddr strcmp_const_4_a 8
 subaddr strcmp_const_4_a CONST_8
-rem decaddr LABEL 8
-subaddr LABEL CONST_8
+rem decaddr VAR 8
+subaddr VAR CONST_8
 addr strcmp_const_4_aStr 0
 addr strcmp_const_4_bStr 0
 rem setaddr strcmp_const_4_aStr strcmp_const_4_a tmp
@@ -1560,12 +1560,12 @@ relsq tmp strcmp_const_4_a 1
 subaddr strcmp_const_4_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_4_bStr LABEL tmp
+rem setaddr strcmp_const_4_bStr VAR tmp
 zeroaddr strcmp_const_4_bStr
 
-rem Start addaddr strcmp_const_4_bStr LABEL tmp
+rem Start addaddr strcmp_const_4_bStr VAR tmp
 relsq tmp tmp 1
-relsq tmp LABEL 1
+relsq tmp VAR 1
 subaddr strcmp_const_4_bStr tmp
 rem End addaddr
 
@@ -1611,13 +1611,13 @@ lblsq ZERO ZERO STRCMP_CONST_4_LOOP
 label STRCMP_CONST_4_REVERT_ADDR
 rem decaddr strcmp_const_4_a 8
 subaddr strcmp_const_4_a CONST_8
-rem decaddr LABEL 8
-subaddr LABEL CONST_8
+rem decaddr VAR 8
+subaddr VAR CONST_8
 label STRCMP_CONST_4_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
+rem Start strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
 addr strcmp_const_5_a 0
 rem copyaddr strcmp_const_5_a curLine tmp
 sym curLine_addrRef_0
@@ -1628,10 +1628,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_5_a tmp
 rem incaddr strcmp_const_5_a 8
 subaddr strcmp_const_5_a CONST_-8
-rem incaddr ADDR 8
-subaddr ADDR CONST_-8
+rem incaddr LABEL 8
+subaddr LABEL CONST_-8
 
-rem Start jne strcmp_const_5_a ADDR STRCMP_CONST_5_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_5_a LABEL STRCMP_CONST_5_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_5_a tmp2
 relsq tmp2 tmp2 1
@@ -1640,8 +1640,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp ADDR
-relsq tmp ADDR 1
+rem sub tmp LABEL
+relsq tmp LABEL 1
 
 rem Start jnz tmp STRCMP_CONST_5_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -1671,8 +1671,8 @@ rem End mov
 
 rem decaddr strcmp_const_5_a 8
 subaddr strcmp_const_5_a CONST_8
-rem decaddr ADDR 8
-subaddr ADDR CONST_8
+rem decaddr LABEL 8
+subaddr LABEL CONST_8
 addr strcmp_const_5_aStr 0
 addr strcmp_const_5_bStr 0
 rem setaddr strcmp_const_5_aStr strcmp_const_5_a tmp
@@ -1684,12 +1684,12 @@ relsq tmp strcmp_const_5_a 1
 subaddr strcmp_const_5_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_5_bStr ADDR tmp
+rem setaddr strcmp_const_5_bStr LABEL tmp
 zeroaddr strcmp_const_5_bStr
 
-rem Start addaddr strcmp_const_5_bStr ADDR tmp
+rem Start addaddr strcmp_const_5_bStr LABEL tmp
 relsq tmp tmp 1
-relsq tmp ADDR 1
+relsq tmp LABEL 1
 subaddr strcmp_const_5_bStr tmp
 rem End addaddr
 
@@ -1735,9 +1735,133 @@ lblsq ZERO ZERO STRCMP_CONST_5_LOOP
 label STRCMP_CONST_5_REVERT_ADDR
 rem decaddr strcmp_const_5_a 8
 subaddr strcmp_const_5_a CONST_8
+rem decaddr LABEL 8
+subaddr LABEL CONST_8
+label STRCMP_CONST_5_END
+rem End strcmp_const
+
+
+rem Start strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
+addr strcmp_const_6_a 0
+rem copyaddr strcmp_const_6_a curLine tmp
+sym curLine_addrRef_0
+rem setaddr strcmp_const_6_a curLine_addrRef_0 tmp
+zeroaddr strcmp_const_6_a
+relsq tmp tmp 1
+relsq tmp curLine_addrRef_0 1
+subaddr strcmp_const_6_a tmp
+rem incaddr strcmp_const_6_a 8
+subaddr strcmp_const_6_a CONST_-8
+rem incaddr ADDR 8
+subaddr ADDR CONST_-8
+
+rem Start jne strcmp_const_6_a ADDR STRCMP_CONST_6_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp strcmp_const_6_a tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_6_a 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp ADDR
+relsq tmp ADDR 1
+
+rem Start jnz tmp STRCMP_CONST_6_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_CONST_6_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_12_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_12_END
+label JNZ_12_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_CONST_6_REVERT_ADDR
+label JNZ_12_END
+rem End jnz
+
+rem End jne
+
+var strcmp_const_6_len 0
+
+rem Start mov strcmp_const_6_len strcmp_const_6_a tmp
+rem movneg tmp strcmp_const_6_a
+relsq tmp tmp 1
+relsq tmp strcmp_const_6_a 1
+rem movneg strcmp_const_6_len tmp
+relsq strcmp_const_6_len strcmp_const_6_len 1
+relsq strcmp_const_6_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_6_a 8
+subaddr strcmp_const_6_a CONST_8
 rem decaddr ADDR 8
 subaddr ADDR CONST_8
-label STRCMP_CONST_5_END
+addr strcmp_const_6_aStr 0
+addr strcmp_const_6_bStr 0
+rem setaddr strcmp_const_6_aStr strcmp_const_6_a tmp
+zeroaddr strcmp_const_6_aStr
+
+rem Start addaddr strcmp_const_6_aStr strcmp_const_6_a tmp
+relsq tmp tmp 1
+relsq tmp strcmp_const_6_a 1
+subaddr strcmp_const_6_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_const_6_bStr ADDR tmp
+zeroaddr strcmp_const_6_bStr
+
+rem Start addaddr strcmp_const_6_bStr ADDR tmp
+relsq tmp tmp 1
+relsq tmp ADDR 1
+subaddr strcmp_const_6_bStr tmp
+rem End addaddr
+
+label STRCMP_CONST_6_LOOP
+rem decleq strcmp_const_6_len 0 STEP1_CREATE_SYMBOL
+lblsq strcmp_const_6_len CONST_0 STEP1_CREATE_SYMBOL
+rem dec strcmp_const_6_len 1
+relsq strcmp_const_6_len CONST_1 1
+
+rem Start jne strcmp_const_6_aStr strcmp_const_6_bStr STRCMP_CONST_6_END tmp tmp2
+
+rem Start mov tmp strcmp_const_6_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_6_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_const_6_bStr
+relsq tmp strcmp_const_6_bStr 1
+
+rem Start jnz tmp STRCMP_CONST_6_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_CONST_6_END
+lblsq tmp CONST_-1 JNZ_13_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_13_END
+label JNZ_13_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_CONST_6_END
+label JNZ_13_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_const_6_aStr 8
+subaddr strcmp_const_6_aStr CONST_-8
+rem incaddr strcmp_const_6_bStr 8
+subaddr strcmp_const_6_bStr CONST_-8
+rem lbljmp STRCMP_CONST_6_LOOP
+lblsq ZERO ZERO STRCMP_CONST_6_LOOP
+label STRCMP_CONST_6_REVERT_ADDR
+rem decaddr strcmp_const_6_a 8
+subaddr strcmp_const_6_a CONST_8
+rem decaddr ADDR 8
+subaddr ADDR CONST_8
+label STRCMP_CONST_6_END
 rem End strcmp_const
 
 subaddr curLine CONST_-58
@@ -1859,24 +1983,24 @@ relsq symbolsCur symbolsCur 1
 relsq symbolsCur CONST_1 1
 
 rem Start strcmp_const curLine ADDR STEP1_SET_ADDRESS tmp tmp2
-addr strcmp_const_6_a 0
-rem copyaddr strcmp_const_6_a curLine tmp
+addr strcmp_const_7_a 0
+rem copyaddr strcmp_const_7_a curLine tmp
 sym curLine_addrRef_0
-rem setaddr strcmp_const_6_a curLine_addrRef_0 tmp
-zeroaddr strcmp_const_6_a
+rem setaddr strcmp_const_7_a curLine_addrRef_0 tmp
+zeroaddr strcmp_const_7_a
 relsq tmp tmp 1
 relsq tmp curLine_addrRef_0 1
-subaddr strcmp_const_6_a tmp
-rem incaddr strcmp_const_6_a 8
-subaddr strcmp_const_6_a CONST_-8
+subaddr strcmp_const_7_a tmp
+rem incaddr strcmp_const_7_a 8
+subaddr strcmp_const_7_a CONST_-8
 rem incaddr ADDR 8
 subaddr ADDR CONST_-8
 
-rem Start jne strcmp_const_6_a ADDR STRCMP_CONST_6_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_7_a ADDR STRCMP_CONST_7_REVERT_ADDR tmp tmp2
 
-rem Start mov tmp strcmp_const_6_a tmp2
+rem Start mov tmp strcmp_const_7_a tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_6_a 1
+relsq tmp2 strcmp_const_7_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
@@ -1884,101 +2008,101 @@ rem End mov
 rem sub tmp ADDR
 relsq tmp ADDR 1
 
-rem Start jnz tmp STRCMP_CONST_6_REVERT_ADDR tmp2
+rem Start jnz tmp STRCMP_CONST_7_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_6_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_12_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_7_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_14_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_12_END
-label JNZ_12_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_14_END
+label JNZ_14_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_6_REVERT_ADDR
-label JNZ_12_END
+lblsq ZERO ZERO STRCMP_CONST_7_REVERT_ADDR
+label JNZ_14_END
 rem End jnz
 
 rem End jne
 
-var strcmp_const_6_len 0
+var strcmp_const_7_len 0
 
-rem Start mov strcmp_const_6_len strcmp_const_6_a tmp
-rem movneg tmp strcmp_const_6_a
+rem Start mov strcmp_const_7_len strcmp_const_7_a tmp
+rem movneg tmp strcmp_const_7_a
 relsq tmp tmp 1
-relsq tmp strcmp_const_6_a 1
-rem movneg strcmp_const_6_len tmp
-relsq strcmp_const_6_len strcmp_const_6_len 1
-relsq strcmp_const_6_len tmp 1
+relsq tmp strcmp_const_7_a 1
+rem movneg strcmp_const_7_len tmp
+relsq strcmp_const_7_len strcmp_const_7_len 1
+relsq strcmp_const_7_len tmp 1
 rem End mov
 
-rem decaddr strcmp_const_6_a 8
-subaddr strcmp_const_6_a CONST_8
+rem decaddr strcmp_const_7_a 8
+subaddr strcmp_const_7_a CONST_8
 rem decaddr ADDR 8
 subaddr ADDR CONST_8
-addr strcmp_const_6_aStr 0
-addr strcmp_const_6_bStr 0
-rem setaddr strcmp_const_6_aStr strcmp_const_6_a tmp
-zeroaddr strcmp_const_6_aStr
+addr strcmp_const_7_aStr 0
+addr strcmp_const_7_bStr 0
+rem setaddr strcmp_const_7_aStr strcmp_const_7_a tmp
+zeroaddr strcmp_const_7_aStr
 
-rem Start addaddr strcmp_const_6_aStr strcmp_const_6_a tmp
+rem Start addaddr strcmp_const_7_aStr strcmp_const_7_a tmp
 relsq tmp tmp 1
-relsq tmp strcmp_const_6_a 1
-subaddr strcmp_const_6_aStr tmp
+relsq tmp strcmp_const_7_a 1
+subaddr strcmp_const_7_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_6_bStr ADDR tmp
-zeroaddr strcmp_const_6_bStr
+rem setaddr strcmp_const_7_bStr ADDR tmp
+zeroaddr strcmp_const_7_bStr
 
-rem Start addaddr strcmp_const_6_bStr ADDR tmp
+rem Start addaddr strcmp_const_7_bStr ADDR tmp
 relsq tmp tmp 1
 relsq tmp ADDR 1
-subaddr strcmp_const_6_bStr tmp
+subaddr strcmp_const_7_bStr tmp
 rem End addaddr
 
-label STRCMP_CONST_6_LOOP
-rem decleq strcmp_const_6_len 0 STEP1_SET_ADDRESS
-lblsq strcmp_const_6_len CONST_0 STEP1_SET_ADDRESS
-rem dec strcmp_const_6_len 1
-relsq strcmp_const_6_len CONST_1 1
+label STRCMP_CONST_7_LOOP
+rem decleq strcmp_const_7_len 0 STEP1_SET_ADDRESS
+lblsq strcmp_const_7_len CONST_0 STEP1_SET_ADDRESS
+rem dec strcmp_const_7_len 1
+relsq strcmp_const_7_len CONST_1 1
 
-rem Start jne strcmp_const_6_aStr strcmp_const_6_bStr STRCMP_CONST_6_END tmp tmp2
+rem Start jne strcmp_const_7_aStr strcmp_const_7_bStr STRCMP_CONST_7_END tmp tmp2
 
-rem Start mov tmp strcmp_const_6_aStr tmp2
+rem Start mov tmp strcmp_const_7_aStr tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_6_aStr 1
+relsq tmp2 strcmp_const_7_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp strcmp_const_6_bStr
-relsq tmp strcmp_const_6_bStr 1
+rem sub tmp strcmp_const_7_bStr
+relsq tmp strcmp_const_7_bStr 1
 
-rem Start jnz tmp STRCMP_CONST_6_END tmp2
+rem Start jnz tmp STRCMP_CONST_7_END tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_6_END
-lblsq tmp CONST_-1 JNZ_13_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_7_END
+lblsq tmp CONST_-1 JNZ_15_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_13_END
-label JNZ_13_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_15_END
+label JNZ_15_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_6_END
-label JNZ_13_END
+lblsq ZERO ZERO STRCMP_CONST_7_END
+label JNZ_15_END
 rem End jnz
 
 rem End jne
 
-rem incaddr strcmp_const_6_aStr 8
-subaddr strcmp_const_6_aStr CONST_-8
-rem incaddr strcmp_const_6_bStr 8
-subaddr strcmp_const_6_bStr CONST_-8
-rem lbljmp STRCMP_CONST_6_LOOP
-lblsq ZERO ZERO STRCMP_CONST_6_LOOP
-label STRCMP_CONST_6_REVERT_ADDR
-rem decaddr strcmp_const_6_a 8
-subaddr strcmp_const_6_a CONST_8
+rem incaddr strcmp_const_7_aStr 8
+subaddr strcmp_const_7_aStr CONST_-8
+rem incaddr strcmp_const_7_bStr 8
+subaddr strcmp_const_7_bStr CONST_-8
+rem lbljmp STRCMP_CONST_7_LOOP
+lblsq ZERO ZERO STRCMP_CONST_7_LOOP
+label STRCMP_CONST_7_REVERT_ADDR
+rem decaddr strcmp_const_7_a 8
+subaddr strcmp_const_7_a CONST_8
 rem decaddr ADDR 8
 subaddr ADDR CONST_8
-label STRCMP_CONST_6_END
+label STRCMP_CONST_7_END
 rem End strcmp_const
 
 lblsq ZERO ZERO STEP1_HANDLE_REFCOUNT
@@ -2153,24 +2277,24 @@ subaddr symbolsCur CONST_-8
 relsq symbolsCur symbolsCur 1
 
 rem Start strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
-addr strcmp_const_7_a 0
-rem copyaddr strcmp_const_7_a curLine tmp
+addr strcmp_const_8_a 0
+rem copyaddr strcmp_const_8_a curLine tmp
 sym curLine_addrRef_0
-rem setaddr strcmp_const_7_a curLine_addrRef_0 tmp
-zeroaddr strcmp_const_7_a
+rem setaddr strcmp_const_8_a curLine_addrRef_0 tmp
+zeroaddr strcmp_const_8_a
 relsq tmp tmp 1
 relsq tmp curLine_addrRef_0 1
-subaddr strcmp_const_7_a tmp
-rem incaddr strcmp_const_7_a 8
-subaddr strcmp_const_7_a CONST_-8
+subaddr strcmp_const_8_a tmp
+rem incaddr strcmp_const_8_a 8
+subaddr strcmp_const_8_a CONST_-8
 rem incaddr VAR 8
 subaddr VAR CONST_-8
 
-rem Start jne strcmp_const_7_a VAR STRCMP_CONST_7_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_8_a VAR STRCMP_CONST_8_REVERT_ADDR tmp tmp2
 
-rem Start mov tmp strcmp_const_7_a tmp2
+rem Start mov tmp strcmp_const_8_a tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_7_a 1
+relsq tmp2 strcmp_const_8_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
@@ -2178,101 +2302,101 @@ rem End mov
 rem sub tmp VAR
 relsq tmp VAR 1
 
-rem Start jnz tmp STRCMP_CONST_7_REVERT_ADDR tmp2
+rem Start jnz tmp STRCMP_CONST_8_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_7_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_14_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_8_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_16_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_14_END
-label JNZ_14_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_16_END
+label JNZ_16_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_7_REVERT_ADDR
-label JNZ_14_END
+lblsq ZERO ZERO STRCMP_CONST_8_REVERT_ADDR
+label JNZ_16_END
 rem End jnz
 
 rem End jne
 
-var strcmp_const_7_len 0
+var strcmp_const_8_len 0
 
-rem Start mov strcmp_const_7_len strcmp_const_7_a tmp
-rem movneg tmp strcmp_const_7_a
+rem Start mov strcmp_const_8_len strcmp_const_8_a tmp
+rem movneg tmp strcmp_const_8_a
 relsq tmp tmp 1
-relsq tmp strcmp_const_7_a 1
-rem movneg strcmp_const_7_len tmp
-relsq strcmp_const_7_len strcmp_const_7_len 1
-relsq strcmp_const_7_len tmp 1
+relsq tmp strcmp_const_8_a 1
+rem movneg strcmp_const_8_len tmp
+relsq strcmp_const_8_len strcmp_const_8_len 1
+relsq strcmp_const_8_len tmp 1
 rem End mov
 
-rem decaddr strcmp_const_7_a 8
-subaddr strcmp_const_7_a CONST_8
+rem decaddr strcmp_const_8_a 8
+subaddr strcmp_const_8_a CONST_8
 rem decaddr VAR 8
 subaddr VAR CONST_8
-addr strcmp_const_7_aStr 0
-addr strcmp_const_7_bStr 0
-rem setaddr strcmp_const_7_aStr strcmp_const_7_a tmp
-zeroaddr strcmp_const_7_aStr
+addr strcmp_const_8_aStr 0
+addr strcmp_const_8_bStr 0
+rem setaddr strcmp_const_8_aStr strcmp_const_8_a tmp
+zeroaddr strcmp_const_8_aStr
 
-rem Start addaddr strcmp_const_7_aStr strcmp_const_7_a tmp
+rem Start addaddr strcmp_const_8_aStr strcmp_const_8_a tmp
 relsq tmp tmp 1
-relsq tmp strcmp_const_7_a 1
-subaddr strcmp_const_7_aStr tmp
+relsq tmp strcmp_const_8_a 1
+subaddr strcmp_const_8_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_7_bStr VAR tmp
-zeroaddr strcmp_const_7_bStr
+rem setaddr strcmp_const_8_bStr VAR tmp
+zeroaddr strcmp_const_8_bStr
 
-rem Start addaddr strcmp_const_7_bStr VAR tmp
+rem Start addaddr strcmp_const_8_bStr VAR tmp
 relsq tmp tmp 1
 relsq tmp VAR 1
-subaddr strcmp_const_7_bStr tmp
+subaddr strcmp_const_8_bStr tmp
 rem End addaddr
 
-label STRCMP_CONST_7_LOOP
-rem decleq strcmp_const_7_len 0 STEP1_SET_VALUE
-lblsq strcmp_const_7_len CONST_0 STEP1_SET_VALUE
-rem dec strcmp_const_7_len 1
-relsq strcmp_const_7_len CONST_1 1
+label STRCMP_CONST_8_LOOP
+rem decleq strcmp_const_8_len 0 STEP1_SET_VALUE
+lblsq strcmp_const_8_len CONST_0 STEP1_SET_VALUE
+rem dec strcmp_const_8_len 1
+relsq strcmp_const_8_len CONST_1 1
 
-rem Start jne strcmp_const_7_aStr strcmp_const_7_bStr STRCMP_CONST_7_END tmp tmp2
+rem Start jne strcmp_const_8_aStr strcmp_const_8_bStr STRCMP_CONST_8_END tmp tmp2
 
-rem Start mov tmp strcmp_const_7_aStr tmp2
+rem Start mov tmp strcmp_const_8_aStr tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_7_aStr 1
+relsq tmp2 strcmp_const_8_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp strcmp_const_7_bStr
-relsq tmp strcmp_const_7_bStr 1
+rem sub tmp strcmp_const_8_bStr
+relsq tmp strcmp_const_8_bStr 1
 
-rem Start jnz tmp STRCMP_CONST_7_END tmp2
+rem Start jnz tmp STRCMP_CONST_8_END tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_7_END
-lblsq tmp CONST_-1 JNZ_15_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_8_END
+lblsq tmp CONST_-1 JNZ_17_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_15_END
-label JNZ_15_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_17_END
+label JNZ_17_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_7_END
-label JNZ_15_END
+lblsq ZERO ZERO STRCMP_CONST_8_END
+label JNZ_17_END
 rem End jnz
 
 rem End jne
 
-rem incaddr strcmp_const_7_aStr 8
-subaddr strcmp_const_7_aStr CONST_-8
-rem incaddr strcmp_const_7_bStr 8
-subaddr strcmp_const_7_bStr CONST_-8
-rem lbljmp STRCMP_CONST_7_LOOP
-lblsq ZERO ZERO STRCMP_CONST_7_LOOP
-label STRCMP_CONST_7_REVERT_ADDR
-rem decaddr strcmp_const_7_a 8
-subaddr strcmp_const_7_a CONST_8
+rem incaddr strcmp_const_8_aStr 8
+subaddr strcmp_const_8_aStr CONST_-8
+rem incaddr strcmp_const_8_bStr 8
+subaddr strcmp_const_8_bStr CONST_-8
+rem lbljmp STRCMP_CONST_8_LOOP
+lblsq ZERO ZERO STRCMP_CONST_8_LOOP
+label STRCMP_CONST_8_REVERT_ADDR
+rem decaddr strcmp_const_8_a 8
+subaddr strcmp_const_8_a CONST_8
 rem decaddr VAR 8
 subaddr VAR CONST_8
-label STRCMP_CONST_7_END
+label STRCMP_CONST_8_END
 rem End strcmp_const
 
 lblsq ZERO ZERO STEP1_END
@@ -2485,130 +2609,6 @@ subaddr curLine CONST_18
 
 
 rem Start strcmp_const curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
-addr strcmp_const_8_a 0
-rem copyaddr strcmp_const_8_a curLine tmp
-sym curLine_addrRef_0
-rem setaddr strcmp_const_8_a curLine_addrRef_0 tmp
-zeroaddr strcmp_const_8_a
-relsq tmp tmp 1
-relsq tmp curLine_addrRef_0 1
-subaddr strcmp_const_8_a tmp
-rem incaddr strcmp_const_8_a 8
-subaddr strcmp_const_8_a CONST_-8
-rem incaddr ABSSQ 8
-subaddr ABSSQ CONST_-8
-
-rem Start jne strcmp_const_8_a ABSSQ STRCMP_CONST_8_REVERT_ADDR tmp tmp2
-
-rem Start mov tmp strcmp_const_8_a tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_8_a 1
-relsq tmp tmp 1
-relsq tmp tmp2 1
-rem End mov
-
-rem sub tmp ABSSQ
-relsq tmp ABSSQ 1
-
-rem Start jnz tmp STRCMP_CONST_8_REVERT_ADDR tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_8_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_16_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_16_END
-label JNZ_16_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_8_REVERT_ADDR
-label JNZ_16_END
-rem End jnz
-
-rem End jne
-
-var strcmp_const_8_len 0
-
-rem Start mov strcmp_const_8_len strcmp_const_8_a tmp
-rem movneg tmp strcmp_const_8_a
-relsq tmp tmp 1
-relsq tmp strcmp_const_8_a 1
-rem movneg strcmp_const_8_len tmp
-relsq strcmp_const_8_len strcmp_const_8_len 1
-relsq strcmp_const_8_len tmp 1
-rem End mov
-
-rem decaddr strcmp_const_8_a 8
-subaddr strcmp_const_8_a CONST_8
-rem decaddr ABSSQ 8
-subaddr ABSSQ CONST_8
-addr strcmp_const_8_aStr 0
-addr strcmp_const_8_bStr 0
-rem setaddr strcmp_const_8_aStr strcmp_const_8_a tmp
-zeroaddr strcmp_const_8_aStr
-
-rem Start addaddr strcmp_const_8_aStr strcmp_const_8_a tmp
-relsq tmp tmp 1
-relsq tmp strcmp_const_8_a 1
-subaddr strcmp_const_8_aStr tmp
-rem End addaddr
-
-rem setaddr strcmp_const_8_bStr ABSSQ tmp
-zeroaddr strcmp_const_8_bStr
-
-rem Start addaddr strcmp_const_8_bStr ABSSQ tmp
-relsq tmp tmp 1
-relsq tmp ABSSQ 1
-subaddr strcmp_const_8_bStr tmp
-rem End addaddr
-
-label STRCMP_CONST_8_LOOP
-rem decleq strcmp_const_8_len 0 STEP2_HANDLE_SQ
-lblsq strcmp_const_8_len CONST_0 STEP2_HANDLE_SQ
-rem dec strcmp_const_8_len 1
-relsq strcmp_const_8_len CONST_1 1
-
-rem Start jne strcmp_const_8_aStr strcmp_const_8_bStr STRCMP_CONST_8_END tmp tmp2
-
-rem Start mov tmp strcmp_const_8_aStr tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_8_aStr 1
-relsq tmp tmp 1
-relsq tmp tmp2 1
-rem End mov
-
-rem sub tmp strcmp_const_8_bStr
-relsq tmp strcmp_const_8_bStr 1
-
-rem Start jnz tmp STRCMP_CONST_8_END tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_8_END
-lblsq tmp CONST_-1 JNZ_17_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_17_END
-label JNZ_17_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_8_END
-label JNZ_17_END
-rem End jnz
-
-rem End jne
-
-rem incaddr strcmp_const_8_aStr 8
-subaddr strcmp_const_8_aStr CONST_-8
-rem incaddr strcmp_const_8_bStr 8
-subaddr strcmp_const_8_bStr CONST_-8
-rem lbljmp STRCMP_CONST_8_LOOP
-lblsq ZERO ZERO STRCMP_CONST_8_LOOP
-label STRCMP_CONST_8_REVERT_ADDR
-rem decaddr strcmp_const_8_a 8
-subaddr strcmp_const_8_a CONST_8
-rem decaddr ABSSQ 8
-subaddr ABSSQ CONST_8
-label STRCMP_CONST_8_END
-rem End strcmp_const
-
-
-rem Start strcmp_const curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
 addr strcmp_const_9_a 0
 rem copyaddr strcmp_const_9_a curLine tmp
 sym curLine_addrRef_0
@@ -2619,10 +2619,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_9_a tmp
 rem incaddr strcmp_const_9_a 8
 subaddr strcmp_const_9_a CONST_-8
-rem incaddr RELSQ 8
-subaddr RELSQ CONST_-8
+rem incaddr ABSSQ 8
+subaddr ABSSQ CONST_-8
 
-rem Start jne strcmp_const_9_a RELSQ STRCMP_CONST_9_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_9_a ABSSQ STRCMP_CONST_9_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_9_a tmp2
 relsq tmp2 tmp2 1
@@ -2631,8 +2631,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp RELSQ
-relsq tmp RELSQ 1
+rem sub tmp ABSSQ
+relsq tmp ABSSQ 1
 
 rem Start jnz tmp STRCMP_CONST_9_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -2662,8 +2662,8 @@ rem End mov
 
 rem decaddr strcmp_const_9_a 8
 subaddr strcmp_const_9_a CONST_8
-rem decaddr RELSQ 8
-subaddr RELSQ CONST_8
+rem decaddr ABSSQ 8
+subaddr ABSSQ CONST_8
 addr strcmp_const_9_aStr 0
 addr strcmp_const_9_bStr 0
 rem setaddr strcmp_const_9_aStr strcmp_const_9_a tmp
@@ -2675,12 +2675,12 @@ relsq tmp strcmp_const_9_a 1
 subaddr strcmp_const_9_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_9_bStr RELSQ tmp
+rem setaddr strcmp_const_9_bStr ABSSQ tmp
 zeroaddr strcmp_const_9_bStr
 
-rem Start addaddr strcmp_const_9_bStr RELSQ tmp
+rem Start addaddr strcmp_const_9_bStr ABSSQ tmp
 relsq tmp tmp 1
-relsq tmp RELSQ 1
+relsq tmp ABSSQ 1
 subaddr strcmp_const_9_bStr tmp
 rem End addaddr
 
@@ -2726,13 +2726,13 @@ lblsq ZERO ZERO STRCMP_CONST_9_LOOP
 label STRCMP_CONST_9_REVERT_ADDR
 rem decaddr strcmp_const_9_a 8
 subaddr strcmp_const_9_a CONST_8
-rem decaddr RELSQ 8
-subaddr RELSQ CONST_8
+rem decaddr ABSSQ 8
+subaddr ABSSQ CONST_8
 label STRCMP_CONST_9_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
+rem Start strcmp_const curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
 addr strcmp_const_10_a 0
 rem copyaddr strcmp_const_10_a curLine tmp
 sym curLine_addrRef_0
@@ -2743,10 +2743,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_10_a tmp
 rem incaddr strcmp_const_10_a 8
 subaddr strcmp_const_10_a CONST_-8
-rem incaddr LBLSQ 8
-subaddr LBLSQ CONST_-8
+rem incaddr RELSQ 8
+subaddr RELSQ CONST_-8
 
-rem Start jne strcmp_const_10_a LBLSQ STRCMP_CONST_10_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_10_a RELSQ STRCMP_CONST_10_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_10_a tmp2
 relsq tmp2 tmp2 1
@@ -2755,8 +2755,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp LBLSQ
-relsq tmp LBLSQ 1
+rem sub tmp RELSQ
+relsq tmp RELSQ 1
 
 rem Start jnz tmp STRCMP_CONST_10_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -2786,8 +2786,8 @@ rem End mov
 
 rem decaddr strcmp_const_10_a 8
 subaddr strcmp_const_10_a CONST_8
-rem decaddr LBLSQ 8
-subaddr LBLSQ CONST_8
+rem decaddr RELSQ 8
+subaddr RELSQ CONST_8
 addr strcmp_const_10_aStr 0
 addr strcmp_const_10_bStr 0
 rem setaddr strcmp_const_10_aStr strcmp_const_10_a tmp
@@ -2799,12 +2799,12 @@ relsq tmp strcmp_const_10_a 1
 subaddr strcmp_const_10_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_10_bStr LBLSQ tmp
+rem setaddr strcmp_const_10_bStr RELSQ tmp
 zeroaddr strcmp_const_10_bStr
 
-rem Start addaddr strcmp_const_10_bStr LBLSQ tmp
+rem Start addaddr strcmp_const_10_bStr RELSQ tmp
 relsq tmp tmp 1
-relsq tmp LBLSQ 1
+relsq tmp RELSQ 1
 subaddr strcmp_const_10_bStr tmp
 rem End addaddr
 
@@ -2850,13 +2850,13 @@ lblsq ZERO ZERO STRCMP_CONST_10_LOOP
 label STRCMP_CONST_10_REVERT_ADDR
 rem decaddr strcmp_const_10_a 8
 subaddr strcmp_const_10_a CONST_8
-rem decaddr LBLSQ 8
-subaddr LBLSQ CONST_8
+rem decaddr RELSQ 8
+subaddr RELSQ CONST_8
 label STRCMP_CONST_10_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+rem Start strcmp_const curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
 addr strcmp_const_11_a 0
 rem copyaddr strcmp_const_11_a curLine tmp
 sym curLine_addrRef_0
@@ -2867,10 +2867,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_11_a tmp
 rem incaddr strcmp_const_11_a 8
 subaddr strcmp_const_11_a CONST_-8
-rem incaddr SUBADDR 8
-subaddr SUBADDR CONST_-8
+rem incaddr LBLSQ 8
+subaddr LBLSQ CONST_-8
 
-rem Start jne strcmp_const_11_a SUBADDR STRCMP_CONST_11_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_11_a LBLSQ STRCMP_CONST_11_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_11_a tmp2
 relsq tmp2 tmp2 1
@@ -2879,8 +2879,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp SUBADDR
-relsq tmp SUBADDR 1
+rem sub tmp LBLSQ
+relsq tmp LBLSQ 1
 
 rem Start jnz tmp STRCMP_CONST_11_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -2910,8 +2910,8 @@ rem End mov
 
 rem decaddr strcmp_const_11_a 8
 subaddr strcmp_const_11_a CONST_8
-rem decaddr SUBADDR 8
-subaddr SUBADDR CONST_8
+rem decaddr LBLSQ 8
+subaddr LBLSQ CONST_8
 addr strcmp_const_11_aStr 0
 addr strcmp_const_11_bStr 0
 rem setaddr strcmp_const_11_aStr strcmp_const_11_a tmp
@@ -2923,18 +2923,18 @@ relsq tmp strcmp_const_11_a 1
 subaddr strcmp_const_11_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_11_bStr SUBADDR tmp
+rem setaddr strcmp_const_11_bStr LBLSQ tmp
 zeroaddr strcmp_const_11_bStr
 
-rem Start addaddr strcmp_const_11_bStr SUBADDR tmp
+rem Start addaddr strcmp_const_11_bStr LBLSQ tmp
 relsq tmp tmp 1
-relsq tmp SUBADDR 1
+relsq tmp LBLSQ 1
 subaddr strcmp_const_11_bStr tmp
 rem End addaddr
 
 label STRCMP_CONST_11_LOOP
-rem decleq strcmp_const_11_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
-lblsq strcmp_const_11_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
+rem decleq strcmp_const_11_len 0 STEP2_HANDLE_SQ
+lblsq strcmp_const_11_len CONST_0 STEP2_HANDLE_SQ
 rem dec strcmp_const_11_len 1
 relsq strcmp_const_11_len CONST_1 1
 
@@ -2974,13 +2974,13 @@ lblsq ZERO ZERO STRCMP_CONST_11_LOOP
 label STRCMP_CONST_11_REVERT_ADDR
 rem decaddr strcmp_const_11_a 8
 subaddr strcmp_const_11_a CONST_8
-rem decaddr SUBADDR 8
-subaddr SUBADDR CONST_8
+rem decaddr LBLSQ 8
+subaddr LBLSQ CONST_8
 label STRCMP_CONST_11_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+rem Start strcmp_const curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 addr strcmp_const_12_a 0
 rem copyaddr strcmp_const_12_a curLine tmp
 sym curLine_addrRef_0
@@ -2991,10 +2991,10 @@ relsq tmp curLine_addrRef_0 1
 subaddr strcmp_const_12_a tmp
 rem incaddr strcmp_const_12_a 8
 subaddr strcmp_const_12_a CONST_-8
-rem incaddr RAW_REF 8
-subaddr RAW_REF CONST_-8
+rem incaddr SUBADDR 8
+subaddr SUBADDR CONST_-8
 
-rem Start jne strcmp_const_12_a RAW_REF STRCMP_CONST_12_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_12_a SUBADDR STRCMP_CONST_12_REVERT_ADDR tmp tmp2
 
 rem Start mov tmp strcmp_const_12_a tmp2
 relsq tmp2 tmp2 1
@@ -3003,8 +3003,8 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp RAW_REF
-relsq tmp RAW_REF 1
+rem sub tmp SUBADDR
+relsq tmp SUBADDR 1
 
 rem Start jnz tmp STRCMP_CONST_12_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
@@ -3034,8 +3034,8 @@ rem End mov
 
 rem decaddr strcmp_const_12_a 8
 subaddr strcmp_const_12_a CONST_8
-rem decaddr RAW_REF 8
-subaddr RAW_REF CONST_8
+rem decaddr SUBADDR 8
+subaddr SUBADDR CONST_8
 addr strcmp_const_12_aStr 0
 addr strcmp_const_12_bStr 0
 rem setaddr strcmp_const_12_aStr strcmp_const_12_a tmp
@@ -3047,18 +3047,18 @@ relsq tmp strcmp_const_12_a 1
 subaddr strcmp_const_12_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_12_bStr RAW_REF tmp
+rem setaddr strcmp_const_12_bStr SUBADDR tmp
 zeroaddr strcmp_const_12_bStr
 
-rem Start addaddr strcmp_const_12_bStr RAW_REF tmp
+rem Start addaddr strcmp_const_12_bStr SUBADDR tmp
 relsq tmp tmp 1
-relsq tmp RAW_REF 1
+relsq tmp SUBADDR 1
 subaddr strcmp_const_12_bStr tmp
 rem End addaddr
 
 label STRCMP_CONST_12_LOOP
-rem decleq strcmp_const_12_len 0 STEP2_HANDLE_RAW_REF
-lblsq strcmp_const_12_len CONST_0 STEP2_HANDLE_RAW_REF
+rem decleq strcmp_const_12_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
+lblsq strcmp_const_12_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
 rem dec strcmp_const_12_len 1
 relsq strcmp_const_12_len CONST_1 1
 
@@ -3098,9 +3098,133 @@ lblsq ZERO ZERO STRCMP_CONST_12_LOOP
 label STRCMP_CONST_12_REVERT_ADDR
 rem decaddr strcmp_const_12_a 8
 subaddr strcmp_const_12_a CONST_8
+rem decaddr SUBADDR 8
+subaddr SUBADDR CONST_8
+label STRCMP_CONST_12_END
+rem End strcmp_const
+
+
+rem Start strcmp_const curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+addr strcmp_const_13_a 0
+rem copyaddr strcmp_const_13_a curLine tmp
+sym curLine_addrRef_0
+rem setaddr strcmp_const_13_a curLine_addrRef_0 tmp
+zeroaddr strcmp_const_13_a
+relsq tmp tmp 1
+relsq tmp curLine_addrRef_0 1
+subaddr strcmp_const_13_a tmp
+rem incaddr strcmp_const_13_a 8
+subaddr strcmp_const_13_a CONST_-8
+rem incaddr RAW_REF 8
+subaddr RAW_REF CONST_-8
+
+rem Start jne strcmp_const_13_a RAW_REF STRCMP_CONST_13_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp strcmp_const_13_a tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_13_a 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp RAW_REF
+relsq tmp RAW_REF 1
+
+rem Start jnz tmp STRCMP_CONST_13_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_CONST_13_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_26_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_26_END
+label JNZ_26_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_CONST_13_REVERT_ADDR
+label JNZ_26_END
+rem End jnz
+
+rem End jne
+
+var strcmp_const_13_len 0
+
+rem Start mov strcmp_const_13_len strcmp_const_13_a tmp
+rem movneg tmp strcmp_const_13_a
+relsq tmp tmp 1
+relsq tmp strcmp_const_13_a 1
+rem movneg strcmp_const_13_len tmp
+relsq strcmp_const_13_len strcmp_const_13_len 1
+relsq strcmp_const_13_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_13_a 8
+subaddr strcmp_const_13_a CONST_8
 rem decaddr RAW_REF 8
 subaddr RAW_REF CONST_8
-label STRCMP_CONST_12_END
+addr strcmp_const_13_aStr 0
+addr strcmp_const_13_bStr 0
+rem setaddr strcmp_const_13_aStr strcmp_const_13_a tmp
+zeroaddr strcmp_const_13_aStr
+
+rem Start addaddr strcmp_const_13_aStr strcmp_const_13_a tmp
+relsq tmp tmp 1
+relsq tmp strcmp_const_13_a 1
+subaddr strcmp_const_13_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_const_13_bStr RAW_REF tmp
+zeroaddr strcmp_const_13_bStr
+
+rem Start addaddr strcmp_const_13_bStr RAW_REF tmp
+relsq tmp tmp 1
+relsq tmp RAW_REF 1
+subaddr strcmp_const_13_bStr tmp
+rem End addaddr
+
+label STRCMP_CONST_13_LOOP
+rem decleq strcmp_const_13_len 0 STEP2_HANDLE_RAW_REF
+lblsq strcmp_const_13_len CONST_0 STEP2_HANDLE_RAW_REF
+rem dec strcmp_const_13_len 1
+relsq strcmp_const_13_len CONST_1 1
+
+rem Start jne strcmp_const_13_aStr strcmp_const_13_bStr STRCMP_CONST_13_END tmp tmp2
+
+rem Start mov tmp strcmp_const_13_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_13_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_const_13_bStr
+relsq tmp strcmp_const_13_bStr 1
+
+rem Start jnz tmp STRCMP_CONST_13_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_CONST_13_END
+lblsq tmp CONST_-1 JNZ_27_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_27_END
+label JNZ_27_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_CONST_13_END
+label JNZ_27_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_const_13_aStr 8
+subaddr strcmp_const_13_aStr CONST_-8
+rem incaddr strcmp_const_13_bStr 8
+subaddr strcmp_const_13_bStr CONST_-8
+rem lbljmp STRCMP_CONST_13_LOOP
+lblsq ZERO ZERO STRCMP_CONST_13_LOOP
+label STRCMP_CONST_13_REVERT_ADDR
+rem decaddr strcmp_const_13_a 8
+subaddr strcmp_const_13_a CONST_8
+rem decaddr RAW_REF 8
+subaddr RAW_REF CONST_8
+label STRCMP_CONST_13_END
 rem End strcmp_const
 
 lblsq ZERO ZERO STEP2_END
@@ -3132,71 +3256,71 @@ relsq tmp curTokens_addrRef_0 1
 subaddr strcmp_0_b tmp
 
 rem Start strcmp_const it strcmp_0_b FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
-addr strcmp_const_13_a 0
+addr strcmp_const_14_a 0
 sym it_addrRef_0
-zeroaddr strcmp_const_13_a
+zeroaddr strcmp_const_14_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
-subaddr strcmp_const_13_a tmp
-subaddr strcmp_const_13_a CONST_-8
+subaddr strcmp_const_14_a tmp
+subaddr strcmp_const_14_a CONST_-8
 subaddr strcmp_0_b CONST_-8
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_13_a 1
+relsq tmp2 strcmp_const_14_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 relsq tmp strcmp_0_b 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_13_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_26_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_14_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_28_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_26_END
-label JNZ_26_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_28_END
+label JNZ_28_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_13_REVERT_ADDR
-label JNZ_26_END
-var strcmp_const_13_len 0
+lblsq ZERO ZERO STRCMP_CONST_14_REVERT_ADDR
+label JNZ_28_END
+var strcmp_const_14_len 0
 relsq tmp tmp 1
-relsq tmp strcmp_const_13_a 1
-relsq strcmp_const_13_len strcmp_const_13_len 1
-relsq strcmp_const_13_len tmp 1
-subaddr strcmp_const_13_a CONST_8
+relsq tmp strcmp_const_14_a 1
+relsq strcmp_const_14_len strcmp_const_14_len 1
+relsq strcmp_const_14_len tmp 1
+subaddr strcmp_const_14_a CONST_8
 subaddr strcmp_0_b CONST_8
-addr strcmp_const_13_aStr 0
-addr strcmp_const_13_bStr 0
-zeroaddr strcmp_const_13_aStr
+addr strcmp_const_14_aStr 0
+addr strcmp_const_14_bStr 0
+zeroaddr strcmp_const_14_aStr
 relsq tmp tmp 1
-relsq tmp strcmp_const_13_a 1
-subaddr strcmp_const_13_aStr tmp
-zeroaddr strcmp_const_13_bStr
+relsq tmp strcmp_const_14_a 1
+subaddr strcmp_const_14_aStr tmp
+zeroaddr strcmp_const_14_bStr
 relsq tmp tmp 1
 relsq tmp strcmp_0_b 1
-subaddr strcmp_const_13_bStr tmp
-label STRCMP_CONST_13_LOOP
-lblsq strcmp_const_13_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
-relsq strcmp_const_13_len CONST_1 1
+subaddr strcmp_const_14_bStr tmp
+label STRCMP_CONST_14_LOOP
+lblsq strcmp_const_14_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+relsq strcmp_const_14_len CONST_1 1
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_13_aStr 1
+relsq tmp2 strcmp_const_14_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_const_13_bStr 1
+relsq tmp strcmp_const_14_bStr 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_13_END
-lblsq tmp CONST_-1 JNZ_27_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_14_END
+lblsq tmp CONST_-1 JNZ_29_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_27_END
-label JNZ_27_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_29_END
+label JNZ_29_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_13_END
-label JNZ_27_END
-subaddr strcmp_const_13_aStr CONST_-8
-subaddr strcmp_const_13_bStr CONST_-8
-lblsq ZERO ZERO STRCMP_CONST_13_LOOP
-label STRCMP_CONST_13_REVERT_ADDR
-subaddr strcmp_const_13_a CONST_8
+lblsq ZERO ZERO STRCMP_CONST_14_END
+label JNZ_29_END
+subaddr strcmp_const_14_aStr CONST_-8
+subaddr strcmp_const_14_bStr CONST_-8
+lblsq ZERO ZERO STRCMP_CONST_14_LOOP
+label STRCMP_CONST_14_REVERT_ADDR
+subaddr strcmp_const_14_a CONST_8
 subaddr strcmp_0_b CONST_8
-label STRCMP_CONST_13_END
+label STRCMP_CONST_14_END
 rem End strcmp_const
 
 rem End strcmp
@@ -3235,71 +3359,71 @@ relsq tmp curTokens_addrRef_0 1
 subaddr strcmp_1_b tmp
 
 rem Start strcmp_const it strcmp_1_b FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END tmp tmp2
-addr strcmp_const_14_a 0
+addr strcmp_const_15_a 0
 sym it_addrRef_0
-zeroaddr strcmp_const_14_a
+zeroaddr strcmp_const_15_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
-subaddr strcmp_const_14_a tmp
-subaddr strcmp_const_14_a CONST_-8
+subaddr strcmp_const_15_a tmp
+subaddr strcmp_const_15_a CONST_-8
 subaddr strcmp_1_b CONST_-8
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_14_a 1
+relsq tmp2 strcmp_const_15_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 relsq tmp strcmp_1_b 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_14_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_28_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_15_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_30_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_28_END
-label JNZ_28_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_30_END
+label JNZ_30_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_14_REVERT_ADDR
-label JNZ_28_END
-var strcmp_const_14_len 0
+lblsq ZERO ZERO STRCMP_CONST_15_REVERT_ADDR
+label JNZ_30_END
+var strcmp_const_15_len 0
 relsq tmp tmp 1
-relsq tmp strcmp_const_14_a 1
-relsq strcmp_const_14_len strcmp_const_14_len 1
-relsq strcmp_const_14_len tmp 1
-subaddr strcmp_const_14_a CONST_8
+relsq tmp strcmp_const_15_a 1
+relsq strcmp_const_15_len strcmp_const_15_len 1
+relsq strcmp_const_15_len tmp 1
+subaddr strcmp_const_15_a CONST_8
 subaddr strcmp_1_b CONST_8
-addr strcmp_const_14_aStr 0
-addr strcmp_const_14_bStr 0
-zeroaddr strcmp_const_14_aStr
+addr strcmp_const_15_aStr 0
+addr strcmp_const_15_bStr 0
+zeroaddr strcmp_const_15_aStr
 relsq tmp tmp 1
-relsq tmp strcmp_const_14_a 1
-subaddr strcmp_const_14_aStr tmp
-zeroaddr strcmp_const_14_bStr
+relsq tmp strcmp_const_15_a 1
+subaddr strcmp_const_15_aStr tmp
+zeroaddr strcmp_const_15_bStr
 relsq tmp tmp 1
 relsq tmp strcmp_1_b 1
-subaddr strcmp_const_14_bStr tmp
-label STRCMP_CONST_14_LOOP
-lblsq strcmp_const_14_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
-relsq strcmp_const_14_len CONST_1 1
+subaddr strcmp_const_15_bStr tmp
+label STRCMP_CONST_15_LOOP
+lblsq strcmp_const_15_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
+relsq strcmp_const_15_len CONST_1 1
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_14_aStr 1
+relsq tmp2 strcmp_const_15_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_const_14_bStr 1
+relsq tmp strcmp_const_15_bStr 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_14_END
-lblsq tmp CONST_-1 JNZ_29_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_15_END
+lblsq tmp CONST_-1 JNZ_31_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_29_END
-label JNZ_29_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_31_END
+label JNZ_31_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_14_END
-label JNZ_29_END
-subaddr strcmp_const_14_aStr CONST_-8
-subaddr strcmp_const_14_bStr CONST_-8
-lblsq ZERO ZERO STRCMP_CONST_14_LOOP
-label STRCMP_CONST_14_REVERT_ADDR
-subaddr strcmp_const_14_a CONST_8
+lblsq ZERO ZERO STRCMP_CONST_15_END
+label JNZ_31_END
+subaddr strcmp_const_15_aStr CONST_-8
+subaddr strcmp_const_15_bStr CONST_-8
+lblsq ZERO ZERO STRCMP_CONST_15_LOOP
+label STRCMP_CONST_15_REVERT_ADDR
+subaddr strcmp_const_15_a CONST_8
 subaddr strcmp_1_b CONST_8
-label STRCMP_CONST_14_END
+label STRCMP_CONST_15_END
 rem End strcmp_const
 
 rem End strcmp
@@ -3316,24 +3440,24 @@ relsq it CONST_-1 1
 
 
 rem Start strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
-addr strcmp_const_15_a 0
-rem copyaddr strcmp_const_15_a curLine tmp
+addr strcmp_const_16_a 0
+rem copyaddr strcmp_const_16_a curLine tmp
 sym curLine_addrRef_0
-rem setaddr strcmp_const_15_a curLine_addrRef_0 tmp
-zeroaddr strcmp_const_15_a
+rem setaddr strcmp_const_16_a curLine_addrRef_0 tmp
+zeroaddr strcmp_const_16_a
 relsq tmp tmp 1
 relsq tmp curLine_addrRef_0 1
-subaddr strcmp_const_15_a tmp
-rem incaddr strcmp_const_15_a 8
-subaddr strcmp_const_15_a CONST_-8
+subaddr strcmp_const_16_a tmp
+rem incaddr strcmp_const_16_a 8
+subaddr strcmp_const_16_a CONST_-8
 rem incaddr LBLSQ 8
 subaddr LBLSQ CONST_-8
 
-rem Start jne strcmp_const_15_a LBLSQ STRCMP_CONST_15_REVERT_ADDR tmp tmp2
+rem Start jne strcmp_const_16_a LBLSQ STRCMP_CONST_16_REVERT_ADDR tmp tmp2
 
-rem Start mov tmp strcmp_const_15_a tmp2
+rem Start mov tmp strcmp_const_16_a tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_15_a 1
+relsq tmp2 strcmp_const_16_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
@@ -3341,101 +3465,101 @@ rem End mov
 rem sub tmp LBLSQ
 relsq tmp LBLSQ 1
 
-rem Start jnz tmp STRCMP_CONST_15_REVERT_ADDR tmp2
+rem Start jnz tmp STRCMP_CONST_16_REVERT_ADDR tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_15_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_30_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_16_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_32_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_30_END
-label JNZ_30_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_32_END
+label JNZ_32_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_15_REVERT_ADDR
-label JNZ_30_END
+lblsq ZERO ZERO STRCMP_CONST_16_REVERT_ADDR
+label JNZ_32_END
 rem End jnz
 
 rem End jne
 
-var strcmp_const_15_len 0
+var strcmp_const_16_len 0
 
-rem Start mov strcmp_const_15_len strcmp_const_15_a tmp
-rem movneg tmp strcmp_const_15_a
+rem Start mov strcmp_const_16_len strcmp_const_16_a tmp
+rem movneg tmp strcmp_const_16_a
 relsq tmp tmp 1
-relsq tmp strcmp_const_15_a 1
-rem movneg strcmp_const_15_len tmp
-relsq strcmp_const_15_len strcmp_const_15_len 1
-relsq strcmp_const_15_len tmp 1
+relsq tmp strcmp_const_16_a 1
+rem movneg strcmp_const_16_len tmp
+relsq strcmp_const_16_len strcmp_const_16_len 1
+relsq strcmp_const_16_len tmp 1
 rem End mov
 
-rem decaddr strcmp_const_15_a 8
-subaddr strcmp_const_15_a CONST_8
+rem decaddr strcmp_const_16_a 8
+subaddr strcmp_const_16_a CONST_8
 rem decaddr LBLSQ 8
 subaddr LBLSQ CONST_8
-addr strcmp_const_15_aStr 0
-addr strcmp_const_15_bStr 0
-rem setaddr strcmp_const_15_aStr strcmp_const_15_a tmp
-zeroaddr strcmp_const_15_aStr
+addr strcmp_const_16_aStr 0
+addr strcmp_const_16_bStr 0
+rem setaddr strcmp_const_16_aStr strcmp_const_16_a tmp
+zeroaddr strcmp_const_16_aStr
 
-rem Start addaddr strcmp_const_15_aStr strcmp_const_15_a tmp
+rem Start addaddr strcmp_const_16_aStr strcmp_const_16_a tmp
 relsq tmp tmp 1
-relsq tmp strcmp_const_15_a 1
-subaddr strcmp_const_15_aStr tmp
+relsq tmp strcmp_const_16_a 1
+subaddr strcmp_const_16_aStr tmp
 rem End addaddr
 
-rem setaddr strcmp_const_15_bStr LBLSQ tmp
-zeroaddr strcmp_const_15_bStr
+rem setaddr strcmp_const_16_bStr LBLSQ tmp
+zeroaddr strcmp_const_16_bStr
 
-rem Start addaddr strcmp_const_15_bStr LBLSQ tmp
+rem Start addaddr strcmp_const_16_bStr LBLSQ tmp
 relsq tmp tmp 1
 relsq tmp LBLSQ 1
-subaddr strcmp_const_15_bStr tmp
+subaddr strcmp_const_16_bStr tmp
 rem End addaddr
 
-label STRCMP_CONST_15_LOOP
-rem decleq strcmp_const_15_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
-lblsq strcmp_const_15_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
-rem dec strcmp_const_15_len 1
-relsq strcmp_const_15_len CONST_1 1
+label STRCMP_CONST_16_LOOP
+rem decleq strcmp_const_16_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
+lblsq strcmp_const_16_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
+rem dec strcmp_const_16_len 1
+relsq strcmp_const_16_len CONST_1 1
 
-rem Start jne strcmp_const_15_aStr strcmp_const_15_bStr STRCMP_CONST_15_END tmp tmp2
+rem Start jne strcmp_const_16_aStr strcmp_const_16_bStr STRCMP_CONST_16_END tmp tmp2
 
-rem Start mov tmp strcmp_const_15_aStr tmp2
+rem Start mov tmp strcmp_const_16_aStr tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_15_aStr 1
+relsq tmp2 strcmp_const_16_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp strcmp_const_15_bStr
-relsq tmp strcmp_const_15_bStr 1
+rem sub tmp strcmp_const_16_bStr
+relsq tmp strcmp_const_16_bStr 1
 
-rem Start jnz tmp STRCMP_CONST_15_END tmp2
+rem Start jnz tmp STRCMP_CONST_16_END tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_15_END
-lblsq tmp CONST_-1 JNZ_31_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_16_END
+lblsq tmp CONST_-1 JNZ_33_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_31_END
-label JNZ_31_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_33_END
+label JNZ_33_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_15_END
-label JNZ_31_END
+lblsq ZERO ZERO STRCMP_CONST_16_END
+label JNZ_33_END
 rem End jnz
 
 rem End jne
 
-rem incaddr strcmp_const_15_aStr 8
-subaddr strcmp_const_15_aStr CONST_-8
-rem incaddr strcmp_const_15_bStr 8
-subaddr strcmp_const_15_bStr CONST_-8
-rem lbljmp STRCMP_CONST_15_LOOP
-lblsq ZERO ZERO STRCMP_CONST_15_LOOP
-label STRCMP_CONST_15_REVERT_ADDR
-rem decaddr strcmp_const_15_a 8
-subaddr strcmp_const_15_a CONST_8
+rem incaddr strcmp_const_16_aStr 8
+subaddr strcmp_const_16_aStr CONST_-8
+rem incaddr strcmp_const_16_bStr 8
+subaddr strcmp_const_16_bStr CONST_-8
+rem lbljmp STRCMP_CONST_16_LOOP
+lblsq ZERO ZERO STRCMP_CONST_16_LOOP
+label STRCMP_CONST_16_REVERT_ADDR
+rem decaddr strcmp_const_16_a 8
+subaddr strcmp_const_16_a CONST_8
 rem decaddr LBLSQ 8
 subaddr LBLSQ CONST_8
-label STRCMP_CONST_15_END
+label STRCMP_CONST_16_END
 rem End strcmp_const
 
 lblsq ZERO ZERO STEP2_END
@@ -3466,71 +3590,71 @@ relsq tmp curTokens_addrRef_0 1
 subaddr strcmp_2_b tmp
 
 rem Start strcmp_const it strcmp_2_b FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END tmp tmp2
-addr strcmp_const_16_a 0
+addr strcmp_const_17_a 0
 sym it_addrRef_0
-zeroaddr strcmp_const_16_a
+zeroaddr strcmp_const_17_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
-subaddr strcmp_const_16_a tmp
-subaddr strcmp_const_16_a CONST_-8
+subaddr strcmp_const_17_a tmp
+subaddr strcmp_const_17_a CONST_-8
 subaddr strcmp_2_b CONST_-8
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_16_a 1
+relsq tmp2 strcmp_const_17_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 relsq tmp strcmp_2_b 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_16_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_32_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_17_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_34_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_32_END
-label JNZ_32_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_34_END
+label JNZ_34_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_16_REVERT_ADDR
-label JNZ_32_END
-var strcmp_const_16_len 0
+lblsq ZERO ZERO STRCMP_CONST_17_REVERT_ADDR
+label JNZ_34_END
+var strcmp_const_17_len 0
 relsq tmp tmp 1
-relsq tmp strcmp_const_16_a 1
-relsq strcmp_const_16_len strcmp_const_16_len 1
-relsq strcmp_const_16_len tmp 1
-subaddr strcmp_const_16_a CONST_8
+relsq tmp strcmp_const_17_a 1
+relsq strcmp_const_17_len strcmp_const_17_len 1
+relsq strcmp_const_17_len tmp 1
+subaddr strcmp_const_17_a CONST_8
 subaddr strcmp_2_b CONST_8
-addr strcmp_const_16_aStr 0
-addr strcmp_const_16_bStr 0
-zeroaddr strcmp_const_16_aStr
+addr strcmp_const_17_aStr 0
+addr strcmp_const_17_bStr 0
+zeroaddr strcmp_const_17_aStr
 relsq tmp tmp 1
-relsq tmp strcmp_const_16_a 1
-subaddr strcmp_const_16_aStr tmp
-zeroaddr strcmp_const_16_bStr
+relsq tmp strcmp_const_17_a 1
+subaddr strcmp_const_17_aStr tmp
+zeroaddr strcmp_const_17_bStr
 relsq tmp tmp 1
 relsq tmp strcmp_2_b 1
-subaddr strcmp_const_16_bStr tmp
-label STRCMP_CONST_16_LOOP
-lblsq strcmp_const_16_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
-relsq strcmp_const_16_len CONST_1 1
+subaddr strcmp_const_17_bStr tmp
+label STRCMP_CONST_17_LOOP
+lblsq strcmp_const_17_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
+relsq strcmp_const_17_len CONST_1 1
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_16_aStr 1
+relsq tmp2 strcmp_const_17_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_const_16_bStr 1
+relsq tmp strcmp_const_17_bStr 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_16_END
-lblsq tmp CONST_-1 JNZ_33_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_17_END
+lblsq tmp CONST_-1 JNZ_35_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_33_END
-label JNZ_33_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_35_END
+label JNZ_35_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_16_END
-label JNZ_33_END
-subaddr strcmp_const_16_aStr CONST_-8
-subaddr strcmp_const_16_bStr CONST_-8
-lblsq ZERO ZERO STRCMP_CONST_16_LOOP
-label STRCMP_CONST_16_REVERT_ADDR
-subaddr strcmp_const_16_a CONST_8
+lblsq ZERO ZERO STRCMP_CONST_17_END
+label JNZ_35_END
+subaddr strcmp_const_17_aStr CONST_-8
+subaddr strcmp_const_17_bStr CONST_-8
+lblsq ZERO ZERO STRCMP_CONST_17_LOOP
+label STRCMP_CONST_17_REVERT_ADDR
+subaddr strcmp_const_17_a CONST_8
 subaddr strcmp_2_b CONST_8
-label STRCMP_CONST_16_END
+label STRCMP_CONST_17_END
 rem End strcmp_const
 
 rem End strcmp
@@ -3589,71 +3713,71 @@ relsq tmp curTokens_addrRef_0 1
 subaddr strcmp_3_b tmp
 
 rem Start strcmp_const it strcmp_3_b FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END tmp tmp2
-addr strcmp_const_17_a 0
+addr strcmp_const_18_a 0
 sym it_addrRef_0
-zeroaddr strcmp_const_17_a
+zeroaddr strcmp_const_18_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
-subaddr strcmp_const_17_a tmp
-subaddr strcmp_const_17_a CONST_-8
+subaddr strcmp_const_18_a tmp
+subaddr strcmp_const_18_a CONST_-8
 subaddr strcmp_3_b CONST_-8
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_17_a 1
+relsq tmp2 strcmp_const_18_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 relsq tmp strcmp_3_b 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_17_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_34_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_18_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_36_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_34_END
-label JNZ_34_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_36_END
+label JNZ_36_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_17_REVERT_ADDR
-label JNZ_34_END
-var strcmp_const_17_len 0
+lblsq ZERO ZERO STRCMP_CONST_18_REVERT_ADDR
+label JNZ_36_END
+var strcmp_const_18_len 0
 relsq tmp tmp 1
-relsq tmp strcmp_const_17_a 1
-relsq strcmp_const_17_len strcmp_const_17_len 1
-relsq strcmp_const_17_len tmp 1
-subaddr strcmp_const_17_a CONST_8
+relsq tmp strcmp_const_18_a 1
+relsq strcmp_const_18_len strcmp_const_18_len 1
+relsq strcmp_const_18_len tmp 1
+subaddr strcmp_const_18_a CONST_8
 subaddr strcmp_3_b CONST_8
-addr strcmp_const_17_aStr 0
-addr strcmp_const_17_bStr 0
-zeroaddr strcmp_const_17_aStr
+addr strcmp_const_18_aStr 0
+addr strcmp_const_18_bStr 0
+zeroaddr strcmp_const_18_aStr
 relsq tmp tmp 1
-relsq tmp strcmp_const_17_a 1
-subaddr strcmp_const_17_aStr tmp
-zeroaddr strcmp_const_17_bStr
+relsq tmp strcmp_const_18_a 1
+subaddr strcmp_const_18_aStr tmp
+zeroaddr strcmp_const_18_bStr
 relsq tmp tmp 1
 relsq tmp strcmp_3_b 1
-subaddr strcmp_const_17_bStr tmp
-label STRCMP_CONST_17_LOOP
-lblsq strcmp_const_17_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
-relsq strcmp_const_17_len CONST_1 1
+subaddr strcmp_const_18_bStr tmp
+label STRCMP_CONST_18_LOOP
+lblsq strcmp_const_18_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
+relsq strcmp_const_18_len CONST_1 1
 relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_17_aStr 1
+relsq tmp2 strcmp_const_18_aStr 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_const_17_bStr 1
+relsq tmp strcmp_const_18_bStr 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_17_END
-lblsq tmp CONST_-1 JNZ_35_REVERT_AND_JUMP
+lblsq tmp2 CONST_-1 STRCMP_CONST_18_END
+lblsq tmp CONST_-1 JNZ_37_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_35_END
-label JNZ_35_REVERT_AND_JUMP
+lblsq ZERO ZERO JNZ_37_END
+label JNZ_37_REVERT_AND_JUMP
 relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_17_END
-label JNZ_35_END
-subaddr strcmp_const_17_aStr CONST_-8
-subaddr strcmp_const_17_bStr CONST_-8
-lblsq ZERO ZERO STRCMP_CONST_17_LOOP
-label STRCMP_CONST_17_REVERT_ADDR
-subaddr strcmp_const_17_a CONST_8
+lblsq ZERO ZERO STRCMP_CONST_18_END
+label JNZ_37_END
+subaddr strcmp_const_18_aStr CONST_-8
+subaddr strcmp_const_18_bStr CONST_-8
+lblsq ZERO ZERO STRCMP_CONST_18_LOOP
+label STRCMP_CONST_18_REVERT_ADDR
+subaddr strcmp_const_18_a CONST_8
 subaddr strcmp_3_b CONST_8
-label STRCMP_CONST_17_END
+label STRCMP_CONST_18_END
 rem End strcmp_const
 
 rem End strcmp
@@ -4686,6 +4810,13 @@ label END
 raw_ref END_BUF
 raw 0000000000000003 0000000000000018
 
+
+rem Start def_string SYM sym
+label SYM_BUF
+raw 0000000000000073 0000000000000079 000000000000006d
+label SYM
+raw_ref SYM_BUF
+raw 0000000000000003 0000000000000018
 
 rem Start def_string VAR var
 label VAR_BUF

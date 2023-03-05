@@ -134,6 +134,7 @@ label STEP1_LOOP
 decleq linesLeft 0 STEP2_START
 dec linesLeft 1
 
+strcmp_const curLine SYM STEP1_CREATE_SYMBOL tmp tmp2
 strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
 strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
 strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
@@ -295,6 +296,7 @@ def_string NEWLINE newline
 def_string REM rem
 def_string END end
 
+def_string SYM sym
 def_string VAR var
 def_string LABEL label
 def_string ADDR addr
