@@ -268,56 +268,62 @@ rem End add
 
 lblsq ZERO ZERO WRITE_QWORD
 
-rem A log is made of three components, adding to a total of 0x28 bytes:
-rem 0x0 A string containing the symbol name
-rem 0x18 The offset on which the log occured
-rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+rem A label/reference is made of two components, adding to a total of 0x20 bytes:
+rem 0x0 A string containing its name
+rem 0x18 The offset on which it occured
 
-var logArrStart 300000
-addr logArrNext 300000
-var logCount 0
+var lblArrStart 300000
+addr lblArrNext 300000
+var lblCount 0
+
+var refArrStart 400000
+addr refArrNext 400000
+var refCount 0
 
 rem INPUT_LABEL handles both labels (:) and references to them (&)
 label INPUT_LABEL
-relsq logCount CONST_-1 1
+lblsq c2 CONST_26 RECORD_REF
 
-rem Start alloc_str logArrNext 1000 tmp
+rem Handle label (:)
+relsq lblCount CONST_-1 1
 
-rem Start malloc_const logArrNext 1000 tmp
+rem Start alloc_str lblArrNext 1000 tmp
+
+rem Start malloc_const lblArrNext 1000 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq logArrNext logArrNext 1
-relsq logArrNext tmp 1
+relsq lblArrNext lblArrNext 1
+relsq lblArrNext tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_1000 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr logArrNext 8
-subaddr logArrNext CONST_-8
-rem zero logArrNext
-relsq logArrNext logArrNext 1
-rem incaddr logArrNext 8
-subaddr logArrNext CONST_-8
+rem incaddr lblArrNext 8
+subaddr lblArrNext CONST_-8
+rem zero lblArrNext
+relsq lblArrNext lblArrNext 1
+rem incaddr lblArrNext 8
+subaddr lblArrNext CONST_-8
 
-rem Start mov logArrNext CONST_1000 tmp
+rem Start mov lblArrNext CONST_1000 tmp
 relsq tmp tmp 1
 relsq tmp CONST_1000 1
-relsq logArrNext logArrNext 1
-relsq logArrNext tmp 1
+relsq lblArrNext lblArrNext 1
+relsq lblArrNext tmp 1
 rem End mov
 
-rem decaddr logArrNext 10
-subaddr logArrNext CONST_10
+rem decaddr lblArrNext 10
+subaddr lblArrNext CONST_10
 rem End alloc_str
 
 
-rem Start inp_token logArrNext tmp tmp2
+rem Start inp_token lblArrNext tmp tmp2
 addr inp_token_0_str 0
-rem setaddr inp_token_0_str logArrNext tmp
+rem setaddr inp_token_0_str lblArrNext tmp
 zeroaddr inp_token_0_str
 relsq tmp tmp 1
-relsq tmp logArrNext 1
+relsq tmp lblArrNext 1
 subaddr inp_token_0_str tmp
 var inp_token_0_len 0
 rem zero inp_token_0_len
@@ -397,47 +403,180 @@ lblsq ZERO ZERO INP_TOKEN_0_LOOP
 label INP_TOKEN_0_TERM
 rem decleq inp_token_0_len 0 INP_TOKEN_0_LOOP
 lblsq inp_token_0_len CONST_0 INP_TOKEN_0_LOOP
-rem incaddr logArrNext 8
-subaddr logArrNext CONST_-8
+rem incaddr lblArrNext 8
+subaddr lblArrNext CONST_-8
 
-rem Start mov logArrNext inp_token_0_len tmp
+rem Start mov lblArrNext inp_token_0_len tmp
 relsq tmp tmp 1
 relsq tmp inp_token_0_len 1
-relsq logArrNext logArrNext 1
-relsq logArrNext tmp 1
+relsq lblArrNext lblArrNext 1
+relsq lblArrNext tmp 1
 rem End mov
 
-rem decaddr logArrNext 8
-subaddr logArrNext CONST_8
+rem decaddr lblArrNext 8
+subaddr lblArrNext CONST_8
 rem End inp_token
 
-subaddr logArrNext CONST_-18
+subaddr lblArrNext CONST_-18
 
-rem Start mov logArrNext codeLen tmp
+rem Start mov lblArrNext codeLen tmp
 rem movneg tmp codeLen
 relsq tmp tmp 1
 relsq tmp codeLen 1
-rem movneg logArrNext tmp
-relsq logArrNext logArrNext 1
-relsq logArrNext tmp 1
+rem movneg lblArrNext tmp
+relsq lblArrNext lblArrNext 1
+relsq lblArrNext tmp 1
 rem End mov
 
-subaddr logArrNext CONST_-8
-
-lblsq c2 CONST_26 RECORD_REF
-
-rem Handle label (:)
-rem Set log type to 0
-relsq logArrNext logArrNext 1
-subaddr logArrNext CONST_-8
+subaddr lblArrNext CONST_-8
 lblsq ZERO ZERO MAIN
 
 rem Handle reference (&)
 label RECORD_REF
-rem set logArrNext 1
-relsq logArrNext logArrNext 1
-relsq logArrNext CONST_-1 1
-subaddr logArrNext CONST_-8
+relsq refCount CONST_-1 1
+
+rem Start alloc_str refArrNext 1000 tmp
+
+rem Start malloc_const refArrNext 1000 tmp
+relsq tmp tmp 1
+relsq tmp FREE_START 1
+relsq refArrNext refArrNext 1
+relsq refArrNext tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_1000 1
+relsq FREE_START tmp 1
+rem End malloc_const
+
+rem incaddr refArrNext 8
+subaddr refArrNext CONST_-8
+rem zero refArrNext
+relsq refArrNext refArrNext 1
+rem incaddr refArrNext 8
+subaddr refArrNext CONST_-8
+
+rem Start mov refArrNext CONST_1000 tmp
+relsq tmp tmp 1
+relsq tmp CONST_1000 1
+relsq refArrNext refArrNext 1
+relsq refArrNext tmp 1
+rem End mov
+
+rem decaddr refArrNext 10
+subaddr refArrNext CONST_10
+rem End alloc_str
+
+
+rem Start inp_token refArrNext tmp tmp2
+addr inp_token_1_str 0
+rem setaddr inp_token_1_str refArrNext tmp
+zeroaddr inp_token_1_str
+relsq tmp tmp 1
+relsq tmp refArrNext 1
+subaddr inp_token_1_str tmp
+var inp_token_1_len 0
+rem zero inp_token_1_len
+relsq inp_token_1_len inp_token_1_len 1
+label INP_TOKEN_1_LOOP
+
+rem Start getchar inp_token_1_str tmp
+relsq tmp tmp 1
+relsq tmp CONST_-1 1
+relsq tmp SERIAL_IN 2
+relsq ZERO ZERO -1
+relsq SERIAL_IN SERIAL_IN 1
+relsq inp_token_1_str inp_token_1_str 1
+relsq inp_token_1_str tmp 1
+rem End getchar
+
+
+rem Start jeq_const inp_token_1_str 20 INP_TOKEN_1_TERM tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_1_str 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_20 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 JZ_3_END
+lblsq tmp CONST_-1 JZ_3_REVERT_A
+relsq tmp CONST_1 1
+lblsq ZERO ZERO INP_TOKEN_1_TERM
+label JZ_3_REVERT_A
+relsq tmp CONST_1 1
+label JZ_3_END
+rem End jeq_const
+
+
+rem Start jeq_const inp_token_1_str d INP_TOKEN_1_TERM tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_1_str 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_D 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 JZ_4_END
+lblsq tmp CONST_-1 JZ_4_REVERT_A
+relsq tmp CONST_1 1
+lblsq ZERO ZERO INP_TOKEN_1_TERM
+label JZ_4_REVERT_A
+relsq tmp CONST_1 1
+label JZ_4_END
+rem End jeq_const
+
+
+rem Start jeq_const inp_token_1_str a INP_TOKEN_1_TERM tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_1_str 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp CONST_A 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 JZ_5_END
+lblsq tmp CONST_-1 JZ_5_REVERT_A
+relsq tmp CONST_1 1
+lblsq ZERO ZERO INP_TOKEN_1_TERM
+label JZ_5_REVERT_A
+relsq tmp CONST_1 1
+label JZ_5_END
+rem End jeq_const
+
+rem inc inp_token_1_len 1
+relsq inp_token_1_len CONST_-1 1
+rem incaddr inp_token_1_str 8
+subaddr inp_token_1_str CONST_-8
+rem lbljmp INP_TOKEN_1_LOOP
+lblsq ZERO ZERO INP_TOKEN_1_LOOP
+label INP_TOKEN_1_TERM
+rem decleq inp_token_1_len 0 INP_TOKEN_1_LOOP
+lblsq inp_token_1_len CONST_0 INP_TOKEN_1_LOOP
+rem incaddr refArrNext 8
+subaddr refArrNext CONST_-8
+
+rem Start mov refArrNext inp_token_1_len tmp
+relsq tmp tmp 1
+relsq tmp inp_token_1_len 1
+relsq refArrNext refArrNext 1
+relsq refArrNext tmp 1
+rem End mov
+
+rem decaddr refArrNext 8
+subaddr refArrNext CONST_8
+rem End inp_token
+
+subaddr refArrNext CONST_-18
+
+rem Start mov refArrNext codeLen tmp
+rem movneg tmp codeLen
+relsq tmp tmp 1
+relsq tmp codeLen 1
+rem movneg refArrNext tmp
+relsq refArrNext refArrNext 1
+relsq refArrNext tmp 1
+rem End mov
+
+subaddr refArrNext CONST_-8
 lblsq ZERO ZERO WRITE_QWORD
 
 
@@ -484,36 +623,183 @@ relsq codeLen CONST_-8 1
 lblsq ZERO ZERO MAIN
 
 
-rem A log is made of three components, adding to a total of 0x28 bytes:
-rem 0x0 A string containing the symbol name
-rem 0x18 The offset on which the log occured
-rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+rem A label/reference is made of two components, adding to a total of 0x20 bytes:
+rem 0x0 A string containing its name
+rem 0x18 The offset on which it occured
 
 rem RESOLVE_REF resolves references by setting their value to the label's address
 label RESOLVE_REF
-var logsToCheck 0
+var refsToResolve 0
 
-rem Start mov logsToCheck logCount tmp
-rem movneg tmp logCount
+rem Start mov refsToResolve refCount tmp
+rem movneg tmp refCount
 relsq tmp tmp 1
-relsq tmp logCount 1
-rem movneg logsToCheck tmp
-relsq logsToCheck logsToCheck 1
-relsq logsToCheck tmp 1
+relsq tmp refCount 1
+rem movneg refsToResolve tmp
+relsq refsToResolve refsToResolve 1
+relsq refsToResolve tmp 1
 rem End mov
 
-addr curRef 300000
+addr curRef 400000
 
 label RESOLVE_REF_LOOP
-lblsq logsToCheck CONST_0 PRINT
-relsq logsToCheck CONST_1 1
+lblsq refsToResolve CONST_0 PRINT
+relsq refsToResolve CONST_1 1
 
-rem Check if the log is a reference
-subaddr curRef CONST_-20
-lblsq curRef CONST_0 RESOLVE_REF_NOT_REF
+addr curFindLabel 0
+rem setaddr curFindLabel lblArrStart tmp
+zeroaddr curFindLabel
 
-rem Store the reference address and restore the curRef address
-subaddr curRef CONST_8
+rem Start addaddr curFindLabel lblArrStart tmp
+relsq tmp tmp 1
+relsq tmp lblArrStart 1
+subaddr curFindLabel tmp
+rem End addaddr
+
+
+label RESOLVE_REF_FIND_LABEL
+
+rem Start strcmp_const curRef curFindLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
+addr strcmp_const_0_a 0
+rem copyaddr strcmp_const_0_a curRef tmp
+sym curRef_addrRef_0
+rem setaddr strcmp_const_0_a curRef_addrRef_0 tmp
+zeroaddr strcmp_const_0_a
+relsq tmp tmp 1
+relsq tmp curRef_addrRef_0 1
+subaddr strcmp_const_0_a tmp
+rem incaddr strcmp_const_0_a 8
+subaddr strcmp_const_0_a CONST_-8
+rem incaddr curFindLabel 8
+subaddr curFindLabel CONST_-8
+
+rem Start jne strcmp_const_0_a curFindLabel STRCMP_CONST_0_REVERT_ADDR tmp tmp2
+
+rem Start mov tmp strcmp_const_0_a tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_0_a 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp curFindLabel
+relsq tmp curFindLabel 1
+
+rem Start jnz tmp STRCMP_CONST_0_REVERT_ADDR tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_CONST_0_REVERT_ADDR
+lblsq tmp CONST_-1 JNZ_0_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_0_END
+label JNZ_0_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_CONST_0_REVERT_ADDR
+label JNZ_0_END
+rem End jnz
+
+rem End jne
+
+var strcmp_const_0_len 0
+
+rem Start mov strcmp_const_0_len strcmp_const_0_a tmp
+rem movneg tmp strcmp_const_0_a
+relsq tmp tmp 1
+relsq tmp strcmp_const_0_a 1
+rem movneg strcmp_const_0_len tmp
+relsq strcmp_const_0_len strcmp_const_0_len 1
+relsq strcmp_const_0_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_0_a 8
+subaddr strcmp_const_0_a CONST_8
+rem decaddr curFindLabel 8
+subaddr curFindLabel CONST_8
+addr strcmp_const_0_aStr 0
+addr strcmp_const_0_bStr 0
+rem setaddr strcmp_const_0_aStr strcmp_const_0_a tmp
+zeroaddr strcmp_const_0_aStr
+
+rem Start addaddr strcmp_const_0_aStr strcmp_const_0_a tmp
+relsq tmp tmp 1
+relsq tmp strcmp_const_0_a 1
+subaddr strcmp_const_0_aStr tmp
+rem End addaddr
+
+rem setaddr strcmp_const_0_bStr curFindLabel tmp
+zeroaddr strcmp_const_0_bStr
+
+rem Start addaddr strcmp_const_0_bStr curFindLabel tmp
+relsq tmp tmp 1
+relsq tmp curFindLabel 1
+subaddr strcmp_const_0_bStr tmp
+rem End addaddr
+
+label STRCMP_CONST_0_LOOP
+rem decleq strcmp_const_0_len 0 RESOLVE_REF_FOUND_LABEL
+lblsq strcmp_const_0_len CONST_0 RESOLVE_REF_FOUND_LABEL
+rem dec strcmp_const_0_len 1
+relsq strcmp_const_0_len CONST_1 1
+
+rem Start jne strcmp_const_0_aStr strcmp_const_0_bStr STRCMP_CONST_0_END tmp tmp2
+
+rem Start mov tmp strcmp_const_0_aStr tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_0_aStr 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_const_0_bStr
+relsq tmp strcmp_const_0_bStr 1
+
+rem Start jnz tmp STRCMP_CONST_0_END tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+lblsq tmp2 CONST_-1 STRCMP_CONST_0_END
+lblsq tmp CONST_-1 JNZ_1_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO JNZ_1_END
+label JNZ_1_REVERT_AND_JUMP
+relsq tmp CONST_1 1
+lblsq ZERO ZERO STRCMP_CONST_0_END
+label JNZ_1_END
+rem End jnz
+
+rem End jne
+
+rem incaddr strcmp_const_0_aStr 8
+subaddr strcmp_const_0_aStr CONST_-8
+rem incaddr strcmp_const_0_bStr 8
+subaddr strcmp_const_0_bStr CONST_-8
+rem lbljmp STRCMP_CONST_0_LOOP
+lblsq ZERO ZERO STRCMP_CONST_0_LOOP
+label STRCMP_CONST_0_REVERT_ADDR
+rem decaddr strcmp_const_0_a 8
+subaddr strcmp_const_0_a CONST_8
+rem decaddr curFindLabel 8
+subaddr curFindLabel CONST_8
+label STRCMP_CONST_0_END
+rem End strcmp_const
+
+
+rem This is the wrong label. Try the next one
+subaddr curFindLabel CONST_-20
+lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
+
+label RESOLVE_REF_FOUND_LABEL
+addr curLabel 0
+rem copyaddr curLabel curFindLabel tmp
+sym curFindLabel_addrRef_0
+rem setaddr curLabel curFindLabel_addrRef_0 tmp
+zeroaddr curLabel
+relsq tmp tmp 1
+relsq tmp curFindLabel_addrRef_0 1
+subaddr curLabel tmp
+subaddr curLabel CONST_-18
+
+rem Fetch the reference address and point curRef to the next reference
+subaddr curRef CONST_-18
 
 rem Start add curRef bufStart tmp
 rem movneg tmp bufStart
@@ -533,162 +819,7 @@ relsq tmp curRef 1
 subaddr refAt tmp
 rem End addaddr
 
-subaddr curRef CONST_18
-
-rem puts resMsg1 tmp
-rem puts curRef tmp
-rem set tmp a
-rem putchar tmp tmp2
-
-addr curFindLabel 0
-rem setaddr curFindLabel logArrStart tmp
-zeroaddr curFindLabel
-
-rem Start addaddr curFindLabel logArrStart tmp
-relsq tmp tmp 1
-relsq tmp logArrStart 1
-subaddr curFindLabel tmp
-rem End addaddr
-
-subaddr curFindLabel CONST_-20
-
-label RESOLVE_REF_FIND_LABEL
-lblsq curFindLabel CONST_0 RESOLVE_REF_CHECK_LABEL
-
-rem This is not a label. Try the next one
-subaddr curFindLabel CONST_-28
-lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
-
-label RESOLVE_REF_CHECK_LABEL
-addr curLabel 0
-rem copyaddr curLabel curFindLabel tmp
-sym curFindLabel_addrRef_0
-rem setaddr curLabel curFindLabel_addrRef_0 tmp
-zeroaddr curLabel
-relsq tmp tmp 1
-relsq tmp curFindLabel_addrRef_0 1
-subaddr curLabel tmp
-subaddr curLabel CONST_20
-
-rem puts resMsg2 tmp
-rem puts curLabel tmp
-rem set tmp a
-rem putchar tmp tmp2
-
-
-rem Start strcmp curRef curLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
-addr strcmp_0_b 0
-rem copyaddr strcmp_0_b curLabel tmp
-sym curLabel_addrRef_0
-rem setaddr strcmp_0_b curLabel_addrRef_0 tmp
-zeroaddr strcmp_0_b
-relsq tmp tmp 1
-relsq tmp curLabel_addrRef_0 1
-subaddr strcmp_0_b tmp
-
-rem Start strcmp_const curRef strcmp_0_b RESOLVE_REF_FOUND_LABEL tmp tmp2
-addr strcmp_const_0_a 0
-rem copyaddr strcmp_const_0_a curRef tmp
-sym curRef_addrRef_0
-zeroaddr strcmp_const_0_a
-relsq tmp tmp 1
-relsq tmp curRef_addrRef_0 1
-subaddr strcmp_const_0_a tmp
-rem incaddr strcmp_const_0_a 8
-subaddr strcmp_const_0_a CONST_-8
-rem incaddr strcmp_0_b 8
-subaddr strcmp_0_b CONST_-8
-
-rem Start jne strcmp_const_0_a strcmp_0_b STRCMP_CONST_0_REVERT_ADDR tmp tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_0_a 1
-relsq tmp tmp 1
-relsq tmp tmp2 1
-relsq tmp strcmp_0_b 1
-relsq tmp2 tmp2 1
-relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_0_REVERT_ADDR
-lblsq tmp CONST_-1 JNZ_0_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_0_END
-label JNZ_0_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_0_REVERT_ADDR
-label JNZ_0_END
-rem End jne
-
-var strcmp_const_0_len 0
-
-rem Start mov strcmp_const_0_len strcmp_const_0_a tmp
-relsq tmp tmp 1
-relsq tmp strcmp_const_0_a 1
-relsq strcmp_const_0_len strcmp_const_0_len 1
-relsq strcmp_const_0_len tmp 1
-rem End mov
-
-rem decaddr strcmp_const_0_a 8
-subaddr strcmp_const_0_a CONST_8
-rem decaddr strcmp_0_b 8
-subaddr strcmp_0_b CONST_8
-addr strcmp_const_0_aStr 0
-addr strcmp_const_0_bStr 0
-rem setaddr strcmp_const_0_aStr strcmp_const_0_a tmp
-zeroaddr strcmp_const_0_aStr
-relsq tmp tmp 1
-relsq tmp strcmp_const_0_a 1
-subaddr strcmp_const_0_aStr tmp
-rem setaddr strcmp_const_0_bStr strcmp_0_b tmp
-zeroaddr strcmp_const_0_bStr
-relsq tmp tmp 1
-relsq tmp strcmp_0_b 1
-subaddr strcmp_const_0_bStr tmp
-label STRCMP_CONST_0_LOOP
-rem decleq strcmp_const_0_len 0 RESOLVE_REF_FOUND_LABEL
-lblsq strcmp_const_0_len CONST_0 RESOLVE_REF_FOUND_LABEL
-rem dec strcmp_const_0_len 1
-relsq strcmp_const_0_len CONST_1 1
-
-rem Start jne strcmp_const_0_aStr strcmp_const_0_bStr STRCMP_CONST_0_END tmp tmp2
-relsq tmp2 tmp2 1
-relsq tmp2 strcmp_const_0_aStr 1
-relsq tmp tmp 1
-relsq tmp tmp2 1
-relsq tmp strcmp_const_0_bStr 1
-relsq tmp2 tmp2 1
-relsq tmp2 tmp 1
-lblsq tmp2 CONST_-1 STRCMP_CONST_0_END
-lblsq tmp CONST_-1 JNZ_1_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO JNZ_1_END
-label JNZ_1_REVERT_AND_JUMP
-relsq tmp CONST_1 1
-lblsq ZERO ZERO STRCMP_CONST_0_END
-label JNZ_1_END
-rem End jne
-
-rem incaddr strcmp_const_0_aStr 8
-subaddr strcmp_const_0_aStr CONST_-8
-rem incaddr strcmp_const_0_bStr 8
-subaddr strcmp_const_0_bStr CONST_-8
-rem lbljmp STRCMP_CONST_0_LOOP
-lblsq ZERO ZERO STRCMP_CONST_0_LOOP
-label STRCMP_CONST_0_REVERT_ADDR
-rem decaddr strcmp_const_0_a 8
-subaddr strcmp_const_0_a CONST_8
-rem decaddr strcmp_0_b 8
-subaddr strcmp_0_b CONST_8
-label STRCMP_CONST_0_END
-rem End strcmp_const
-
-rem End strcmp
-
-
-rem This is the wrong label. Try the next one
-subaddr curFindLabel CONST_-28
-lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
-
-label RESOLVE_REF_FOUND_LABEL
-subaddr curLabel CONST_-18
+subaddr curRef CONST_-8
 
 
 rem Start mov refAt curLabel tmp
@@ -700,11 +831,6 @@ relsq refAt refAt 1
 relsq refAt tmp 1
 rem End mov
 
-subaddr curRef CONST_-28
-lblsq ZERO ZERO RESOLVE_REF_LOOP
-
-label RESOLVE_REF_NOT_REF
-subaddr curRef CONST_-8
 lblsq ZERO ZERO RESOLVE_REF_LOOP
 
 
@@ -890,18 +1016,18 @@ rem Start jz c MOD_256_0_START tmp
 rem movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
-rem incleq tmp 1 JZ_3_END
-lblsq tmp CONST_-1 JZ_3_END
-rem incleq c 1 JZ_3_REVERT_A
-lblsq c CONST_-1 JZ_3_REVERT_A
+rem incleq tmp 1 JZ_6_END
+lblsq tmp CONST_-1 JZ_6_END
+rem incleq c 1 JZ_6_REVERT_A
+lblsq c CONST_-1 JZ_6_REVERT_A
 rem dec c 1
 relsq c CONST_1 1
 rem lbljmp MOD_256_0_START
 lblsq ZERO ZERO MOD_256_0_START
-label JZ_3_REVERT_A
+label JZ_6_REVERT_A
 rem dec c 1
 relsq c CONST_1 1
-label JZ_3_END
+label JZ_6_END
 rem End jz
 
 
@@ -977,9 +1103,6 @@ rem End set_safe
 
 relsq ZERO ZERO 0
 
-rem def_string resMsg1 Resolving reference to 
-rem def_string resMsg2 Found label 
-
 var CONST_-1 -1
 var CONST_22 22
 var CONST_1 1
@@ -994,6 +1117,7 @@ var CONST_2C 2c
 var CONST_2F 2f
 var CONST_7 7
 var CONST_0 0
+var CONST_26 26
 var CONST_1000 1000
 var CONST_-8 -8
 var CONST_10 10
@@ -1001,10 +1125,7 @@ var CONST_20 20
 var CONST_D d
 var CONST_8 8
 var CONST_-18 -18
-var CONST_26 26
 var CONST_-20 -20
-var CONST_18 18
-var CONST_-28 -28
 var CONST_-100 -100
 var CONST_-10000 -10000
 

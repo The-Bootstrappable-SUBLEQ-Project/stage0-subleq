@@ -161,36 +161,39 @@ label REL_FIN
 add cur codeLen tmp
 lbljmp WRITE_QWORD
 
-rem A log is made of three components
-rem 0x0 A string containing the symbol name
-rem 0x18 The offset on which the log occured
-rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+rem A label/reference is made of two components, adding to a total of 0x20 bytes:
+rem 0x0 A string containing its name
+rem 0x18 The offset on which it occured
 
-var logArrStart 300000
-addr logArrNext 300000
-var logCount 0
+var lblArrStart 300000
+addr lblArrNext 300000
+var lblCount 0
+
+var refArrStart 400000
+addr refArrNext 400000
+var refCount 0
 
 rem INPUT_LABEL handles both labels (:) and references to them (&)
 label INPUT_LABEL
-inc logCount 1
-alloc_str logArrNext 1000 tmp
-inp_token logArrNext tmp tmp2
-incaddr logArrNext 18
-mov logArrNext codeLen tmp
-incaddr logArrNext 8
-
 decleq c2 26 RECORD_REF
 
 rem Handle label (:)
-rem Set log type to 0
-zero logArrNext
-incaddr logArrNext 8
+inc lblCount 1
+alloc_str lblArrNext 1000 tmp
+inp_token lblArrNext tmp tmp2
+incaddr lblArrNext 18
+mov lblArrNext codeLen tmp
+incaddr lblArrNext 8
 lbljmp MAIN
 
 rem Handle reference (&)
 label RECORD_REF
-set logArrNext 1
-incaddr logArrNext 8
+inc refCount 1
+alloc_str refArrNext 1000 tmp
+inp_token refArrNext tmp tmp2
+incaddr refArrNext 18
+mov refArrNext codeLen tmp
+incaddr refArrNext 8
 lbljmp WRITE_QWORD
 
 
@@ -219,74 +222,44 @@ inc codeLen 8
 lbljmp MAIN
 
 
-rem A log is made of three components, adding to a total of 0x28 bytes:
-rem 0x0 A string containing the symbol name
-rem 0x18 The offset on which the log occured
-rem 0x20 Whether the log is a label (0x0) or a reference (0x1)
+rem A label/reference is made of two components, adding to a total of 0x20 bytes:
+rem 0x0 A string containing its name
+rem 0x18 The offset on which it occured
 
 rem RESOLVE_REF resolves references by setting their value to the label's address
 label RESOLVE_REF
-var logsToCheck 0
-mov logsToCheck logCount tmp
-addr curRef 300000
+var refsToResolve 0
+mov refsToResolve refCount tmp
+addr curRef 400000
 
 label RESOLVE_REF_LOOP
-decleq logsToCheck 0 COPY
-dec logsToCheck 1
-
-rem Check if the log is a reference
-incaddr curRef 20
-decleq curRef 0 RESOLVE_REF_NOT_REF
-
-rem Store the reference address and restore the curRef address
-decaddr curRef 8
-add curRef bufStart tmp
-addr refAt 0
-setaddr refAt curRef tmp
-decaddr curRef 18
-
-rem puts resMsg1 tmp
-rem puts curRef tmp
-rem set tmp a
-rem putchar tmp tmp2
+decleq refsToResolve 0 COPY
+dec refsToResolve 1
 
 addr curFindLabel 0
-setaddr curFindLabel logArrStart tmp
-incaddr curFindLabel 20
+setaddr curFindLabel lblArrStart tmp
 
 label RESOLVE_REF_FIND_LABEL
-decleq curFindLabel 0 RESOLVE_REF_CHECK_LABEL
-
-rem This is not a label. Try the next one
-incaddr curFindLabel 28
-lbljmp RESOLVE_REF_FIND_LABEL
-
-label RESOLVE_REF_CHECK_LABEL
-addr curLabel 0
-copyaddr curLabel curFindLabel tmp
-decaddr curLabel 20
-
-rem puts resMsg2 tmp
-rem puts curLabel tmp
-rem set tmp a
-rem putchar tmp tmp2
-
-strcmp curRef curLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
+strcmp_const curRef curFindLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
 
 rem This is the wrong label. Try the next one
-incaddr curFindLabel 28
+incaddr curFindLabel 20
 lbljmp RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_FOUND_LABEL
+addr curLabel 0
+copyaddr curLabel curFindLabel tmp
 incaddr curLabel 18
+
+rem Fetch the reference address and point curRef to the next reference
+incaddr curRef 18
+add curRef bufStart tmp
+addr refAt 0
+setaddr refAt curRef tmp
+incaddr curRef 8
 
 rem The buffer is kept negative
 movneg refAt curLabel
-incaddr curRef 28
-lbljmp RESOLVE_REF_LOOP
-
-label RESOLVE_REF_NOT_REF
-incaddr curRef 8
 lbljmp RESOLVE_REF_LOOP
 
 
