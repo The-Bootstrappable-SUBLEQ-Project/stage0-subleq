@@ -103,6 +103,7 @@ for line in inp:
 symbols = {}
 for line in lines:
     if line.inst in ["var", "label", "addr"]:
+        assert line.tokens[0] not in symbols
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
         if line.inst == "var":
             symbols[line.tokens[0]].val = int(line.tokens[1], 16)
