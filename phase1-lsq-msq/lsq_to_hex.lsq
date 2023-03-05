@@ -25,6 +25,9 @@ addr CPU_CONTROL_START 13EE0000
 var FREE_START 1000000
 var LINE_FEED a
 var SPACE 20
+rem Generated from https://www.random.org/colors/hex
+rem F to whoever is unlucky enough to use this number in their lsq, which is about a 1 / 3.4e38 chance
+var SYM_VAL_PLACEHOLDER 130b197121c2627e
 lblsq ZERO ZERO EP
 
 label EP
@@ -1497,9 +1500,9 @@ rem 1. Find symbols
 label STEP1_START
 rem A Symbol is made of four components, adding to a total of 0x30 bytes:
 rem 0x0 String containing the name of the symbol
-rem 0x18 The address of the symbol
+rem 0x18 The address of the symbol (ffffffffffffffff if None)
 rem 0x20 The reference count of the symbol
-rem 0x28 The default value of the symbol
+rem 0x28 The default value of the symbol (SYM_VAL_PLACEHOLDER if None)
 var symbolsBegin 200000
 var symbolsLen 0
 
@@ -2408,7 +2411,16 @@ relsq symbolsCur_step1 symbolsCur_step1 1
 
 label STEP1_HANDLE_VALUE
 subaddr symbolsCur_step1 CONST_-8
+
+rem Start mov symbolsCur_step1 SYM_VAL_PLACEHOLDER tmp
+rem movneg tmp SYM_VAL_PLACEHOLDER
+relsq tmp tmp 1
+relsq tmp SYM_VAL_PLACEHOLDER 1
+rem movneg symbolsCur_step1 tmp
 relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 tmp 1
+rem End mov
+
 
 rem Start strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
 addr strcmp_const_7_a 0
@@ -3497,10 +3509,25 @@ subaddr incRefCount_it tmp
 rem End setaddr
 
 
-rem Start find_item_in_buf_with_str_key incRefCount_it incRefCount_key 30 tmp tmp2
-label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
+rem Start find_item_in_buf_with_str_key incRefCount_it incRefCount_key 30 symbolsLen incRefCount_doInc tmp tmp2
+var find_item_in_buf_with_str_key_0_elmsLeft 0
 
-rem Start strcmp_const incRefCount_it incRefCount_key FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
+rem Start mov find_item_in_buf_with_str_key_0_elmsLeft symbolsLen tmp
+rem movneg tmp symbolsLen
+relsq tmp tmp 1
+relsq tmp symbolsLen 1
+rem movneg find_item_in_buf_with_str_key_0_elmsLeft tmp
+relsq find_item_in_buf_with_str_key_0_elmsLeft find_item_in_buf_with_str_key_0_elmsLeft 1
+relsq find_item_in_buf_with_str_key_0_elmsLeft tmp 1
+rem End mov
+
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
+rem decleq find_item_in_buf_with_str_key_0_elmsLeft 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_NO_MATCH
+lblsq find_item_in_buf_with_str_key_0_elmsLeft CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_NO_MATCH
+rem dec find_item_in_buf_with_str_key_0_elmsLeft 1
+relsq find_item_in_buf_with_str_key_0_elmsLeft CONST_1 1
+
+rem Start strcmp_const incRefCount_it incRefCount_key incRefCount_doInc tmp tmp2
 addr strcmp_const_13_a 0
 rem copyaddr strcmp_const_13_a incRefCount_it tmp tmp2
 relsq tmp2 tmp2 1
@@ -3568,8 +3595,8 @@ subaddr strcmp_const_13_bStr tmp
 rem End setaddr
 
 label STRCMP_CONST_13_LOOP
-rem decleq strcmp_const_13_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
-lblsq strcmp_const_13_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+rem decleq strcmp_const_13_len 0 incRefCount_doInc
+lblsq strcmp_const_13_len CONST_0 incRefCount_doInc
 rem dec strcmp_const_13_len 1
 relsq strcmp_const_13_len CONST_1 1
 
@@ -3607,9 +3634,67 @@ rem incaddr incRefCount_it 30
 subaddr incRefCount_it CONST_-30
 rem lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
 lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
-label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_NO_MATCH
 rem End find_item_in_buf_with_str_key
 
+
+rem No match. Create a new symbol instead
+rem memcpy_const incRefCount_it incRefCount_key 18 tmp tmp2
+
+rem Start memcpy incRefCount_it incRefCount_key CONST_18 tmp tmp2
+addr memcpy_0_dst 0
+addr memcpy_0_src 0
+relsq tmp2 tmp2 1
+relsq tmp2 memcpy_0_dst_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp incRefCount_it_addrRef_0 1
+subaddr memcpy_0_dst tmp
+relsq tmp2 tmp2 1
+relsq tmp2 memcpy_0_src_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+relsq tmp incRefCount_key_addrRef_0 1
+subaddr memcpy_0_src tmp
+var memcpy_0_numLeft 0
+relsq tmp tmp 1
+relsq tmp CONST_18 1
+relsq memcpy_0_numLeft memcpy_0_numLeft 1
+relsq memcpy_0_numLeft tmp 1
+label MEMCPY_0_LOOP
+lblsq memcpy_0_numLeft CONST_0 MEMCPY_0_END
+relsq memcpy_0_numLeft CONST_8 1
+relsq tmp tmp 1
+relsq tmp memcpy_0_src 1
+relsq memcpy_0_dst memcpy_0_dst 1
+relsq memcpy_0_dst tmp 1
+subaddr memcpy_0_dst CONST_-8
+subaddr memcpy_0_src CONST_-8
+lblsq ZERO ZERO MEMCPY_0_LOOP
+label MEMCPY_0_END
+rem End memcpy
+
+subaddr incRefCount_it CONST_-18
+rem set incRefCount_it -1
+relsq incRefCount_it incRefCount_it 1
+relsq incRefCount_it CONST_1 1
+subaddr incRefCount_it CONST_-8
+relsq incRefCount_it incRefCount_it 1
+subaddr incRefCount_it CONST_-8
+
+rem Start mov incRefCount_it SYM_VAL_PLACEHOLDER tmp
+rem movneg tmp SYM_VAL_PLACEHOLDER
+relsq tmp tmp 1
+relsq tmp SYM_VAL_PLACEHOLDER 1
+rem movneg incRefCount_it tmp
+relsq incRefCount_it incRefCount_it 1
+relsq incRefCount_it tmp 1
+rem End mov
+
+subaddr incRefCount_it CONST_28
+relsq symbolsLen CONST_-1 1
+
+label incRefCount_doInc
 subaddr incRefCount_it CONST_-20
 relsq incRefCount_it CONST_-1 1
 rem ret incRefCount
@@ -5011,6 +5096,7 @@ var CONST_7 7
 var CONST_9 9
 var CONST_6 6
 var CONST_1A 1a
+var CONST_28 28
 var CONST_-F -f
 var CONST_80 80
 var CONST_2 2

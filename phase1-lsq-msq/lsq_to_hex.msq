@@ -25,6 +25,9 @@ addr CPU_CONTROL_START 13EE0000
 var FREE_START 1000000
 var LINE_FEED a
 var SPACE 20
+rem Generated from https://www.random.org/colors/hex
+rem F to whoever is unlucky enough to use this number in their lsq, which is about a 1 / 3.4e38 chance
+var SYM_VAL_PLACEHOLDER 130b197121c2627e
 lblsq ZERO ZERO EP
 
 label EP
@@ -127,9 +130,9 @@ rem 1. Find symbols
 label STEP1_START
 rem A Symbol is made of four components, adding to a total of 0x30 bytes:
 rem 0x0 String containing the name of the symbol
-rem 0x18 The address of the symbol
+rem 0x18 The address of the symbol (ffffffffffffffff if None)
 rem 0x20 The reference count of the symbol
-rem 0x28 The default value of the symbol
+rem 0x28 The default value of the symbol (SYM_VAL_PLACEHOLDER if None)
 var symbolsBegin 200000
 var symbolsLen 0
 
@@ -175,7 +178,7 @@ zero symbolsCur_step1
 
 label STEP1_HANDLE_VALUE
 incaddr symbolsCur_step1 8
-zero symbolsCur_step1
+mov symbolsCur_step1 SYM_VAL_PLACEHOLDER tmp
 strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
 lbljmp STEP1_END
 
@@ -214,7 +217,20 @@ label incRefCount
 addr incRefCount_key 0
 addr incRefCount_it 0
 setaddr incRefCount_it symbolsBegin tmp tmp2
-find_item_in_buf_with_str_key incRefCount_it incRefCount_key 30 tmp tmp2
+find_item_in_buf_with_str_key incRefCount_it incRefCount_key 30 symbolsLen incRefCount_doInc tmp tmp2
+
+rem No match. Create a new symbol instead
+memcpy_const incRefCount_it incRefCount_key 18 tmp tmp2
+incaddr incRefCount_it 18
+set incRefCount_it -1
+incaddr incRefCount_it 8
+zero incRefCount_it
+incaddr incRefCount_it 8
+mov incRefCount_it SYM_VAL_PLACEHOLDER tmp
+decaddr incRefCount_it 28
+inc symbolsLen 1
+
+label incRefCount_doInc
 incaddr incRefCount_it 20
 inc incRefCount_it 1
 ret incRefCount

@@ -458,7 +458,7 @@ def alloc_str(args, v=2):
 
 # Creates an array on a.
 # a must be at least 32 bytes in size to prevent overwriting
-# An array is made out of three parts:
+# An array is made out of four parts:
 # 1. Address to the array's buffer
 # 2. Number of elements in the array
 # 3. The size of every element in the array
@@ -1101,20 +1101,70 @@ def from_hex(args, v=3):
     logEnd()
 
 
-# Goes through a buffer of items until it finds an item that matches with the wanted key
-# When it exits, "it"'s address will point to the item in the buffer
+# An array is made out of four parts:
+# 1. Address to the array's buffer
+# 2. Number of elements in the array
+# 3. The size of every element in the array
+# 4. The capacity of the buffer
+
+# Goes through a buffer of items until it finds an item that matches the wanted key
+# When there is a match, it will jump to foundLabel with "it"'s address pointing to the matched item
+# When there isn't a match, it doesn't jump and makes "it"'s address point right after the last element
 # The first component of the items must be a string that contains the key
-# "it" is the shorthand for iterator, like the one in C++
+# "it" is the shorthand for the iterator, like the one in C++
 def find_item_in_buf_with_str_key(args, v=3):
-    it, key, elmSize, tmp, tmp2 = args
-    elmSize = ensureInt(elmSize)
+    it, key, elmSize, elmCount, foundLabel, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    noMatchLabel = nameSym("NO_MATCH", True)
+
+    elmsLeft = nameSym("elmsLeft")
+    print(f"var {elmsLeft} 0")
+    mov([elmsLeft, elmCount, tmp], v - 1)
+
+    print(f"label {loopLabel}")
+    decleq([elmsLeft, 0, noMatchLabel], v - 1)
+    dec([elmsLeft, 1], v - 1)
+    strcmp_const([it, key, foundLabel, tmp, tmp2], v - 1)
+    incaddr([it, elmSize], v - 1)
+    lbljmp([loopLabel], v - 1)
+
+    print(f"label {noMatchLabel}")
+    logEnd()
+
+
+# Same as memcpy, except num is a constant
+def memcpy_const(args, v=2):
+    orgDst, orgSrc, num, tmp, tmp2 = args
+    logSimple()
+    memcpy([orgDst, orgSrc, recordConst(num), tmp, tmp2], v - 1)
+
+
+# Copies num bytes of data from src to dst
+# Currently only supports len % 8 == 0
+def memcpy(args, v=2):
+    orgDst, orgSrc, num, tmp, tmp2 = args
     logStart()
     loopLabel = nameSym("LOOP", True)
     endLabel = nameSym("END", True)
 
+    dst = nameSym("dst")
+    src = nameSym("src")
+    print(f"addr {dst} 0")
+    print(f"addr {src} 0")
+    copyaddr([dst, orgDst, tmp, tmp2], v - 1)
+    copyaddr([src, orgSrc, tmp, tmp2], v - 1)
+
+    numLeft = nameSym("numLeft")
+    print(f"var {numLeft} 0")
+    mov([numLeft, num, tmp], v - 1)
+
     print(f"label {loopLabel}")
-    strcmp_const([it, key, endLabel, tmp, tmp2], v - 1)
-    incaddr([it, elmSize], v - 1)
+    decleq([numLeft, 0, endLabel], v - 1)
+    dec([numLeft, 8], v - 1)
+    mov([dst, src, tmp], v - 1)
+    incaddr([dst, 8], v - 1)
+    incaddr([src, 8], v - 1)
     lbljmp([loopLabel], v - 1)
 
     print(f"label {endLabel}")

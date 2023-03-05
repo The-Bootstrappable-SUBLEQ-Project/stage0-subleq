@@ -145,7 +145,7 @@ if args.lsq_path == "test.lsq":
         print("addr:", numToRawInst(addr) if addr is not None else numToRawInst(-1))
         print("refCount:", numToRawInst(sym[1].refCount))
         val = sym[1].val
-        print("val:", numToRawInst(val) if val is not None else numToRawInst(0))
+        print("val:", numToRawInst(val) if val is not None else numToRawInst(0x130b197121c2627e))
 
     sys.exit()
 
