@@ -820,7 +820,7 @@ def strcmp_const(args, v=3):
     lbljmp([loopLabel], v - 1)
 
     print(f"label {revertLabel}")
-    decaddr([a, 8], v - 1)
+    # decaddr([a, 8], v - 1)
     decaddr([b, 8], v - 1)
 
     print(f"label {endLabel}")

@@ -1016,12 +1016,8 @@
 # lbljmp STRCMP_CONST_0_LOOP
 &ZERO &ZERO &STRCMP_CONST_0_LOOP ; lblsq ZERO ZERO STRCMP_CONST_0_LOOP
 ; label STRCMP_CONST_0_REVERT_ADDR
-# decaddr strcmp_const_0_a 8
-:STRCMP_CONST_0_REVERT_ADDR &strcmp_const_0_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_0_a_addrRef_0 CONST_8 1
-&strcmp_const_0_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_0_a_addrRef_1 CONST_8 1
-&strcmp_const_0_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_0_a_addrRef_2 CONST_8 1
 # decaddr curFindLabel 8
-&curFindLabel_addrRef_0 &CONST_8 ?+8 ; relsq curFindLabel_addrRef_0 CONST_8 1
+:STRCMP_CONST_0_REVERT_ADDR &curFindLabel_addrRef_0 &CONST_8 ?+8 ; relsq curFindLabel_addrRef_0 CONST_8 1
 &curFindLabel_addrRef_1 &CONST_8 ?+8 ; relsq curFindLabel_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_0_END
 # End strcmp_const

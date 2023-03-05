@@ -853,12 +853,8 @@
 # lbljmp STRCMP_CONST_0_LOOP
 &ZERO &ZERO &STRCMP_CONST_0_LOOP ; lblsq ZERO ZERO STRCMP_CONST_0_LOOP
 ; label STRCMP_CONST_0_REVERT_ADDR
-# decaddr strcmp_const_0_a 8
-:STRCMP_CONST_0_REVERT_ADDR &strcmp_const_0_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_0_a_addrRef_0 CONST_8 1
-&strcmp_const_0_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_0_a_addrRef_1 CONST_8 1
-&strcmp_const_0_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_0_a_addrRef_2 CONST_8 1
 # decaddr EMPTY_STRING 8
-&EMPTY_STRING_addrRef_0 &CONST_8 ?+8 ; relsq EMPTY_STRING_addrRef_0 CONST_8 1
+:STRCMP_CONST_0_REVERT_ADDR &EMPTY_STRING_addrRef_0 &CONST_8 ?+8 ; relsq EMPTY_STRING_addrRef_0 CONST_8 1
 &EMPTY_STRING_addrRef_1 &CONST_8 ?+8 ; relsq EMPTY_STRING_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_0_END
 # End strcmp_const
@@ -990,12 +986,8 @@
 # lbljmp STRCMP_CONST_1_LOOP
 &ZERO &ZERO &STRCMP_CONST_1_LOOP ; lblsq ZERO ZERO STRCMP_CONST_1_LOOP
 ; label STRCMP_CONST_1_REVERT_ADDR
-# decaddr strcmp_const_1_a 8
-:STRCMP_CONST_1_REVERT_ADDR &strcmp_const_1_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_1_a_addrRef_0 CONST_8 1
-&strcmp_const_1_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_1_a_addrRef_1 CONST_8 1
-&strcmp_const_1_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_1_a_addrRef_2 CONST_8 1
 # decaddr REM 8
-&REM_addrRef_0 &CONST_8 ?+8 ; relsq REM_addrRef_0 CONST_8 1
+:STRCMP_CONST_1_REVERT_ADDR &REM_addrRef_0 &CONST_8 ?+8 ; relsq REM_addrRef_0 CONST_8 1
 &REM_addrRef_1 &CONST_8 ?+8 ; relsq REM_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_1_END
 # End strcmp_const
@@ -1127,12 +1119,8 @@
 # lbljmp STRCMP_CONST_2_LOOP
 &ZERO &ZERO &STRCMP_CONST_2_LOOP ; lblsq ZERO ZERO STRCMP_CONST_2_LOOP
 ; label STRCMP_CONST_2_REVERT_ADDR
-# decaddr strcmp_const_2_a 8
-:STRCMP_CONST_2_REVERT_ADDR &strcmp_const_2_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_2_a_addrRef_0 CONST_8 1
-&strcmp_const_2_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_2_a_addrRef_1 CONST_8 1
-&strcmp_const_2_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_2_a_addrRef_2 CONST_8 1
 # decaddr END 8
-&END_addrRef_0 &CONST_8 ?+8 ; relsq END_addrRef_0 CONST_8 1
+:STRCMP_CONST_2_REVERT_ADDR &END_addrRef_0 &CONST_8 ?+8 ; relsq END_addrRef_0 CONST_8 1
 &END_addrRef_1 &CONST_8 ?+8 ; relsq END_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_2_END
 # End strcmp_const
@@ -5574,12 +5562,8 @@
 # lbljmp STRCMP_CONST_3_LOOP
 &ZERO &ZERO &STRCMP_CONST_3_LOOP ; lblsq ZERO ZERO STRCMP_CONST_3_LOOP
 ; label STRCMP_CONST_3_REVERT_ADDR
-# decaddr strcmp_const_3_a 8
-:STRCMP_CONST_3_REVERT_ADDR &strcmp_const_3_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_3_a_addrRef_0 CONST_8 1
-&strcmp_const_3_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_3_a_addrRef_1 CONST_8 1
-&strcmp_const_3_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_3_a_addrRef_2 CONST_8 1
 # decaddr SYM 8
-&SYM_addrRef_0 &CONST_8 ?+8 ; relsq SYM_addrRef_0 CONST_8 1
+:STRCMP_CONST_3_REVERT_ADDR &SYM_addrRef_0 &CONST_8 ?+8 ; relsq SYM_addrRef_0 CONST_8 1
 &SYM_addrRef_1 &CONST_8 ?+8 ; relsq SYM_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_3_END
 # End strcmp_const
@@ -5715,12 +5699,8 @@
 # lbljmp STRCMP_CONST_4_LOOP
 &ZERO &ZERO &STRCMP_CONST_4_LOOP ; lblsq ZERO ZERO STRCMP_CONST_4_LOOP
 ; label STRCMP_CONST_4_REVERT_ADDR
-# decaddr strcmp_const_4_a 8
-:STRCMP_CONST_4_REVERT_ADDR &strcmp_const_4_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_4_a_addrRef_0 CONST_8 1
-&strcmp_const_4_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_4_a_addrRef_1 CONST_8 1
-&strcmp_const_4_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_4_a_addrRef_2 CONST_8 1
 # decaddr VAR 8
-&VAR_addrRef_0 &CONST_8 ?+8 ; relsq VAR_addrRef_0 CONST_8 1
+:STRCMP_CONST_4_REVERT_ADDR &VAR_addrRef_0 &CONST_8 ?+8 ; relsq VAR_addrRef_0 CONST_8 1
 &VAR_addrRef_1 &CONST_8 ?+8 ; relsq VAR_addrRef_1 CONST_8 1
 &VAR_addrRef_2 &CONST_8 ?+8 ; relsq VAR_addrRef_2 CONST_8 1
 &VAR_addrRef_3 &CONST_8 ?+8 ; relsq VAR_addrRef_3 CONST_8 1
@@ -5854,12 +5834,8 @@
 # lbljmp STRCMP_CONST_5_LOOP
 &ZERO &ZERO &STRCMP_CONST_5_LOOP ; lblsq ZERO ZERO STRCMP_CONST_5_LOOP
 ; label STRCMP_CONST_5_REVERT_ADDR
-# decaddr strcmp_const_5_a 8
-:STRCMP_CONST_5_REVERT_ADDR &strcmp_const_5_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_5_a_addrRef_0 CONST_8 1
-&strcmp_const_5_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_5_a_addrRef_1 CONST_8 1
-&strcmp_const_5_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_5_a_addrRef_2 CONST_8 1
 # decaddr LABEL 8
-&LABEL_addrRef_0 &CONST_8 ?+8 ; relsq LABEL_addrRef_0 CONST_8 1
+:STRCMP_CONST_5_REVERT_ADDR &LABEL_addrRef_0 &CONST_8 ?+8 ; relsq LABEL_addrRef_0 CONST_8 1
 &LABEL_addrRef_1 &CONST_8 ?+8 ; relsq LABEL_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_5_END
 # End strcmp_const
@@ -5995,12 +5971,8 @@
 # lbljmp STRCMP_CONST_6_LOOP
 &ZERO &ZERO &STRCMP_CONST_6_LOOP ; lblsq ZERO ZERO STRCMP_CONST_6_LOOP
 ; label STRCMP_CONST_6_REVERT_ADDR
-# decaddr strcmp_const_6_a 8
-:STRCMP_CONST_6_REVERT_ADDR &strcmp_const_6_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_6_a_addrRef_0 CONST_8 1
-&strcmp_const_6_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_6_a_addrRef_1 CONST_8 1
-&strcmp_const_6_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_6_a_addrRef_2 CONST_8 1
 # decaddr ADDR 8
-&ADDR_addrRef_0 &CONST_8 ?+8 ; relsq ADDR_addrRef_0 CONST_8 1
+:STRCMP_CONST_6_REVERT_ADDR &ADDR_addrRef_0 &CONST_8 ?+8 ; relsq ADDR_addrRef_0 CONST_8 1
 &ADDR_addrRef_1 &CONST_8 ?+8 ; relsq ADDR_addrRef_1 CONST_8 1
 &ADDR_addrRef_2 &CONST_8 ?+8 ; relsq ADDR_addrRef_2 CONST_8 1
 &ADDR_addrRef_3 &CONST_8 ?+8 ; relsq ADDR_addrRef_3 CONST_8 1
@@ -6615,12 +6587,8 @@
 # lbljmp STRCMP_CONST_7_LOOP
 &ZERO &ZERO &STRCMP_CONST_7_LOOP ; lblsq ZERO ZERO STRCMP_CONST_7_LOOP
 ; label STRCMP_CONST_7_REVERT_ADDR
-# decaddr strcmp_const_7_a 8
-:STRCMP_CONST_7_REVERT_ADDR &strcmp_const_7_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_7_a_addrRef_0 CONST_8 1
-&strcmp_const_7_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_7_a_addrRef_1 CONST_8 1
-&strcmp_const_7_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_7_a_addrRef_2 CONST_8 1
 # decaddr ADDR 8
-&ADDR_addrRef_0 &CONST_8 ?+8 ; relsq ADDR_addrRef_0 CONST_8 1
+:STRCMP_CONST_7_REVERT_ADDR &ADDR_addrRef_0 &CONST_8 ?+8 ; relsq ADDR_addrRef_0 CONST_8 1
 &ADDR_addrRef_1 &CONST_8 ?+8 ; relsq ADDR_addrRef_1 CONST_8 1
 &ADDR_addrRef_2 &CONST_8 ?+8 ; relsq ADDR_addrRef_2 CONST_8 1
 &ADDR_addrRef_3 &CONST_8 ?+8 ; relsq ADDR_addrRef_3 CONST_8 1
@@ -7050,12 +7018,8 @@
 # lbljmp STRCMP_CONST_8_LOOP
 &ZERO &ZERO &STRCMP_CONST_8_LOOP ; lblsq ZERO ZERO STRCMP_CONST_8_LOOP
 ; label STRCMP_CONST_8_REVERT_ADDR
-# decaddr strcmp_const_8_a 8
-:STRCMP_CONST_8_REVERT_ADDR &strcmp_const_8_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_8_a_addrRef_0 CONST_8 1
-&strcmp_const_8_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_8_a_addrRef_1 CONST_8 1
-&strcmp_const_8_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_8_a_addrRef_2 CONST_8 1
 # decaddr VAR 8
-&VAR_addrRef_0 &CONST_8 ?+8 ; relsq VAR_addrRef_0 CONST_8 1
+:STRCMP_CONST_8_REVERT_ADDR &VAR_addrRef_0 &CONST_8 ?+8 ; relsq VAR_addrRef_0 CONST_8 1
 &VAR_addrRef_1 &CONST_8 ?+8 ; relsq VAR_addrRef_1 CONST_8 1
 &VAR_addrRef_2 &CONST_8 ?+8 ; relsq VAR_addrRef_2 CONST_8 1
 &VAR_addrRef_3 &CONST_8 ?+8 ; relsq VAR_addrRef_3 CONST_8 1
@@ -7488,12 +7452,8 @@
 # lbljmp STRCMP_CONST_9_LOOP
 &ZERO &ZERO &STRCMP_CONST_9_LOOP ; lblsq ZERO ZERO STRCMP_CONST_9_LOOP
 ; label STRCMP_CONST_9_REVERT_ADDR
-# decaddr strcmp_const_9_a 8
-:STRCMP_CONST_9_REVERT_ADDR &strcmp_const_9_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_9_a_addrRef_0 CONST_8 1
-&strcmp_const_9_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_9_a_addrRef_1 CONST_8 1
-&strcmp_const_9_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_9_a_addrRef_2 CONST_8 1
 # decaddr ABSSQ 8
-&ABSSQ_addrRef_0 &CONST_8 ?+8 ; relsq ABSSQ_addrRef_0 CONST_8 1
+:STRCMP_CONST_9_REVERT_ADDR &ABSSQ_addrRef_0 &CONST_8 ?+8 ; relsq ABSSQ_addrRef_0 CONST_8 1
 &ABSSQ_addrRef_1 &CONST_8 ?+8 ; relsq ABSSQ_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_9_END
 # End strcmp_const
@@ -7625,12 +7585,8 @@
 # lbljmp STRCMP_CONST_10_LOOP
 &ZERO &ZERO &STRCMP_CONST_10_LOOP ; lblsq ZERO ZERO STRCMP_CONST_10_LOOP
 ; label STRCMP_CONST_10_REVERT_ADDR
-# decaddr strcmp_const_10_a 8
-:STRCMP_CONST_10_REVERT_ADDR &strcmp_const_10_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_10_a_addrRef_0 CONST_8 1
-&strcmp_const_10_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_10_a_addrRef_1 CONST_8 1
-&strcmp_const_10_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_10_a_addrRef_2 CONST_8 1
 # decaddr RELSQ 8
-&RELSQ_addrRef_0 &CONST_8 ?+8 ; relsq RELSQ_addrRef_0 CONST_8 1
+:STRCMP_CONST_10_REVERT_ADDR &RELSQ_addrRef_0 &CONST_8 ?+8 ; relsq RELSQ_addrRef_0 CONST_8 1
 &RELSQ_addrRef_1 &CONST_8 ?+8 ; relsq RELSQ_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_10_END
 # End strcmp_const
@@ -7766,12 +7722,8 @@
 # lbljmp STRCMP_CONST_11_LOOP
 &ZERO &ZERO &STRCMP_CONST_11_LOOP ; lblsq ZERO ZERO STRCMP_CONST_11_LOOP
 ; label STRCMP_CONST_11_REVERT_ADDR
-# decaddr strcmp_const_11_a 8
-:STRCMP_CONST_11_REVERT_ADDR &strcmp_const_11_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_11_a_addrRef_0 CONST_8 1
-&strcmp_const_11_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_11_a_addrRef_1 CONST_8 1
-&strcmp_const_11_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_11_a_addrRef_2 CONST_8 1
 # decaddr LBLSQ 8
-&LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
+:STRCMP_CONST_11_REVERT_ADDR &LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
 &LBLSQ_addrRef_1 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_8 1
 &LBLSQ_addrRef_2 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_8 1
 &LBLSQ_addrRef_3 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_8 1
@@ -7905,12 +7857,8 @@
 # lbljmp STRCMP_CONST_12_LOOP
 &ZERO &ZERO &STRCMP_CONST_12_LOOP ; lblsq ZERO ZERO STRCMP_CONST_12_LOOP
 ; label STRCMP_CONST_12_REVERT_ADDR
-# decaddr strcmp_const_12_a 8
-:STRCMP_CONST_12_REVERT_ADDR &strcmp_const_12_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_12_a_addrRef_0 CONST_8 1
-&strcmp_const_12_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_12_a_addrRef_1 CONST_8 1
-&strcmp_const_12_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_12_a_addrRef_2 CONST_8 1
 # decaddr SUBADDR 8
-&SUBADDR_addrRef_0 &CONST_8 ?+8 ; relsq SUBADDR_addrRef_0 CONST_8 1
+:STRCMP_CONST_12_REVERT_ADDR &SUBADDR_addrRef_0 &CONST_8 ?+8 ; relsq SUBADDR_addrRef_0 CONST_8 1
 &SUBADDR_addrRef_1 &CONST_8 ?+8 ; relsq SUBADDR_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_12_END
 # End strcmp_const
@@ -8042,12 +7990,8 @@
 # lbljmp STRCMP_CONST_13_LOOP
 &ZERO &ZERO &STRCMP_CONST_13_LOOP ; lblsq ZERO ZERO STRCMP_CONST_13_LOOP
 ; label STRCMP_CONST_13_REVERT_ADDR
-# decaddr strcmp_const_13_a 8
-:STRCMP_CONST_13_REVERT_ADDR &strcmp_const_13_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_13_a_addrRef_0 CONST_8 1
-&strcmp_const_13_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_13_a_addrRef_1 CONST_8 1
-&strcmp_const_13_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_13_a_addrRef_2 CONST_8 1
 # decaddr RAW_REF 8
-&RAW_REF_addrRef_0 &CONST_8 ?+8 ; relsq RAW_REF_addrRef_0 CONST_8 1
+:STRCMP_CONST_13_REVERT_ADDR &RAW_REF_addrRef_0 &CONST_8 ?+8 ; relsq RAW_REF_addrRef_0 CONST_8 1
 &RAW_REF_addrRef_1 &CONST_8 ?+8 ; relsq RAW_REF_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_13_END
 # End strcmp_const
@@ -8161,10 +8105,7 @@
 &strcmp_const_14_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_14_bStr_addrRef_0 CONST_-8 1
 &ZERO &ZERO &STRCMP_CONST_14_LOOP ; lblsq ZERO ZERO STRCMP_CONST_14_LOOP
 ; label STRCMP_CONST_14_REVERT_ADDR
-:STRCMP_CONST_14_REVERT_ADDR &strcmp_const_14_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_14_a_addrRef_0 CONST_8 1
-&strcmp_const_14_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_14_a_addrRef_1 CONST_8 1
-&strcmp_const_14_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_14_a_addrRef_2 CONST_8 1
-&strcmp_0_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_0_b_addrRef_0 CONST_8 1
+:STRCMP_CONST_14_REVERT_ADDR &strcmp_0_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_0_b_addrRef_0 CONST_8 1
 &strcmp_0_b_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_0_b_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_14_END
 # End strcmp_const
@@ -8297,10 +8238,7 @@
 &strcmp_const_15_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_15_bStr_addrRef_0 CONST_-8 1
 &ZERO &ZERO &STRCMP_CONST_15_LOOP ; lblsq ZERO ZERO STRCMP_CONST_15_LOOP
 ; label STRCMP_CONST_15_REVERT_ADDR
-:STRCMP_CONST_15_REVERT_ADDR &strcmp_const_15_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_15_a_addrRef_0 CONST_8 1
-&strcmp_const_15_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_15_a_addrRef_1 CONST_8 1
-&strcmp_const_15_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_15_a_addrRef_2 CONST_8 1
-&strcmp_1_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_1_b_addrRef_0 CONST_8 1
+:STRCMP_CONST_15_REVERT_ADDR &strcmp_1_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_1_b_addrRef_0 CONST_8 1
 &strcmp_1_b_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_1_b_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_15_END
 # End strcmp_const
@@ -8454,12 +8392,8 @@
 # lbljmp STRCMP_CONST_16_LOOP
 &ZERO &ZERO &STRCMP_CONST_16_LOOP ; lblsq ZERO ZERO STRCMP_CONST_16_LOOP
 ; label STRCMP_CONST_16_REVERT_ADDR
-# decaddr strcmp_const_16_a 8
-:STRCMP_CONST_16_REVERT_ADDR &strcmp_const_16_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_16_a_addrRef_0 CONST_8 1
-&strcmp_const_16_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_16_a_addrRef_1 CONST_8 1
-&strcmp_const_16_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_16_a_addrRef_2 CONST_8 1
 # decaddr LBLSQ 8
-&LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
+:STRCMP_CONST_16_REVERT_ADDR &LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
 &LBLSQ_addrRef_1 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_8 1
 &LBLSQ_addrRef_2 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_8 1
 &LBLSQ_addrRef_3 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_8 1
@@ -8580,10 +8514,7 @@
 &strcmp_const_17_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_17_bStr_addrRef_0 CONST_-8 1
 &ZERO &ZERO &STRCMP_CONST_17_LOOP ; lblsq ZERO ZERO STRCMP_CONST_17_LOOP
 ; label STRCMP_CONST_17_REVERT_ADDR
-:STRCMP_CONST_17_REVERT_ADDR &strcmp_const_17_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_17_a_addrRef_0 CONST_8 1
-&strcmp_const_17_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_17_a_addrRef_1 CONST_8 1
-&strcmp_const_17_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_17_a_addrRef_2 CONST_8 1
-&strcmp_2_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_2_b_addrRef_0 CONST_8 1
+:STRCMP_CONST_17_REVERT_ADDR &strcmp_2_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_2_b_addrRef_0 CONST_8 1
 &strcmp_2_b_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_2_b_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_17_END
 # End strcmp_const
@@ -8734,10 +8665,7 @@
 &strcmp_const_18_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_18_bStr_addrRef_0 CONST_-8 1
 &ZERO &ZERO &STRCMP_CONST_18_LOOP ; lblsq ZERO ZERO STRCMP_CONST_18_LOOP
 ; label STRCMP_CONST_18_REVERT_ADDR
-:STRCMP_CONST_18_REVERT_ADDR &strcmp_const_18_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_18_a_addrRef_0 CONST_8 1
-&strcmp_const_18_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_18_a_addrRef_1 CONST_8 1
-&strcmp_const_18_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_18_a_addrRef_2 CONST_8 1
-&strcmp_3_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_3_b_addrRef_0 CONST_8 1
+:STRCMP_CONST_18_REVERT_ADDR &strcmp_3_b_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_3_b_addrRef_0 CONST_8 1
 &strcmp_3_b_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_3_b_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_18_END
 # End strcmp_const

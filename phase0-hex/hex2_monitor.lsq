@@ -770,8 +770,6 @@ subaddr strcmp_const_0_bStr CONST_-8
 rem lbljmp STRCMP_CONST_0_LOOP
 lblsq ZERO ZERO STRCMP_CONST_0_LOOP
 label STRCMP_CONST_0_REVERT_ADDR
-rem decaddr strcmp_const_0_a 8
-subaddr strcmp_const_0_a CONST_8
 rem decaddr curFindLabel 8
 subaddr curFindLabel CONST_8
 label STRCMP_CONST_0_END

@@ -395,8 +395,6 @@ subaddr strcmp_const_0_bStr CONST_-8
 rem lbljmp STRCMP_CONST_0_LOOP
 lblsq ZERO ZERO STRCMP_CONST_0_LOOP
 label STRCMP_CONST_0_REVERT_ADDR
-rem decaddr strcmp_const_0_a 8
-subaddr strcmp_const_0_a CONST_8
 rem decaddr EMPTY_STRING 8
 subaddr EMPTY_STRING CONST_8
 label STRCMP_CONST_0_END
@@ -519,8 +517,6 @@ subaddr strcmp_const_1_bStr CONST_-8
 rem lbljmp STRCMP_CONST_1_LOOP
 lblsq ZERO ZERO STRCMP_CONST_1_LOOP
 label STRCMP_CONST_1_REVERT_ADDR
-rem decaddr strcmp_const_1_a 8
-subaddr strcmp_const_1_a CONST_8
 rem decaddr REM 8
 subaddr REM CONST_8
 label STRCMP_CONST_1_END
@@ -643,8 +639,6 @@ subaddr strcmp_const_2_bStr CONST_-8
 rem lbljmp STRCMP_CONST_2_LOOP
 lblsq ZERO ZERO STRCMP_CONST_2_LOOP
 label STRCMP_CONST_2_REVERT_ADDR
-rem decaddr strcmp_const_2_a 8
-subaddr strcmp_const_2_a CONST_8
 rem decaddr END 8
 subaddr END CONST_8
 label STRCMP_CONST_2_END
@@ -1485,8 +1479,6 @@ subaddr strcmp_const_3_bStr CONST_-8
 rem lbljmp STRCMP_CONST_3_LOOP
 lblsq ZERO ZERO STRCMP_CONST_3_LOOP
 label STRCMP_CONST_3_REVERT_ADDR
-rem decaddr strcmp_const_3_a 8
-subaddr strcmp_const_3_a CONST_8
 rem decaddr SYM 8
 subaddr SYM CONST_8
 label STRCMP_CONST_3_END
@@ -1609,8 +1601,6 @@ subaddr strcmp_const_4_bStr CONST_-8
 rem lbljmp STRCMP_CONST_4_LOOP
 lblsq ZERO ZERO STRCMP_CONST_4_LOOP
 label STRCMP_CONST_4_REVERT_ADDR
-rem decaddr strcmp_const_4_a 8
-subaddr strcmp_const_4_a CONST_8
 rem decaddr VAR 8
 subaddr VAR CONST_8
 label STRCMP_CONST_4_END
@@ -1733,8 +1723,6 @@ subaddr strcmp_const_5_bStr CONST_-8
 rem lbljmp STRCMP_CONST_5_LOOP
 lblsq ZERO ZERO STRCMP_CONST_5_LOOP
 label STRCMP_CONST_5_REVERT_ADDR
-rem decaddr strcmp_const_5_a 8
-subaddr strcmp_const_5_a CONST_8
 rem decaddr LABEL 8
 subaddr LABEL CONST_8
 label STRCMP_CONST_5_END
@@ -1857,8 +1845,6 @@ subaddr strcmp_const_6_bStr CONST_-8
 rem lbljmp STRCMP_CONST_6_LOOP
 lblsq ZERO ZERO STRCMP_CONST_6_LOOP
 label STRCMP_CONST_6_REVERT_ADDR
-rem decaddr strcmp_const_6_a 8
-subaddr strcmp_const_6_a CONST_8
 rem decaddr ADDR 8
 subaddr ADDR CONST_8
 label STRCMP_CONST_6_END
@@ -2098,8 +2084,6 @@ subaddr strcmp_const_7_bStr CONST_-8
 rem lbljmp STRCMP_CONST_7_LOOP
 lblsq ZERO ZERO STRCMP_CONST_7_LOOP
 label STRCMP_CONST_7_REVERT_ADDR
-rem decaddr strcmp_const_7_a 8
-subaddr strcmp_const_7_a CONST_8
 rem decaddr ADDR 8
 subaddr ADDR CONST_8
 label STRCMP_CONST_7_END
@@ -2392,8 +2376,6 @@ subaddr strcmp_const_8_bStr CONST_-8
 rem lbljmp STRCMP_CONST_8_LOOP
 lblsq ZERO ZERO STRCMP_CONST_8_LOOP
 label STRCMP_CONST_8_REVERT_ADDR
-rem decaddr strcmp_const_8_a 8
-subaddr strcmp_const_8_a CONST_8
 rem decaddr VAR 8
 subaddr VAR CONST_8
 label STRCMP_CONST_8_END
@@ -2724,8 +2706,6 @@ subaddr strcmp_const_9_bStr CONST_-8
 rem lbljmp STRCMP_CONST_9_LOOP
 lblsq ZERO ZERO STRCMP_CONST_9_LOOP
 label STRCMP_CONST_9_REVERT_ADDR
-rem decaddr strcmp_const_9_a 8
-subaddr strcmp_const_9_a CONST_8
 rem decaddr ABSSQ 8
 subaddr ABSSQ CONST_8
 label STRCMP_CONST_9_END
@@ -2848,8 +2828,6 @@ subaddr strcmp_const_10_bStr CONST_-8
 rem lbljmp STRCMP_CONST_10_LOOP
 lblsq ZERO ZERO STRCMP_CONST_10_LOOP
 label STRCMP_CONST_10_REVERT_ADDR
-rem decaddr strcmp_const_10_a 8
-subaddr strcmp_const_10_a CONST_8
 rem decaddr RELSQ 8
 subaddr RELSQ CONST_8
 label STRCMP_CONST_10_END
@@ -2972,8 +2950,6 @@ subaddr strcmp_const_11_bStr CONST_-8
 rem lbljmp STRCMP_CONST_11_LOOP
 lblsq ZERO ZERO STRCMP_CONST_11_LOOP
 label STRCMP_CONST_11_REVERT_ADDR
-rem decaddr strcmp_const_11_a 8
-subaddr strcmp_const_11_a CONST_8
 rem decaddr LBLSQ 8
 subaddr LBLSQ CONST_8
 label STRCMP_CONST_11_END
@@ -3096,8 +3072,6 @@ subaddr strcmp_const_12_bStr CONST_-8
 rem lbljmp STRCMP_CONST_12_LOOP
 lblsq ZERO ZERO STRCMP_CONST_12_LOOP
 label STRCMP_CONST_12_REVERT_ADDR
-rem decaddr strcmp_const_12_a 8
-subaddr strcmp_const_12_a CONST_8
 rem decaddr SUBADDR 8
 subaddr SUBADDR CONST_8
 label STRCMP_CONST_12_END
@@ -3220,8 +3194,6 @@ subaddr strcmp_const_13_bStr CONST_-8
 rem lbljmp STRCMP_CONST_13_LOOP
 lblsq ZERO ZERO STRCMP_CONST_13_LOOP
 label STRCMP_CONST_13_REVERT_ADDR
-rem decaddr strcmp_const_13_a 8
-subaddr strcmp_const_13_a CONST_8
 rem decaddr RAW_REF 8
 subaddr RAW_REF CONST_8
 label STRCMP_CONST_13_END
@@ -3318,7 +3290,6 @@ subaddr strcmp_const_14_aStr CONST_-8
 subaddr strcmp_const_14_bStr CONST_-8
 lblsq ZERO ZERO STRCMP_CONST_14_LOOP
 label STRCMP_CONST_14_REVERT_ADDR
-subaddr strcmp_const_14_a CONST_8
 subaddr strcmp_0_b CONST_8
 label STRCMP_CONST_14_END
 rem End strcmp_const
@@ -3421,7 +3392,6 @@ subaddr strcmp_const_15_aStr CONST_-8
 subaddr strcmp_const_15_bStr CONST_-8
 lblsq ZERO ZERO STRCMP_CONST_15_LOOP
 label STRCMP_CONST_15_REVERT_ADDR
-subaddr strcmp_const_15_a CONST_8
 subaddr strcmp_1_b CONST_8
 label STRCMP_CONST_15_END
 rem End strcmp_const
@@ -3555,8 +3525,6 @@ subaddr strcmp_const_16_bStr CONST_-8
 rem lbljmp STRCMP_CONST_16_LOOP
 lblsq ZERO ZERO STRCMP_CONST_16_LOOP
 label STRCMP_CONST_16_REVERT_ADDR
-rem decaddr strcmp_const_16_a 8
-subaddr strcmp_const_16_a CONST_8
 rem decaddr LBLSQ 8
 subaddr LBLSQ CONST_8
 label STRCMP_CONST_16_END
@@ -3652,7 +3620,6 @@ subaddr strcmp_const_17_aStr CONST_-8
 subaddr strcmp_const_17_bStr CONST_-8
 lblsq ZERO ZERO STRCMP_CONST_17_LOOP
 label STRCMP_CONST_17_REVERT_ADDR
-subaddr strcmp_const_17_a CONST_8
 subaddr strcmp_2_b CONST_8
 label STRCMP_CONST_17_END
 rem End strcmp_const
@@ -3775,7 +3742,6 @@ subaddr strcmp_const_18_aStr CONST_-8
 subaddr strcmp_const_18_bStr CONST_-8
 lblsq ZERO ZERO STRCMP_CONST_18_LOOP
 label STRCMP_CONST_18_REVERT_ADDR
-subaddr strcmp_const_18_a CONST_8
 subaddr strcmp_3_b CONST_8
 label STRCMP_CONST_18_END
 rem End strcmp_const
