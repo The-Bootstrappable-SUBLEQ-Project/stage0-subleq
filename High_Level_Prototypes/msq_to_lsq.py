@@ -1108,7 +1108,7 @@ def find_item_in_buf_with_str_key(args, v=3):
     endLabel = nameSym("END", True)
 
     print(f"label {loopLabel}")
-    strcmp([it, key, endLabel, tmp, tmp2], v - 1)
+    strcmp_const([it, key, endLabel, tmp, tmp2], v - 1)
     incaddr([it, elmSize], v - 1)
     lbljmp([loopLabel], v - 1)
 

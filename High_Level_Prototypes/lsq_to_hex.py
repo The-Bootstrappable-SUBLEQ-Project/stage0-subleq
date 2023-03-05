@@ -190,7 +190,9 @@ for line in lines:
 symsAtAddr = {}
 for name, sym in symbols.items():
     if sym.addr is None:
-        assert sym.val is not None
+        if sym.val is None:
+            print(name, sym, file=sys.stderr)
+            assert sym.val is not None
         sym.addr = size
         lines.append(Line("raw", [toLong(sym.val)], name))
         size += 8

@@ -647,46 +647,54 @@ rem End strcmp_const
 
 
 rem Handle other instructions
-subaddr linesPass1Cur CONST_-18
+addr linesPass1Cur_other 0
+rem copyaddr linesPass1Cur_other linesPass1Cur tmp
+sym linesPass1Cur_addrRef_0
+rem setaddr linesPass1Cur_other linesPass1Cur_addrRef_0 tmp
+zeroaddr linesPass1Cur_other
+relsq tmp tmp 1
+relsq tmp linesPass1Cur_addrRef_0 1
+subaddr linesPass1Cur_other tmp
+subaddr linesPass1Cur_other CONST_-18
 
-rem Start alloc_array linesPass1Cur 18 20 tmp
+rem Start alloc_array linesPass1Cur_other 18 20 tmp
 
-rem Start malloc_const linesPass1Cur 300 tmp
+rem Start malloc_const linesPass1Cur_other 300 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_other linesPass1Cur_other 1
+relsq linesPass1Cur_other tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_300 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_-8
+rem zero linesPass1Cur_other
+relsq linesPass1Cur_other linesPass1Cur_other 1
+rem incaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_-8
 
-rem Start mov linesPass1Cur CONST_18 tmp
+rem Start mov linesPass1Cur_other CONST_18 tmp
 relsq tmp tmp 1
 relsq tmp CONST_18 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_other linesPass1Cur_other 1
+relsq linesPass1Cur_other tmp 1
 rem End mov
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_-8
 
-rem Start mov linesPass1Cur CONST_300 tmp
+rem Start mov linesPass1Cur_other CONST_300 tmp
 relsq tmp tmp 1
 relsq tmp CONST_300 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_other linesPass1Cur_other 1
+relsq linesPass1Cur_other tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 18
-subaddr linesPass1Cur CONST_18
+rem decaddr linesPass1Cur_other 18
+subaddr linesPass1Cur_other CONST_18
 rem End alloc_array
 
 
@@ -823,12 +831,12 @@ subaddr tmpStr CONST_8
 rem End inp_line
 
 
-rem Start str_split linesPass1Cur tmpStr SPACE 800 tmp tmp2
+rem Start str_split linesPass1Cur_other tmpStr SPACE 800 tmp tmp2
 addr str_split_0_aBuf 0
-rem setaddr str_split_0_aBuf linesPass1Cur tmp
+rem setaddr str_split_0_aBuf linesPass1Cur_other tmp
 zeroaddr str_split_0_aBuf
 relsq tmp tmp 1
-relsq tmp linesPass1Cur 1
+relsq tmp linesPass1Cur_other 1
 subaddr str_split_0_aBuf tmp
 addr str_split_0_strBuf 0
 rem setaddr str_split_0_strBuf tmpStr tmp
@@ -960,69 +968,84 @@ subaddr str_split_0_aBuf CONST_-10
 rem lbljmp STR_SPLIT_0_PART_LOOP
 lblsq ZERO ZERO STR_SPLIT_0_PART_LOOP
 label STR_SPLIT_0_END_SPLIT
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_-8
 
-rem Start mov linesPass1Cur str_split_0_partCount tmp
+rem Start mov linesPass1Cur_other str_split_0_partCount tmp
 relsq tmp tmp 1
 relsq tmp str_split_0_partCount 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_other linesPass1Cur_other 1
+relsq linesPass1Cur_other tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_8
+rem decaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_8
 rem End str_split
 
 
-subaddr linesPass1Cur CONST_-20
+subaddr linesPass1Cur_other CONST_-20
 
-rem Start alloc_str linesPass1Cur 0 tmp
+rem Start alloc_str linesPass1Cur_other 0 tmp
 
-rem Start malloc_const linesPass1Cur 0 tmp
+rem Start malloc_const linesPass1Cur_other 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_other linesPass1Cur_other 1
+relsq linesPass1Cur_other tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_-8
+rem zero linesPass1Cur_other
+relsq linesPass1Cur_other linesPass1Cur_other 1
+rem incaddr linesPass1Cur_other 8
+subaddr linesPass1Cur_other CONST_-8
 
-rem Start mov linesPass1Cur CONST_0 tmp
+rem Start mov linesPass1Cur_other CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_other linesPass1Cur_other 1
+relsq linesPass1Cur_other tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 10
-subaddr linesPass1Cur CONST_10
+rem decaddr linesPass1Cur_other 10
+subaddr linesPass1Cur_other CONST_10
 rem End alloc_str
 
 
-subaddr linesPass1Cur CONST_-18
-relsq linesPass1Cur linesPass1Cur 1
+subaddr linesPass1Cur_other CONST_-18
+relsq linesPass1Cur_other linesPass1Cur_other 1
 
-subaddr linesPass1Cur CONST_-8
+subaddr linesPass1Cur_other CONST_-8
+rem copyaddr linesPass1Cur linesPass1Cur_other tmp
+sym linesPass1Cur_other_addrRef_0
+rem setaddr linesPass1Cur linesPass1Cur_other_addrRef_0 tmp
+zeroaddr linesPass1Cur
+relsq tmp tmp 1
+relsq tmp linesPass1Cur_other_addrRef_0 1
+subaddr linesPass1Cur tmp
 lblsq ZERO ZERO STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_NEWLINE
+addr linesPass1Cur_newline 0
+rem copyaddr linesPass1Cur_newline linesPass1Cur tmp
+sym linesPass1Cur_addrRef_0
+rem setaddr linesPass1Cur_newline linesPass1Cur_addrRef_0 tmp
+zeroaddr linesPass1Cur_newline
+relsq tmp tmp 1
+relsq tmp linesPass1Cur_addrRef_0 1
+subaddr linesPass1Cur_newline tmp
 
-rem Start strcpy linesPass1Cur NEWLINE tmp
+rem Start strcpy linesPass1Cur_newline NEWLINE tmp
 addr strcpy_0_strA 0
-rem setaddr strcpy_0_strA linesPass1Cur tmp
+rem setaddr strcpy_0_strA linesPass1Cur_newline tmp
 zeroaddr strcpy_0_strA
 relsq tmp tmp 1
-relsq tmp linesPass1Cur 1
+relsq tmp linesPass1Cur_newline 1
 subaddr strcpy_0_strA tmp
 addr strcpy_0_strB 0
 rem setaddr strcpy_0_strB NEWLINE tmp
@@ -1030,16 +1053,16 @@ zeroaddr strcpy_0_strB
 relsq tmp tmp 1
 relsq tmp NEWLINE 1
 subaddr strcpy_0_strB tmp
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_-8
 rem incaddr NEWLINE 8
 subaddr NEWLINE CONST_-8
 
-rem Start mov linesPass1Cur NEWLINE tmp
+rem Start mov linesPass1Cur_newline NEWLINE tmp
 relsq tmp tmp 1
 relsq tmp NEWLINE 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+relsq linesPass1Cur_newline tmp 1
 rem End mov
 
 var strcpy_0_strLen 0
@@ -1051,8 +1074,8 @@ relsq strcpy_0_strLen strcpy_0_strLen 1
 relsq strcpy_0_strLen tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_8
+rem decaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_8
 rem decaddr NEWLINE 8
 subaddr NEWLINE CONST_8
 label STRCPY_0_LOOP
@@ -1078,172 +1101,187 @@ label STRCPY_0_END
 rem End strcpy
 
 
-subaddr linesPass1Cur CONST_-18
+subaddr linesPass1Cur_newline CONST_-18
 
-rem Start alloc_array linesPass1Cur 18 0 tmp
+rem Start alloc_array linesPass1Cur_newline 18 0 tmp
 
-rem Start malloc_const linesPass1Cur 0 tmp
+rem Start malloc_const linesPass1Cur_newline 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+relsq linesPass1Cur_newline tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_-8
+rem zero linesPass1Cur_newline
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+rem incaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_-8
 
-rem Start mov linesPass1Cur CONST_18 tmp
+rem Start mov linesPass1Cur_newline CONST_18 tmp
 relsq tmp tmp 1
 relsq tmp CONST_18 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+relsq linesPass1Cur_newline tmp 1
 rem End mov
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_-8
 
-rem Start mov linesPass1Cur CONST_0 tmp
+rem Start mov linesPass1Cur_newline CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+relsq linesPass1Cur_newline tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 18
-subaddr linesPass1Cur CONST_18
+rem decaddr linesPass1Cur_newline 18
+subaddr linesPass1Cur_newline CONST_18
 rem End alloc_array
 
 
-subaddr linesPass1Cur CONST_-20
+subaddr linesPass1Cur_newline CONST_-20
 
-rem Start alloc_str linesPass1Cur 0 tmp
+rem Start alloc_str linesPass1Cur_newline 0 tmp
 
-rem Start malloc_const linesPass1Cur 0 tmp
+rem Start malloc_const linesPass1Cur_newline 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+relsq linesPass1Cur_newline tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_-8
+rem zero linesPass1Cur_newline
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+rem incaddr linesPass1Cur_newline 8
+subaddr linesPass1Cur_newline CONST_-8
 
-rem Start mov linesPass1Cur CONST_0 tmp
+rem Start mov linesPass1Cur_newline CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
+relsq linesPass1Cur_newline tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 10
-subaddr linesPass1Cur CONST_10
+rem decaddr linesPass1Cur_newline 10
+subaddr linesPass1Cur_newline CONST_10
 rem End alloc_str
 
 
-subaddr linesPass1Cur CONST_-18
-relsq linesPass1Cur linesPass1Cur 1
+subaddr linesPass1Cur_newline CONST_-18
+relsq linesPass1Cur_newline linesPass1Cur_newline 1
 
-subaddr linesPass1Cur CONST_-8
+subaddr linesPass1Cur_newline CONST_-8
+rem copyaddr linesPass1Cur linesPass1Cur_newline tmp
+sym linesPass1Cur_newline_addrRef_0
+rem setaddr linesPass1Cur linesPass1Cur_newline_addrRef_0 tmp
+zeroaddr linesPass1Cur
+relsq tmp tmp 1
+relsq tmp linesPass1Cur_newline_addrRef_0 1
+subaddr linesPass1Cur tmp
 lblsq ZERO ZERO STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_REM
-subaddr linesPass1Cur CONST_-18
+addr linesPass1Cur_rem 0
+rem copyaddr linesPass1Cur_rem linesPass1Cur tmp
+sym linesPass1Cur_addrRef_0
+rem setaddr linesPass1Cur_rem linesPass1Cur_addrRef_0 tmp
+zeroaddr linesPass1Cur_rem
+relsq tmp tmp 1
+relsq tmp linesPass1Cur_addrRef_0 1
+subaddr linesPass1Cur_rem tmp
+subaddr linesPass1Cur_rem CONST_-18
 
-rem Start alloc_array linesPass1Cur 18 0 tmp
+rem Start alloc_array linesPass1Cur_rem 18 0 tmp
 
-rem Start malloc_const linesPass1Cur 0 tmp
+rem Start malloc_const linesPass1Cur_rem 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+relsq linesPass1Cur_rem tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_-8
+rem zero linesPass1Cur_rem
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+rem incaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_-8
 
-rem Start mov linesPass1Cur CONST_18 tmp
+rem Start mov linesPass1Cur_rem CONST_18 tmp
 relsq tmp tmp 1
 relsq tmp CONST_18 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+relsq linesPass1Cur_rem tmp 1
 rem End mov
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_-8
 
-rem Start mov linesPass1Cur CONST_0 tmp
+rem Start mov linesPass1Cur_rem CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+relsq linesPass1Cur_rem tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 18
-subaddr linesPass1Cur CONST_18
+rem decaddr linesPass1Cur_rem 18
+subaddr linesPass1Cur_rem CONST_18
 rem End alloc_array
 
 
-subaddr linesPass1Cur CONST_-20
+subaddr linesPass1Cur_rem CONST_-20
 
-rem Start alloc_str linesPass1Cur 800 tmp
+rem Start alloc_str linesPass1Cur_rem 800 tmp
 
-rem Start malloc_const linesPass1Cur 800 tmp
+rem Start malloc_const linesPass1Cur_rem 800 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+relsq linesPass1Cur_rem tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_800 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_-8
+rem zero linesPass1Cur_rem
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+rem incaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_-8
 
-rem Start mov linesPass1Cur CONST_800 tmp
+rem Start mov linesPass1Cur_rem CONST_800 tmp
 relsq tmp tmp 1
 relsq tmp CONST_800 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+relsq linesPass1Cur_rem tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 10
-subaddr linesPass1Cur CONST_10
+rem decaddr linesPass1Cur_rem 10
+subaddr linesPass1Cur_rem CONST_10
 rem End alloc_str
 
 
-rem Start inp_line linesPass1Cur tmp tmp2
+rem Start inp_line linesPass1Cur_rem tmp tmp2
 addr inp_line_1_str 0
-rem setaddr inp_line_1_str linesPass1Cur tmp
+rem setaddr inp_line_1_str linesPass1Cur_rem tmp
 zeroaddr inp_line_1_str
 relsq tmp tmp 1
-relsq tmp linesPass1Cur 1
+relsq tmp linesPass1Cur_rem 1
 subaddr inp_line_1_str tmp
 var inp_line_1_len 0
 rem zero inp_line_1_len
@@ -1303,25 +1341,32 @@ subaddr inp_line_1_str CONST_-8
 rem lbljmp INP_LINE_1_LOOP
 lblsq ZERO ZERO INP_LINE_1_LOOP
 label INP_LINE_1_TERM
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_-8
 
-rem Start mov linesPass1Cur inp_line_1_len tmp
+rem Start mov linesPass1Cur_rem inp_line_1_len tmp
 relsq tmp tmp 1
 relsq tmp inp_line_1_len 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
+relsq linesPass1Cur_rem tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_8
+rem decaddr linesPass1Cur_rem 8
+subaddr linesPass1Cur_rem CONST_8
 rem End inp_line
 
 
-subaddr linesPass1Cur CONST_-18
-relsq linesPass1Cur linesPass1Cur 1
+subaddr linesPass1Cur_rem CONST_-18
+relsq linesPass1Cur_rem linesPass1Cur_rem 1
 
-subaddr linesPass1Cur CONST_-8
+subaddr linesPass1Cur_rem CONST_-8
+rem copyaddr linesPass1Cur linesPass1Cur_rem tmp
+sym linesPass1Cur_rem_addrRef_0
+rem setaddr linesPass1Cur linesPass1Cur_rem_addrRef_0 tmp
+zeroaddr linesPass1Cur
+relsq tmp tmp 1
+relsq tmp linesPass1Cur_rem_addrRef_0 1
+subaddr linesPass1Cur tmp
 lblsq ZERO ZERO STEP0_INPUT_INST
 
 
@@ -1333,7 +1378,6 @@ rem 0x18 The address of the symbol
 rem 0x20 The reference count of the symbol
 rem 0x28 The default value of the symbol
 var symbolsBegin 200000
-addr symbolsCur 200000
 var symbolsLen 0
 
 addr curLine 0
@@ -1856,88 +1900,89 @@ lblsq ZERO ZERO STEP1_LOOP
 label STEP1_CREATE_SYMBOL
 rem Set the symbol name
 subaddr curLine CONST_-18
-addr curTokens 0
-rem setaddr curTokens curLine tmp
-zeroaddr curTokens
+addr curTokens_step1 0
+rem setaddr curTokens_step1 curLine tmp
+zeroaddr curTokens_step1
 
-rem Start addaddr curTokens curLine tmp
+rem Start addaddr curTokens_step1 curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
-subaddr curTokens tmp
+subaddr curTokens_step1 tmp
 rem End addaddr
 
 subaddr curLine CONST_18
 
+addr symbolsCur_step1 200000
 
-rem Start alloc_str symbolsCur 800 tmp
+rem Start alloc_str symbolsCur_step1 800 tmp
 
-rem Start malloc_const symbolsCur 800 tmp
+rem Start malloc_const symbolsCur_step1 800 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq symbolsCur symbolsCur 1
-relsq symbolsCur tmp 1
+relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_800 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr symbolsCur 8
-subaddr symbolsCur CONST_-8
-rem zero symbolsCur
-relsq symbolsCur symbolsCur 1
-rem incaddr symbolsCur 8
-subaddr symbolsCur CONST_-8
+rem incaddr symbolsCur_step1 8
+subaddr symbolsCur_step1 CONST_-8
+rem zero symbolsCur_step1
+relsq symbolsCur_step1 symbolsCur_step1 1
+rem incaddr symbolsCur_step1 8
+subaddr symbolsCur_step1 CONST_-8
 
-rem Start mov symbolsCur CONST_800 tmp
+rem Start mov symbolsCur_step1 CONST_800 tmp
 relsq tmp tmp 1
 relsq tmp CONST_800 1
-relsq symbolsCur symbolsCur 1
-relsq symbolsCur tmp 1
+relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 tmp 1
 rem End mov
 
-rem decaddr symbolsCur 10
-subaddr symbolsCur CONST_10
+rem decaddr symbolsCur_step1 10
+subaddr symbolsCur_step1 CONST_10
 rem End alloc_str
 
 
-rem Start strcpy symbolsCur curTokens tmp
+rem Start strcpy symbolsCur_step1 curTokens_step1 tmp
 addr strcpy_1_strA 0
-rem setaddr strcpy_1_strA symbolsCur tmp
+rem setaddr strcpy_1_strA symbolsCur_step1 tmp
 zeroaddr strcpy_1_strA
 relsq tmp tmp 1
-relsq tmp symbolsCur 1
+relsq tmp symbolsCur_step1 1
 subaddr strcpy_1_strA tmp
 addr strcpy_1_strB 0
-rem setaddr strcpy_1_strB curTokens tmp
+rem setaddr strcpy_1_strB curTokens_step1 tmp
 zeroaddr strcpy_1_strB
 relsq tmp tmp 1
-relsq tmp curTokens 1
+relsq tmp curTokens_step1 1
 subaddr strcpy_1_strB tmp
-rem incaddr symbolsCur 8
-subaddr symbolsCur CONST_-8
-rem incaddr curTokens 8
-subaddr curTokens CONST_-8
+rem incaddr symbolsCur_step1 8
+subaddr symbolsCur_step1 CONST_-8
+rem incaddr curTokens_step1 8
+subaddr curTokens_step1 CONST_-8
 
-rem Start mov symbolsCur curTokens tmp
+rem Start mov symbolsCur_step1 curTokens_step1 tmp
 relsq tmp tmp 1
-relsq tmp curTokens 1
-relsq symbolsCur symbolsCur 1
-relsq symbolsCur tmp 1
+relsq tmp curTokens_step1 1
+relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 tmp 1
 rem End mov
 
 var strcpy_1_strLen 0
 
-rem Start mov strcpy_1_strLen curTokens tmp
+rem Start mov strcpy_1_strLen curTokens_step1 tmp
 relsq tmp tmp 1
-relsq tmp curTokens 1
+relsq tmp curTokens_step1 1
 relsq strcpy_1_strLen strcpy_1_strLen 1
 relsq strcpy_1_strLen tmp 1
 rem End mov
 
-rem decaddr symbolsCur 8
-subaddr symbolsCur CONST_8
-rem decaddr curTokens 8
-subaddr curTokens CONST_8
+rem decaddr symbolsCur_step1 8
+subaddr symbolsCur_step1 CONST_8
+rem decaddr curTokens_step1 8
+subaddr curTokens_step1 CONST_8
 label STRCPY_1_LOOP
 rem decleq strcpy_1_strLen 0 STRCPY_1_END
 lblsq strcpy_1_strLen CONST_0 STRCPY_1_END
@@ -1960,13 +2005,13 @@ lblsq ZERO ZERO STRCPY_1_LOOP
 label STRCPY_1_END
 rem End strcpy
 
-subaddr curTokens CONST_-18
+subaddr curTokens_step1 CONST_-18
 
 rem Set the symbol address
-subaddr symbolsCur CONST_-18
-rem set symbolsCur -1
-relsq symbolsCur symbolsCur 1
-relsq symbolsCur CONST_1 1
+subaddr symbolsCur_step1 CONST_-18
+rem set symbolsCur_step1 -1
+relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 CONST_1 1
 
 rem Start strcmp_const curLine ADDR STEP1_SET_ADDRESS tmp tmp2
 addr strcmp_const_7_a 0
@@ -2093,35 +2138,35 @@ lblsq ZERO ZERO STEP1_HANDLE_REFCOUNT
 
 label STEP1_SET_ADDRESS
 
-rem Start from_hex symbolsCur curTokens tmp tmp2
-rem zero symbolsCur
-rem sub symbolsCur symbolsCur
-relsq symbolsCur symbolsCur 1
+rem Start from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
+rem zero symbolsCur_step1
+rem sub symbolsCur_step1 symbolsCur_step1
+relsq symbolsCur_step1 symbolsCur_step1 1
 addr from_hex_0_strBuf 0
-rem setaddr from_hex_0_strBuf curTokens tmp
+rem setaddr from_hex_0_strBuf curTokens_step1 tmp
 zeroaddr from_hex_0_strBuf
 
-rem Start addaddr from_hex_0_strBuf curTokens tmp
+rem Start addaddr from_hex_0_strBuf curTokens_step1 tmp
 relsq tmp tmp 1
-relsq tmp curTokens 1
+relsq tmp curTokens_step1 1
 subaddr from_hex_0_strBuf tmp
 rem End addaddr
 
 var from_hex_0_strLen 0
-rem incaddr curTokens 8
-subaddr curTokens CONST_-8
+rem incaddr curTokens_step1 8
+subaddr curTokens_step1 CONST_-8
 
-rem Start mov from_hex_0_strLen curTokens tmp
-rem movneg tmp curTokens
+rem Start mov from_hex_0_strLen curTokens_step1 tmp
+rem movneg tmp curTokens_step1
 relsq tmp tmp 1
-relsq tmp curTokens 1
+relsq tmp curTokens_step1 1
 rem movneg from_hex_0_strLen tmp
 relsq from_hex_0_strLen from_hex_0_strLen 1
 relsq from_hex_0_strLen tmp 1
 rem End mov
 
-rem decaddr curTokens 8
-subaddr curTokens CONST_8
+rem decaddr curTokens_step1 8
+subaddr curTokens_step1 CONST_8
 var from_hex_0_isNeg 0
 rem zero from_hex_0_isNeg
 rem sub from_hex_0_isNeg from_hex_0_isNeg
@@ -2205,45 +2250,45 @@ rem dec from_hex_0_val 9
 relsq from_hex_0_val CONST_9 1
 label FROM_HEX_0_WRITE
 
-rem Start mul_16 symbolsCur tmp
+rem Start mul_16 symbolsCur_step1 tmp
 rem zero tmp
 relsq tmp tmp 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub symbolsCur tmp
-relsq symbolsCur tmp 1
-rem sub symbolsCur tmp
-relsq symbolsCur tmp 1
-rem sub symbolsCur tmp
-relsq symbolsCur tmp 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub symbolsCur_step1 tmp
+relsq symbolsCur_step1 tmp 1
+rem sub symbolsCur_step1 tmp
+relsq symbolsCur_step1 tmp 1
+rem sub symbolsCur_step1 tmp
+relsq symbolsCur_step1 tmp 1
 rem End mul_16
 
-rem sub symbolsCur from_hex_0_val
-relsq symbolsCur from_hex_0_val 1
+rem sub symbolsCur_step1 from_hex_0_val
+relsq symbolsCur_step1 from_hex_0_val 1
 rem lbljmp FROM_HEX_0_LOOP
 lblsq ZERO ZERO FROM_HEX_0_LOOP
 label FROM_HEX_0_NEGATE
 rem decleq from_hex_0_isNeg 0 FROM_HEX_0_END
 lblsq from_hex_0_isNeg CONST_0 FROM_HEX_0_END
 
-rem Start neg symbolsCur tmp tmp2
-rem movneg tmp symbolsCur
+rem Start neg symbolsCur_step1 tmp tmp2
+rem movneg tmp symbolsCur_step1
 relsq tmp tmp 1
-relsq tmp symbolsCur 1
+relsq tmp symbolsCur_step1 1
 
-rem Start mov symbolsCur tmp tmp2
+rem Start mov symbolsCur_step1 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-relsq symbolsCur symbolsCur 1
-relsq symbolsCur tmp2 1
+relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 tmp2 1
 rem End mov
 
 rem End neg
@@ -2253,12 +2298,12 @@ rem End from_hex
 
 
 label STEP1_HANDLE_REFCOUNT
-subaddr symbolsCur CONST_-8
-relsq symbolsCur symbolsCur 1
+subaddr symbolsCur_step1 CONST_-8
+relsq symbolsCur_step1 symbolsCur_step1 1
 
 label STEP1_HANDLE_VALUE
-subaddr symbolsCur CONST_-8
-relsq symbolsCur symbolsCur 1
+subaddr symbolsCur_step1 CONST_-8
+relsq symbolsCur_step1 symbolsCur_step1 1
 
 rem Start strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
 addr strcmp_const_8_a 0
@@ -2385,35 +2430,35 @@ lblsq ZERO ZERO STEP1_END
 
 label STEP1_SET_VALUE
 
-rem Start from_hex symbolsCur curTokens tmp tmp2
-rem zero symbolsCur
-rem sub symbolsCur symbolsCur
-relsq symbolsCur symbolsCur 1
+rem Start from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
+rem zero symbolsCur_step1
+rem sub symbolsCur_step1 symbolsCur_step1
+relsq symbolsCur_step1 symbolsCur_step1 1
 addr from_hex_1_strBuf 0
-rem setaddr from_hex_1_strBuf curTokens tmp
+rem setaddr from_hex_1_strBuf curTokens_step1 tmp
 zeroaddr from_hex_1_strBuf
 
-rem Start addaddr from_hex_1_strBuf curTokens tmp
+rem Start addaddr from_hex_1_strBuf curTokens_step1 tmp
 relsq tmp tmp 1
-relsq tmp curTokens 1
+relsq tmp curTokens_step1 1
 subaddr from_hex_1_strBuf tmp
 rem End addaddr
 
 var from_hex_1_strLen 0
-rem incaddr curTokens 8
-subaddr curTokens CONST_-8
+rem incaddr curTokens_step1 8
+subaddr curTokens_step1 CONST_-8
 
-rem Start mov from_hex_1_strLen curTokens tmp
-rem movneg tmp curTokens
+rem Start mov from_hex_1_strLen curTokens_step1 tmp
+rem movneg tmp curTokens_step1
 relsq tmp tmp 1
-relsq tmp curTokens 1
+relsq tmp curTokens_step1 1
 rem movneg from_hex_1_strLen tmp
 relsq from_hex_1_strLen from_hex_1_strLen 1
 relsq from_hex_1_strLen tmp 1
 rem End mov
 
-rem decaddr curTokens 8
-subaddr curTokens CONST_8
+rem decaddr curTokens_step1 8
+subaddr curTokens_step1 CONST_8
 var from_hex_1_isNeg 0
 rem zero from_hex_1_isNeg
 rem sub from_hex_1_isNeg from_hex_1_isNeg
@@ -2497,45 +2542,45 @@ rem dec from_hex_1_val 9
 relsq from_hex_1_val CONST_9 1
 label FROM_HEX_1_WRITE
 
-rem Start mul_16 symbolsCur tmp
+rem Start mul_16 symbolsCur_step1 tmp
 rem zero tmp
 relsq tmp tmp 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub tmp symbolsCur
-relsq tmp symbolsCur 1
-rem sub symbolsCur tmp
-relsq symbolsCur tmp 1
-rem sub symbolsCur tmp
-relsq symbolsCur tmp 1
-rem sub symbolsCur tmp
-relsq symbolsCur tmp 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub tmp symbolsCur_step1
+relsq tmp symbolsCur_step1 1
+rem sub symbolsCur_step1 tmp
+relsq symbolsCur_step1 tmp 1
+rem sub symbolsCur_step1 tmp
+relsq symbolsCur_step1 tmp 1
+rem sub symbolsCur_step1 tmp
+relsq symbolsCur_step1 tmp 1
 rem End mul_16
 
-rem sub symbolsCur from_hex_1_val
-relsq symbolsCur from_hex_1_val 1
+rem sub symbolsCur_step1 from_hex_1_val
+relsq symbolsCur_step1 from_hex_1_val 1
 rem lbljmp FROM_HEX_1_LOOP
 lblsq ZERO ZERO FROM_HEX_1_LOOP
 label FROM_HEX_1_NEGATE
 rem decleq from_hex_1_isNeg 0 FROM_HEX_1_END
 lblsq from_hex_1_isNeg CONST_0 FROM_HEX_1_END
 
-rem Start neg symbolsCur tmp tmp2
-rem movneg tmp symbolsCur
+rem Start neg symbolsCur_step1 tmp tmp2
+rem movneg tmp symbolsCur_step1
 relsq tmp tmp 1
-relsq tmp symbolsCur 1
+relsq tmp symbolsCur_step1 1
 
-rem Start mov symbolsCur tmp tmp2
+rem Start mov symbolsCur_step1 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-relsq symbolsCur symbolsCur 1
-relsq symbolsCur tmp2 1
+relsq symbolsCur_step1 symbolsCur_step1 1
+relsq symbolsCur_step1 tmp2 1
 rem End mov
 
 rem End neg
@@ -2546,7 +2591,7 @@ rem End from_hex
 
 label STEP1_END
 subaddr curLine CONST_-58
-subaddr symbolsCur CONST_-8
+subaddr symbolsCur_step1 CONST_-8
 relsq symbolsLen CONST_-1 1
 lblsq ZERO ZERO STEP1_LOOP
 
@@ -2578,13 +2623,14 @@ lblsq linesLeft CONST_0 STEP3_START
 relsq linesLeft CONST_1 1
 
 subaddr curLine CONST_-18
-rem setaddr curTokens curLine tmp
-zeroaddr curTokens
+addr curTokens_step2 0
+rem setaddr curTokens_step2 curLine tmp
+zeroaddr curTokens_step2
 
-rem Start addaddr curTokens curLine tmp
+rem Start addaddr curTokens_step2 curLine tmp
 relsq tmp tmp 1
 relsq tmp curLine 1
-subaddr curTokens tmp
+subaddr curTokens_step2 tmp
 rem End addaddr
 
 subaddr curLine CONST_18
@@ -3215,32 +3261,28 @@ subaddr it tmp
 rem End addaddr
 
 
-rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+rem Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
 
-rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
-addr strcmp_0_b 0
-rem copyaddr strcmp_0_b curTokens tmp
-sym curTokens_addrRef_0
-zeroaddr strcmp_0_b
-relsq tmp tmp 1
-relsq tmp curTokens_addrRef_0 1
-subaddr strcmp_0_b tmp
-
-rem Start strcmp_const it strcmp_0_b FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
+rem Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
 addr strcmp_const_14_a 0
+rem copyaddr strcmp_const_14_a it tmp
 sym it_addrRef_0
 zeroaddr strcmp_const_14_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
 subaddr strcmp_const_14_a tmp
+rem incaddr strcmp_const_14_a 8
 subaddr strcmp_const_14_a CONST_-8
-subaddr strcmp_0_b CONST_-8
+rem incaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_-8
+
+rem Start jne strcmp_const_14_a curTokens_step2 STRCMP_CONST_14_REVERT_ADDR tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_14_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_0_b 1
+relsq tmp curTokens_step2 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 STRCMP_CONST_14_REVERT_ADDR
@@ -3251,26 +3293,40 @@ label JNZ_28_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_14_REVERT_ADDR
 label JNZ_28_END
+rem End jne
+
 var strcmp_const_14_len 0
+
+rem Start mov strcmp_const_14_len strcmp_const_14_a tmp
 relsq tmp tmp 1
 relsq tmp strcmp_const_14_a 1
 relsq strcmp_const_14_len strcmp_const_14_len 1
 relsq strcmp_const_14_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_14_a 8
 subaddr strcmp_const_14_a CONST_8
-subaddr strcmp_0_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 addr strcmp_const_14_aStr 0
 addr strcmp_const_14_bStr 0
+rem setaddr strcmp_const_14_aStr strcmp_const_14_a tmp
 zeroaddr strcmp_const_14_aStr
 relsq tmp tmp 1
 relsq tmp strcmp_const_14_a 1
 subaddr strcmp_const_14_aStr tmp
+rem setaddr strcmp_const_14_bStr curTokens_step2 tmp
 zeroaddr strcmp_const_14_bStr
 relsq tmp tmp 1
-relsq tmp strcmp_0_b 1
+relsq tmp curTokens_step2 1
 subaddr strcmp_const_14_bStr tmp
 label STRCMP_CONST_14_LOOP
+rem decleq strcmp_const_14_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
 lblsq strcmp_const_14_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
+rem dec strcmp_const_14_len 1
 relsq strcmp_const_14_len CONST_1 1
+
+rem Start jne strcmp_const_14_aStr strcmp_const_14_bStr STRCMP_CONST_14_END tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_14_aStr 1
 relsq tmp tmp 1
@@ -3286,15 +3342,19 @@ label JNZ_29_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_14_END
 label JNZ_29_END
+rem End jne
+
+rem incaddr strcmp_const_14_aStr 8
 subaddr strcmp_const_14_aStr CONST_-8
+rem incaddr strcmp_const_14_bStr 8
 subaddr strcmp_const_14_bStr CONST_-8
+rem lbljmp STRCMP_CONST_14_LOOP
 lblsq ZERO ZERO STRCMP_CONST_14_LOOP
 label STRCMP_CONST_14_REVERT_ADDR
-subaddr strcmp_0_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 label STRCMP_CONST_14_END
 rem End strcmp_const
-
-rem End strcmp
 
 rem incaddr it 30
 subaddr it CONST_-30
@@ -3306,7 +3366,7 @@ rem End find_item_in_buf_with_str_key
 subaddr it CONST_-20
 relsq it CONST_-1 1
 
-subaddr curTokens CONST_-18
+subaddr curTokens_step2 CONST_-18
 rem setaddr it symbolsBegin tmp
 zeroaddr it
 
@@ -3317,32 +3377,28 @@ subaddr it tmp
 rem End addaddr
 
 
-rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+rem Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 label FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
 
-rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END tmp tmp2
-addr strcmp_1_b 0
-rem copyaddr strcmp_1_b curTokens tmp
-sym curTokens_addrRef_0
-zeroaddr strcmp_1_b
-relsq tmp tmp 1
-relsq tmp curTokens_addrRef_0 1
-subaddr strcmp_1_b tmp
-
-rem Start strcmp_const it strcmp_1_b FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END tmp tmp2
+rem Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END tmp tmp2
 addr strcmp_const_15_a 0
+rem copyaddr strcmp_const_15_a it tmp
 sym it_addrRef_0
 zeroaddr strcmp_const_15_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
 subaddr strcmp_const_15_a tmp
+rem incaddr strcmp_const_15_a 8
 subaddr strcmp_const_15_a CONST_-8
-subaddr strcmp_1_b CONST_-8
+rem incaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_-8
+
+rem Start jne strcmp_const_15_a curTokens_step2 STRCMP_CONST_15_REVERT_ADDR tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_15_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_1_b 1
+relsq tmp curTokens_step2 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 STRCMP_CONST_15_REVERT_ADDR
@@ -3353,26 +3409,40 @@ label JNZ_30_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_15_REVERT_ADDR
 label JNZ_30_END
+rem End jne
+
 var strcmp_const_15_len 0
+
+rem Start mov strcmp_const_15_len strcmp_const_15_a tmp
 relsq tmp tmp 1
 relsq tmp strcmp_const_15_a 1
 relsq strcmp_const_15_len strcmp_const_15_len 1
 relsq strcmp_const_15_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_15_a 8
 subaddr strcmp_const_15_a CONST_8
-subaddr strcmp_1_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 addr strcmp_const_15_aStr 0
 addr strcmp_const_15_bStr 0
+rem setaddr strcmp_const_15_aStr strcmp_const_15_a tmp
 zeroaddr strcmp_const_15_aStr
 relsq tmp tmp 1
 relsq tmp strcmp_const_15_a 1
 subaddr strcmp_const_15_aStr tmp
+rem setaddr strcmp_const_15_bStr curTokens_step2 tmp
 zeroaddr strcmp_const_15_bStr
 relsq tmp tmp 1
-relsq tmp strcmp_1_b 1
+relsq tmp curTokens_step2 1
 subaddr strcmp_const_15_bStr tmp
 label STRCMP_CONST_15_LOOP
+rem decleq strcmp_const_15_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
 lblsq strcmp_const_15_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
+rem dec strcmp_const_15_len 1
 relsq strcmp_const_15_len CONST_1 1
+
+rem Start jne strcmp_const_15_aStr strcmp_const_15_bStr STRCMP_CONST_15_END tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_15_aStr 1
 relsq tmp tmp 1
@@ -3388,15 +3458,19 @@ label JNZ_31_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_15_END
 label JNZ_31_END
+rem End jne
+
+rem incaddr strcmp_const_15_aStr 8
 subaddr strcmp_const_15_aStr CONST_-8
+rem incaddr strcmp_const_15_bStr 8
 subaddr strcmp_const_15_bStr CONST_-8
+rem lbljmp STRCMP_CONST_15_LOOP
 lblsq ZERO ZERO STRCMP_CONST_15_LOOP
 label STRCMP_CONST_15_REVERT_ADDR
-subaddr strcmp_1_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 label STRCMP_CONST_15_END
 rem End strcmp_const
-
-rem End strcmp
 
 rem incaddr it 30
 subaddr it CONST_-30
@@ -3534,7 +3608,7 @@ lblsq ZERO ZERO STEP2_END
 
 
 label STEP2_HANDLE_LBLSQ_SUBADDR
-subaddr curTokens CONST_-18
+subaddr curTokens_step2 CONST_-18
 rem setaddr it symbolsBegin tmp
 zeroaddr it
 
@@ -3545,32 +3619,28 @@ subaddr it tmp
 rem End addaddr
 
 
-rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+rem Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 label FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
 
-rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END tmp tmp2
-addr strcmp_2_b 0
-rem copyaddr strcmp_2_b curTokens tmp
-sym curTokens_addrRef_0
-zeroaddr strcmp_2_b
-relsq tmp tmp 1
-relsq tmp curTokens_addrRef_0 1
-subaddr strcmp_2_b tmp
-
-rem Start strcmp_const it strcmp_2_b FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END tmp tmp2
+rem Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END tmp tmp2
 addr strcmp_const_17_a 0
+rem copyaddr strcmp_const_17_a it tmp
 sym it_addrRef_0
 zeroaddr strcmp_const_17_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
 subaddr strcmp_const_17_a tmp
+rem incaddr strcmp_const_17_a 8
 subaddr strcmp_const_17_a CONST_-8
-subaddr strcmp_2_b CONST_-8
+rem incaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_-8
+
+rem Start jne strcmp_const_17_a curTokens_step2 STRCMP_CONST_17_REVERT_ADDR tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_17_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_2_b 1
+relsq tmp curTokens_step2 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 STRCMP_CONST_17_REVERT_ADDR
@@ -3581,26 +3651,40 @@ label JNZ_34_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_17_REVERT_ADDR
 label JNZ_34_END
+rem End jne
+
 var strcmp_const_17_len 0
+
+rem Start mov strcmp_const_17_len strcmp_const_17_a tmp
 relsq tmp tmp 1
 relsq tmp strcmp_const_17_a 1
 relsq strcmp_const_17_len strcmp_const_17_len 1
 relsq strcmp_const_17_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_17_a 8
 subaddr strcmp_const_17_a CONST_8
-subaddr strcmp_2_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 addr strcmp_const_17_aStr 0
 addr strcmp_const_17_bStr 0
+rem setaddr strcmp_const_17_aStr strcmp_const_17_a tmp
 zeroaddr strcmp_const_17_aStr
 relsq tmp tmp 1
 relsq tmp strcmp_const_17_a 1
 subaddr strcmp_const_17_aStr tmp
+rem setaddr strcmp_const_17_bStr curTokens_step2 tmp
 zeroaddr strcmp_const_17_bStr
 relsq tmp tmp 1
-relsq tmp strcmp_2_b 1
+relsq tmp curTokens_step2 1
 subaddr strcmp_const_17_bStr tmp
 label STRCMP_CONST_17_LOOP
+rem decleq strcmp_const_17_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
 lblsq strcmp_const_17_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
+rem dec strcmp_const_17_len 1
 relsq strcmp_const_17_len CONST_1 1
+
+rem Start jne strcmp_const_17_aStr strcmp_const_17_bStr STRCMP_CONST_17_END tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_17_aStr 1
 relsq tmp tmp 1
@@ -3616,15 +3700,19 @@ label JNZ_35_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_17_END
 label JNZ_35_END
+rem End jne
+
+rem incaddr strcmp_const_17_aStr 8
 subaddr strcmp_const_17_aStr CONST_-8
+rem incaddr strcmp_const_17_bStr 8
 subaddr strcmp_const_17_bStr CONST_-8
+rem lbljmp STRCMP_CONST_17_LOOP
 lblsq ZERO ZERO STRCMP_CONST_17_LOOP
 label STRCMP_CONST_17_REVERT_ADDR
-subaddr strcmp_2_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 label STRCMP_CONST_17_END
 rem End strcmp_const
-
-rem End strcmp
 
 rem incaddr it 30
 subaddr it CONST_-30
@@ -3667,32 +3755,28 @@ subaddr it tmp
 rem End addaddr
 
 
-rem Start find_item_in_buf_with_str_key it curTokens 30 tmp tmp2
+rem Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 label FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
 
-rem Start strcmp it curTokens FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END tmp tmp2
-addr strcmp_3_b 0
-rem copyaddr strcmp_3_b curTokens tmp
-sym curTokens_addrRef_0
-zeroaddr strcmp_3_b
-relsq tmp tmp 1
-relsq tmp curTokens_addrRef_0 1
-subaddr strcmp_3_b tmp
-
-rem Start strcmp_const it strcmp_3_b FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END tmp tmp2
+rem Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END tmp tmp2
 addr strcmp_const_18_a 0
+rem copyaddr strcmp_const_18_a it tmp
 sym it_addrRef_0
 zeroaddr strcmp_const_18_a
 relsq tmp tmp 1
 relsq tmp it_addrRef_0 1
 subaddr strcmp_const_18_a tmp
+rem incaddr strcmp_const_18_a 8
 subaddr strcmp_const_18_a CONST_-8
-subaddr strcmp_3_b CONST_-8
+rem incaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_-8
+
+rem Start jne strcmp_const_18_a curTokens_step2 STRCMP_CONST_18_REVERT_ADDR tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_18_a 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp strcmp_3_b 1
+relsq tmp curTokens_step2 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 lblsq tmp2 CONST_-1 STRCMP_CONST_18_REVERT_ADDR
@@ -3703,26 +3787,40 @@ label JNZ_36_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_18_REVERT_ADDR
 label JNZ_36_END
+rem End jne
+
 var strcmp_const_18_len 0
+
+rem Start mov strcmp_const_18_len strcmp_const_18_a tmp
 relsq tmp tmp 1
 relsq tmp strcmp_const_18_a 1
 relsq strcmp_const_18_len strcmp_const_18_len 1
 relsq strcmp_const_18_len tmp 1
+rem End mov
+
+rem decaddr strcmp_const_18_a 8
 subaddr strcmp_const_18_a CONST_8
-subaddr strcmp_3_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 addr strcmp_const_18_aStr 0
 addr strcmp_const_18_bStr 0
+rem setaddr strcmp_const_18_aStr strcmp_const_18_a tmp
 zeroaddr strcmp_const_18_aStr
 relsq tmp tmp 1
 relsq tmp strcmp_const_18_a 1
 subaddr strcmp_const_18_aStr tmp
+rem setaddr strcmp_const_18_bStr curTokens_step2 tmp
 zeroaddr strcmp_const_18_bStr
 relsq tmp tmp 1
-relsq tmp strcmp_3_b 1
+relsq tmp curTokens_step2 1
 subaddr strcmp_const_18_bStr tmp
 label STRCMP_CONST_18_LOOP
+rem decleq strcmp_const_18_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
 lblsq strcmp_const_18_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
+rem dec strcmp_const_18_len 1
 relsq strcmp_const_18_len CONST_1 1
+
+rem Start jne strcmp_const_18_aStr strcmp_const_18_bStr STRCMP_CONST_18_END tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_18_aStr 1
 relsq tmp tmp 1
@@ -3738,15 +3836,19 @@ label JNZ_37_REVERT_AND_JUMP
 relsq tmp CONST_1 1
 lblsq ZERO ZERO STRCMP_CONST_18_END
 label JNZ_37_END
+rem End jne
+
+rem incaddr strcmp_const_18_aStr 8
 subaddr strcmp_const_18_aStr CONST_-8
+rem incaddr strcmp_const_18_bStr 8
 subaddr strcmp_const_18_bStr CONST_-8
+rem lbljmp STRCMP_CONST_18_LOOP
 lblsq ZERO ZERO STRCMP_CONST_18_LOOP
 label STRCMP_CONST_18_REVERT_ADDR
-subaddr strcmp_3_b CONST_8
+rem decaddr curTokens_step2 8
+subaddr curTokens_step2 CONST_8
 label STRCMP_CONST_18_END
 rem End strcmp_const
-
-rem End strcmp
 
 rem incaddr it 30
 subaddr it CONST_-30
@@ -3757,7 +3859,7 @@ rem End find_item_in_buf_with_str_key
 
 subaddr it CONST_-20
 relsq it CONST_-1 1
-subaddr curTokens CONST_-18
+subaddr curTokens_step2 CONST_-18
 lblsq ZERO ZERO STEP2_RAW_REF_LOOP
 
 
@@ -3769,13 +3871,14 @@ lblsq ZERO ZERO STEP2_LOOP
 rem 3. Create subaddr/zeroaddr stubs
 label STEP3_START
 
-rem setaddr symbolsCur symbolsBegin tmp
-zeroaddr symbolsCur
+addr symbolsCur_step3 0
+rem setaddr symbolsCur_step3 symbolsBegin tmp
+zeroaddr symbolsCur_step3
 
-rem Start addaddr symbolsCur symbolsBegin tmp
+rem Start addaddr symbolsCur_step3 symbolsBegin tmp
 relsq tmp tmp 1
 relsq tmp symbolsBegin 1
-subaddr symbolsCur tmp
+subaddr symbolsCur_step3 tmp
 rem End addaddr
 
 var symbolsLeft 0
@@ -3839,26 +3942,26 @@ label PUTS_1_END
 rem End puts
 
 
-rem Start puts symbolsCur tmp
+rem Start puts symbolsCur_step3 tmp
 addr puts_2_str 0
-rem setaddr puts_2_str symbolsCur tmp
+rem setaddr puts_2_str symbolsCur_step3 tmp
 zeroaddr puts_2_str
 relsq tmp tmp 1
-relsq tmp symbolsCur 1
+relsq tmp symbolsCur_step3 1
 subaddr puts_2_str tmp
 var puts_2_len 0 
-rem incaddr symbolsCur 8
-subaddr symbolsCur CONST_-8
+rem incaddr symbolsCur_step3 8
+subaddr symbolsCur_step3 CONST_-8
 
-rem Start mov puts_2_len symbolsCur tmp
+rem Start mov puts_2_len symbolsCur_step3 tmp
 relsq tmp tmp 1
-relsq tmp symbolsCur 1
+relsq tmp symbolsCur_step3 1
 relsq puts_2_len puts_2_len 1
 relsq puts_2_len tmp 1
 rem End mov
 
-rem decaddr symbolsCur 8
-subaddr symbolsCur CONST_8
+rem decaddr symbolsCur_step3 8
+subaddr symbolsCur_step3 CONST_8
 label PUTS_2_LOOP
 rem decleq puts_2_len 0 PUTS_2_END
 lblsq puts_2_len CONST_0 PUTS_2_END
@@ -3898,7 +4001,7 @@ relsq SERIAL_OUT tmp 1
 rem End putchar
 
 
-subaddr symbolsCur CONST_-18
+subaddr symbolsCur_step3 CONST_-18
 
 rem Start puts SYMBOL_PART_2 tmp
 addr puts_3_str 0
@@ -3944,12 +4047,12 @@ label PUTS_3_END
 rem End puts
 
 
-rem Start print_qword symbolsCur tmp tmp2 tmp3
+rem Start print_qword symbolsCur_step3 tmp tmp2 tmp3
 
-rem Start mov tmp symbolsCur tmp2
-rem movneg tmp2 symbolsCur
+rem Start mov tmp symbolsCur_step3 tmp2
+rem movneg tmp2 symbolsCur_step3
 relsq tmp2 tmp2 1
-relsq tmp2 symbolsCur 1
+relsq tmp2 symbolsCur_step3 1
 rem movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
@@ -4172,7 +4275,7 @@ relsq SERIAL_OUT tmp 1
 rem End putchar
 
 
-subaddr symbolsCur CONST_-8
+subaddr symbolsCur_step3 CONST_-8
 
 rem Start puts SYMBOL_PART_3 tmp
 addr puts_4_str 0
@@ -4218,12 +4321,12 @@ label PUTS_4_END
 rem End puts
 
 
-rem Start print_qword symbolsCur tmp tmp2 tmp3
+rem Start print_qword symbolsCur_step3 tmp tmp2 tmp3
 
-rem Start mov tmp symbolsCur tmp2
-rem movneg tmp2 symbolsCur
+rem Start mov tmp symbolsCur_step3 tmp2
+rem movneg tmp2 symbolsCur_step3
 relsq tmp2 tmp2 1
-relsq tmp2 symbolsCur 1
+relsq tmp2 symbolsCur_step3 1
 rem movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
@@ -4446,7 +4549,7 @@ relsq SERIAL_OUT tmp 1
 rem End putchar
 
 
-subaddr symbolsCur CONST_-8
+subaddr symbolsCur_step3 CONST_-8
 
 rem Start puts SYMBOL_PART_4 tmp
 addr puts_5_str 0
@@ -4492,12 +4595,12 @@ label PUTS_5_END
 rem End puts
 
 
-rem Start print_qword symbolsCur tmp tmp2 tmp3
+rem Start print_qword symbolsCur_step3 tmp tmp2 tmp3
 
-rem Start mov tmp symbolsCur tmp2
-rem movneg tmp2 symbolsCur
+rem Start mov tmp symbolsCur_step3 tmp2
+rem movneg tmp2 symbolsCur_step3
 relsq tmp2 tmp2 1
-relsq tmp2 symbolsCur 1
+relsq tmp2 symbolsCur_step3 1
 rem movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
@@ -4720,7 +4823,7 @@ relsq SERIAL_OUT tmp 1
 rem End putchar
 
 
-subaddr symbolsCur CONST_-8
+subaddr symbolsCur_step3 CONST_-8
 lblsq ZERO ZERO LOOP
 
 label HALT
