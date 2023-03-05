@@ -2139,9 +2139,17 @@ lblsq ZERO ZERO STEP1_HANDLE_REFCOUNT
 label STEP1_SET_ADDRESS
 
 rem Start from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
-rem zero symbolsCur_step1
-rem sub symbolsCur_step1 symbolsCur_step1
-relsq symbolsCur_step1 symbolsCur_step1 1
+addr from_hex_0_a 0
+rem copyaddr from_hex_0_a symbolsCur_step1 tmp
+sym symbolsCur_step1_addrRef_0
+rem setaddr from_hex_0_a symbolsCur_step1_addrRef_0 tmp
+zeroaddr from_hex_0_a
+relsq tmp tmp 1
+relsq tmp symbolsCur_step1_addrRef_0 1
+subaddr from_hex_0_a tmp
+rem zero from_hex_0_a
+rem sub from_hex_0_a from_hex_0_a
+relsq from_hex_0_a from_hex_0_a 1
 addr from_hex_0_strBuf 0
 rem setaddr from_hex_0_strBuf curTokens_step1 tmp
 zeroaddr from_hex_0_strBuf
@@ -2250,45 +2258,45 @@ rem dec from_hex_0_val 9
 relsq from_hex_0_val CONST_9 1
 label FROM_HEX_0_WRITE
 
-rem Start mul_16 symbolsCur_step1 tmp
+rem Start mul_16 from_hex_0_a tmp
 rem zero tmp
 relsq tmp tmp 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub symbolsCur_step1 tmp
-relsq symbolsCur_step1 tmp 1
-rem sub symbolsCur_step1 tmp
-relsq symbolsCur_step1 tmp 1
-rem sub symbolsCur_step1 tmp
-relsq symbolsCur_step1 tmp 1
+rem sub tmp from_hex_0_a
+relsq tmp from_hex_0_a 1
+rem sub tmp from_hex_0_a
+relsq tmp from_hex_0_a 1
+rem sub tmp from_hex_0_a
+relsq tmp from_hex_0_a 1
+rem sub tmp from_hex_0_a
+relsq tmp from_hex_0_a 1
+rem sub tmp from_hex_0_a
+relsq tmp from_hex_0_a 1
+rem sub from_hex_0_a tmp
+relsq from_hex_0_a tmp 1
+rem sub from_hex_0_a tmp
+relsq from_hex_0_a tmp 1
+rem sub from_hex_0_a tmp
+relsq from_hex_0_a tmp 1
 rem End mul_16
 
-rem sub symbolsCur_step1 from_hex_0_val
-relsq symbolsCur_step1 from_hex_0_val 1
+rem sub from_hex_0_a from_hex_0_val
+relsq from_hex_0_a from_hex_0_val 1
 rem lbljmp FROM_HEX_0_LOOP
 lblsq ZERO ZERO FROM_HEX_0_LOOP
 label FROM_HEX_0_NEGATE
 rem decleq from_hex_0_isNeg 0 FROM_HEX_0_END
 lblsq from_hex_0_isNeg CONST_0 FROM_HEX_0_END
 
-rem Start neg symbolsCur_step1 tmp tmp2
-rem movneg tmp symbolsCur_step1
+rem Start neg from_hex_0_a tmp tmp2
+rem movneg tmp from_hex_0_a
 relsq tmp tmp 1
-relsq tmp symbolsCur_step1 1
+relsq tmp from_hex_0_a 1
 
-rem Start mov symbolsCur_step1 tmp tmp2
+rem Start mov from_hex_0_a tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-relsq symbolsCur_step1 symbolsCur_step1 1
-relsq symbolsCur_step1 tmp2 1
+relsq from_hex_0_a from_hex_0_a 1
+relsq from_hex_0_a tmp2 1
 rem End mov
 
 rem End neg
@@ -2431,9 +2439,17 @@ lblsq ZERO ZERO STEP1_END
 label STEP1_SET_VALUE
 
 rem Start from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
-rem zero symbolsCur_step1
-rem sub symbolsCur_step1 symbolsCur_step1
-relsq symbolsCur_step1 symbolsCur_step1 1
+addr from_hex_1_a 0
+rem copyaddr from_hex_1_a symbolsCur_step1 tmp
+sym symbolsCur_step1_addrRef_0
+rem setaddr from_hex_1_a symbolsCur_step1_addrRef_0 tmp
+zeroaddr from_hex_1_a
+relsq tmp tmp 1
+relsq tmp symbolsCur_step1_addrRef_0 1
+subaddr from_hex_1_a tmp
+rem zero from_hex_1_a
+rem sub from_hex_1_a from_hex_1_a
+relsq from_hex_1_a from_hex_1_a 1
 addr from_hex_1_strBuf 0
 rem setaddr from_hex_1_strBuf curTokens_step1 tmp
 zeroaddr from_hex_1_strBuf
@@ -2542,45 +2558,45 @@ rem dec from_hex_1_val 9
 relsq from_hex_1_val CONST_9 1
 label FROM_HEX_1_WRITE
 
-rem Start mul_16 symbolsCur_step1 tmp
+rem Start mul_16 from_hex_1_a tmp
 rem zero tmp
 relsq tmp tmp 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub tmp symbolsCur_step1
-relsq tmp symbolsCur_step1 1
-rem sub symbolsCur_step1 tmp
-relsq symbolsCur_step1 tmp 1
-rem sub symbolsCur_step1 tmp
-relsq symbolsCur_step1 tmp 1
-rem sub symbolsCur_step1 tmp
-relsq symbolsCur_step1 tmp 1
+rem sub tmp from_hex_1_a
+relsq tmp from_hex_1_a 1
+rem sub tmp from_hex_1_a
+relsq tmp from_hex_1_a 1
+rem sub tmp from_hex_1_a
+relsq tmp from_hex_1_a 1
+rem sub tmp from_hex_1_a
+relsq tmp from_hex_1_a 1
+rem sub tmp from_hex_1_a
+relsq tmp from_hex_1_a 1
+rem sub from_hex_1_a tmp
+relsq from_hex_1_a tmp 1
+rem sub from_hex_1_a tmp
+relsq from_hex_1_a tmp 1
+rem sub from_hex_1_a tmp
+relsq from_hex_1_a tmp 1
 rem End mul_16
 
-rem sub symbolsCur_step1 from_hex_1_val
-relsq symbolsCur_step1 from_hex_1_val 1
+rem sub from_hex_1_a from_hex_1_val
+relsq from_hex_1_a from_hex_1_val 1
 rem lbljmp FROM_HEX_1_LOOP
 lblsq ZERO ZERO FROM_HEX_1_LOOP
 label FROM_HEX_1_NEGATE
 rem decleq from_hex_1_isNeg 0 FROM_HEX_1_END
 lblsq from_hex_1_isNeg CONST_0 FROM_HEX_1_END
 
-rem Start neg symbolsCur_step1 tmp tmp2
-rem movneg tmp symbolsCur_step1
+rem Start neg from_hex_1_a tmp tmp2
+rem movneg tmp from_hex_1_a
 relsq tmp tmp 1
-relsq tmp symbolsCur_step1 1
+relsq tmp from_hex_1_a 1
 
-rem Start mov symbolsCur_step1 tmp tmp2
+rem Start mov from_hex_1_a tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
-relsq symbolsCur_step1 symbolsCur_step1 1
-relsq symbolsCur_step1 tmp2 1
+relsq from_hex_1_a from_hex_1_a 1
+relsq from_hex_1_a tmp2 1
 rem End mov
 
 rem End neg

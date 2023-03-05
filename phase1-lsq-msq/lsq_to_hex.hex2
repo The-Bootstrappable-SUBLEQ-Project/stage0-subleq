@@ -26,7 +26,7 @@
 ; var FREE_START 1000000
 ; var LINE_FEED a
 ; var SPACE 20
-:ZERO :puts_0_str :inp_token_allow_empty_0_str :strcmp_const_0_a :strcmp_const_0_aStr :strcmp_const_0_bStr :strcmp_const_1_a :strcmp_const_1_aStr :strcmp_const_1_bStr :strcmp_const_2_a :strcmp_const_2_aStr :strcmp_const_2_bStr :linesPass1Cur_other :tmpStr :inp_line_0_str :str_split_0_aBuf :str_split_0_strBuf :str_split_0_partBuf :linesPass1Cur_newline :strcpy_0_strA :strcpy_0_strB :linesPass1Cur_rem :inp_line_1_str :curLine :strcmp_const_3_a :strcmp_const_3_aStr :strcmp_const_3_bStr :strcmp_const_4_a :strcmp_const_4_aStr :strcmp_const_4_bStr :strcmp_const_5_a :strcmp_const_5_aStr :strcmp_const_5_bStr :strcmp_const_6_a :strcmp_const_6_aStr :strcmp_const_6_bStr :curTokens_step1 :strcpy_1_strA :strcpy_1_strB :strcmp_const_7_a :strcmp_const_7_aStr :strcmp_const_7_bStr :from_hex_0_strBuf :strcmp_const_8_a :strcmp_const_8_aStr :strcmp_const_8_bStr :from_hex_1_strBuf :curTokens_step2 :strcmp_const_9_a :strcmp_const_9_aStr :strcmp_const_9_bStr :strcmp_const_10_a :strcmp_const_10_aStr :strcmp_const_10_bStr :strcmp_const_11_a :strcmp_const_11_aStr :strcmp_const_11_bStr :strcmp_const_12_a :strcmp_const_12_aStr :strcmp_const_12_bStr :strcmp_const_13_a :strcmp_const_13_aStr :strcmp_const_13_bStr :it :strcmp_const_14_a :strcmp_const_14_aStr :strcmp_const_14_bStr :strcmp_const_15_a :strcmp_const_15_aStr :strcmp_const_15_bStr :strcmp_const_16_a :strcmp_const_16_aStr :strcmp_const_16_bStr :strcmp_const_17_a :strcmp_const_17_aStr :strcmp_const_17_bStr :strcmp_const_18_a :strcmp_const_18_aStr :strcmp_const_18_bStr :symbolsCur_step3 :puts_1_str :puts_2_str :puts_3_str :puts_4_str :puts_5_str &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
+:ZERO :puts_0_str :inp_token_allow_empty_0_str :strcmp_const_0_a :strcmp_const_0_aStr :strcmp_const_0_bStr :strcmp_const_1_a :strcmp_const_1_aStr :strcmp_const_1_bStr :strcmp_const_2_a :strcmp_const_2_aStr :strcmp_const_2_bStr :linesPass1Cur_other :tmpStr :inp_line_0_str :str_split_0_aBuf :str_split_0_strBuf :str_split_0_partBuf :linesPass1Cur_newline :strcpy_0_strA :strcpy_0_strB :linesPass1Cur_rem :inp_line_1_str :curLine :strcmp_const_3_a :strcmp_const_3_aStr :strcmp_const_3_bStr :strcmp_const_4_a :strcmp_const_4_aStr :strcmp_const_4_bStr :strcmp_const_5_a :strcmp_const_5_aStr :strcmp_const_5_bStr :strcmp_const_6_a :strcmp_const_6_aStr :strcmp_const_6_bStr :curTokens_step1 :strcpy_1_strA :strcpy_1_strB :strcmp_const_7_a :strcmp_const_7_aStr :strcmp_const_7_bStr :from_hex_0_a :from_hex_0_strBuf :strcmp_const_8_a :strcmp_const_8_aStr :strcmp_const_8_bStr :from_hex_1_a :from_hex_1_strBuf :curTokens_step2 :strcmp_const_9_a :strcmp_const_9_aStr :strcmp_const_9_bStr :strcmp_const_10_a :strcmp_const_10_aStr :strcmp_const_10_bStr :strcmp_const_11_a :strcmp_const_11_aStr :strcmp_const_11_bStr :strcmp_const_12_a :strcmp_const_12_aStr :strcmp_const_12_bStr :strcmp_const_13_a :strcmp_const_13_aStr :strcmp_const_13_bStr :it :strcmp_const_14_a :strcmp_const_14_aStr :strcmp_const_14_bStr :strcmp_const_15_a :strcmp_const_15_aStr :strcmp_const_15_bStr :strcmp_const_16_a :strcmp_const_16_aStr :strcmp_const_16_bStr :strcmp_const_17_a :strcmp_const_17_aStr :strcmp_const_17_bStr :strcmp_const_18_a :strcmp_const_18_aStr :strcmp_const_18_bStr :symbolsCur_step3 :puts_1_str :puts_2_str :puts_3_str :puts_4_str :puts_5_str &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
 
 ; label EP
 ; var LF a
@@ -3510,36 +3510,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-8 1
 &symbolsCur_step1_addrRef_17 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-8 1
 &symbolsCur_step1_addrRef_18 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-8 1
-&symbolsCur_step1_addrRef_19 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-8 1
-&symbolsCur_step1_addrRef_20 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-8 1
-&symbolsCur_step1_addrRef_21 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-8 1
-&symbolsCur_step1_addrRef_22 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-8 1
-&symbolsCur_step1_addrRef_23 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-8 1
-&symbolsCur_step1_addrRef_24 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-8 1
-&symbolsCur_step1_addrRef_25 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-8 1
-&symbolsCur_step1_addrRef_26 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-8 1
-&symbolsCur_step1_addrRef_27 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-8 1
-&symbolsCur_step1_addrRef_28 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-8 1
-&symbolsCur_step1_addrRef_29 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-8 1
-&symbolsCur_step1_addrRef_30 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-8 1
-&symbolsCur_step1_addrRef_31 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-8 1
-&symbolsCur_step1_addrRef_32 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-8 1
-&symbolsCur_step1_addrRef_33 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-8 1
-&symbolsCur_step1_addrRef_34 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-8 1
-&symbolsCur_step1_addrRef_35 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-8 1
-&symbolsCur_step1_addrRef_36 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-8 1
-&symbolsCur_step1_addrRef_37 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-8 1
-&symbolsCur_step1_addrRef_38 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-8 1
-&symbolsCur_step1_addrRef_39 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-8 1
-&symbolsCur_step1_addrRef_40 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-8 1
-&symbolsCur_step1_addrRef_41 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-8 1
-&symbolsCur_step1_addrRef_42 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-8 1
-&symbolsCur_step1_addrRef_43 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-8 1
-&symbolsCur_step1_addrRef_44 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-8 1
-&symbolsCur_step1_addrRef_45 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-8 1
-&symbolsCur_step1_addrRef_46 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-8 1
-&symbolsCur_step1_addrRef_47 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-8 1
-&symbolsCur_step1_addrRef_48 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-8 1
 # zero symbolsCur_step1
 :symbolsCur_step1_addrRef_3 0000000000200000 :symbolsCur_step1_addrRef_4 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
 # incaddr symbolsCur_step1 8
@@ -3562,36 +3532,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-8 1
 &symbolsCur_step1_addrRef_17 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-8 1
 &symbolsCur_step1_addrRef_18 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-8 1
-&symbolsCur_step1_addrRef_19 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-8 1
-&symbolsCur_step1_addrRef_20 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-8 1
-&symbolsCur_step1_addrRef_21 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-8 1
-&symbolsCur_step1_addrRef_22 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-8 1
-&symbolsCur_step1_addrRef_23 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-8 1
-&symbolsCur_step1_addrRef_24 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-8 1
-&symbolsCur_step1_addrRef_25 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-8 1
-&symbolsCur_step1_addrRef_26 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-8 1
-&symbolsCur_step1_addrRef_27 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-8 1
-&symbolsCur_step1_addrRef_28 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-8 1
-&symbolsCur_step1_addrRef_29 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-8 1
-&symbolsCur_step1_addrRef_30 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-8 1
-&symbolsCur_step1_addrRef_31 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-8 1
-&symbolsCur_step1_addrRef_32 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-8 1
-&symbolsCur_step1_addrRef_33 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-8 1
-&symbolsCur_step1_addrRef_34 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-8 1
-&symbolsCur_step1_addrRef_35 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-8 1
-&symbolsCur_step1_addrRef_36 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-8 1
-&symbolsCur_step1_addrRef_37 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-8 1
-&symbolsCur_step1_addrRef_38 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-8 1
-&symbolsCur_step1_addrRef_39 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-8 1
-&symbolsCur_step1_addrRef_40 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-8 1
-&symbolsCur_step1_addrRef_41 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-8 1
-&symbolsCur_step1_addrRef_42 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-8 1
-&symbolsCur_step1_addrRef_43 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-8 1
-&symbolsCur_step1_addrRef_44 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-8 1
-&symbolsCur_step1_addrRef_45 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-8 1
-&symbolsCur_step1_addrRef_46 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-8 1
-&symbolsCur_step1_addrRef_47 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-8 1
-&symbolsCur_step1_addrRef_48 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-8 1
 
 # Start mov symbolsCur_step1 CONST_800 tmp
 &tmp &tmp ?+8 ; relsq tmp tmp 1
@@ -3620,36 +3560,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_10 1
 &symbolsCur_step1_addrRef_17 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_10 1
 &symbolsCur_step1_addrRef_18 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_10 1
-&symbolsCur_step1_addrRef_19 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_10 1
-&symbolsCur_step1_addrRef_20 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_10 1
-&symbolsCur_step1_addrRef_21 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_10 1
-&symbolsCur_step1_addrRef_22 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_10 1
-&symbolsCur_step1_addrRef_23 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_10 1
-&symbolsCur_step1_addrRef_24 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_10 1
-&symbolsCur_step1_addrRef_25 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_10 1
-&symbolsCur_step1_addrRef_26 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_10 1
-&symbolsCur_step1_addrRef_27 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_10 1
-&symbolsCur_step1_addrRef_28 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_10 1
-&symbolsCur_step1_addrRef_29 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_10 1
-&symbolsCur_step1_addrRef_30 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_10 1
-&symbolsCur_step1_addrRef_31 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_10 1
-&symbolsCur_step1_addrRef_32 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_10 1
-&symbolsCur_step1_addrRef_33 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_10 1
-&symbolsCur_step1_addrRef_34 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_10 1
-&symbolsCur_step1_addrRef_35 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_10 1
-&symbolsCur_step1_addrRef_36 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_10 1
-&symbolsCur_step1_addrRef_37 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_10 1
-&symbolsCur_step1_addrRef_38 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_10 1
-&symbolsCur_step1_addrRef_39 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_10 1
-&symbolsCur_step1_addrRef_40 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_10 1
-&symbolsCur_step1_addrRef_41 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_10 1
-&symbolsCur_step1_addrRef_42 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_10 1
-&symbolsCur_step1_addrRef_43 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_10 1
-&symbolsCur_step1_addrRef_44 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_10 1
-&symbolsCur_step1_addrRef_45 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_10 1
-&symbolsCur_step1_addrRef_46 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_10 1
-&symbolsCur_step1_addrRef_47 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_10 1
-&symbolsCur_step1_addrRef_48 &CONST_10 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_10 1
 # End alloc_str
 
 
@@ -3690,36 +3600,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-8 1
 &symbolsCur_step1_addrRef_17 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-8 1
 &symbolsCur_step1_addrRef_18 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-8 1
-&symbolsCur_step1_addrRef_19 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-8 1
-&symbolsCur_step1_addrRef_20 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-8 1
-&symbolsCur_step1_addrRef_21 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-8 1
-&symbolsCur_step1_addrRef_22 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-8 1
-&symbolsCur_step1_addrRef_23 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-8 1
-&symbolsCur_step1_addrRef_24 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-8 1
-&symbolsCur_step1_addrRef_25 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-8 1
-&symbolsCur_step1_addrRef_26 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-8 1
-&symbolsCur_step1_addrRef_27 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-8 1
-&symbolsCur_step1_addrRef_28 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-8 1
-&symbolsCur_step1_addrRef_29 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-8 1
-&symbolsCur_step1_addrRef_30 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-8 1
-&symbolsCur_step1_addrRef_31 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-8 1
-&symbolsCur_step1_addrRef_32 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-8 1
-&symbolsCur_step1_addrRef_33 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-8 1
-&symbolsCur_step1_addrRef_34 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-8 1
-&symbolsCur_step1_addrRef_35 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-8 1
-&symbolsCur_step1_addrRef_36 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-8 1
-&symbolsCur_step1_addrRef_37 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-8 1
-&symbolsCur_step1_addrRef_38 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-8 1
-&symbolsCur_step1_addrRef_39 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-8 1
-&symbolsCur_step1_addrRef_40 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-8 1
-&symbolsCur_step1_addrRef_41 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-8 1
-&symbolsCur_step1_addrRef_42 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-8 1
-&symbolsCur_step1_addrRef_43 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-8 1
-&symbolsCur_step1_addrRef_44 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-8 1
-&symbolsCur_step1_addrRef_45 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-8 1
-&symbolsCur_step1_addrRef_46 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-8 1
-&symbolsCur_step1_addrRef_47 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-8 1
-&symbolsCur_step1_addrRef_48 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-8 1
 # incaddr curTokens_step1 8
 &curTokens_step1_addrRef_0 &CONST_-8 ?+8 ; relsq curTokens_step1_addrRef_0 CONST_-8 1
 &curTokens_step1_addrRef_1 &CONST_-8 ?+8 ; relsq curTokens_step1_addrRef_1 CONST_-8 1
@@ -3765,36 +3645,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_8 1
 &symbolsCur_step1_addrRef_17 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_8 1
 &symbolsCur_step1_addrRef_18 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_8 1
-&symbolsCur_step1_addrRef_19 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_8 1
-&symbolsCur_step1_addrRef_20 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_8 1
-&symbolsCur_step1_addrRef_21 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_8 1
-&symbolsCur_step1_addrRef_22 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_8 1
-&symbolsCur_step1_addrRef_23 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_8 1
-&symbolsCur_step1_addrRef_24 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_8 1
-&symbolsCur_step1_addrRef_25 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_8 1
-&symbolsCur_step1_addrRef_26 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_8 1
-&symbolsCur_step1_addrRef_27 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_8 1
-&symbolsCur_step1_addrRef_28 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_8 1
-&symbolsCur_step1_addrRef_29 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_8 1
-&symbolsCur_step1_addrRef_30 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_8 1
-&symbolsCur_step1_addrRef_31 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_8 1
-&symbolsCur_step1_addrRef_32 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_8 1
-&symbolsCur_step1_addrRef_33 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_8 1
-&symbolsCur_step1_addrRef_34 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_8 1
-&symbolsCur_step1_addrRef_35 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_8 1
-&symbolsCur_step1_addrRef_36 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_8 1
-&symbolsCur_step1_addrRef_37 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_8 1
-&symbolsCur_step1_addrRef_38 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_8 1
-&symbolsCur_step1_addrRef_39 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_8 1
-&symbolsCur_step1_addrRef_40 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_8 1
-&symbolsCur_step1_addrRef_41 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_8 1
-&symbolsCur_step1_addrRef_42 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_8 1
-&symbolsCur_step1_addrRef_43 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_8 1
-&symbolsCur_step1_addrRef_44 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_8 1
-&symbolsCur_step1_addrRef_45 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_8 1
-&symbolsCur_step1_addrRef_46 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_8 1
-&symbolsCur_step1_addrRef_47 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_8 1
-&symbolsCur_step1_addrRef_48 &CONST_8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_8 1
 # decaddr curTokens_step1 8
 &curTokens_step1_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step1_addrRef_0 CONST_8 1
 &curTokens_step1_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step1_addrRef_1 CONST_8 1
@@ -3855,36 +3705,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-18 1
 &symbolsCur_step1_addrRef_17 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-18 1
 &symbolsCur_step1_addrRef_18 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-18 1
-&symbolsCur_step1_addrRef_19 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-18 1
-&symbolsCur_step1_addrRef_20 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-18 1
-&symbolsCur_step1_addrRef_21 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-18 1
-&symbolsCur_step1_addrRef_22 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-18 1
-&symbolsCur_step1_addrRef_23 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-18 1
-&symbolsCur_step1_addrRef_24 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-18 1
-&symbolsCur_step1_addrRef_25 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-18 1
-&symbolsCur_step1_addrRef_26 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-18 1
-&symbolsCur_step1_addrRef_27 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-18 1
-&symbolsCur_step1_addrRef_28 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-18 1
-&symbolsCur_step1_addrRef_29 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-18 1
-&symbolsCur_step1_addrRef_30 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-18 1
-&symbolsCur_step1_addrRef_31 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-18 1
-&symbolsCur_step1_addrRef_32 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-18 1
-&symbolsCur_step1_addrRef_33 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-18 1
-&symbolsCur_step1_addrRef_34 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-18 1
-&symbolsCur_step1_addrRef_35 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-18 1
-&symbolsCur_step1_addrRef_36 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-18 1
-&symbolsCur_step1_addrRef_37 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-18 1
-&symbolsCur_step1_addrRef_38 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-18 1
-&symbolsCur_step1_addrRef_39 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-18 1
-&symbolsCur_step1_addrRef_40 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-18 1
-&symbolsCur_step1_addrRef_41 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-18 1
-&symbolsCur_step1_addrRef_42 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-18 1
-&symbolsCur_step1_addrRef_43 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-18 1
-&symbolsCur_step1_addrRef_44 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-18 1
-&symbolsCur_step1_addrRef_45 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-18 1
-&symbolsCur_step1_addrRef_46 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-18 1
-&symbolsCur_step1_addrRef_47 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-18 1
-&symbolsCur_step1_addrRef_48 &CONST_-18 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-18 1
 # set symbolsCur_step1 -1
 :symbolsCur_step1_addrRef_12 0000000000200000 :symbolsCur_step1_addrRef_13 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
 :symbolsCur_step1_addrRef_14 0000000000200000 &CONST_1 ?+8 ; relsq symbolsCur_step1 CONST_1 1
@@ -4032,9 +3852,45 @@
 ; label STEP1_SET_ADDRESS
 
 # Start from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
-# zero symbolsCur_step1
-# sub symbolsCur_step1 symbolsCur_step1
-:STEP1_SET_ADDRESS :symbolsCur_step1_addrRef_15 0000000000200000 :symbolsCur_step1_addrRef_16 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
+; addr from_hex_0_a 0
+# copyaddr from_hex_0_a symbolsCur_step1 tmp
+; sym symbolsCur_step1_addrRef_0
+# setaddr from_hex_0_a symbolsCur_step1_addrRef_0 tmp
+:STEP1_SET_ADDRESS &from_hex_0_a_addrRef_0 &from_hex_0_a_addrRef_0 ?+8 ; relsq from_hex_0_a_addrRef_0 from_hex_0_a_addrRef_0 1
+&from_hex_0_a_addrRef_1 &from_hex_0_a_addrRef_1 ?+8 ; relsq from_hex_0_a_addrRef_1 from_hex_0_a_addrRef_1 1
+&from_hex_0_a_addrRef_2 &from_hex_0_a_addrRef_2 ?+8 ; relsq from_hex_0_a_addrRef_2 from_hex_0_a_addrRef_2 1
+&from_hex_0_a_addrRef_3 &from_hex_0_a_addrRef_3 ?+8 ; relsq from_hex_0_a_addrRef_3 from_hex_0_a_addrRef_3 1
+&from_hex_0_a_addrRef_4 &from_hex_0_a_addrRef_4 ?+8 ; relsq from_hex_0_a_addrRef_4 from_hex_0_a_addrRef_4 1
+&from_hex_0_a_addrRef_5 &from_hex_0_a_addrRef_5 ?+8 ; relsq from_hex_0_a_addrRef_5 from_hex_0_a_addrRef_5 1
+&from_hex_0_a_addrRef_6 &from_hex_0_a_addrRef_6 ?+8 ; relsq from_hex_0_a_addrRef_6 from_hex_0_a_addrRef_6 1
+&from_hex_0_a_addrRef_7 &from_hex_0_a_addrRef_7 ?+8 ; relsq from_hex_0_a_addrRef_7 from_hex_0_a_addrRef_7 1
+&from_hex_0_a_addrRef_8 &from_hex_0_a_addrRef_8 ?+8 ; relsq from_hex_0_a_addrRef_8 from_hex_0_a_addrRef_8 1
+&from_hex_0_a_addrRef_9 &from_hex_0_a_addrRef_9 ?+8 ; relsq from_hex_0_a_addrRef_9 from_hex_0_a_addrRef_9 1
+&from_hex_0_a_addrRef_10 &from_hex_0_a_addrRef_10 ?+8 ; relsq from_hex_0_a_addrRef_10 from_hex_0_a_addrRef_10 1
+&from_hex_0_a_addrRef_11 &from_hex_0_a_addrRef_11 ?+8 ; relsq from_hex_0_a_addrRef_11 from_hex_0_a_addrRef_11 1
+&from_hex_0_a_addrRef_12 &from_hex_0_a_addrRef_12 ?+8 ; relsq from_hex_0_a_addrRef_12 from_hex_0_a_addrRef_12 1
+&from_hex_0_a_addrRef_13 &from_hex_0_a_addrRef_13 ?+8 ; relsq from_hex_0_a_addrRef_13 from_hex_0_a_addrRef_13 1
+&from_hex_0_a_addrRef_14 &from_hex_0_a_addrRef_14 ?+8 ; relsq from_hex_0_a_addrRef_14 from_hex_0_a_addrRef_14 1
+&tmp &tmp ?+8 ; relsq tmp tmp 1
+&tmp &symbolsCur_step1_addrRef_0 ?+8 ; relsq tmp symbolsCur_step1_addrRef_0 1
+&from_hex_0_a_addrRef_0 &tmp ?+8 ; relsq from_hex_0_a_addrRef_0 tmp 1
+&from_hex_0_a_addrRef_1 &tmp ?+8 ; relsq from_hex_0_a_addrRef_1 tmp 1
+&from_hex_0_a_addrRef_2 &tmp ?+8 ; relsq from_hex_0_a_addrRef_2 tmp 1
+&from_hex_0_a_addrRef_3 &tmp ?+8 ; relsq from_hex_0_a_addrRef_3 tmp 1
+&from_hex_0_a_addrRef_4 &tmp ?+8 ; relsq from_hex_0_a_addrRef_4 tmp 1
+&from_hex_0_a_addrRef_5 &tmp ?+8 ; relsq from_hex_0_a_addrRef_5 tmp 1
+&from_hex_0_a_addrRef_6 &tmp ?+8 ; relsq from_hex_0_a_addrRef_6 tmp 1
+&from_hex_0_a_addrRef_7 &tmp ?+8 ; relsq from_hex_0_a_addrRef_7 tmp 1
+&from_hex_0_a_addrRef_8 &tmp ?+8 ; relsq from_hex_0_a_addrRef_8 tmp 1
+&from_hex_0_a_addrRef_9 &tmp ?+8 ; relsq from_hex_0_a_addrRef_9 tmp 1
+&from_hex_0_a_addrRef_10 &tmp ?+8 ; relsq from_hex_0_a_addrRef_10 tmp 1
+&from_hex_0_a_addrRef_11 &tmp ?+8 ; relsq from_hex_0_a_addrRef_11 tmp 1
+&from_hex_0_a_addrRef_12 &tmp ?+8 ; relsq from_hex_0_a_addrRef_12 tmp 1
+&from_hex_0_a_addrRef_13 &tmp ?+8 ; relsq from_hex_0_a_addrRef_13 tmp 1
+&from_hex_0_a_addrRef_14 &tmp ?+8 ; relsq from_hex_0_a_addrRef_14 tmp 1
+# zero from_hex_0_a
+# sub from_hex_0_a from_hex_0_a
+:from_hex_0_a_addrRef_0 &from_hex_0_a :from_hex_0_a_addrRef_1 &from_hex_0_a ?+8 ; relsq from_hex_0_a from_hex_0_a 1
 ; addr from_hex_0_strBuf 0
 # setaddr from_hex_0_strBuf curTokens_step1 tmp
 &from_hex_0_strBuf_addrRef_0 &from_hex_0_strBuf_addrRef_0 ?+8 ; relsq from_hex_0_strBuf_addrRef_0 from_hex_0_strBuf_addrRef_0 1
@@ -4159,45 +4015,45 @@
 &from_hex_0_val &CONST_9 ?+8 ; relsq from_hex_0_val CONST_9 1
 ; label FROM_HEX_0_WRITE
 
-# Start mul_16 symbolsCur_step1 tmp
+# Start mul_16 from_hex_0_a tmp
 # zero tmp
 :FROM_HEX_0_WRITE &tmp &tmp ?+8 ; relsq tmp tmp 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_17 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_18 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_19 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_20 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_21 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub symbolsCur_step1 tmp
-:symbolsCur_step1_addrRef_22 0000000000200000 &tmp ?+8 ; relsq symbolsCur_step1 tmp 1
-# sub symbolsCur_step1 tmp
-:symbolsCur_step1_addrRef_23 0000000000200000 &tmp ?+8 ; relsq symbolsCur_step1 tmp 1
-# sub symbolsCur_step1 tmp
-:symbolsCur_step1_addrRef_24 0000000000200000 &tmp ?+8 ; relsq symbolsCur_step1 tmp 1
+# sub tmp from_hex_0_a
+&tmp :from_hex_0_a_addrRef_2 &from_hex_0_a ?+8 ; relsq tmp from_hex_0_a 1
+# sub tmp from_hex_0_a
+&tmp :from_hex_0_a_addrRef_3 &from_hex_0_a ?+8 ; relsq tmp from_hex_0_a 1
+# sub tmp from_hex_0_a
+&tmp :from_hex_0_a_addrRef_4 &from_hex_0_a ?+8 ; relsq tmp from_hex_0_a 1
+# sub tmp from_hex_0_a
+&tmp :from_hex_0_a_addrRef_5 &from_hex_0_a ?+8 ; relsq tmp from_hex_0_a 1
+# sub tmp from_hex_0_a
+&tmp :from_hex_0_a_addrRef_6 &from_hex_0_a ?+8 ; relsq tmp from_hex_0_a 1
+# sub from_hex_0_a tmp
+:from_hex_0_a_addrRef_7 &from_hex_0_a &tmp ?+8 ; relsq from_hex_0_a tmp 1
+# sub from_hex_0_a tmp
+:from_hex_0_a_addrRef_8 &from_hex_0_a &tmp ?+8 ; relsq from_hex_0_a tmp 1
+# sub from_hex_0_a tmp
+:from_hex_0_a_addrRef_9 &from_hex_0_a &tmp ?+8 ; relsq from_hex_0_a tmp 1
 # End mul_16
 
-# sub symbolsCur_step1 from_hex_0_val
-:symbolsCur_step1_addrRef_25 0000000000200000 &from_hex_0_val ?+8 ; relsq symbolsCur_step1 from_hex_0_val 1
+# sub from_hex_0_a from_hex_0_val
+:from_hex_0_a_addrRef_10 &from_hex_0_a &from_hex_0_val ?+8 ; relsq from_hex_0_a from_hex_0_val 1
 # lbljmp FROM_HEX_0_LOOP
 &ZERO &ZERO &FROM_HEX_0_LOOP ; lblsq ZERO ZERO FROM_HEX_0_LOOP
 ; label FROM_HEX_0_NEGATE
 # decleq from_hex_0_isNeg 0 FROM_HEX_0_END
 :FROM_HEX_0_NEGATE &from_hex_0_isNeg &CONST_0 &FROM_HEX_0_END ; lblsq from_hex_0_isNeg CONST_0 FROM_HEX_0_END
 
-# Start neg symbolsCur_step1 tmp tmp2
-# movneg tmp symbolsCur_step1
+# Start neg from_hex_0_a tmp tmp2
+# movneg tmp from_hex_0_a
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :symbolsCur_step1_addrRef_26 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
+&tmp :from_hex_0_a_addrRef_11 &from_hex_0_a ?+8 ; relsq tmp from_hex_0_a 1
 
-# Start mov symbolsCur_step1 tmp tmp2
+# Start mov from_hex_0_a tmp tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-:symbolsCur_step1_addrRef_27 0000000000200000 :symbolsCur_step1_addrRef_28 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
-:symbolsCur_step1_addrRef_29 0000000000200000 &tmp2 ?+8 ; relsq symbolsCur_step1 tmp2 1
+:from_hex_0_a_addrRef_12 &from_hex_0_a :from_hex_0_a_addrRef_13 &from_hex_0_a ?+8 ; relsq from_hex_0_a from_hex_0_a 1
+:from_hex_0_a_addrRef_14 &from_hex_0_a &tmp2 ?+8 ; relsq from_hex_0_a tmp2 1
 # End mov
 
 # End neg
@@ -4226,37 +4082,7 @@
 &symbolsCur_step1_addrRef_16 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-8 1
 &symbolsCur_step1_addrRef_17 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-8 1
 &symbolsCur_step1_addrRef_18 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-8 1
-&symbolsCur_step1_addrRef_19 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-8 1
-&symbolsCur_step1_addrRef_20 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-8 1
-&symbolsCur_step1_addrRef_21 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-8 1
-&symbolsCur_step1_addrRef_22 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-8 1
-&symbolsCur_step1_addrRef_23 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-8 1
-&symbolsCur_step1_addrRef_24 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-8 1
-&symbolsCur_step1_addrRef_25 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-8 1
-&symbolsCur_step1_addrRef_26 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-8 1
-&symbolsCur_step1_addrRef_27 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-8 1
-&symbolsCur_step1_addrRef_28 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-8 1
-&symbolsCur_step1_addrRef_29 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-8 1
-&symbolsCur_step1_addrRef_30 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-8 1
-&symbolsCur_step1_addrRef_31 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-8 1
-&symbolsCur_step1_addrRef_32 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-8 1
-&symbolsCur_step1_addrRef_33 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-8 1
-&symbolsCur_step1_addrRef_34 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-8 1
-&symbolsCur_step1_addrRef_35 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-8 1
-&symbolsCur_step1_addrRef_36 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-8 1
-&symbolsCur_step1_addrRef_37 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-8 1
-&symbolsCur_step1_addrRef_38 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-8 1
-&symbolsCur_step1_addrRef_39 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-8 1
-&symbolsCur_step1_addrRef_40 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-8 1
-&symbolsCur_step1_addrRef_41 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-8 1
-&symbolsCur_step1_addrRef_42 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-8 1
-&symbolsCur_step1_addrRef_43 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-8 1
-&symbolsCur_step1_addrRef_44 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-8 1
-&symbolsCur_step1_addrRef_45 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-8 1
-&symbolsCur_step1_addrRef_46 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-8 1
-&symbolsCur_step1_addrRef_47 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-8 1
-&symbolsCur_step1_addrRef_48 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-8 1
-:symbolsCur_step1_addrRef_30 0000000000200000 :symbolsCur_step1_addrRef_31 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
+:symbolsCur_step1_addrRef_15 0000000000200000 :symbolsCur_step1_addrRef_16 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
 
 ; label STEP1_HANDLE_VALUE
 :STEP1_HANDLE_VALUE &symbolsCur_step1_addrRef_0 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_0 CONST_-8 1
@@ -4278,37 +4104,7 @@
 &symbolsCur_step1_addrRef_16 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-8 1
 &symbolsCur_step1_addrRef_17 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-8 1
 &symbolsCur_step1_addrRef_18 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-8 1
-&symbolsCur_step1_addrRef_19 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-8 1
-&symbolsCur_step1_addrRef_20 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-8 1
-&symbolsCur_step1_addrRef_21 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-8 1
-&symbolsCur_step1_addrRef_22 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-8 1
-&symbolsCur_step1_addrRef_23 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-8 1
-&symbolsCur_step1_addrRef_24 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-8 1
-&symbolsCur_step1_addrRef_25 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-8 1
-&symbolsCur_step1_addrRef_26 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-8 1
-&symbolsCur_step1_addrRef_27 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-8 1
-&symbolsCur_step1_addrRef_28 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-8 1
-&symbolsCur_step1_addrRef_29 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-8 1
-&symbolsCur_step1_addrRef_30 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-8 1
-&symbolsCur_step1_addrRef_31 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-8 1
-&symbolsCur_step1_addrRef_32 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-8 1
-&symbolsCur_step1_addrRef_33 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-8 1
-&symbolsCur_step1_addrRef_34 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-8 1
-&symbolsCur_step1_addrRef_35 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-8 1
-&symbolsCur_step1_addrRef_36 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-8 1
-&symbolsCur_step1_addrRef_37 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-8 1
-&symbolsCur_step1_addrRef_38 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-8 1
-&symbolsCur_step1_addrRef_39 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-8 1
-&symbolsCur_step1_addrRef_40 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-8 1
-&symbolsCur_step1_addrRef_41 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-8 1
-&symbolsCur_step1_addrRef_42 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-8 1
-&symbolsCur_step1_addrRef_43 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-8 1
-&symbolsCur_step1_addrRef_44 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-8 1
-&symbolsCur_step1_addrRef_45 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-8 1
-&symbolsCur_step1_addrRef_46 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-8 1
-&symbolsCur_step1_addrRef_47 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-8 1
-&symbolsCur_step1_addrRef_48 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-8 1
-:symbolsCur_step1_addrRef_32 0000000000200000 :symbolsCur_step1_addrRef_33 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
+:symbolsCur_step1_addrRef_17 0000000000200000 :symbolsCur_step1_addrRef_18 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
 
 # Start strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
 ; addr strcmp_const_8_a 0
@@ -4453,9 +4249,45 @@
 ; label STEP1_SET_VALUE
 
 # Start from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
-# zero symbolsCur_step1
-# sub symbolsCur_step1 symbolsCur_step1
-:STEP1_SET_VALUE :symbolsCur_step1_addrRef_34 0000000000200000 :symbolsCur_step1_addrRef_35 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
+; addr from_hex_1_a 0
+# copyaddr from_hex_1_a symbolsCur_step1 tmp
+; sym symbolsCur_step1_addrRef_0
+# setaddr from_hex_1_a symbolsCur_step1_addrRef_0 tmp
+:STEP1_SET_VALUE &from_hex_1_a_addrRef_0 &from_hex_1_a_addrRef_0 ?+8 ; relsq from_hex_1_a_addrRef_0 from_hex_1_a_addrRef_0 1
+&from_hex_1_a_addrRef_1 &from_hex_1_a_addrRef_1 ?+8 ; relsq from_hex_1_a_addrRef_1 from_hex_1_a_addrRef_1 1
+&from_hex_1_a_addrRef_2 &from_hex_1_a_addrRef_2 ?+8 ; relsq from_hex_1_a_addrRef_2 from_hex_1_a_addrRef_2 1
+&from_hex_1_a_addrRef_3 &from_hex_1_a_addrRef_3 ?+8 ; relsq from_hex_1_a_addrRef_3 from_hex_1_a_addrRef_3 1
+&from_hex_1_a_addrRef_4 &from_hex_1_a_addrRef_4 ?+8 ; relsq from_hex_1_a_addrRef_4 from_hex_1_a_addrRef_4 1
+&from_hex_1_a_addrRef_5 &from_hex_1_a_addrRef_5 ?+8 ; relsq from_hex_1_a_addrRef_5 from_hex_1_a_addrRef_5 1
+&from_hex_1_a_addrRef_6 &from_hex_1_a_addrRef_6 ?+8 ; relsq from_hex_1_a_addrRef_6 from_hex_1_a_addrRef_6 1
+&from_hex_1_a_addrRef_7 &from_hex_1_a_addrRef_7 ?+8 ; relsq from_hex_1_a_addrRef_7 from_hex_1_a_addrRef_7 1
+&from_hex_1_a_addrRef_8 &from_hex_1_a_addrRef_8 ?+8 ; relsq from_hex_1_a_addrRef_8 from_hex_1_a_addrRef_8 1
+&from_hex_1_a_addrRef_9 &from_hex_1_a_addrRef_9 ?+8 ; relsq from_hex_1_a_addrRef_9 from_hex_1_a_addrRef_9 1
+&from_hex_1_a_addrRef_10 &from_hex_1_a_addrRef_10 ?+8 ; relsq from_hex_1_a_addrRef_10 from_hex_1_a_addrRef_10 1
+&from_hex_1_a_addrRef_11 &from_hex_1_a_addrRef_11 ?+8 ; relsq from_hex_1_a_addrRef_11 from_hex_1_a_addrRef_11 1
+&from_hex_1_a_addrRef_12 &from_hex_1_a_addrRef_12 ?+8 ; relsq from_hex_1_a_addrRef_12 from_hex_1_a_addrRef_12 1
+&from_hex_1_a_addrRef_13 &from_hex_1_a_addrRef_13 ?+8 ; relsq from_hex_1_a_addrRef_13 from_hex_1_a_addrRef_13 1
+&from_hex_1_a_addrRef_14 &from_hex_1_a_addrRef_14 ?+8 ; relsq from_hex_1_a_addrRef_14 from_hex_1_a_addrRef_14 1
+&tmp &tmp ?+8 ; relsq tmp tmp 1
+&tmp &symbolsCur_step1_addrRef_0 ?+8 ; relsq tmp symbolsCur_step1_addrRef_0 1
+&from_hex_1_a_addrRef_0 &tmp ?+8 ; relsq from_hex_1_a_addrRef_0 tmp 1
+&from_hex_1_a_addrRef_1 &tmp ?+8 ; relsq from_hex_1_a_addrRef_1 tmp 1
+&from_hex_1_a_addrRef_2 &tmp ?+8 ; relsq from_hex_1_a_addrRef_2 tmp 1
+&from_hex_1_a_addrRef_3 &tmp ?+8 ; relsq from_hex_1_a_addrRef_3 tmp 1
+&from_hex_1_a_addrRef_4 &tmp ?+8 ; relsq from_hex_1_a_addrRef_4 tmp 1
+&from_hex_1_a_addrRef_5 &tmp ?+8 ; relsq from_hex_1_a_addrRef_5 tmp 1
+&from_hex_1_a_addrRef_6 &tmp ?+8 ; relsq from_hex_1_a_addrRef_6 tmp 1
+&from_hex_1_a_addrRef_7 &tmp ?+8 ; relsq from_hex_1_a_addrRef_7 tmp 1
+&from_hex_1_a_addrRef_8 &tmp ?+8 ; relsq from_hex_1_a_addrRef_8 tmp 1
+&from_hex_1_a_addrRef_9 &tmp ?+8 ; relsq from_hex_1_a_addrRef_9 tmp 1
+&from_hex_1_a_addrRef_10 &tmp ?+8 ; relsq from_hex_1_a_addrRef_10 tmp 1
+&from_hex_1_a_addrRef_11 &tmp ?+8 ; relsq from_hex_1_a_addrRef_11 tmp 1
+&from_hex_1_a_addrRef_12 &tmp ?+8 ; relsq from_hex_1_a_addrRef_12 tmp 1
+&from_hex_1_a_addrRef_13 &tmp ?+8 ; relsq from_hex_1_a_addrRef_13 tmp 1
+&from_hex_1_a_addrRef_14 &tmp ?+8 ; relsq from_hex_1_a_addrRef_14 tmp 1
+# zero from_hex_1_a
+# sub from_hex_1_a from_hex_1_a
+:from_hex_1_a_addrRef_0 &from_hex_1_a :from_hex_1_a_addrRef_1 &from_hex_1_a ?+8 ; relsq from_hex_1_a from_hex_1_a 1
 ; addr from_hex_1_strBuf 0
 # setaddr from_hex_1_strBuf curTokens_step1 tmp
 &from_hex_1_strBuf_addrRef_0 &from_hex_1_strBuf_addrRef_0 ?+8 ; relsq from_hex_1_strBuf_addrRef_0 from_hex_1_strBuf_addrRef_0 1
@@ -4580,45 +4412,45 @@
 &from_hex_1_val &CONST_9 ?+8 ; relsq from_hex_1_val CONST_9 1
 ; label FROM_HEX_1_WRITE
 
-# Start mul_16 symbolsCur_step1 tmp
+# Start mul_16 from_hex_1_a tmp
 # zero tmp
 :FROM_HEX_1_WRITE &tmp &tmp ?+8 ; relsq tmp tmp 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_36 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_37 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_38 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_39 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub tmp symbolsCur_step1
-&tmp :symbolsCur_step1_addrRef_40 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
-# sub symbolsCur_step1 tmp
-:symbolsCur_step1_addrRef_41 0000000000200000 &tmp ?+8 ; relsq symbolsCur_step1 tmp 1
-# sub symbolsCur_step1 tmp
-:symbolsCur_step1_addrRef_42 0000000000200000 &tmp ?+8 ; relsq symbolsCur_step1 tmp 1
-# sub symbolsCur_step1 tmp
-:symbolsCur_step1_addrRef_43 0000000000200000 &tmp ?+8 ; relsq symbolsCur_step1 tmp 1
+# sub tmp from_hex_1_a
+&tmp :from_hex_1_a_addrRef_2 &from_hex_1_a ?+8 ; relsq tmp from_hex_1_a 1
+# sub tmp from_hex_1_a
+&tmp :from_hex_1_a_addrRef_3 &from_hex_1_a ?+8 ; relsq tmp from_hex_1_a 1
+# sub tmp from_hex_1_a
+&tmp :from_hex_1_a_addrRef_4 &from_hex_1_a ?+8 ; relsq tmp from_hex_1_a 1
+# sub tmp from_hex_1_a
+&tmp :from_hex_1_a_addrRef_5 &from_hex_1_a ?+8 ; relsq tmp from_hex_1_a 1
+# sub tmp from_hex_1_a
+&tmp :from_hex_1_a_addrRef_6 &from_hex_1_a ?+8 ; relsq tmp from_hex_1_a 1
+# sub from_hex_1_a tmp
+:from_hex_1_a_addrRef_7 &from_hex_1_a &tmp ?+8 ; relsq from_hex_1_a tmp 1
+# sub from_hex_1_a tmp
+:from_hex_1_a_addrRef_8 &from_hex_1_a &tmp ?+8 ; relsq from_hex_1_a tmp 1
+# sub from_hex_1_a tmp
+:from_hex_1_a_addrRef_9 &from_hex_1_a &tmp ?+8 ; relsq from_hex_1_a tmp 1
 # End mul_16
 
-# sub symbolsCur_step1 from_hex_1_val
-:symbolsCur_step1_addrRef_44 0000000000200000 &from_hex_1_val ?+8 ; relsq symbolsCur_step1 from_hex_1_val 1
+# sub from_hex_1_a from_hex_1_val
+:from_hex_1_a_addrRef_10 &from_hex_1_a &from_hex_1_val ?+8 ; relsq from_hex_1_a from_hex_1_val 1
 # lbljmp FROM_HEX_1_LOOP
 &ZERO &ZERO &FROM_HEX_1_LOOP ; lblsq ZERO ZERO FROM_HEX_1_LOOP
 ; label FROM_HEX_1_NEGATE
 # decleq from_hex_1_isNeg 0 FROM_HEX_1_END
 :FROM_HEX_1_NEGATE &from_hex_1_isNeg &CONST_0 &FROM_HEX_1_END ; lblsq from_hex_1_isNeg CONST_0 FROM_HEX_1_END
 
-# Start neg symbolsCur_step1 tmp tmp2
-# movneg tmp symbolsCur_step1
+# Start neg from_hex_1_a tmp tmp2
+# movneg tmp from_hex_1_a
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :symbolsCur_step1_addrRef_45 0000000000200000 ?+8 ; relsq tmp symbolsCur_step1 1
+&tmp :from_hex_1_a_addrRef_11 &from_hex_1_a ?+8 ; relsq tmp from_hex_1_a 1
 
-# Start mov symbolsCur_step1 tmp tmp2
+# Start mov from_hex_1_a tmp tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-:symbolsCur_step1_addrRef_46 0000000000200000 :symbolsCur_step1_addrRef_47 0000000000200000 ?+8 ; relsq symbolsCur_step1 symbolsCur_step1 1
-:symbolsCur_step1_addrRef_48 0000000000200000 &tmp2 ?+8 ; relsq symbolsCur_step1 tmp2 1
+:from_hex_1_a_addrRef_12 &from_hex_1_a :from_hex_1_a_addrRef_13 &from_hex_1_a ?+8 ; relsq from_hex_1_a from_hex_1_a 1
+:from_hex_1_a_addrRef_14 &from_hex_1_a &tmp2 ?+8 ; relsq from_hex_1_a tmp2 1
 # End mov
 
 # End neg
@@ -4650,36 +4482,6 @@
 &symbolsCur_step1_addrRef_16 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_16 CONST_-8 1
 &symbolsCur_step1_addrRef_17 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_17 CONST_-8 1
 &symbolsCur_step1_addrRef_18 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_18 CONST_-8 1
-&symbolsCur_step1_addrRef_19 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_19 CONST_-8 1
-&symbolsCur_step1_addrRef_20 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_20 CONST_-8 1
-&symbolsCur_step1_addrRef_21 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_21 CONST_-8 1
-&symbolsCur_step1_addrRef_22 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_22 CONST_-8 1
-&symbolsCur_step1_addrRef_23 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_23 CONST_-8 1
-&symbolsCur_step1_addrRef_24 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_24 CONST_-8 1
-&symbolsCur_step1_addrRef_25 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_25 CONST_-8 1
-&symbolsCur_step1_addrRef_26 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_26 CONST_-8 1
-&symbolsCur_step1_addrRef_27 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_27 CONST_-8 1
-&symbolsCur_step1_addrRef_28 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_28 CONST_-8 1
-&symbolsCur_step1_addrRef_29 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_29 CONST_-8 1
-&symbolsCur_step1_addrRef_30 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_30 CONST_-8 1
-&symbolsCur_step1_addrRef_31 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_31 CONST_-8 1
-&symbolsCur_step1_addrRef_32 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_32 CONST_-8 1
-&symbolsCur_step1_addrRef_33 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_33 CONST_-8 1
-&symbolsCur_step1_addrRef_34 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_34 CONST_-8 1
-&symbolsCur_step1_addrRef_35 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_35 CONST_-8 1
-&symbolsCur_step1_addrRef_36 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_36 CONST_-8 1
-&symbolsCur_step1_addrRef_37 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_37 CONST_-8 1
-&symbolsCur_step1_addrRef_38 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_38 CONST_-8 1
-&symbolsCur_step1_addrRef_39 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_39 CONST_-8 1
-&symbolsCur_step1_addrRef_40 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_40 CONST_-8 1
-&symbolsCur_step1_addrRef_41 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_41 CONST_-8 1
-&symbolsCur_step1_addrRef_42 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_42 CONST_-8 1
-&symbolsCur_step1_addrRef_43 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_43 CONST_-8 1
-&symbolsCur_step1_addrRef_44 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_44 CONST_-8 1
-&symbolsCur_step1_addrRef_45 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_45 CONST_-8 1
-&symbolsCur_step1_addrRef_46 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_46 CONST_-8 1
-&symbolsCur_step1_addrRef_47 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_47 CONST_-8 1
-&symbolsCur_step1_addrRef_48 &CONST_-8 ?+8 ; relsq symbolsCur_step1_addrRef_48 CONST_-8 1
 &symbolsLen &CONST_-1 ?+8 ; relsq symbolsLen CONST_-1 1
 &ZERO &ZERO &STEP1_LOOP ; lblsq ZERO ZERO STEP1_LOOP
 

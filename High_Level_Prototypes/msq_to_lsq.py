@@ -1019,7 +1019,7 @@ def print_qword(args, v=3):
 # Handles negative sign (-)
 # Half of the codes here are pretty much copied from hex1_monitor.
 def from_hex(args, v=3):
-    a, string, tmp, tmp2 = args
+    orgA, string, tmp, tmp2 = args
     logStart()
     loopLabel = nameSym("LOOP", True)
     negSignLabel = nameSym("NEG_SIGN", True)
@@ -1027,6 +1027,9 @@ def from_hex(args, v=3):
     negateLabel = nameSym("NEGATE", True)
     endLabel = nameSym("END", True)
 
+    a = nameSym("a")
+    print(f"addr {a} 0")
+    copyaddr([a, orgA, tmp], v - 1)
     zero([a], v - 1)
 
     strBuf = nameSym("strBuf")
