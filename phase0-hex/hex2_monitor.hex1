@@ -362,14 +362,12 @@
 
 # Start inp_token lblArrNext tmp tmp2
 ; addr inp_token_0_str 0
-# setaddr inp_token_0_str lblArrNext tmp
-&bo &bo ?+8 ; relsq inp_token_0_str_addrRef_0 inp_token_0_str_addrRef_0 1
-&bp &bp ?+8 ; relsq inp_token_0_str_addrRef_1 inp_token_0_str_addrRef_1 1
-&bq &bq ?+8 ; relsq inp_token_0_str_addrRef_2 inp_token_0_str_addrRef_2 1
-&br &br ?+8 ; relsq inp_token_0_str_addrRef_3 inp_token_0_str_addrRef_3 1
-&bs &bs ?+8 ; relsq inp_token_0_str_addrRef_4 inp_token_0_str_addrRef_4 1
-&bt &bt ?+8 ; relsq inp_token_0_str_addrRef_5 inp_token_0_str_addrRef_5 1
+
+# Start setaddr inp_token_0_str lblArrNext tmp tmp2
+&aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &bo ?+8 ; relsq tmp2 inp_token_0_str_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
+&al &aP ?+8 ; relsq tmp tmp2 1
 &al :bg 0000000000300000 ?+8 ; relsq tmp lblArrNext 1
 &bo &al ?+8 ; relsq inp_token_0_str_addrRef_0 tmp 1
 &bp &al ?+8 ; relsq inp_token_0_str_addrRef_1 tmp 1
@@ -377,6 +375,8 @@
 &br &al ?+8 ; relsq inp_token_0_str_addrRef_3 tmp 1
 &bs &al ?+8 ; relsq inp_token_0_str_addrRef_4 tmp 1
 &bt &al ?+8 ; relsq inp_token_0_str_addrRef_5 tmp 1
+# End setaddr
+
 ; var inp_token_0_len 0
 # zero inp_token_0_len
 &bu &bu ?+8 ; relsq inp_token_0_len inp_token_0_len 1
@@ -623,14 +623,12 @@
 
 # Start inp_token refArrNext tmp tmp2
 ; addr inp_token_1_str 0
-# setaddr inp_token_1_str refArrNext tmp
-&bX &bX ?+8 ; relsq inp_token_1_str_addrRef_0 inp_token_1_str_addrRef_0 1
-&bY &bY ?+8 ; relsq inp_token_1_str_addrRef_1 inp_token_1_str_addrRef_1 1
-&bZ &bZ ?+8 ; relsq inp_token_1_str_addrRef_2 inp_token_1_str_addrRef_2 1
-&ca &ca ?+8 ; relsq inp_token_1_str_addrRef_3 inp_token_1_str_addrRef_3 1
-&cb &cb ?+8 ; relsq inp_token_1_str_addrRef_4 inp_token_1_str_addrRef_4 1
-&cc &cc ?+8 ; relsq inp_token_1_str_addrRef_5 inp_token_1_str_addrRef_5 1
+
+# Start setaddr inp_token_1_str refArrNext tmp tmp2
+&aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &bX ?+8 ; relsq tmp2 inp_token_1_str_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
+&al &aP ?+8 ; relsq tmp tmp2 1
 &al :bQ 0000000000400000 ?+8 ; relsq tmp refArrNext 1
 &bX &al ?+8 ; relsq inp_token_1_str_addrRef_0 tmp 1
 &bY &al ?+8 ; relsq inp_token_1_str_addrRef_1 tmp 1
@@ -638,6 +636,8 @@
 &ca &al ?+8 ; relsq inp_token_1_str_addrRef_3 tmp 1
 &cb &al ?+8 ; relsq inp_token_1_str_addrRef_4 tmp 1
 &cc &al ?+8 ; relsq inp_token_1_str_addrRef_5 tmp 1
+# End setaddr
+
 ; var inp_token_1_len 0
 # zero inp_token_1_len
 &cd &cd ?+8 ; relsq inp_token_1_len inp_token_1_len 1
@@ -874,46 +874,53 @@
 &cu &ar ?+8 ; relsq refsToResolve CONST_1 1
 
 ; addr curFindLabel 0
-# setaddr curFindLabel lblArrStart tmp
-&cx &cx ?+8 ; relsq curFindLabel_addrRef_0 curFindLabel_addrRef_0 1
-&cy &cy ?+8 ; relsq curFindLabel_addrRef_1 curFindLabel_addrRef_1 1
 
-# Start addaddr curFindLabel lblArrStart tmp
+# Start setaddr curFindLabel lblArrStart tmp tmp2
+
+# Start mov tmp curFindLabel_addrRef_0 tmp2
+&aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &cx ?+8 ; relsq tmp2 curFindLabel_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
-&al &cz ?+8 ; relsq tmp lblArrStart 1
+&al &aP ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# sub tmp lblArrStart
+&al &cy ?+8 ; relsq tmp lblArrStart 1
 &cx &al ?+8 ; relsq curFindLabel_addrRef_0 tmp 1
-&cy &al ?+8 ; relsq curFindLabel_addrRef_1 tmp 1
-# End addaddr
+&cz &al ?+8 ; relsq curFindLabel_addrRef_1 tmp 1
+# End setaddr
 
 
 ; label RESOLVE_REF_FIND_LABEL
 
 # Start strcmp_const curRef curFindLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
 ; addr strcmp_const_0_a 0
-# copyaddr strcmp_const_0_a curRef tmp
-; sym curRef_addrRef_0
-# setaddr strcmp_const_0_a curRef_addrRef_0 tmp
-:cB &cA &cA ?+8 ; relsq strcmp_const_0_a_addrRef_0 strcmp_const_0_a_addrRef_0 1
-&cC &cC ?+8 ; relsq strcmp_const_0_a_addrRef_1 strcmp_const_0_a_addrRef_1 1
-&cD &cD ?+8 ; relsq strcmp_const_0_a_addrRef_2 strcmp_const_0_a_addrRef_2 1
+# copyaddr strcmp_const_0_a curRef tmp tmp2
+
+# Start setaddr strcmp_const_0_a curRef_addrRef_0 tmp tmp2
+:cA &aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &cB ?+8 ; relsq tmp2 strcmp_const_0_a_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
-&al &cE ?+8 ; relsq tmp curRef_addrRef_0 1
-&cA &al ?+8 ; relsq strcmp_const_0_a_addrRef_0 tmp 1
-&cC &al ?+8 ; relsq strcmp_const_0_a_addrRef_1 tmp 1
-&cD &al ?+8 ; relsq strcmp_const_0_a_addrRef_2 tmp 1
+&al &aP ?+8 ; relsq tmp tmp2 1
+&al &cC ?+8 ; relsq tmp curRef_addrRef_0 1
+&cB &al ?+8 ; relsq strcmp_const_0_a_addrRef_0 tmp 1
+&cD &al ?+8 ; relsq strcmp_const_0_a_addrRef_1 tmp 1
+&cE &al ?+8 ; relsq strcmp_const_0_a_addrRef_2 tmp 1
+# End setaddr
+
 # incaddr strcmp_const_0_a 8
-&cA &ba ?+8 ; relsq strcmp_const_0_a_addrRef_0 CONST_-8 1
-&cC &ba ?+8 ; relsq strcmp_const_0_a_addrRef_1 CONST_-8 1
-&cD &ba ?+8 ; relsq strcmp_const_0_a_addrRef_2 CONST_-8 1
+&cB &ba ?+8 ; relsq strcmp_const_0_a_addrRef_0 CONST_-8 1
+&cD &ba ?+8 ; relsq strcmp_const_0_a_addrRef_1 CONST_-8 1
+&cE &ba ?+8 ; relsq strcmp_const_0_a_addrRef_2 CONST_-8 1
 # incaddr curFindLabel 8
 &cx &ba ?+8 ; relsq curFindLabel_addrRef_0 CONST_-8 1
-&cy &ba ?+8 ; relsq curFindLabel_addrRef_1 CONST_-8 1
+&cz &ba ?+8 ; relsq curFindLabel_addrRef_1 CONST_-8 1
 
 # Start jne strcmp_const_0_a curFindLabel STRCMP_CONST_0_REVERT_ADDR tmp tmp2
 
 # Start mov tmp strcmp_const_0_a tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
-&aP :cA &af ?+8 ; relsq tmp2 strcmp_const_0_a 1
+&aP :cB &af ?+8 ; relsq tmp2 strcmp_const_0_a 1
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
 # End mov
@@ -941,38 +948,50 @@
 # Start mov strcmp_const_0_len strcmp_const_0_a tmp
 # movneg tmp strcmp_const_0_a
 :cH &al &al ?+8 ; relsq tmp tmp 1
-&al :cC &af ?+8 ; relsq tmp strcmp_const_0_a 1
+&al :cD &af ?+8 ; relsq tmp strcmp_const_0_a 1
 # movneg strcmp_const_0_len tmp
 &cI &cI ?+8 ; relsq strcmp_const_0_len strcmp_const_0_len 1
 &cI &al ?+8 ; relsq strcmp_const_0_len tmp 1
 # End mov
 
 # decaddr strcmp_const_0_a 8
-&cA &bF ?+8 ; relsq strcmp_const_0_a_addrRef_0 CONST_8 1
-&cC &bF ?+8 ; relsq strcmp_const_0_a_addrRef_1 CONST_8 1
-&cD &bF ?+8 ; relsq strcmp_const_0_a_addrRef_2 CONST_8 1
+&cB &bF ?+8 ; relsq strcmp_const_0_a_addrRef_0 CONST_8 1
+&cD &bF ?+8 ; relsq strcmp_const_0_a_addrRef_1 CONST_8 1
+&cE &bF ?+8 ; relsq strcmp_const_0_a_addrRef_2 CONST_8 1
 # decaddr curFindLabel 8
 &cx &bF ?+8 ; relsq curFindLabel_addrRef_0 CONST_8 1
-&cy &bF ?+8 ; relsq curFindLabel_addrRef_1 CONST_8 1
+&cz &bF ?+8 ; relsq curFindLabel_addrRef_1 CONST_8 1
 ; addr strcmp_const_0_aStr 0
 ; addr strcmp_const_0_bStr 0
-# setaddr strcmp_const_0_aStr strcmp_const_0_a tmp
-&cJ &cJ ?+8 ; relsq strcmp_const_0_aStr_addrRef_0 strcmp_const_0_aStr_addrRef_0 1
 
-# Start addaddr strcmp_const_0_aStr strcmp_const_0_a tmp
+# Start setaddr strcmp_const_0_aStr strcmp_const_0_a tmp tmp2
+
+# Start mov tmp strcmp_const_0_aStr_addrRef_0 tmp2
+&aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &cJ ?+8 ; relsq tmp2 strcmp_const_0_aStr_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
-&al :cD &af ?+8 ; relsq tmp strcmp_const_0_a 1
+&al &aP ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# sub tmp strcmp_const_0_a
+&al :cE &af ?+8 ; relsq tmp strcmp_const_0_a 1
 &cJ &al ?+8 ; relsq strcmp_const_0_aStr_addrRef_0 tmp 1
-# End addaddr
+# End setaddr
 
-# setaddr strcmp_const_0_bStr curFindLabel tmp
-&cK &cK ?+8 ; relsq strcmp_const_0_bStr_addrRef_0 strcmp_const_0_bStr_addrRef_0 1
 
-# Start addaddr strcmp_const_0_bStr curFindLabel tmp
+# Start setaddr strcmp_const_0_bStr curFindLabel tmp tmp2
+
+# Start mov tmp strcmp_const_0_bStr_addrRef_0 tmp2
+&aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &cK ?+8 ; relsq tmp2 strcmp_const_0_bStr_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
-&al :cy &ae ?+8 ; relsq tmp curFindLabel 1
+&al &aP ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# sub tmp curFindLabel
+&al :cz &ae ?+8 ; relsq tmp curFindLabel 1
 &cK &al ?+8 ; relsq strcmp_const_0_bStr_addrRef_0 tmp 1
-# End addaddr
+# End setaddr
 
 ; label STRCMP_CONST_0_LOOP
 # decleq strcmp_const_0_len 0 RESOLVE_REF_FOUND_LABEL
@@ -1016,29 +1035,33 @@
 ; label STRCMP_CONST_0_REVERT_ADDR
 # decaddr curFindLabel 8
 :cF &cx &bF ?+8 ; relsq curFindLabel_addrRef_0 CONST_8 1
-&cy &bF ?+8 ; relsq curFindLabel_addrRef_1 CONST_8 1
+&cz &bF ?+8 ; relsq curFindLabel_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_0_END
 # End strcmp_const
 
 
 # This is the wrong label. Try the next one
 :cN &cx &cQ ?+8 ; relsq curFindLabel_addrRef_0 CONST_-20 1
-&cy &cQ ?+8 ; relsq curFindLabel_addrRef_1 CONST_-20 1
-&aa &aa &cB ; lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
+&cz &cQ ?+8 ; relsq curFindLabel_addrRef_1 CONST_-20 1
+&aa &aa &cA ; lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
 
 ; label RESOLVE_REF_FOUND_LABEL
 ; addr curLabel 0
-# copyaddr curLabel curFindLabel tmp
-; sym curFindLabel_addrRef_0
-# setaddr curLabel curFindLabel_addrRef_0 tmp
-:cM &cR &cR ?+8 ; relsq curLabel_addrRef_0 curLabel_addrRef_0 1
+# copyaddr curLabel curFindLabel tmp tmp2
+
+# Start setaddr curLabel curFindLabel_addrRef_0 tmp tmp2
+:cM &aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &cR ?+8 ; relsq tmp2 curLabel_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
+&al &aP ?+8 ; relsq tmp tmp2 1
 &al &cx ?+8 ; relsq tmp curFindLabel_addrRef_0 1
 &cR &al ?+8 ; relsq curLabel_addrRef_0 tmp 1
+# End setaddr
+
 &cR &bG ?+8 ; relsq curLabel_addrRef_0 CONST_-18 1
 
 # Fetch the reference address and point curRef to the next reference
-&cE &bG ?+8 ; relsq curRef_addrRef_0 CONST_-18 1
+&cC &bG ?+8 ; relsq curRef_addrRef_0 CONST_-18 1
 &cS &bG ?+8 ; relsq curRef_addrRef_1 CONST_-18 1
 
 # Start add curRef bufStart tmp
@@ -1046,24 +1069,28 @@
 &al &al ?+8 ; relsq tmp tmp 1
 &al &cT ?+8 ; relsq tmp bufStart 1
 # sub curRef tmp
-:cE 0000000000400000 &al ?+8 ; relsq curRef tmp 1
+:cC 0000000000400000 &al ?+8 ; relsq curRef tmp 1
 # End add
 
 ; addr refAt 0
-# setaddr refAt curRef tmp
-&cU &cU ?+8 ; relsq refAt_addrRef_0 refAt_addrRef_0 1
-&cV &cV ?+8 ; relsq refAt_addrRef_1 refAt_addrRef_1 1
-&cW &cW ?+8 ; relsq refAt_addrRef_2 refAt_addrRef_2 1
 
-# Start addaddr refAt curRef tmp
+# Start setaddr refAt curRef tmp tmp2
+
+# Start mov tmp refAt_addrRef_0 tmp2
+&aP &aP ?+8 ; relsq tmp2 tmp2 1
+&aP &cU ?+8 ; relsq tmp2 refAt_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
+&al &aP ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# sub tmp curRef
 &al :cS 0000000000400000 ?+8 ; relsq tmp curRef 1
 &cU &al ?+8 ; relsq refAt_addrRef_0 tmp 1
 &cV &al ?+8 ; relsq refAt_addrRef_1 tmp 1
 &cW &al ?+8 ; relsq refAt_addrRef_2 tmp 1
-# End addaddr
+# End setaddr
 
-&cE &ba ?+8 ; relsq curRef_addrRef_0 CONST_-8 1
+&cC &ba ?+8 ; relsq curRef_addrRef_0 CONST_-8 1
 &cS &ba ?+8 ; relsq curRef_addrRef_1 CONST_-8 1
 
 # The buffer is kept negative
@@ -1149,7 +1176,7 @@
 :ao 0000000000000000 ; raw 0000000000000000 # c
 :ap 0000000000000000 ; raw 0000000000000000 # c2
 :aF 0000000000000000 ; raw 0000000000000000 # isNeg
-:cz 0000000000300000 ; raw 0000000000300000 # lblArrStart
+:cy 0000000000300000 ; raw 0000000000300000 # lblArrStart
 :aU 0000000000000000 ; raw 0000000000000000 # lblCount
 :dd 0000000000400000 ; raw 0000000000400000 # refArrStart
 :bH 0000000000000000 ; raw 0000000000000000 # refCount

@@ -235,7 +235,7 @@ decleq refsToResolve 0 PRINT
 dec refsToResolve 1
 
 addr curFindLabel 0
-setaddr curFindLabel lblArrStart tmp
+setaddr curFindLabel lblArrStart tmp tmp2
 
 label RESOLVE_REF_FIND_LABEL
 strcmp_const curRef curFindLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
@@ -246,14 +246,14 @@ lbljmp RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_FOUND_LABEL
 addr curLabel 0
-copyaddr curLabel curFindLabel tmp
+copyaddr curLabel curFindLabel tmp tmp2
 incaddr curLabel 18
 
 rem Fetch the reference address and point curRef to the next reference
 incaddr curRef 18
 add curRef bufStart tmp
 addr refAt 0
-setaddr refAt curRef tmp
+setaddr refAt curRef tmp tmp2
 incaddr curRef 8
 
 mov refAt curLabel tmp

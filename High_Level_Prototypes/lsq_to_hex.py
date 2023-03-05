@@ -30,7 +30,7 @@ import argparse
 pp = pprint.PrettyPrinter()
 
 # Well...now I have to worry about these
-lsq_insts = ["sym", "var", "label", "addr",
+lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
              "raw", "raw_ref", "rem"]
@@ -102,23 +102,31 @@ for line in inp:
 # 1. Find symbols
 symbols = {}
 for line in lines:
-    if line.inst in ["sym", "var", "label", "addr"]:
+    if line.inst in ["var", "label", "addr"]:
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
         if line.inst == "var":
             symbols[line.tokens[0]].val = int(line.tokens[1], 16)
 
+
 # 2. Count symbol references (Pass 1)
+def incRefCount(token):
+    if token in symbols:
+        symbols[token].refCount += 1
+    else:
+        symbols[token] = Symbol(None, 1)
+
+
 for line in lines:
     if line.inst in ["abssq", "relsq", "lblsq"]:
-        symbols[line.tokens[0]].refCount += 1
-        symbols[line.tokens[1]].refCount += 1
+        incRefCount(line.tokens[0])
+        incRefCount(line.tokens[1])
         if line.inst == "lblsq":
-            symbols[line.tokens[2]].refCount += 1
+            incRefCount(line.tokens[2])
     elif line.inst == "subaddr":
-        symbols[line.tokens[1]].refCount += 1
+        incRefCount(line.tokens[1])
     elif line.inst == "raw_ref":
         for token in line.tokens:
-            symbols[token].refCount += 1
+            incRefCount(token)
 
 
 # This was used to ensure that the Step 2 implementation of lsq_to_hex.msq is correct
@@ -159,11 +167,7 @@ while i < len(lines):
         lines[i:i + 1] = [Line("relsq", [f"{stubSym}{x}", f"{stubSym}{x}", "1"]) for x in range(symbols[sym].refCount)]
 
     for k in range(symbols[sym].refCount):
-        curSym = f"{stubSym}{k}"
-        if curSym in symbols:
-            symbols[curSym].refCount += 1
-        else:
-            symbols[curSym] = Symbol(None, 1)
+        incRefCount(f"{stubSym}{k}")
     i += 1
 
 # 4. Find label+stub addresses and convert relsq to abssq on hex0
@@ -203,7 +207,7 @@ for name, sym in symbols.items():
 
 # 6. Output
 """
-lsq_insts = ["sym", "var", "label", "addr",
+lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
              "raw", "raw_ref", "rem"]
@@ -243,7 +247,7 @@ def resolveSymbol(name):
 
 for line in lines:
     out = []
-    if line.inst in ["sym", "var", "label", "addr", "rem", "newline"]:
+    if line.inst in ["var", "label", "addr", "rem", "newline"]:
         pass
     elif line.inst in ["abssq", "relsq", "lblsq"]:
         addToken(resolveSymbol(line.tokens[0]))

@@ -179,7 +179,7 @@ decleq c2 26 RECORD_REF
 
 rem Handle label (:)
 addr curLabel 0
-setaddr curLabel labelOffset tmp
+setaddr curLabel labelOffset tmp tmp2
 mov curLabel codeLen tmp
 lbljmp MAIN
 
@@ -228,11 +228,11 @@ dec refs 1
 decaddr nextRef 8
 
 addr refAt 0
-setaddr refAt nextRef tmp
+setaddr refAt nextRef tmp tmp2
 decaddr nextRef 8
 
 addr refVal 0
-setaddr refVal nextRef tmp
+setaddr refVal nextRef tmp tmp2
 
 rem The buffer is kept negative
 movneg refAt refVal

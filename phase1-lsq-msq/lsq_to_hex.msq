@@ -36,7 +36,7 @@ dec tmp 30
 mov hex_version tmp tmp2
 
 rem Print the header
-puts HEX_HEADER tmp
+puts HEX_HEADER tmp tmp2
 inc hex_version 30
 putchar hex_version tmp
 dec hex_version 30
@@ -64,13 +64,13 @@ strcmp_const linesPass1Cur END STEP1_START tmp tmp2
 
 rem Handle other instructions
 addr linesPass1Cur_other 0
-copyaddr linesPass1Cur_other linesPass1Cur tmp
+copyaddr linesPass1Cur_other linesPass1Cur tmp tmp2
 incaddr linesPass1Cur_other 18
 alloc_array linesPass1Cur_other 18 20 tmp
 
 malloc_const tmp 18 tmp2
 addr tmpStr 0
-setaddr tmpStr tmp tmp2
+setaddr tmpStr tmp tmp2 tmp3
 alloc_str tmpStr 1000 tmp
 inp_line tmpStr tmp tmp2
 str_split linesPass1Cur_other tmpStr SPACE 800 tmp tmp2
@@ -82,14 +82,14 @@ incaddr linesPass1Cur_other 18
 zero linesPass1Cur_other
 
 incaddr linesPass1Cur_other 8
-copyaddr linesPass1Cur linesPass1Cur_other tmp
+copyaddr linesPass1Cur linesPass1Cur_other tmp tmp2
 lbljmp STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_NEWLINE
 addr linesPass1Cur_newline 0
-copyaddr linesPass1Cur_newline linesPass1Cur tmp
-strcpy linesPass1Cur_newline NEWLINE tmp
+copyaddr linesPass1Cur_newline linesPass1Cur tmp tmp2
+strcpy linesPass1Cur_newline NEWLINE tmp tmp2
 
 incaddr linesPass1Cur_newline 18
 alloc_array linesPass1Cur_newline 18 0 tmp
@@ -101,13 +101,13 @@ incaddr linesPass1Cur_newline 18
 zero linesPass1Cur_newline
 
 incaddr linesPass1Cur_newline 8
-copyaddr linesPass1Cur linesPass1Cur_newline tmp
+copyaddr linesPass1Cur linesPass1Cur_newline tmp tmp2
 lbljmp STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_REM
 addr linesPass1Cur_rem 0
-copyaddr linesPass1Cur_rem linesPass1Cur tmp
+copyaddr linesPass1Cur_rem linesPass1Cur tmp tmp2
 incaddr linesPass1Cur_rem 18
 alloc_array linesPass1Cur_rem 18 0 tmp
 
@@ -119,7 +119,7 @@ incaddr linesPass1Cur_rem 18
 zero linesPass1Cur_rem
 
 incaddr linesPass1Cur_rem 8
-copyaddr linesPass1Cur linesPass1Cur_rem tmp
+copyaddr linesPass1Cur linesPass1Cur_rem tmp tmp2
 lbljmp STEP0_INPUT_INST
 
 
@@ -134,7 +134,7 @@ var symbolsBegin 200000
 var symbolsLen 0
 
 addr curLine 0
-setaddr curLine linesPass1Begin tmp
+setaddr curLine linesPass1Begin tmp tmp2
 var linesLeft 0
 mov linesLeft linesPass1Len tmp
 
@@ -142,7 +142,6 @@ label STEP1_LOOP
 decleq linesLeft 0 STEP2_START
 dec linesLeft 1
 
-strcmp_const curLine SYM STEP1_CREATE_SYMBOL tmp tmp2
 strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
 strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
 strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
@@ -153,12 +152,12 @@ label STEP1_CREATE_SYMBOL
 rem Set the symbol name
 incaddr curLine 18
 addr curTokens_step1 0
-setaddr curTokens_step1 curLine tmp
+setaddr curTokens_step1 curLine tmp tmp2
 decaddr curLine 18
 
 addr symbolsCur_step1 200000
 alloc_str symbolsCur_step1 800 tmp
-strcpy symbolsCur_step1 curTokens_step1 tmp
+strcpy symbolsCur_step1 curTokens_step1 tmp tmp2
 incaddr curTokens_step1 18
 
 rem Set the symbol address
@@ -192,7 +191,7 @@ lbljmp STEP1_LOOP
 
 rem 2. Count symbol references (Pass 1)
 label STEP2_START
-setaddr curLine linesPass1Begin tmp
+setaddr curLine linesPass1Begin tmp tmp2
 mov linesLeft linesPass1Len tmp
 
 label STEP2_LOOP
@@ -201,7 +200,7 @@ dec linesLeft 1
 
 incaddr curLine 18
 addr curTokens_step2 0
-setaddr curTokens_step2 curLine tmp
+setaddr curTokens_step2 curLine tmp tmp2
 decaddr curLine 18
 
 strcmp_const curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
@@ -215,13 +214,13 @@ lbljmp STEP2_END
 label STEP2_HANDLE_SQ
 addr it 0
 
-setaddr it symbolsBegin tmp
+setaddr it symbolsBegin tmp tmp2
 find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 incaddr it 20
 inc it 1
 
 incaddr curTokens_step2 18
-setaddr it symbolsBegin tmp
+setaddr it symbolsBegin tmp tmp2
 find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 incaddr it 20
 inc it 1
@@ -232,7 +231,7 @@ lbljmp STEP2_END
 
 label STEP2_HANDLE_LBLSQ_SUBADDR
 incaddr curTokens_step2 18
-setaddr it symbolsBegin tmp
+setaddr it symbolsBegin tmp tmp2
 find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 incaddr it 20
 inc it 1
@@ -249,7 +248,7 @@ label STEP2_RAW_REF_LOOP
 decleq tokensCount 0 STEP2_END
 dec tokensCount 1
 
-setaddr it symbolsBegin tmp
+setaddr it symbolsBegin tmp tmp2
 find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
 incaddr it 20
 inc it 1
@@ -266,7 +265,7 @@ rem 3. Create subaddr/zeroaddr stubs
 label STEP3_START
 
 addr symbolsCur_step3 0
-setaddr symbolsCur_step3 symbolsBegin tmp
+setaddr symbolsCur_step3 symbolsBegin tmp tmp2
 var symbolsLeft 0
 mov symbolsLeft symbolsLen tmp
 
@@ -274,22 +273,22 @@ label LOOP
 decleq symbolsLeft 0 HALT
 dec symbolsLeft 1
 
-puts SYMBOL_PART_1 tmp
-puts symbolsCur_step3 tmp
+puts SYMBOL_PART_1 tmp tmp2
+puts symbolsCur_step3 tmp tmp2
 putchar LINE_FEED tmp
 
 incaddr symbolsCur_step3 18
-puts SYMBOL_PART_2 tmp
+puts SYMBOL_PART_2 tmp tmp2
 print_qword symbolsCur_step3 tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
 incaddr symbolsCur_step3 8
-puts SYMBOL_PART_3 tmp
+puts SYMBOL_PART_3 tmp tmp2
 print_qword symbolsCur_step3 tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
 incaddr symbolsCur_step3 8
-puts SYMBOL_PART_4 tmp
+puts SYMBOL_PART_4 tmp tmp2
 print_qword symbolsCur_step3 tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
@@ -307,7 +306,6 @@ def_string NEWLINE newline
 def_string REM rem
 def_string END end
 
-def_string SYM sym
 def_string VAR var
 def_string LABEL label
 def_string ADDR addr

@@ -21,7 +21,7 @@ from inspect import currentframe
 import ctypes
 
 # Let lsq_to_hex worry about these instructions instead
-lsq_insts = ["sym", "var", "label", "addr",
+lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
              "raw", "raw_ref", "rem"]
@@ -380,19 +380,21 @@ def addaddr(args, v=2):
 
 # Sets the address of sym to the value of val
 def setaddr(args, v=2):
-    sym, val, tmp = args
-    logSimple()
-    print(f"zeroaddr {sym}")
-    addaddr([sym, val, tmp], v - 1)
+    sym, val, tmp, tmp2 = args
+    logStart()
+    addrRef = f"{sym}_addrRef_0"
+    mov([tmp, addrRef, tmp2], v - 1)
+    sub([tmp, val], v - 1)
+    print(f"subaddr {sym} {tmp}")
+    logEnd()
 
 
 # Sets the address of toSym to the address of fromSym
 def copyaddr(args, v=2):
-    toSym, fromSym, tmp = args
+    toSym, fromSym, tmp, tmp2 = args
     logSimple()
     addrRef = f"{fromSym}_addrRef_0"
-    print(f"sym {addrRef}")
-    setaddr([toSym, addrRef, tmp], v - 1)
+    setaddr([toSym, addrRef, tmp, tmp2], v - 1)
 
 
 # Does a += b
@@ -493,7 +495,7 @@ def inp_token(args, v=2):
 
     strName = nameSym("str")
     print(f"addr {strName} 0")
-    setaddr([strName, a, tmp], v - 1)
+    setaddr([strName, a, tmp, tmp2], v - 1)
 
     lenName = nameSym("len")
     print(f"var {lenName} 0")
@@ -531,7 +533,7 @@ def inp_token_allow_empty(args, v=2):
 
     strName = nameSym("str")
     print(f"addr {strName} 0")
-    setaddr([strName, a, tmp], v - 1)
+    setaddr([strName, a, tmp, tmp2], v - 1)
 
     lenName = nameSym("len")
     print(f"var {lenName} 0")
@@ -566,7 +568,7 @@ def inp_line(args, v=2):
 
     strName = nameSym("str")
     print(f"addr {strName} 0")
-    setaddr([strName, a, tmp], v - 1)
+    setaddr([strName, a, tmp, tmp2], v - 1)
 
     lenName = nameSym("len")
     print(f"var {lenName} 0")
@@ -593,18 +595,18 @@ def inp_line(args, v=2):
 # Copies the content of string b to string a
 # No capacity check has been implemented yet
 def strcpy(args, v=2):
-    a, b, tmp = args
+    a, b, tmp, tmp2 = args
     logStart()
     loopLabel = nameSym("LOOP", True)
     endLabel = nameSym("END", True)
 
     strA = nameSym("strA")
     print(f"addr {strA} 0")
-    setaddr([strA, a, tmp], v - 1)
+    setaddr([strA, a, tmp, tmp2], v - 1)
 
     strB = nameSym("strB")
     print(f"addr {strB} 0")
-    setaddr([strB, b, tmp], v - 1)
+    setaddr([strB, b, tmp, tmp2], v - 1)
 
     # Copy and store the string length
     incaddr([a, 8], v - 1)
@@ -643,11 +645,11 @@ def str_split(args, v=2):
 
     aBuf = nameSym("aBuf")
     print(f"addr {aBuf} 0")
-    setaddr([aBuf, a, tmp], v - 1)
+    setaddr([aBuf, a, tmp, tmp2], v - 1)
 
     strBuf = nameSym("strBuf")
     print(f"addr {strBuf} 0")
-    setaddr([strBuf, string, tmp], v - 1)
+    setaddr([strBuf, string, tmp, tmp2], v - 1)
 
     charsLeft = nameSym("charsLeft")
     print(f"var {charsLeft} 0")
@@ -670,7 +672,7 @@ def str_split(args, v=2):
 
     partBuf = nameSym("partBuf")
     print(f"addr {partBuf} 0")
-    setaddr([partBuf, aBuf, tmp], v - 1)
+    setaddr([partBuf, aBuf, tmp, tmp2], v - 1)
 
     print(f"label {charLoopLabel}")
     # End the char loop if there are no chars left
@@ -708,14 +710,14 @@ def str_split(args, v=2):
 
 # Outputs the full content of string a
 def puts(args, v=2):
-    a, tmp = args
+    a, tmp, tmp2 = args
     logStart()
     loopLabel = nameSym("LOOP", True)
     endLabel = nameSym("END", True)
 
     strName = nameSym("str")
     print(f"addr {strName} 0")
-    setaddr([strName, a, tmp], v - 1)
+    setaddr([strName, a, tmp, tmp2], v - 1)
 
     lenName = nameSym("len")
     print(f"var {lenName} 0 ")
@@ -773,7 +775,7 @@ def strcmp(args, v=3):
     logStart()
     b = nameSym("b")
     print(f"addr {b} 0")
-    copyaddr([b, orgB, tmp], v - 1)
+    copyaddr([b, orgB, tmp, tmp2], v - 1)
     strcmp_const([orgA, b, dst, tmp, tmp2], v - 1)
     logEnd()
 
@@ -788,7 +790,7 @@ def strcmp_const(args, v=3):
 
     a = nameSym("a")
     print(f"addr {a} 0")
-    copyaddr([a, orgA, tmp], v - 1)
+    copyaddr([a, orgA, tmp, tmp2], v - 1)
 
     incaddr([a, 8], v - 1)
     incaddr([b, 8], v - 1)
@@ -805,8 +807,8 @@ def strcmp_const(args, v=3):
     bStr = nameSym("bStr")
     print(f"addr {aStr} 0")
     print(f"addr {bStr} 0")
-    setaddr([aStr, a, tmp], v - 1)
-    setaddr([bStr, b, tmp], v - 1)
+    setaddr([aStr, a, tmp, tmp2], v - 1)
+    setaddr([bStr, b, tmp, tmp2], v - 1)
 
     print(f"label {loopLabel}")
     # Jump if all bytes match
@@ -1029,12 +1031,12 @@ def from_hex(args, v=3):
 
     a = nameSym("a")
     print(f"addr {a} 0")
-    copyaddr([a, orgA, tmp], v - 1)
+    copyaddr([a, orgA, tmp, tmp2], v - 1)
     zero([a], v - 1)
 
     strBuf = nameSym("strBuf")
     print(f"addr {strBuf} 0")
-    setaddr([strBuf, string, tmp], v - 1)
+    setaddr([strBuf, string, tmp, tmp2], v - 1)
 
     strLen = nameSym("strLen")
     print(f"var {strLen} 0")

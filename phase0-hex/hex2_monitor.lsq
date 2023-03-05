@@ -319,11 +319,16 @@ rem End alloc_str
 
 rem Start inp_token lblArrNext tmp tmp2
 addr inp_token_0_str 0
-rem setaddr inp_token_0_str lblArrNext tmp
-zeroaddr inp_token_0_str
+
+rem Start setaddr inp_token_0_str lblArrNext tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_0_str_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
 relsq tmp lblArrNext 1
 subaddr inp_token_0_str tmp
+rem End setaddr
+
 var inp_token_0_len 0
 rem zero inp_token_0_len
 relsq inp_token_0_len inp_token_0_len 1
@@ -467,11 +472,16 @@ rem End alloc_str
 
 rem Start inp_token refArrNext tmp tmp2
 addr inp_token_1_str 0
-rem setaddr inp_token_1_str refArrNext tmp
-zeroaddr inp_token_1_str
+
+rem Start setaddr inp_token_1_str refArrNext tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 inp_token_1_str_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
 relsq tmp refArrNext 1
 subaddr inp_token_1_str tmp
+rem End setaddr
+
 var inp_token_1_len 0
 rem zero inp_token_1_len
 relsq inp_token_1_len inp_token_1_len 1
@@ -642,27 +652,37 @@ lblsq refsToResolve CONST_0 COPY
 relsq refsToResolve CONST_1 1
 
 addr curFindLabel 0
-rem setaddr curFindLabel lblArrStart tmp
-zeroaddr curFindLabel
 
-rem Start addaddr curFindLabel lblArrStart tmp
+rem Start setaddr curFindLabel lblArrStart tmp tmp2
+
+rem Start mov tmp curFindLabel_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curFindLabel_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp lblArrStart
 relsq tmp lblArrStart 1
 subaddr curFindLabel tmp
-rem End addaddr
+rem End setaddr
 
 
 label RESOLVE_REF_FIND_LABEL
 
 rem Start strcmp_const curRef curFindLabel RESOLVE_REF_FOUND_LABEL tmp tmp2
 addr strcmp_const_0_a 0
-rem copyaddr strcmp_const_0_a curRef tmp
-sym curRef_addrRef_0
-rem setaddr strcmp_const_0_a curRef_addrRef_0 tmp
-zeroaddr strcmp_const_0_a
+rem copyaddr strcmp_const_0_a curRef tmp tmp2
+
+rem Start setaddr strcmp_const_0_a curRef_addrRef_0 tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_0_a_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
 relsq tmp curRef_addrRef_0 1
 subaddr strcmp_const_0_a tmp
+rem End setaddr
+
 rem incaddr strcmp_const_0_a 8
 subaddr strcmp_const_0_a CONST_-8
 rem incaddr curFindLabel 8
@@ -712,23 +732,35 @@ rem decaddr curFindLabel 8
 subaddr curFindLabel CONST_8
 addr strcmp_const_0_aStr 0
 addr strcmp_const_0_bStr 0
-rem setaddr strcmp_const_0_aStr strcmp_const_0_a tmp
-zeroaddr strcmp_const_0_aStr
 
-rem Start addaddr strcmp_const_0_aStr strcmp_const_0_a tmp
+rem Start setaddr strcmp_const_0_aStr strcmp_const_0_a tmp tmp2
+
+rem Start mov tmp strcmp_const_0_aStr_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_0_aStr_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp strcmp_const_0_a
 relsq tmp strcmp_const_0_a 1
 subaddr strcmp_const_0_aStr tmp
-rem End addaddr
+rem End setaddr
 
-rem setaddr strcmp_const_0_bStr curFindLabel tmp
-zeroaddr strcmp_const_0_bStr
 
-rem Start addaddr strcmp_const_0_bStr curFindLabel tmp
+rem Start setaddr strcmp_const_0_bStr curFindLabel tmp tmp2
+
+rem Start mov tmp strcmp_const_0_bStr_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 strcmp_const_0_bStr_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp curFindLabel
 relsq tmp curFindLabel 1
 subaddr strcmp_const_0_bStr tmp
-rem End addaddr
+rem End setaddr
 
 label STRCMP_CONST_0_LOOP
 rem decleq strcmp_const_0_len 0 RESOLVE_REF_FOUND_LABEL
@@ -782,13 +814,17 @@ lblsq ZERO ZERO RESOLVE_REF_FIND_LABEL
 
 label RESOLVE_REF_FOUND_LABEL
 addr curLabel 0
-rem copyaddr curLabel curFindLabel tmp
-sym curFindLabel_addrRef_0
-rem setaddr curLabel curFindLabel_addrRef_0 tmp
-zeroaddr curLabel
+rem copyaddr curLabel curFindLabel tmp tmp2
+
+rem Start setaddr curLabel curFindLabel_addrRef_0 tmp tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLabel_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
 relsq tmp curFindLabel_addrRef_0 1
 subaddr curLabel tmp
+rem End setaddr
+
 subaddr curLabel CONST_-18
 
 rem Fetch the reference address and point curRef to the next reference
@@ -803,14 +839,20 @@ relsq curRef tmp 1
 rem End add
 
 addr refAt 0
-rem setaddr refAt curRef tmp
-zeroaddr refAt
 
-rem Start addaddr refAt curRef tmp
+rem Start setaddr refAt curRef tmp tmp2
+
+rem Start mov tmp refAt_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 refAt_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp curRef
 relsq tmp curRef 1
 subaddr refAt tmp
-rem End addaddr
+rem End setaddr
 
 subaddr curRef CONST_-8
 

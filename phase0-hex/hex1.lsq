@@ -366,14 +366,20 @@ lblsq c2 CONST_26 RECORD_REF
 
 rem Handle label (:)
 addr curLabel 0
-rem setaddr curLabel labelOffset tmp
-zeroaddr curLabel
 
-rem Start addaddr curLabel labelOffset tmp
+rem Start setaddr curLabel labelOffset tmp tmp2
+
+rem Start mov tmp curLabel_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curLabel_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp labelOffset
 relsq tmp labelOffset 1
 subaddr curLabel tmp
-rem End addaddr
+rem End setaddr
 
 
 rem Start mov curLabel codeLen tmp
@@ -476,26 +482,38 @@ relsq refs CONST_1 1
 subaddr nextRef CONST_8
 
 addr refAt 0
-rem setaddr refAt nextRef tmp
-zeroaddr refAt
 
-rem Start addaddr refAt nextRef tmp
+rem Start setaddr refAt nextRef tmp tmp2
+
+rem Start mov tmp refAt_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 refAt_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp nextRef
 relsq tmp nextRef 1
 subaddr refAt tmp
-rem End addaddr
+rem End setaddr
 
 subaddr nextRef CONST_8
 
 addr refVal 0
-rem setaddr refVal nextRef tmp
-zeroaddr refVal
 
-rem Start addaddr refVal nextRef tmp
+rem Start setaddr refVal nextRef tmp tmp2
+
+rem Start mov tmp refVal_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 refVal_addrRef_0 1
 relsq tmp tmp 1
+relsq tmp tmp2 1
+rem End mov
+
+rem sub tmp nextRef
 relsq tmp nextRef 1
 subaddr refVal tmp
-rem End addaddr
+rem End setaddr
 
 
 
