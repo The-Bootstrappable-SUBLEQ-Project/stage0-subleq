@@ -26,7 +26,7 @@
 ; var FREE_START 1000000
 ; var LINE_FEED a
 ; var SPACE 20
-:ZERO :puts_0_str :inp_token_allow_empty_0_str :strcmp_const_0_a :strcmp_const_0_aStr :strcmp_const_0_bStr :strcmp_const_1_a :strcmp_const_1_aStr :strcmp_const_1_bStr :strcmp_const_2_a :strcmp_const_2_aStr :strcmp_const_2_bStr :linesPass1Cur_other :tmpStr :inp_line_0_str :str_split_0_aBuf :str_split_0_strBuf :str_split_0_partBuf :linesPass1Cur_newline :strcpy_0_strA :strcpy_0_strB :linesPass1Cur_rem :inp_line_1_str :curLine :strcmp_const_3_a :strcmp_const_3_aStr :strcmp_const_3_bStr :strcmp_const_4_a :strcmp_const_4_aStr :strcmp_const_4_bStr :strcmp_const_5_a :strcmp_const_5_aStr :strcmp_const_5_bStr :curTokens_step1 :strcpy_1_strA :strcpy_1_strB :strcmp_const_6_a :strcmp_const_6_aStr :strcmp_const_6_bStr :from_hex_0_a :from_hex_0_strBuf :strcmp_const_7_a :strcmp_const_7_aStr :strcmp_const_7_bStr :from_hex_1_a :from_hex_1_strBuf :curTokens_step2 :strcmp_const_8_a :strcmp_const_8_aStr :strcmp_const_8_bStr :strcmp_const_9_a :strcmp_const_9_aStr :strcmp_const_9_bStr :strcmp_const_10_a :strcmp_const_10_aStr :strcmp_const_10_bStr :strcmp_const_11_a :strcmp_const_11_aStr :strcmp_const_11_bStr :strcmp_const_12_a :strcmp_const_12_aStr :strcmp_const_12_bStr :it :strcmp_const_13_a :strcmp_const_13_aStr :strcmp_const_13_bStr :strcmp_const_14_a :strcmp_const_14_aStr :strcmp_const_14_bStr :strcmp_const_15_a :strcmp_const_15_aStr :strcmp_const_15_bStr :strcmp_const_16_a :strcmp_const_16_aStr :strcmp_const_16_bStr :strcmp_const_17_a :strcmp_const_17_aStr :strcmp_const_17_bStr :symbolsCur_step3 :puts_1_str :puts_2_str :puts_3_str :puts_4_str :puts_5_str &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
+:ZERO :puts_0_str :inp_token_allow_empty_0_str :strcmp_const_0_a :strcmp_const_0_aStr :strcmp_const_0_bStr :strcmp_const_1_a :strcmp_const_1_aStr :strcmp_const_1_bStr :strcmp_const_2_a :strcmp_const_2_aStr :strcmp_const_2_bStr :linesPass1Cur_other :tmpStr :inp_line_0_str :str_split_0_aBuf :str_split_0_strBuf :str_split_0_partBuf :linesPass1Cur_newline :strcpy_0_strA :strcpy_0_strB :linesPass1Cur_rem :inp_line_1_str :curLine :strcmp_const_3_a :strcmp_const_3_aStr :strcmp_const_3_bStr :strcmp_const_4_a :strcmp_const_4_aStr :strcmp_const_4_bStr :strcmp_const_5_a :strcmp_const_5_aStr :strcmp_const_5_bStr :curTokens_step1 :strcpy_1_strA :strcpy_1_strB :strcmp_const_6_a :strcmp_const_6_aStr :strcmp_const_6_bStr :from_hex_0_a :from_hex_0_strBuf :strcmp_const_7_a :strcmp_const_7_aStr :strcmp_const_7_bStr :from_hex_1_a :from_hex_1_strBuf :strcmp_const_8_a :strcmp_const_8_aStr :strcmp_const_8_bStr :strcmp_const_9_a :strcmp_const_9_aStr :strcmp_const_9_bStr :strcmp_const_10_a :strcmp_const_10_aStr :strcmp_const_10_bStr :strcmp_const_11_a :strcmp_const_11_aStr :strcmp_const_11_bStr :strcmp_const_12_a :strcmp_const_12_aStr :strcmp_const_12_bStr :incRefCount_key :incRefCount_it :strcmp_const_13_a :strcmp_const_13_aStr :strcmp_const_13_bStr :strcmp_const_14_a :strcmp_const_14_aStr :strcmp_const_14_bStr :symbolsCur_step3 :puts_1_str :puts_2_str :puts_3_str :puts_4_str :puts_5_str &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
 
 ; label EP
 ; var LF a
@@ -4433,27 +4433,20 @@
 &curLine_addrRef_0 &CONST_-18 ?+8 ; relsq curLine_addrRef_0 CONST_-18 1
 &curLine_addrRef_1 &CONST_-18 ?+8 ; relsq curLine_addrRef_1 CONST_-18 1
 &curLine_addrRef_2 &CONST_-18 ?+8 ; relsq curLine_addrRef_2 CONST_-18 1
-; addr curTokens_step2 0
 
-# Start setaddr curTokens_step2 curLine tmp tmp2
+# Start setaddr incRefCount_key curLine tmp tmp2
 
-# Start mov tmp curTokens_step2_addrRef_0 tmp2
+# Start mov tmp incRefCount_key_addrRef_0 tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &curTokens_step2_addrRef_0 ?+8 ; relsq tmp2 curTokens_step2_addrRef_0 1
+&tmp2 &incRefCount_key_addrRef_0 ?+8 ; relsq tmp2 incRefCount_key_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
 # End mov
 
 # sub tmp curLine
 &tmp :curLine_addrRef_1 &curLine ?+8 ; relsq tmp curLine 1
-&curTokens_step2_addrRef_0 &tmp ?+8 ; relsq curTokens_step2_addrRef_0 tmp 1
-&curTokens_step2_addrRef_1 &tmp ?+8 ; relsq curTokens_step2_addrRef_1 tmp 1
-&curTokens_step2_addrRef_2 &tmp ?+8 ; relsq curTokens_step2_addrRef_2 tmp 1
-&curTokens_step2_addrRef_3 &tmp ?+8 ; relsq curTokens_step2_addrRef_3 tmp 1
-&curTokens_step2_addrRef_4 &tmp ?+8 ; relsq curTokens_step2_addrRef_4 tmp 1
-&curTokens_step2_addrRef_5 &tmp ?+8 ; relsq curTokens_step2_addrRef_5 tmp 1
-&curTokens_step2_addrRef_6 &tmp ?+8 ; relsq curTokens_step2_addrRef_6 tmp 1
-&curTokens_step2_addrRef_7 &tmp ?+8 ; relsq curTokens_step2_addrRef_7 tmp 1
+&incRefCount_key_addrRef_0 &tmp ?+8 ; relsq incRefCount_key_addrRef_0 tmp 1
+&incRefCount_key_addrRef_1 &tmp ?+8 ; relsq incRefCount_key_addrRef_1 tmp 1
 # End setaddr
 
 &curLine_addrRef_0 &CONST_18 ?+8 ; relsq curLine_addrRef_0 CONST_18 1
@@ -5204,39 +5197,36 @@
 :STRCMP_CONST_12_END &ZERO &ZERO &STEP2_END ; lblsq ZERO ZERO STEP2_END
 
 
-; label STEP2_HANDLE_SQ
-; addr it 0
+; label incRefCount
+; addr incRefCount_key 0
+; addr incRefCount_it 0
 
+# Start setaddr incRefCount_it symbolsBegin tmp tmp2
 
-# Start setaddr it symbolsBegin tmp tmp2
-
-# Start mov tmp it_addrRef_0 tmp2
-:STEP2_HANDLE_SQ &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &it_addrRef_0 ?+8 ; relsq tmp2 it_addrRef_0 1
+# Start mov tmp incRefCount_it_addrRef_0 tmp2
+:incRefCount &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
+&tmp2 &incRefCount_it_addrRef_0 ?+8 ; relsq tmp2 incRefCount_it_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
 # End mov
 
 # sub tmp symbolsBegin
 &tmp &symbolsBegin ?+8 ; relsq tmp symbolsBegin 1
-&it_addrRef_0 &tmp ?+8 ; relsq it_addrRef_0 tmp 1
-&it_addrRef_1 &tmp ?+8 ; relsq it_addrRef_1 tmp 1
-&it_addrRef_2 &tmp ?+8 ; relsq it_addrRef_2 tmp 1
-&it_addrRef_3 &tmp ?+8 ; relsq it_addrRef_3 tmp 1
+&incRefCount_it_addrRef_0 &tmp ?+8 ; relsq incRefCount_it_addrRef_0 tmp 1
 # End setaddr
 
 
-# Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
+# Start find_item_in_buf_with_str_key incRefCount_it incRefCount_key 30 tmp tmp2
 ; label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
 
-# Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
+# Start strcmp_const incRefCount_it incRefCount_key FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END tmp tmp2
 ; addr strcmp_const_13_a 0
-# copyaddr strcmp_const_13_a it tmp tmp2
+# copyaddr strcmp_const_13_a incRefCount_it tmp tmp2
 :FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &strcmp_const_13_a_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_13_a_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp &it_addrRef_0 ?+8 ; relsq tmp it_addrRef_0 1
+&tmp &incRefCount_it_addrRef_0 ?+8 ; relsq tmp incRefCount_it_addrRef_0 1
 &strcmp_const_13_a_addrRef_0 &tmp ?+8 ; relsq strcmp_const_13_a_addrRef_0 tmp 1
 &strcmp_const_13_a_addrRef_1 &tmp ?+8 ; relsq strcmp_const_13_a_addrRef_1 tmp 1
 &strcmp_const_13_a_addrRef_2 &tmp ?+8 ; relsq strcmp_const_13_a_addrRef_2 tmp 1
@@ -5244,22 +5234,16 @@
 &strcmp_const_13_a_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_13_a_addrRef_0 CONST_-8 1
 &strcmp_const_13_a_addrRef_1 &CONST_-8 ?+8 ; relsq strcmp_const_13_a_addrRef_1 CONST_-8 1
 &strcmp_const_13_a_addrRef_2 &CONST_-8 ?+8 ; relsq strcmp_const_13_a_addrRef_2 CONST_-8 1
-# incaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-8 1
-&curTokens_step2_addrRef_1 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-8 1
-&curTokens_step2_addrRef_2 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-8 1
-&curTokens_step2_addrRef_3 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-8 1
-&curTokens_step2_addrRef_4 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-8 1
-&curTokens_step2_addrRef_5 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-8 1
-&curTokens_step2_addrRef_6 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-8 1
-&curTokens_step2_addrRef_7 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-8 1
+# incaddr incRefCount_key 8
+&incRefCount_key_addrRef_0 &CONST_-8 ?+8 ; relsq incRefCount_key_addrRef_0 CONST_-8 1
+&incRefCount_key_addrRef_1 &CONST_-8 ?+8 ; relsq incRefCount_key_addrRef_1 CONST_-8 1
 
-# Start jne strcmp_const_13_a curTokens_step2 STRCMP_CONST_13_REVERT_ADDR tmp tmp2
+# Start jne strcmp_const_13_a incRefCount_key STRCMP_CONST_13_REVERT_ADDR tmp tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 :strcmp_const_13_a_addrRef_0 &strcmp_const_13_a ?+8 ; relsq tmp2 strcmp_const_13_a 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_0 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
+&tmp :incRefCount_key_addrRef_0 &incRefCount_key ?+8 ; relsq tmp incRefCount_key 1
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
 &tmp2 &CONST_-1 &STRCMP_CONST_13_REVERT_ADDR ; lblsq tmp2 CONST_-1 STRCMP_CONST_13_REVERT_ADDR
@@ -5285,15 +5269,9 @@
 &strcmp_const_13_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_13_a_addrRef_0 CONST_8 1
 &strcmp_const_13_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_13_a_addrRef_1 CONST_8 1
 &strcmp_const_13_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_13_a_addrRef_2 CONST_8 1
-# decaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
+# decaddr incRefCount_key 8
+&incRefCount_key_addrRef_0 &CONST_8 ?+8 ; relsq incRefCount_key_addrRef_0 CONST_8 1
+&incRefCount_key_addrRef_1 &CONST_8 ?+8 ; relsq incRefCount_key_addrRef_1 CONST_8 1
 ; addr strcmp_const_13_aStr 0
 ; addr strcmp_const_13_bStr 0
 
@@ -5307,12 +5285,12 @@
 # End setaddr
 
 
-# Start setaddr strcmp_const_13_bStr curTokens_step2 tmp tmp2
+# Start setaddr strcmp_const_13_bStr incRefCount_key tmp tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &strcmp_const_13_bStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_13_bStr_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_1 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
+&tmp :incRefCount_key_addrRef_1 &incRefCount_key ?+8 ; relsq tmp incRefCount_key 1
 &strcmp_const_13_bStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_13_bStr_addrRef_0 tmp 1
 # End setaddr
 
@@ -5347,95 +5325,99 @@
 # lbljmp STRCMP_CONST_13_LOOP
 &ZERO &ZERO &STRCMP_CONST_13_LOOP ; lblsq ZERO ZERO STRCMP_CONST_13_LOOP
 ; label STRCMP_CONST_13_REVERT_ADDR
-# decaddr curTokens_step2 8
-:STRCMP_CONST_13_REVERT_ADDR &curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
+# decaddr incRefCount_key 8
+:STRCMP_CONST_13_REVERT_ADDR &incRefCount_key_addrRef_0 &CONST_8 ?+8 ; relsq incRefCount_key_addrRef_0 CONST_8 1
+&incRefCount_key_addrRef_1 &CONST_8 ?+8 ; relsq incRefCount_key_addrRef_1 CONST_8 1
 ; label STRCMP_CONST_13_END
 # End strcmp_const
 
-# incaddr it 30
-:STRCMP_CONST_13_END &it_addrRef_0 &CONST_-30 ?+8 ; relsq it_addrRef_0 CONST_-30 1
-&it_addrRef_1 &CONST_-30 ?+8 ; relsq it_addrRef_1 CONST_-30 1
-&it_addrRef_2 &CONST_-30 ?+8 ; relsq it_addrRef_2 CONST_-30 1
-&it_addrRef_3 &CONST_-30 ?+8 ; relsq it_addrRef_3 CONST_-30 1
+# incaddr incRefCount_it 30
+:STRCMP_CONST_13_END &incRefCount_it_addrRef_0 &CONST_-30 ?+8 ; relsq incRefCount_it_addrRef_0 CONST_-30 1
 # lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
 &ZERO &ZERO &FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP ; lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_0_LOOP
 ; label FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END
 # End find_item_in_buf_with_str_key
 
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END &it_addrRef_0 &CONST_-20 ?+8 ; relsq it_addrRef_0 CONST_-20 1
-&it_addrRef_1 &CONST_-20 ?+8 ; relsq it_addrRef_1 CONST_-20 1
-&it_addrRef_2 &CONST_-20 ?+8 ; relsq it_addrRef_2 CONST_-20 1
-&it_addrRef_3 &CONST_-20 ?+8 ; relsq it_addrRef_3 CONST_-20 1
-:it_addrRef_0 &it &CONST_-1 ?+8 ; relsq it CONST_-1 1
+:FIND_ITEM_IN_BUF_WITH_STR_KEY_0_END &incRefCount_it_addrRef_0 &CONST_-20 ?+8 ; relsq incRefCount_it_addrRef_0 CONST_-20 1
+:incRefCount_it_addrRef_0 &incRefCount_it &CONST_-1 ?+8 ; relsq incRefCount_it CONST_-1 1
+# ret incRefCount
+0000000000000000 0000000000000000 ; raw 0000000000000000 0000000000000000
+; label incRefCount_retAddr
+:incRefCount_retAddr 0000000000000000 ; raw 0000000000000000
 
-&curTokens_step2_addrRef_0 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-18 1
-&curTokens_step2_addrRef_1 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-18 1
-&curTokens_step2_addrRef_2 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-18 1
-&curTokens_step2_addrRef_3 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-18 1
-&curTokens_step2_addrRef_4 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-18 1
-&curTokens_step2_addrRef_5 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-18 1
-&curTokens_step2_addrRef_6 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-18 1
-&curTokens_step2_addrRef_7 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-18 1
 
-# Start setaddr it symbolsBegin tmp tmp2
+; label STEP2_HANDLE_SQ
+# call incRefCount tmp
 
-# Start mov tmp it_addrRef_0 tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &it_addrRef_0 ?+8 ; relsq tmp2 it_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
+# Start mov incRefCount_retAddr incRefCount_retPosAddr_0 tmp
+:STEP2_HANDLE_SQ &tmp &tmp ?+8 ; relsq tmp tmp 1
+&tmp &incRefCount_retPosAddr_0 ?+8 ; relsq tmp incRefCount_retPosAddr_0 1
+&incRefCount_retAddr &incRefCount_retAddr ?+8 ; relsq incRefCount_retAddr incRefCount_retAddr 1
+&incRefCount_retAddr &tmp ?+8 ; relsq incRefCount_retAddr tmp 1
 # End mov
 
-# sub tmp symbolsBegin
-&tmp &symbolsBegin ?+8 ; relsq tmp symbolsBegin 1
-&it_addrRef_0 &tmp ?+8 ; relsq it_addrRef_0 tmp 1
-&it_addrRef_1 &tmp ?+8 ; relsq it_addrRef_1 tmp 1
-&it_addrRef_2 &tmp ?+8 ; relsq it_addrRef_2 tmp 1
-&it_addrRef_3 &tmp ?+8 ; relsq it_addrRef_3 tmp 1
-# End setaddr
+# lbljmp incRefCount
+&ZERO &ZERO &incRefCount ; lblsq ZERO ZERO incRefCount
+; label incRefCount_retPosAddr_0
+:incRefCount_retPosAddr_0 &incRefCount_retPos_0 ; raw_ref incRefCount_retPos_0
+; label incRefCount_retPos_0
+
+:incRefCount_retPos_0 &incRefCount_key_addrRef_0 &CONST_-18 ?+8 ; relsq incRefCount_key_addrRef_0 CONST_-18 1
+&incRefCount_key_addrRef_1 &CONST_-18 ?+8 ; relsq incRefCount_key_addrRef_1 CONST_-18 1
+# call incRefCount tmp
+
+# Start mov incRefCount_retAddr incRefCount_retPosAddr_1 tmp
+&tmp &tmp ?+8 ; relsq tmp tmp 1
+&tmp &incRefCount_retPosAddr_1 ?+8 ; relsq tmp incRefCount_retPosAddr_1 1
+&incRefCount_retAddr &incRefCount_retAddr ?+8 ; relsq incRefCount_retAddr incRefCount_retAddr 1
+&incRefCount_retAddr &tmp ?+8 ; relsq incRefCount_retAddr tmp 1
+# End mov
+
+# lbljmp incRefCount
+&ZERO &ZERO &incRefCount ; lblsq ZERO ZERO incRefCount
+; label incRefCount_retPosAddr_1
+:incRefCount_retPosAddr_1 &incRefCount_retPos_1 ; raw_ref incRefCount_retPos_1
+; label incRefCount_retPos_1
 
 
-# Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-; label FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
-
-# Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END tmp tmp2
+# Start strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 ; addr strcmp_const_14_a 0
-# copyaddr strcmp_const_14_a it tmp tmp2
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
+# copyaddr strcmp_const_14_a curLine tmp tmp2
+
+# Start setaddr strcmp_const_14_a curLine_addrRef_0 tmp tmp2
+:incRefCount_retPos_1 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &strcmp_const_14_a_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_14_a_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp &it_addrRef_0 ?+8 ; relsq tmp it_addrRef_0 1
+&tmp &curLine_addrRef_0 ?+8 ; relsq tmp curLine_addrRef_0 1
 &strcmp_const_14_a_addrRef_0 &tmp ?+8 ; relsq strcmp_const_14_a_addrRef_0 tmp 1
 &strcmp_const_14_a_addrRef_1 &tmp ?+8 ; relsq strcmp_const_14_a_addrRef_1 tmp 1
 &strcmp_const_14_a_addrRef_2 &tmp ?+8 ; relsq strcmp_const_14_a_addrRef_2 tmp 1
+# End setaddr
+
 # incaddr strcmp_const_14_a 8
 &strcmp_const_14_a_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_14_a_addrRef_0 CONST_-8 1
 &strcmp_const_14_a_addrRef_1 &CONST_-8 ?+8 ; relsq strcmp_const_14_a_addrRef_1 CONST_-8 1
 &strcmp_const_14_a_addrRef_2 &CONST_-8 ?+8 ; relsq strcmp_const_14_a_addrRef_2 CONST_-8 1
-# incaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-8 1
-&curTokens_step2_addrRef_1 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-8 1
-&curTokens_step2_addrRef_2 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-8 1
-&curTokens_step2_addrRef_3 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-8 1
-&curTokens_step2_addrRef_4 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-8 1
-&curTokens_step2_addrRef_5 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-8 1
-&curTokens_step2_addrRef_6 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-8 1
-&curTokens_step2_addrRef_7 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-8 1
+# incaddr LBLSQ 8
+&LBLSQ_addrRef_0 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_-8 1
+&LBLSQ_addrRef_1 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_-8 1
+&LBLSQ_addrRef_2 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_-8 1
+&LBLSQ_addrRef_3 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_-8 1
 
-# Start jne strcmp_const_14_a curTokens_step2 STRCMP_CONST_14_REVERT_ADDR tmp tmp2
+# Start jne strcmp_const_14_a LBLSQ STRCMP_CONST_14_REVERT_ADDR tmp tmp2
+
+# Start mov tmp strcmp_const_14_a tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 :strcmp_const_14_a_addrRef_0 &strcmp_const_14_a ?+8 ; relsq tmp2 strcmp_const_14_a 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_2 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
+# End mov
+
+# sub tmp LBLSQ
+&tmp :LBLSQ_addrRef_2 &LBLSQ ?+8 ; relsq tmp LBLSQ 1
+
+# Start jnz tmp STRCMP_CONST_14_REVERT_ADDR tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
 &tmp2 &CONST_-1 &STRCMP_CONST_14_REVERT_ADDR ; lblsq tmp2 CONST_-1 STRCMP_CONST_14_REVERT_ADDR
@@ -5446,13 +5428,17 @@
 :JNZ_28_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
 &ZERO &ZERO &STRCMP_CONST_14_REVERT_ADDR ; lblsq ZERO ZERO STRCMP_CONST_14_REVERT_ADDR
 ; label JNZ_28_END
+# End jnz
+
 # End jne
 
 ; var strcmp_const_14_len 0
 
 # Start mov strcmp_const_14_len strcmp_const_14_a tmp
+# movneg tmp strcmp_const_14_a
 :JNZ_28_END &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp :strcmp_const_14_a_addrRef_1 &strcmp_const_14_a ?+8 ; relsq tmp strcmp_const_14_a 1
+# movneg strcmp_const_14_len tmp
 &strcmp_const_14_len &strcmp_const_14_len ?+8 ; relsq strcmp_const_14_len strcmp_const_14_len 1
 &strcmp_const_14_len &tmp ?+8 ; relsq strcmp_const_14_len tmp 1
 # End mov
@@ -5461,49 +5447,62 @@
 &strcmp_const_14_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_14_a_addrRef_0 CONST_8 1
 &strcmp_const_14_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_14_a_addrRef_1 CONST_8 1
 &strcmp_const_14_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_14_a_addrRef_2 CONST_8 1
-# decaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
+# decaddr LBLSQ 8
+&LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
+&LBLSQ_addrRef_1 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_8 1
+&LBLSQ_addrRef_2 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_8 1
+&LBLSQ_addrRef_3 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_8 1
 ; addr strcmp_const_14_aStr 0
 ; addr strcmp_const_14_bStr 0
 
 # Start setaddr strcmp_const_14_aStr strcmp_const_14_a tmp tmp2
+
+# Start mov tmp strcmp_const_14_aStr_addrRef_0 tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &strcmp_const_14_aStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_14_aStr_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# sub tmp strcmp_const_14_a
 &tmp :strcmp_const_14_a_addrRef_2 &strcmp_const_14_a ?+8 ; relsq tmp strcmp_const_14_a 1
 &strcmp_const_14_aStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_14_aStr_addrRef_0 tmp 1
 # End setaddr
 
 
-# Start setaddr strcmp_const_14_bStr curTokens_step2 tmp tmp2
+# Start setaddr strcmp_const_14_bStr LBLSQ tmp tmp2
+
+# Start mov tmp strcmp_const_14_bStr_addrRef_0 tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &strcmp_const_14_bStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_14_bStr_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_3 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
+# End mov
+
+# sub tmp LBLSQ
+&tmp :LBLSQ_addrRef_3 &LBLSQ ?+8 ; relsq tmp LBLSQ 1
 &strcmp_const_14_bStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_14_bStr_addrRef_0 tmp 1
 # End setaddr
 
 ; label STRCMP_CONST_14_LOOP
-# decleq strcmp_const_14_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
-:STRCMP_CONST_14_LOOP &strcmp_const_14_len &CONST_0 &FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END ; lblsq strcmp_const_14_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
+# decleq strcmp_const_14_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
+:STRCMP_CONST_14_LOOP &strcmp_const_14_len &CONST_0 &STEP2_HANDLE_LBLSQ_SUBADDR ; lblsq strcmp_const_14_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
 # dec strcmp_const_14_len 1
 &strcmp_const_14_len &CONST_1 ?+8 ; relsq strcmp_const_14_len CONST_1 1
 
 # Start jne strcmp_const_14_aStr strcmp_const_14_bStr STRCMP_CONST_14_END tmp tmp2
+
+# Start mov tmp strcmp_const_14_aStr tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 :strcmp_const_14_aStr_addrRef_0 &strcmp_const_14_aStr ?+8 ; relsq tmp2 strcmp_const_14_aStr 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
+# End mov
+
+# sub tmp strcmp_const_14_bStr
 &tmp :strcmp_const_14_bStr_addrRef_0 &strcmp_const_14_bStr ?+8 ; relsq tmp strcmp_const_14_bStr 1
+
+# Start jnz tmp STRCMP_CONST_14_END tmp2
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
 &tmp2 &CONST_-1 &STRCMP_CONST_14_END ; lblsq tmp2 CONST_-1 STRCMP_CONST_14_END
@@ -5514,6 +5513,8 @@
 :JNZ_29_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
 &ZERO &ZERO &STRCMP_CONST_14_END ; lblsq ZERO ZERO STRCMP_CONST_14_END
 ; label JNZ_29_END
+# End jnz
+
 # End jne
 
 # incaddr strcmp_const_14_aStr 8
@@ -5523,367 +5524,35 @@
 # lbljmp STRCMP_CONST_14_LOOP
 &ZERO &ZERO &STRCMP_CONST_14_LOOP ; lblsq ZERO ZERO STRCMP_CONST_14_LOOP
 ; label STRCMP_CONST_14_REVERT_ADDR
-# decaddr curTokens_step2 8
-:STRCMP_CONST_14_REVERT_ADDR &curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
+# decaddr LBLSQ 8
+:STRCMP_CONST_14_REVERT_ADDR &LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
+&LBLSQ_addrRef_1 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_8 1
+&LBLSQ_addrRef_2 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_8 1
+&LBLSQ_addrRef_3 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_8 1
 ; label STRCMP_CONST_14_END
 # End strcmp_const
 
-# incaddr it 30
-:STRCMP_CONST_14_END &it_addrRef_0 &CONST_-30 ?+8 ; relsq it_addrRef_0 CONST_-30 1
-&it_addrRef_1 &CONST_-30 ?+8 ; relsq it_addrRef_1 CONST_-30 1
-&it_addrRef_2 &CONST_-30 ?+8 ; relsq it_addrRef_2 CONST_-30 1
-&it_addrRef_3 &CONST_-30 ?+8 ; relsq it_addrRef_3 CONST_-30 1
-# lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
-&ZERO &ZERO &FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP ; lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_1_LOOP
-; label FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END
-# End find_item_in_buf_with_str_key
-
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_1_END &it_addrRef_0 &CONST_-20 ?+8 ; relsq it_addrRef_0 CONST_-20 1
-&it_addrRef_1 &CONST_-20 ?+8 ; relsq it_addrRef_1 CONST_-20 1
-&it_addrRef_2 &CONST_-20 ?+8 ; relsq it_addrRef_2 CONST_-20 1
-&it_addrRef_3 &CONST_-20 ?+8 ; relsq it_addrRef_3 CONST_-20 1
-:it_addrRef_1 &it &CONST_-1 ?+8 ; relsq it CONST_-1 1
-
-
-# Start strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
-; addr strcmp_const_15_a 0
-# copyaddr strcmp_const_15_a curLine tmp tmp2
-
-# Start setaddr strcmp_const_15_a curLine_addrRef_0 tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_15_a_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_15_a_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp &curLine_addrRef_0 ?+8 ; relsq tmp curLine_addrRef_0 1
-&strcmp_const_15_a_addrRef_0 &tmp ?+8 ; relsq strcmp_const_15_a_addrRef_0 tmp 1
-&strcmp_const_15_a_addrRef_1 &tmp ?+8 ; relsq strcmp_const_15_a_addrRef_1 tmp 1
-&strcmp_const_15_a_addrRef_2 &tmp ?+8 ; relsq strcmp_const_15_a_addrRef_2 tmp 1
-# End setaddr
-
-# incaddr strcmp_const_15_a 8
-&strcmp_const_15_a_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_15_a_addrRef_0 CONST_-8 1
-&strcmp_const_15_a_addrRef_1 &CONST_-8 ?+8 ; relsq strcmp_const_15_a_addrRef_1 CONST_-8 1
-&strcmp_const_15_a_addrRef_2 &CONST_-8 ?+8 ; relsq strcmp_const_15_a_addrRef_2 CONST_-8 1
-# incaddr LBLSQ 8
-&LBLSQ_addrRef_0 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_-8 1
-&LBLSQ_addrRef_1 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_-8 1
-&LBLSQ_addrRef_2 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_-8 1
-&LBLSQ_addrRef_3 &CONST_-8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_-8 1
-
-# Start jne strcmp_const_15_a LBLSQ STRCMP_CONST_15_REVERT_ADDR tmp tmp2
-
-# Start mov tmp strcmp_const_15_a tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 :strcmp_const_15_a_addrRef_0 &strcmp_const_15_a ?+8 ; relsq tmp2 strcmp_const_15_a 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp LBLSQ
-&tmp :LBLSQ_addrRef_2 &LBLSQ ?+8 ; relsq tmp LBLSQ 1
-
-# Start jnz tmp STRCMP_CONST_15_REVERT_ADDR tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-&tmp2 &CONST_-1 &STRCMP_CONST_15_REVERT_ADDR ; lblsq tmp2 CONST_-1 STRCMP_CONST_15_REVERT_ADDR
-&tmp &CONST_-1 &JNZ_30_REVERT_AND_JUMP ; lblsq tmp CONST_-1 JNZ_30_REVERT_AND_JUMP
-&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &JNZ_30_END ; lblsq ZERO ZERO JNZ_30_END
-; label JNZ_30_REVERT_AND_JUMP
-:JNZ_30_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &STRCMP_CONST_15_REVERT_ADDR ; lblsq ZERO ZERO STRCMP_CONST_15_REVERT_ADDR
-; label JNZ_30_END
-# End jnz
-
-# End jne
-
-; var strcmp_const_15_len 0
-
-# Start mov strcmp_const_15_len strcmp_const_15_a tmp
-# movneg tmp strcmp_const_15_a
-:JNZ_30_END &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :strcmp_const_15_a_addrRef_1 &strcmp_const_15_a ?+8 ; relsq tmp strcmp_const_15_a 1
-# movneg strcmp_const_15_len tmp
-&strcmp_const_15_len &strcmp_const_15_len ?+8 ; relsq strcmp_const_15_len strcmp_const_15_len 1
-&strcmp_const_15_len &tmp ?+8 ; relsq strcmp_const_15_len tmp 1
-# End mov
-
-# decaddr strcmp_const_15_a 8
-&strcmp_const_15_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_15_a_addrRef_0 CONST_8 1
-&strcmp_const_15_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_15_a_addrRef_1 CONST_8 1
-&strcmp_const_15_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_15_a_addrRef_2 CONST_8 1
-# decaddr LBLSQ 8
-&LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
-&LBLSQ_addrRef_1 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_8 1
-&LBLSQ_addrRef_2 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_8 1
-&LBLSQ_addrRef_3 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_8 1
-; addr strcmp_const_15_aStr 0
-; addr strcmp_const_15_bStr 0
-
-# Start setaddr strcmp_const_15_aStr strcmp_const_15_a tmp tmp2
-
-# Start mov tmp strcmp_const_15_aStr_addrRef_0 tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_15_aStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_15_aStr_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp strcmp_const_15_a
-&tmp :strcmp_const_15_a_addrRef_2 &strcmp_const_15_a ?+8 ; relsq tmp strcmp_const_15_a 1
-&strcmp_const_15_aStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_15_aStr_addrRef_0 tmp 1
-# End setaddr
-
-
-# Start setaddr strcmp_const_15_bStr LBLSQ tmp tmp2
-
-# Start mov tmp strcmp_const_15_bStr_addrRef_0 tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_15_bStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_15_bStr_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp LBLSQ
-&tmp :LBLSQ_addrRef_3 &LBLSQ ?+8 ; relsq tmp LBLSQ 1
-&strcmp_const_15_bStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_15_bStr_addrRef_0 tmp 1
-# End setaddr
-
-; label STRCMP_CONST_15_LOOP
-# decleq strcmp_const_15_len 0 STEP2_HANDLE_LBLSQ_SUBADDR
-:STRCMP_CONST_15_LOOP &strcmp_const_15_len &CONST_0 &STEP2_HANDLE_LBLSQ_SUBADDR ; lblsq strcmp_const_15_len CONST_0 STEP2_HANDLE_LBLSQ_SUBADDR
-# dec strcmp_const_15_len 1
-&strcmp_const_15_len &CONST_1 ?+8 ; relsq strcmp_const_15_len CONST_1 1
-
-# Start jne strcmp_const_15_aStr strcmp_const_15_bStr STRCMP_CONST_15_END tmp tmp2
-
-# Start mov tmp strcmp_const_15_aStr tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 :strcmp_const_15_aStr_addrRef_0 &strcmp_const_15_aStr ?+8 ; relsq tmp2 strcmp_const_15_aStr 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp strcmp_const_15_bStr
-&tmp :strcmp_const_15_bStr_addrRef_0 &strcmp_const_15_bStr ?+8 ; relsq tmp strcmp_const_15_bStr 1
-
-# Start jnz tmp STRCMP_CONST_15_END tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-&tmp2 &CONST_-1 &STRCMP_CONST_15_END ; lblsq tmp2 CONST_-1 STRCMP_CONST_15_END
-&tmp &CONST_-1 &JNZ_31_REVERT_AND_JUMP ; lblsq tmp CONST_-1 JNZ_31_REVERT_AND_JUMP
-&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &JNZ_31_END ; lblsq ZERO ZERO JNZ_31_END
-; label JNZ_31_REVERT_AND_JUMP
-:JNZ_31_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &STRCMP_CONST_15_END ; lblsq ZERO ZERO STRCMP_CONST_15_END
-; label JNZ_31_END
-# End jnz
-
-# End jne
-
-# incaddr strcmp_const_15_aStr 8
-:JNZ_31_END &strcmp_const_15_aStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_15_aStr_addrRef_0 CONST_-8 1
-# incaddr strcmp_const_15_bStr 8
-&strcmp_const_15_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_15_bStr_addrRef_0 CONST_-8 1
-# lbljmp STRCMP_CONST_15_LOOP
-&ZERO &ZERO &STRCMP_CONST_15_LOOP ; lblsq ZERO ZERO STRCMP_CONST_15_LOOP
-; label STRCMP_CONST_15_REVERT_ADDR
-# decaddr LBLSQ 8
-:STRCMP_CONST_15_REVERT_ADDR &LBLSQ_addrRef_0 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_0 CONST_8 1
-&LBLSQ_addrRef_1 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_1 CONST_8 1
-&LBLSQ_addrRef_2 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_2 CONST_8 1
-&LBLSQ_addrRef_3 &CONST_8 ?+8 ; relsq LBLSQ_addrRef_3 CONST_8 1
-; label STRCMP_CONST_15_END
-# End strcmp_const
-
-:STRCMP_CONST_15_END &ZERO &ZERO &STEP2_END ; lblsq ZERO ZERO STEP2_END
+:STRCMP_CONST_14_END &ZERO &ZERO &STEP2_END ; lblsq ZERO ZERO STEP2_END
 
 
 ; label STEP2_HANDLE_LBLSQ_SUBADDR
-:STEP2_HANDLE_LBLSQ_SUBADDR &curTokens_step2_addrRef_0 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-18 1
-&curTokens_step2_addrRef_1 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-18 1
-&curTokens_step2_addrRef_2 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-18 1
-&curTokens_step2_addrRef_3 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-18 1
-&curTokens_step2_addrRef_4 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-18 1
-&curTokens_step2_addrRef_5 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-18 1
-&curTokens_step2_addrRef_6 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-18 1
-&curTokens_step2_addrRef_7 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-18 1
+:STEP2_HANDLE_LBLSQ_SUBADDR &incRefCount_key_addrRef_0 &CONST_-18 ?+8 ; relsq incRefCount_key_addrRef_0 CONST_-18 1
+&incRefCount_key_addrRef_1 &CONST_-18 ?+8 ; relsq incRefCount_key_addrRef_1 CONST_-18 1
+# call incRefCount tmp
 
-# Start setaddr it symbolsBegin tmp tmp2
-
-# Start mov tmp it_addrRef_0 tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &it_addrRef_0 ?+8 ; relsq tmp2 it_addrRef_0 1
+# Start mov incRefCount_retAddr incRefCount_retPosAddr_2 tmp
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
+&tmp &incRefCount_retPosAddr_2 ?+8 ; relsq tmp incRefCount_retPosAddr_2 1
+&incRefCount_retAddr &incRefCount_retAddr ?+8 ; relsq incRefCount_retAddr incRefCount_retAddr 1
+&incRefCount_retAddr &tmp ?+8 ; relsq incRefCount_retAddr tmp 1
 # End mov
 
-# sub tmp symbolsBegin
-&tmp &symbolsBegin ?+8 ; relsq tmp symbolsBegin 1
-&it_addrRef_0 &tmp ?+8 ; relsq it_addrRef_0 tmp 1
-&it_addrRef_1 &tmp ?+8 ; relsq it_addrRef_1 tmp 1
-&it_addrRef_2 &tmp ?+8 ; relsq it_addrRef_2 tmp 1
-&it_addrRef_3 &tmp ?+8 ; relsq it_addrRef_3 tmp 1
-# End setaddr
-
-
-# Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-; label FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
-
-# Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END tmp tmp2
-; addr strcmp_const_16_a 0
-# copyaddr strcmp_const_16_a it tmp tmp2
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_16_a_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_16_a_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp &it_addrRef_0 ?+8 ; relsq tmp it_addrRef_0 1
-&strcmp_const_16_a_addrRef_0 &tmp ?+8 ; relsq strcmp_const_16_a_addrRef_0 tmp 1
-&strcmp_const_16_a_addrRef_1 &tmp ?+8 ; relsq strcmp_const_16_a_addrRef_1 tmp 1
-&strcmp_const_16_a_addrRef_2 &tmp ?+8 ; relsq strcmp_const_16_a_addrRef_2 tmp 1
-# incaddr strcmp_const_16_a 8
-&strcmp_const_16_a_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_16_a_addrRef_0 CONST_-8 1
-&strcmp_const_16_a_addrRef_1 &CONST_-8 ?+8 ; relsq strcmp_const_16_a_addrRef_1 CONST_-8 1
-&strcmp_const_16_a_addrRef_2 &CONST_-8 ?+8 ; relsq strcmp_const_16_a_addrRef_2 CONST_-8 1
-# incaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-8 1
-&curTokens_step2_addrRef_1 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-8 1
-&curTokens_step2_addrRef_2 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-8 1
-&curTokens_step2_addrRef_3 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-8 1
-&curTokens_step2_addrRef_4 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-8 1
-&curTokens_step2_addrRef_5 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-8 1
-&curTokens_step2_addrRef_6 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-8 1
-&curTokens_step2_addrRef_7 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-8 1
-
-# Start jne strcmp_const_16_a curTokens_step2 STRCMP_CONST_16_REVERT_ADDR tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 :strcmp_const_16_a_addrRef_0 &strcmp_const_16_a ?+8 ; relsq tmp2 strcmp_const_16_a 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_4 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-&tmp2 &CONST_-1 &STRCMP_CONST_16_REVERT_ADDR ; lblsq tmp2 CONST_-1 STRCMP_CONST_16_REVERT_ADDR
-&tmp &CONST_-1 &JNZ_32_REVERT_AND_JUMP ; lblsq tmp CONST_-1 JNZ_32_REVERT_AND_JUMP
-&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &JNZ_32_END ; lblsq ZERO ZERO JNZ_32_END
-; label JNZ_32_REVERT_AND_JUMP
-:JNZ_32_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &STRCMP_CONST_16_REVERT_ADDR ; lblsq ZERO ZERO STRCMP_CONST_16_REVERT_ADDR
-; label JNZ_32_END
-# End jne
-
-; var strcmp_const_16_len 0
-
-# Start mov strcmp_const_16_len strcmp_const_16_a tmp
-:JNZ_32_END &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :strcmp_const_16_a_addrRef_1 &strcmp_const_16_a ?+8 ; relsq tmp strcmp_const_16_a 1
-&strcmp_const_16_len &strcmp_const_16_len ?+8 ; relsq strcmp_const_16_len strcmp_const_16_len 1
-&strcmp_const_16_len &tmp ?+8 ; relsq strcmp_const_16_len tmp 1
-# End mov
-
-# decaddr strcmp_const_16_a 8
-&strcmp_const_16_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_16_a_addrRef_0 CONST_8 1
-&strcmp_const_16_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_16_a_addrRef_1 CONST_8 1
-&strcmp_const_16_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_16_a_addrRef_2 CONST_8 1
-# decaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
-; addr strcmp_const_16_aStr 0
-; addr strcmp_const_16_bStr 0
-
-# Start setaddr strcmp_const_16_aStr strcmp_const_16_a tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_16_aStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_16_aStr_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :strcmp_const_16_a_addrRef_2 &strcmp_const_16_a ?+8 ; relsq tmp strcmp_const_16_a 1
-&strcmp_const_16_aStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_16_aStr_addrRef_0 tmp 1
-# End setaddr
-
-
-# Start setaddr strcmp_const_16_bStr curTokens_step2 tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_16_bStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_16_bStr_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_5 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
-&strcmp_const_16_bStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_16_bStr_addrRef_0 tmp 1
-# End setaddr
-
-; label STRCMP_CONST_16_LOOP
-# decleq strcmp_const_16_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
-:STRCMP_CONST_16_LOOP &strcmp_const_16_len &CONST_0 &FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END ; lblsq strcmp_const_16_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
-# dec strcmp_const_16_len 1
-&strcmp_const_16_len &CONST_1 ?+8 ; relsq strcmp_const_16_len CONST_1 1
-
-# Start jne strcmp_const_16_aStr strcmp_const_16_bStr STRCMP_CONST_16_END tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 :strcmp_const_16_aStr_addrRef_0 &strcmp_const_16_aStr ?+8 ; relsq tmp2 strcmp_const_16_aStr 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :strcmp_const_16_bStr_addrRef_0 &strcmp_const_16_bStr ?+8 ; relsq tmp strcmp_const_16_bStr 1
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-&tmp2 &CONST_-1 &STRCMP_CONST_16_END ; lblsq tmp2 CONST_-1 STRCMP_CONST_16_END
-&tmp &CONST_-1 &JNZ_33_REVERT_AND_JUMP ; lblsq tmp CONST_-1 JNZ_33_REVERT_AND_JUMP
-&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &JNZ_33_END ; lblsq ZERO ZERO JNZ_33_END
-; label JNZ_33_REVERT_AND_JUMP
-:JNZ_33_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &STRCMP_CONST_16_END ; lblsq ZERO ZERO STRCMP_CONST_16_END
-; label JNZ_33_END
-# End jne
-
-# incaddr strcmp_const_16_aStr 8
-:JNZ_33_END &strcmp_const_16_aStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_16_aStr_addrRef_0 CONST_-8 1
-# incaddr strcmp_const_16_bStr 8
-&strcmp_const_16_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_16_bStr_addrRef_0 CONST_-8 1
-# lbljmp STRCMP_CONST_16_LOOP
-&ZERO &ZERO &STRCMP_CONST_16_LOOP ; lblsq ZERO ZERO STRCMP_CONST_16_LOOP
-; label STRCMP_CONST_16_REVERT_ADDR
-# decaddr curTokens_step2 8
-:STRCMP_CONST_16_REVERT_ADDR &curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
-; label STRCMP_CONST_16_END
-# End strcmp_const
-
-# incaddr it 30
-:STRCMP_CONST_16_END &it_addrRef_0 &CONST_-30 ?+8 ; relsq it_addrRef_0 CONST_-30 1
-&it_addrRef_1 &CONST_-30 ?+8 ; relsq it_addrRef_1 CONST_-30 1
-&it_addrRef_2 &CONST_-30 ?+8 ; relsq it_addrRef_2 CONST_-30 1
-&it_addrRef_3 &CONST_-30 ?+8 ; relsq it_addrRef_3 CONST_-30 1
-# lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
-&ZERO &ZERO &FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP ; lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_2_LOOP
-; label FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END
-# End find_item_in_buf_with_str_key
-
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_2_END &it_addrRef_0 &CONST_-20 ?+8 ; relsq it_addrRef_0 CONST_-20 1
-&it_addrRef_1 &CONST_-20 ?+8 ; relsq it_addrRef_1 CONST_-20 1
-&it_addrRef_2 &CONST_-20 ?+8 ; relsq it_addrRef_2 CONST_-20 1
-&it_addrRef_3 &CONST_-20 ?+8 ; relsq it_addrRef_3 CONST_-20 1
-:it_addrRef_2 &it &CONST_-1 ?+8 ; relsq it CONST_-1 1
-&ZERO &ZERO &STEP2_END ; lblsq ZERO ZERO STEP2_END
+# lbljmp incRefCount
+&ZERO &ZERO &incRefCount ; lblsq ZERO ZERO incRefCount
+; label incRefCount_retPosAddr_2
+:incRefCount_retPosAddr_2 &incRefCount_retPos_2 ; raw_ref incRefCount_retPos_2
+; label incRefCount_retPos_2
+:incRefCount_retPos_2 &ZERO &ZERO &STEP2_END ; lblsq ZERO ZERO STEP2_END
 
 
 ; label STEP2_HANDLE_RAW_REF
@@ -5908,182 +5577,22 @@
 ; label STEP2_RAW_REF_LOOP
 :STEP2_RAW_REF_LOOP &tokensCount &CONST_0 &STEP2_END ; lblsq tokensCount CONST_0 STEP2_END
 &tokensCount &CONST_1 ?+8 ; relsq tokensCount CONST_1 1
+# call incRefCount tmp
 
-
-# Start setaddr it symbolsBegin tmp tmp2
-
-# Start mov tmp it_addrRef_0 tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &it_addrRef_0 ?+8 ; relsq tmp2 it_addrRef_0 1
+# Start mov incRefCount_retAddr incRefCount_retPosAddr_3 tmp
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
+&tmp &incRefCount_retPosAddr_3 ?+8 ; relsq tmp incRefCount_retPosAddr_3 1
+&incRefCount_retAddr &incRefCount_retAddr ?+8 ; relsq incRefCount_retAddr incRefCount_retAddr 1
+&incRefCount_retAddr &tmp ?+8 ; relsq incRefCount_retAddr tmp 1
 # End mov
 
-# sub tmp symbolsBegin
-&tmp &symbolsBegin ?+8 ; relsq tmp symbolsBegin 1
-&it_addrRef_0 &tmp ?+8 ; relsq it_addrRef_0 tmp 1
-&it_addrRef_1 &tmp ?+8 ; relsq it_addrRef_1 tmp 1
-&it_addrRef_2 &tmp ?+8 ; relsq it_addrRef_2 tmp 1
-&it_addrRef_3 &tmp ?+8 ; relsq it_addrRef_3 tmp 1
-# End setaddr
-
-
-# Start find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-; label FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
-
-# Start strcmp_const it curTokens_step2 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END tmp tmp2
-; addr strcmp_const_17_a 0
-# copyaddr strcmp_const_17_a it tmp tmp2
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_17_a_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_17_a_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp &it_addrRef_0 ?+8 ; relsq tmp it_addrRef_0 1
-&strcmp_const_17_a_addrRef_0 &tmp ?+8 ; relsq strcmp_const_17_a_addrRef_0 tmp 1
-&strcmp_const_17_a_addrRef_1 &tmp ?+8 ; relsq strcmp_const_17_a_addrRef_1 tmp 1
-&strcmp_const_17_a_addrRef_2 &tmp ?+8 ; relsq strcmp_const_17_a_addrRef_2 tmp 1
-# incaddr strcmp_const_17_a 8
-&strcmp_const_17_a_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_17_a_addrRef_0 CONST_-8 1
-&strcmp_const_17_a_addrRef_1 &CONST_-8 ?+8 ; relsq strcmp_const_17_a_addrRef_1 CONST_-8 1
-&strcmp_const_17_a_addrRef_2 &CONST_-8 ?+8 ; relsq strcmp_const_17_a_addrRef_2 CONST_-8 1
-# incaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-8 1
-&curTokens_step2_addrRef_1 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-8 1
-&curTokens_step2_addrRef_2 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-8 1
-&curTokens_step2_addrRef_3 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-8 1
-&curTokens_step2_addrRef_4 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-8 1
-&curTokens_step2_addrRef_5 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-8 1
-&curTokens_step2_addrRef_6 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-8 1
-&curTokens_step2_addrRef_7 &CONST_-8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-8 1
-
-# Start jne strcmp_const_17_a curTokens_step2 STRCMP_CONST_17_REVERT_ADDR tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 :strcmp_const_17_a_addrRef_0 &strcmp_const_17_a ?+8 ; relsq tmp2 strcmp_const_17_a 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_6 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-&tmp2 &CONST_-1 &STRCMP_CONST_17_REVERT_ADDR ; lblsq tmp2 CONST_-1 STRCMP_CONST_17_REVERT_ADDR
-&tmp &CONST_-1 &JNZ_34_REVERT_AND_JUMP ; lblsq tmp CONST_-1 JNZ_34_REVERT_AND_JUMP
-&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &JNZ_34_END ; lblsq ZERO ZERO JNZ_34_END
-; label JNZ_34_REVERT_AND_JUMP
-:JNZ_34_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &STRCMP_CONST_17_REVERT_ADDR ; lblsq ZERO ZERO STRCMP_CONST_17_REVERT_ADDR
-; label JNZ_34_END
-# End jne
-
-; var strcmp_const_17_len 0
-
-# Start mov strcmp_const_17_len strcmp_const_17_a tmp
-:JNZ_34_END &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :strcmp_const_17_a_addrRef_1 &strcmp_const_17_a ?+8 ; relsq tmp strcmp_const_17_a 1
-&strcmp_const_17_len &strcmp_const_17_len ?+8 ; relsq strcmp_const_17_len strcmp_const_17_len 1
-&strcmp_const_17_len &tmp ?+8 ; relsq strcmp_const_17_len tmp 1
-# End mov
-
-# decaddr strcmp_const_17_a 8
-&strcmp_const_17_a_addrRef_0 &CONST_8 ?+8 ; relsq strcmp_const_17_a_addrRef_0 CONST_8 1
-&strcmp_const_17_a_addrRef_1 &CONST_8 ?+8 ; relsq strcmp_const_17_a_addrRef_1 CONST_8 1
-&strcmp_const_17_a_addrRef_2 &CONST_8 ?+8 ; relsq strcmp_const_17_a_addrRef_2 CONST_8 1
-# decaddr curTokens_step2 8
-&curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
-; addr strcmp_const_17_aStr 0
-; addr strcmp_const_17_bStr 0
-
-# Start setaddr strcmp_const_17_aStr strcmp_const_17_a tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_17_aStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_17_aStr_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :strcmp_const_17_a_addrRef_2 &strcmp_const_17_a ?+8 ; relsq tmp strcmp_const_17_a 1
-&strcmp_const_17_aStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_17_aStr_addrRef_0 tmp 1
-# End setaddr
-
-
-# Start setaddr strcmp_const_17_bStr curTokens_step2 tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &strcmp_const_17_bStr_addrRef_0 ?+8 ; relsq tmp2 strcmp_const_17_bStr_addrRef_0 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :curTokens_step2_addrRef_7 &curTokens_step2 ?+8 ; relsq tmp curTokens_step2 1
-&strcmp_const_17_bStr_addrRef_0 &tmp ?+8 ; relsq strcmp_const_17_bStr_addrRef_0 tmp 1
-# End setaddr
-
-; label STRCMP_CONST_17_LOOP
-# decleq strcmp_const_17_len 0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
-:STRCMP_CONST_17_LOOP &strcmp_const_17_len &CONST_0 &FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END ; lblsq strcmp_const_17_len CONST_0 FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
-# dec strcmp_const_17_len 1
-&strcmp_const_17_len &CONST_1 ?+8 ; relsq strcmp_const_17_len CONST_1 1
-
-# Start jne strcmp_const_17_aStr strcmp_const_17_bStr STRCMP_CONST_17_END tmp tmp2
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 :strcmp_const_17_aStr_addrRef_0 &strcmp_const_17_aStr ?+8 ; relsq tmp2 strcmp_const_17_aStr 1
-&tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &tmp2 ?+8 ; relsq tmp tmp2 1
-&tmp :strcmp_const_17_bStr_addrRef_0 &strcmp_const_17_bStr ?+8 ; relsq tmp strcmp_const_17_bStr 1
-&tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &tmp ?+8 ; relsq tmp2 tmp 1
-&tmp2 &CONST_-1 &STRCMP_CONST_17_END ; lblsq tmp2 CONST_-1 STRCMP_CONST_17_END
-&tmp &CONST_-1 &JNZ_35_REVERT_AND_JUMP ; lblsq tmp CONST_-1 JNZ_35_REVERT_AND_JUMP
-&tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &JNZ_35_END ; lblsq ZERO ZERO JNZ_35_END
-; label JNZ_35_REVERT_AND_JUMP
-:JNZ_35_REVERT_AND_JUMP &tmp &CONST_1 ?+8 ; relsq tmp CONST_1 1
-&ZERO &ZERO &STRCMP_CONST_17_END ; lblsq ZERO ZERO STRCMP_CONST_17_END
-; label JNZ_35_END
-# End jne
-
-# incaddr strcmp_const_17_aStr 8
-:JNZ_35_END &strcmp_const_17_aStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_17_aStr_addrRef_0 CONST_-8 1
-# incaddr strcmp_const_17_bStr 8
-&strcmp_const_17_bStr_addrRef_0 &CONST_-8 ?+8 ; relsq strcmp_const_17_bStr_addrRef_0 CONST_-8 1
-# lbljmp STRCMP_CONST_17_LOOP
-&ZERO &ZERO &STRCMP_CONST_17_LOOP ; lblsq ZERO ZERO STRCMP_CONST_17_LOOP
-; label STRCMP_CONST_17_REVERT_ADDR
-# decaddr curTokens_step2 8
-:STRCMP_CONST_17_REVERT_ADDR &curTokens_step2_addrRef_0 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_8 1
-&curTokens_step2_addrRef_1 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_8 1
-&curTokens_step2_addrRef_2 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_8 1
-&curTokens_step2_addrRef_3 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_8 1
-&curTokens_step2_addrRef_4 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_8 1
-&curTokens_step2_addrRef_5 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_8 1
-&curTokens_step2_addrRef_6 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_8 1
-&curTokens_step2_addrRef_7 &CONST_8 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_8 1
-; label STRCMP_CONST_17_END
-# End strcmp_const
-
-# incaddr it 30
-:STRCMP_CONST_17_END &it_addrRef_0 &CONST_-30 ?+8 ; relsq it_addrRef_0 CONST_-30 1
-&it_addrRef_1 &CONST_-30 ?+8 ; relsq it_addrRef_1 CONST_-30 1
-&it_addrRef_2 &CONST_-30 ?+8 ; relsq it_addrRef_2 CONST_-30 1
-&it_addrRef_3 &CONST_-30 ?+8 ; relsq it_addrRef_3 CONST_-30 1
-# lbljmp FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
-&ZERO &ZERO &FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP ; lblsq ZERO ZERO FIND_ITEM_IN_BUF_WITH_STR_KEY_3_LOOP
-; label FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END
-# End find_item_in_buf_with_str_key
-
-:FIND_ITEM_IN_BUF_WITH_STR_KEY_3_END &it_addrRef_0 &CONST_-20 ?+8 ; relsq it_addrRef_0 CONST_-20 1
-&it_addrRef_1 &CONST_-20 ?+8 ; relsq it_addrRef_1 CONST_-20 1
-&it_addrRef_2 &CONST_-20 ?+8 ; relsq it_addrRef_2 CONST_-20 1
-&it_addrRef_3 &CONST_-20 ?+8 ; relsq it_addrRef_3 CONST_-20 1
-:it_addrRef_3 &it &CONST_-1 ?+8 ; relsq it CONST_-1 1
-&curTokens_step2_addrRef_0 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_0 CONST_-18 1
-&curTokens_step2_addrRef_1 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_1 CONST_-18 1
-&curTokens_step2_addrRef_2 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_2 CONST_-18 1
-&curTokens_step2_addrRef_3 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_3 CONST_-18 1
-&curTokens_step2_addrRef_4 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_4 CONST_-18 1
-&curTokens_step2_addrRef_5 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_5 CONST_-18 1
-&curTokens_step2_addrRef_6 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_6 CONST_-18 1
-&curTokens_step2_addrRef_7 &CONST_-18 ?+8 ; relsq curTokens_step2_addrRef_7 CONST_-18 1
+# lbljmp incRefCount
+&ZERO &ZERO &incRefCount ; lblsq ZERO ZERO incRefCount
+; label incRefCount_retPosAddr_3
+:incRefCount_retPosAddr_3 &incRefCount_retPos_3 ; raw_ref incRefCount_retPos_3
+; label incRefCount_retPos_3
+:incRefCount_retPos_3 &incRefCount_key_addrRef_0 &CONST_-18 ?+8 ; relsq incRefCount_key_addrRef_0 CONST_-18 1
+&incRefCount_key_addrRef_1 &CONST_-18 ?+8 ; relsq incRefCount_key_addrRef_1 CONST_-18 1
 &ZERO &ZERO &STEP2_RAW_REF_LOOP ; lblsq ZERO ZERO STEP2_RAW_REF_LOOP
 
 
@@ -7368,10 +6877,7 @@
 :strcmp_const_12_len 0000000000000000 ; raw 0000000000000000 # strcmp_const_12_len
 :strcmp_const_13_len 0000000000000000 ; raw 0000000000000000 # strcmp_const_13_len
 :strcmp_const_14_len 0000000000000000 ; raw 0000000000000000 # strcmp_const_14_len
-:strcmp_const_15_len 0000000000000000 ; raw 0000000000000000 # strcmp_const_15_len
-:strcmp_const_16_len 0000000000000000 ; raw 0000000000000000 # strcmp_const_16_len
 :tokensCount 0000000000000000 ; raw 0000000000000000 # tokensCount
-:strcmp_const_17_len 0000000000000000 ; raw 0000000000000000 # strcmp_const_17_len
 :symbolsLeft 0000000000000000 ; raw 0000000000000000 # symbolsLeft
 :puts_1_len 0000000000000000 ; raw 0000000000000000 # puts_1_len
 :puts_2_len 0000000000000000 ; raw 0000000000000000 # puts_2_len

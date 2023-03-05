@@ -199,8 +199,7 @@ decleq linesLeft 0 STEP3_START
 dec linesLeft 1
 
 incaddr curLine 18
-addr curTokens_step2 0
-setaddr curTokens_step2 curLine tmp tmp2
+setaddr incRefCount_key curLine tmp tmp2
 decaddr curLine 18
 
 strcmp_const curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
@@ -211,30 +210,29 @@ strcmp_const curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
 lbljmp STEP2_END
 
 
+label incRefCount
+addr incRefCount_key 0
+addr incRefCount_it 0
+setaddr incRefCount_it symbolsBegin tmp tmp2
+find_item_in_buf_with_str_key incRefCount_it incRefCount_key 30 tmp tmp2
+incaddr incRefCount_it 20
+inc incRefCount_it 1
+ret incRefCount
+
+
 label STEP2_HANDLE_SQ
-addr it 0
+call incRefCount tmp
 
-setaddr it symbolsBegin tmp tmp2
-find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-incaddr it 20
-inc it 1
-
-incaddr curTokens_step2 18
-setaddr it symbolsBegin tmp tmp2
-find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-incaddr it 20
-inc it 1
+incaddr incRefCount_key 18
+call incRefCount tmp
 
 strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 lbljmp STEP2_END
 
 
 label STEP2_HANDLE_LBLSQ_SUBADDR
-incaddr curTokens_step2 18
-setaddr it symbolsBegin tmp tmp2
-find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-incaddr it 20
-inc it 1
+incaddr incRefCount_key 18
+call incRefCount tmp
 lbljmp STEP2_END
 
 
@@ -247,12 +245,8 @@ decaddr curLine 20
 label STEP2_RAW_REF_LOOP
 decleq tokensCount 0 STEP2_END
 dec tokensCount 1
-
-setaddr it symbolsBegin tmp tmp2
-find_item_in_buf_with_str_key it curTokens_step2 30 tmp tmp2
-incaddr it 20
-inc it 1
-incaddr curTokens_step2 18
+call incRefCount tmp
+incaddr incRefCount_key 18
 lbljmp STEP2_RAW_REF_LOOP
 
 

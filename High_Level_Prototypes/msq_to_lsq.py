@@ -1121,6 +1121,37 @@ def find_item_in_buf_with_str_key(args, v=3):
     logEnd()
 
 
+subroutineCallCounts = {}
+
+
+# Helper for calling a subroutine
+def call(args, v=2):
+    name, tmp = args
+    logSimple()
+    if name not in subroutineCallCounts:
+        subroutineCallCounts[name] = 0
+    callId = subroutineCallCounts[name]
+    retPos = f"{name}_retPos_{callId}"
+    retPosAddr = f"{name}_retPosAddr_{callId}"
+    subroutineCallCounts[name] += 1
+
+    mov([f"{name}_retAddr", retPosAddr, tmp], v - 1)
+    lbljmp([name], v - 1)
+    print(f"label {retPosAddr}")
+    print(f"raw_ref {retPos}")
+    print(f"label {retPos}")
+
+
+# Helper for having a subroutine return to its caller
+def ret(args, v=2):
+    assert len(args) == 1
+    name = args[0]
+    logSimple()
+    print(f"raw {numToRawInst(0)} {numToRawInst(0)}")
+    print(f"label {name}_retAddr")
+    print(f"raw {numToRawInst(0)}")
+
+
 # lines = open("/home/nyancat/Codes/stage0-subleq/phase0-hex/hex0_monitor.msq").read().split("\n")
 lines = open(sys.argv[1]).read().split("\n")
 for line in lines:
