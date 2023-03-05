@@ -130,9 +130,10 @@ for line in lines:
             incRefCount(token)
 
 
-# This was used to ensure that the Step 2 implementation of lsq_to_hex.msq is correct
-"""
+# This is used to ensure that the Step 2 implementation of lsq_to_hex.msq is correct
 if args.lsq_path == "test.lsq":
+    import ctypes
+
     # Converts and pads a number to be used in raw instructions
     def numToRawInst(num):
         # "__ctype_be__ Python" have 349 results on Google, smh
@@ -147,7 +148,6 @@ if args.lsq_path == "test.lsq":
         print("val:", numToRawInst(val) if val is not None else numToRawInst(0))
 
     sys.exit()
-"""
 
 # 3. Create subaddr/zeroaddr stubs
 i = 0
