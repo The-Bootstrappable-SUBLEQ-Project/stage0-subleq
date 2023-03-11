@@ -52,77 +52,77 @@ rem 0x18 Array containing the tokens
 rem 0x38 String containing the comment
 rem 0x50 The offset of the line in the assembled program
 var linesPass1Begin 100000
-addr linesPass1Cur 100000
 var linesPass1Len 0
+addr curLine_step0 100000
 
 label STEP0_INPUT_INST
-alloc_str linesPass1Cur 100 tmp
-inp_token_allow_empty linesPass1Cur tmp tmp2
+alloc_str curLine_step0 100 tmp
+inp_token_allow_empty curLine_step0 tmp tmp2
 inc linesPass1Len 1
 
-strcmp_const linesPass1Cur EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
-strcmp_const linesPass1Cur REM STEP0_HANDLE_REM tmp tmp2
-strcmp_const linesPass1Cur END STEP1_START tmp tmp2
+strcmp_const curLine_step0 EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
+strcmp_const curLine_step0 REM STEP0_HANDLE_REM tmp tmp2
+strcmp_const curLine_step0 END STEP1_START tmp tmp2
 
 
 rem Handle other instructions
-addr linesPass1Cur_other 0
-copyaddr linesPass1Cur_other linesPass1Cur tmp tmp2
-incaddr linesPass1Cur_other 18
-alloc_array linesPass1Cur_other 18 20 tmp
+addr curLine_step0_other 0
+copyaddr curLine_step0_other curLine_step0 tmp tmp2
+incaddr curLine_step0_other 18
+alloc_array curLine_step0_other 18 20 tmp
 
 malloc_const tmp 18 tmp2
 addr tmpStr 0
 setaddr tmpStr tmp tmp2 tmp3
 alloc_str tmpStr 1000 tmp
 inp_line tmpStr tmp tmp2
-str_split linesPass1Cur_other tmpStr SPACE 800 tmp tmp2
+str_split curLine_step0_other tmpStr SPACE 800 tmp tmp2
 
-incaddr linesPass1Cur_other 20
-alloc_str linesPass1Cur_other 0 tmp
+incaddr curLine_step0_other 20
+alloc_str curLine_step0_other 0 tmp
 
-incaddr linesPass1Cur_other 18
-zero linesPass1Cur_other
+incaddr curLine_step0_other 18
+zero curLine_step0_other
 
-incaddr linesPass1Cur_other 8
-copyaddr linesPass1Cur linesPass1Cur_other tmp tmp2
+incaddr curLine_step0_other 8
+copyaddr curLine_step0 curLine_step0_other tmp tmp2
 lbljmp STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_NEWLINE
-addr linesPass1Cur_newline 0
-copyaddr linesPass1Cur_newline linesPass1Cur tmp tmp2
-strcpy linesPass1Cur_newline NEWLINE tmp tmp2
+addr curLine_step0_newline 0
+copyaddr curLine_step0_newline curLine_step0 tmp tmp2
+strcpy curLine_step0_newline NEWLINE tmp tmp2
 
-incaddr linesPass1Cur_newline 18
-alloc_array linesPass1Cur_newline 18 0 tmp
+incaddr curLine_step0_newline 18
+alloc_array curLine_step0_newline 18 0 tmp
 
-incaddr linesPass1Cur_newline 20
-alloc_str linesPass1Cur_newline 0 tmp
+incaddr curLine_step0_newline 20
+alloc_str curLine_step0_newline 0 tmp
 
-incaddr linesPass1Cur_newline 18
-zero linesPass1Cur_newline
+incaddr curLine_step0_newline 18
+zero curLine_step0_newline
 
-incaddr linesPass1Cur_newline 8
-copyaddr linesPass1Cur linesPass1Cur_newline tmp tmp2
+incaddr curLine_step0_newline 8
+copyaddr curLine_step0 curLine_step0_newline tmp tmp2
 lbljmp STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_REM
-addr linesPass1Cur_rem 0
-copyaddr linesPass1Cur_rem linesPass1Cur tmp tmp2
-incaddr linesPass1Cur_rem 18
-alloc_array linesPass1Cur_rem 18 0 tmp
+addr curLine_step0_rem 0
+copyaddr curLine_step0_rem curLine_step0 tmp tmp2
+incaddr curLine_step0_rem 18
+alloc_array curLine_step0_rem 18 0 tmp
 
-incaddr linesPass1Cur_rem 20
-alloc_str linesPass1Cur_rem 800 tmp
-inp_line linesPass1Cur_rem tmp tmp2
+incaddr curLine_step0_rem 20
+alloc_str curLine_step0_rem 800 tmp
+inp_line curLine_step0_rem tmp tmp2
 
-incaddr linesPass1Cur_rem 18
-zero linesPass1Cur_rem
+incaddr curLine_step0_rem 18
+zero curLine_step0_rem
 
-incaddr linesPass1Cur_rem 8
-copyaddr linesPass1Cur linesPass1Cur_rem tmp tmp2
+incaddr curLine_step0_rem 8
+copyaddr curLine_step0 curLine_step0_rem tmp tmp2
 lbljmp STEP0_INPUT_INST
 
 
@@ -136,8 +136,8 @@ rem 0x28 The default value of the symbol (SYM_VAL_PLACEHOLDER if None)
 var symbolsBegin 200000
 var symbolsLen 0
 
-addr curLine 0
-setaddr curLine linesPass1Begin tmp tmp2
+addr curLine_step1 0
+setaddr curLine_step1 linesPass1Begin tmp tmp2
 var linesLeft 0
 mov linesLeft linesPass1Len tmp
 
@@ -145,28 +145,28 @@ label STEP1_LOOP
 decleq linesLeft 0 STEP2_START
 dec linesLeft 1
 
-strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
-strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
-strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
-incaddr curLine 58
+strcmp_const curLine_step1 VAR STEP1_CREATE_SYMBOL tmp tmp2
+strcmp_const curLine_step1 LABEL STEP1_CREATE_SYMBOL tmp tmp2
+strcmp_const curLine_step1 ADDR STEP1_CREATE_SYMBOL tmp tmp2
+incaddr curLine_step1 58
 lbljmp STEP1_LOOP
 
 label STEP1_CREATE_SYMBOL
 rem Set the symbol name
-incaddr curLine 18
+incaddr curLine_step1 18
 addr curTokens_step1 0
-setaddr curTokens_step1 curLine tmp tmp2
-decaddr curLine 18
+setaddr curTokens_step1 curLine_step1 tmp tmp2
+decaddr curLine_step1 18
 
 addr symbolsCur_step1 200000
 alloc_str symbolsCur_step1 800 tmp
 strcpy symbolsCur_step1 curTokens_step1 tmp tmp2
 incaddr curTokens_step1 18
 
-rem Set the symbol address
+rem Handle the symbol address
 incaddr symbolsCur_step1 18
 set symbolsCur_step1 -1
-strcmp_const curLine ADDR STEP1_SET_ADDRESS tmp tmp2
+strcmp_const curLine_step1 ADDR STEP1_SET_ADDRESS tmp tmp2
 lbljmp STEP1_HANDLE_REFCOUNT
 
 label STEP1_SET_ADDRESS
@@ -179,14 +179,14 @@ zero symbolsCur_step1
 label STEP1_HANDLE_VALUE
 incaddr symbolsCur_step1 8
 mov symbolsCur_step1 SYM_VAL_PLACEHOLDER tmp
-strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
+strcmp_const curLine_step1 VAR STEP1_SET_VALUE tmp tmp2
 lbljmp STEP1_END
 
 label STEP1_SET_VALUE
 from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
 
 label STEP1_END
-incaddr curLine 58
+incaddr curLine_step1 58
 incaddr symbolsCur_step1 8
 inc symbolsLen 1
 lbljmp STEP1_LOOP
@@ -194,22 +194,23 @@ lbljmp STEP1_LOOP
 
 rem 2. Count symbol references (Pass 1)
 label STEP2_START
-setaddr curLine linesPass1Begin tmp tmp2
+addr curLine_step2 0
+setaddr curLine_step2 linesPass1Begin tmp tmp2
 mov linesLeft linesPass1Len tmp
 
 label STEP2_LOOP
 decleq linesLeft 0 STEP3_START
 dec linesLeft 1
 
-incaddr curLine 18
-setaddr incRefCount_key curLine tmp tmp2
-decaddr curLine 18
+incaddr curLine_step2 18
+setaddr incRefCount_key curLine_step2 tmp tmp2
+decaddr curLine_step2 18
 
-strcmp_const curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp_const curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp_const curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp_const curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
-strcmp_const curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+strcmp_const curLine_step2 ABSSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step2 RELSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step2 SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+strcmp_const curLine_step2 RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
 lbljmp STEP2_END
 
 
@@ -242,7 +243,7 @@ call incRefCount tmp
 incaddr incRefCount_key 18
 call incRefCount tmp
 
-strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 lbljmp STEP2_END
 
 
@@ -253,10 +254,10 @@ lbljmp STEP2_END
 
 
 label STEP2_HANDLE_RAW_REF
-incaddr curLine 20
+incaddr curLine_step2 20
 var tokensCount 0
-mov tokensCount curLine tmp
-decaddr curLine 20
+mov tokensCount curLine_step2 tmp
+decaddr curLine_step2 20
 
 label STEP2_RAW_REF_LOOP
 decleq tokensCount 0 STEP2_END
@@ -267,7 +268,7 @@ lbljmp STEP2_RAW_REF_LOOP
 
 
 label STEP2_END
-incaddr curLine 58
+incaddr curLine_step2 58
 lbljmp STEP2_LOOP
 
 

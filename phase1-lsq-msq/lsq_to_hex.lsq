@@ -151,51 +151,51 @@ rem 0x18 Array containing the tokens
 rem 0x38 String containing the comment
 rem 0x50 The offset of the line in the assembled program
 var linesPass1Begin 100000
-addr linesPass1Cur 100000
 var linesPass1Len 0
+addr curLine_step0 100000
 
 label STEP0_INPUT_INST
 
-rem Start alloc_str linesPass1Cur 100 tmp
+rem Start alloc_str curLine_step0 100 tmp
 
-rem Start malloc_const linesPass1Cur 100 tmp
+rem Start malloc_const curLine_step0 100 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq curLine_step0 curLine_step0 1
+relsq curLine_step0 tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_100 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
-rem zero linesPass1Cur
-relsq linesPass1Cur linesPass1Cur 1
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr curLine_step0 8
+subaddr curLine_step0 CONST_-8
+rem zero curLine_step0
+relsq curLine_step0 curLine_step0 1
+rem incaddr curLine_step0 8
+subaddr curLine_step0 CONST_-8
 
-rem Start mov linesPass1Cur CONST_100 tmp
+rem Start mov curLine_step0 CONST_100 tmp
 relsq tmp tmp 1
 relsq tmp CONST_100 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq curLine_step0 curLine_step0 1
+relsq curLine_step0 tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 10
-subaddr linesPass1Cur CONST_10
+rem decaddr curLine_step0 10
+subaddr curLine_step0 CONST_10
 rem End alloc_str
 
 
-rem Start inp_token_allow_empty linesPass1Cur tmp tmp2
+rem Start inp_token_allow_empty curLine_step0 tmp tmp2
 addr inp_token_allow_empty_0_str 0
 
-rem Start setaddr inp_token_allow_empty_0_str linesPass1Cur tmp tmp2
+rem Start setaddr inp_token_allow_empty_0_str curLine_step0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_allow_empty_0_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur 1
+relsq tmp curLine_step0 1
 subaddr inp_token_allow_empty_0_str tmp
 rem End setaddr
 
@@ -275,33 +275,33 @@ subaddr inp_token_allow_empty_0_str CONST_-8
 rem lbljmp INP_TOKEN_ALLOW_EMPTY_0_LOOP
 lblsq ZERO ZERO INP_TOKEN_ALLOW_EMPTY_0_LOOP
 label INP_TOKEN_ALLOW_EMPTY_0_TERM
-rem incaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_-8
+rem incaddr curLine_step0 8
+subaddr curLine_step0 CONST_-8
 
-rem Start mov linesPass1Cur inp_token_allow_empty_0_len tmp
+rem Start mov curLine_step0 inp_token_allow_empty_0_len tmp
 relsq tmp tmp 1
 relsq tmp inp_token_allow_empty_0_len 1
-relsq linesPass1Cur linesPass1Cur 1
-relsq linesPass1Cur tmp 1
+relsq curLine_step0 curLine_step0 1
+relsq curLine_step0 tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur 8
-subaddr linesPass1Cur CONST_8
+rem decaddr curLine_step0 8
+subaddr curLine_step0 CONST_8
 rem End inp_token_allow_empty
 
 relsq linesPass1Len CONST_-1 1
 
 
-rem Start strcmp_const linesPass1Cur EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
+rem Start strcmp_const curLine_step0 EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
 addr strcmp_const_0_a 0
-rem copyaddr strcmp_const_0_a linesPass1Cur tmp tmp2
+rem copyaddr strcmp_const_0_a curLine_step0 tmp tmp2
 
-rem Start setaddr strcmp_const_0_a linesPass1Cur_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_0_a curLine_step0_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_0_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_addrRef_0 1
+relsq tmp curLine_step0_addrRef_0 1
 subaddr strcmp_const_0_a tmp
 rem End setaddr
 
@@ -430,16 +430,16 @@ label STRCMP_CONST_0_END
 rem End strcmp_const
 
 
-rem Start strcmp_const linesPass1Cur REM STEP0_HANDLE_REM tmp tmp2
+rem Start strcmp_const curLine_step0 REM STEP0_HANDLE_REM tmp tmp2
 addr strcmp_const_1_a 0
-rem copyaddr strcmp_const_1_a linesPass1Cur tmp tmp2
+rem copyaddr strcmp_const_1_a curLine_step0 tmp tmp2
 
-rem Start setaddr strcmp_const_1_a linesPass1Cur_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_1_a curLine_step0_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_1_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_addrRef_0 1
+relsq tmp curLine_step0_addrRef_0 1
 subaddr strcmp_const_1_a tmp
 rem End setaddr
 
@@ -568,16 +568,16 @@ label STRCMP_CONST_1_END
 rem End strcmp_const
 
 
-rem Start strcmp_const linesPass1Cur END STEP1_START tmp tmp2
+rem Start strcmp_const curLine_step0 END STEP1_START tmp tmp2
 addr strcmp_const_2_a 0
-rem copyaddr strcmp_const_2_a linesPass1Cur tmp tmp2
+rem copyaddr strcmp_const_2_a curLine_step0 tmp tmp2
 
-rem Start setaddr strcmp_const_2_a linesPass1Cur_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_2_a curLine_step0_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_2_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_addrRef_0 1
+relsq tmp curLine_step0_addrRef_0 1
 subaddr strcmp_const_2_a tmp
 rem End setaddr
 
@@ -708,58 +708,58 @@ rem End strcmp_const
 
 
 rem Handle other instructions
-addr linesPass1Cur_other 0
-rem copyaddr linesPass1Cur_other linesPass1Cur tmp tmp2
+addr curLine_step0_other 0
+rem copyaddr curLine_step0_other curLine_step0 tmp tmp2
 
-rem Start setaddr linesPass1Cur_other linesPass1Cur_addrRef_0 tmp tmp2
+rem Start setaddr curLine_step0_other curLine_step0_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass1Cur_other_addrRef_0 1
+relsq tmp2 curLine_step0_other_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_addrRef_0 1
-subaddr linesPass1Cur_other tmp
+relsq tmp curLine_step0_addrRef_0 1
+subaddr curLine_step0_other tmp
 rem End setaddr
 
-subaddr linesPass1Cur_other CONST_-18
+subaddr curLine_step0_other CONST_-18
 
-rem Start alloc_array linesPass1Cur_other 18 20 tmp
+rem Start alloc_array curLine_step0_other 18 20 tmp
 
-rem Start malloc_const linesPass1Cur_other 300 tmp
+rem Start malloc_const curLine_step0_other 300 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur_other linesPass1Cur_other 1
-relsq linesPass1Cur_other tmp 1
+relsq curLine_step0_other curLine_step0_other 1
+relsq curLine_step0_other tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_300 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_-8
-rem zero linesPass1Cur_other
-relsq linesPass1Cur_other linesPass1Cur_other 1
-rem incaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_-8
+rem incaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_-8
+rem zero curLine_step0_other
+relsq curLine_step0_other curLine_step0_other 1
+rem incaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_-8
 
-rem Start mov linesPass1Cur_other CONST_18 tmp
+rem Start mov curLine_step0_other CONST_18 tmp
 relsq tmp tmp 1
 relsq tmp CONST_18 1
-relsq linesPass1Cur_other linesPass1Cur_other 1
-relsq linesPass1Cur_other tmp 1
+relsq curLine_step0_other curLine_step0_other 1
+relsq curLine_step0_other tmp 1
 rem End mov
 
-rem incaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_-8
+rem incaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_-8
 
-rem Start mov linesPass1Cur_other CONST_300 tmp
+rem Start mov curLine_step0_other CONST_300 tmp
 relsq tmp tmp 1
 relsq tmp CONST_300 1
-relsq linesPass1Cur_other linesPass1Cur_other 1
-relsq linesPass1Cur_other tmp 1
+relsq curLine_step0_other curLine_step0_other 1
+relsq curLine_step0_other tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_other 18
-subaddr linesPass1Cur_other CONST_18
+rem decaddr curLine_step0_other 18
+subaddr curLine_step0_other CONST_18
 rem End alloc_array
 
 
@@ -907,15 +907,15 @@ subaddr tmpStr CONST_8
 rem End inp_line
 
 
-rem Start str_split linesPass1Cur_other tmpStr SPACE 800 tmp tmp2
+rem Start str_split curLine_step0_other tmpStr SPACE 800 tmp tmp2
 addr str_split_0_aBuf 0
 
-rem Start setaddr str_split_0_aBuf linesPass1Cur_other tmp tmp2
+rem Start setaddr str_split_0_aBuf curLine_step0_other tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 str_split_0_aBuf_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_other 1
+relsq tmp curLine_step0_other 1
 subaddr str_split_0_aBuf tmp
 rem End setaddr
 
@@ -1059,95 +1059,95 @@ subaddr str_split_0_aBuf CONST_-10
 rem lbljmp STR_SPLIT_0_PART_LOOP
 lblsq ZERO ZERO STR_SPLIT_0_PART_LOOP
 label STR_SPLIT_0_END_SPLIT
-rem incaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_-8
+rem incaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_-8
 
-rem Start mov linesPass1Cur_other str_split_0_partCount tmp
+rem Start mov curLine_step0_other str_split_0_partCount tmp
 relsq tmp tmp 1
 relsq tmp str_split_0_partCount 1
-relsq linesPass1Cur_other linesPass1Cur_other 1
-relsq linesPass1Cur_other tmp 1
+relsq curLine_step0_other curLine_step0_other 1
+relsq curLine_step0_other tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_8
+rem decaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_8
 rem End str_split
 
 
-subaddr linesPass1Cur_other CONST_-20
+subaddr curLine_step0_other CONST_-20
 
-rem Start alloc_str linesPass1Cur_other 0 tmp
+rem Start alloc_str curLine_step0_other 0 tmp
 
-rem Start malloc_const linesPass1Cur_other 0 tmp
+rem Start malloc_const curLine_step0_other 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur_other linesPass1Cur_other 1
-relsq linesPass1Cur_other tmp 1
+relsq curLine_step0_other curLine_step0_other 1
+relsq curLine_step0_other tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_-8
-rem zero linesPass1Cur_other
-relsq linesPass1Cur_other linesPass1Cur_other 1
-rem incaddr linesPass1Cur_other 8
-subaddr linesPass1Cur_other CONST_-8
+rem incaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_-8
+rem zero curLine_step0_other
+relsq curLine_step0_other curLine_step0_other 1
+rem incaddr curLine_step0_other 8
+subaddr curLine_step0_other CONST_-8
 
-rem Start mov linesPass1Cur_other CONST_0 tmp
+rem Start mov curLine_step0_other CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur_other linesPass1Cur_other 1
-relsq linesPass1Cur_other tmp 1
+relsq curLine_step0_other curLine_step0_other 1
+relsq curLine_step0_other tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_other 10
-subaddr linesPass1Cur_other CONST_10
+rem decaddr curLine_step0_other 10
+subaddr curLine_step0_other CONST_10
 rem End alloc_str
 
 
-subaddr linesPass1Cur_other CONST_-18
-relsq linesPass1Cur_other linesPass1Cur_other 1
+subaddr curLine_step0_other CONST_-18
+relsq curLine_step0_other curLine_step0_other 1
 
-subaddr linesPass1Cur_other CONST_-8
-rem copyaddr linesPass1Cur linesPass1Cur_other tmp tmp2
+subaddr curLine_step0_other CONST_-8
+rem copyaddr curLine_step0 curLine_step0_other tmp tmp2
 
-rem Start setaddr linesPass1Cur linesPass1Cur_other_addrRef_0 tmp tmp2
+rem Start setaddr curLine_step0 curLine_step0_other_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass1Cur_addrRef_0 1
+relsq tmp2 curLine_step0_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_other_addrRef_0 1
-subaddr linesPass1Cur tmp
+relsq tmp curLine_step0_other_addrRef_0 1
+subaddr curLine_step0 tmp
 rem End setaddr
 
 lblsq ZERO ZERO STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_NEWLINE
-addr linesPass1Cur_newline 0
-rem copyaddr linesPass1Cur_newline linesPass1Cur tmp tmp2
+addr curLine_step0_newline 0
+rem copyaddr curLine_step0_newline curLine_step0 tmp tmp2
 
-rem Start setaddr linesPass1Cur_newline linesPass1Cur_addrRef_0 tmp tmp2
+rem Start setaddr curLine_step0_newline curLine_step0_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass1Cur_newline_addrRef_0 1
+relsq tmp2 curLine_step0_newline_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_addrRef_0 1
-subaddr linesPass1Cur_newline tmp
+relsq tmp curLine_step0_addrRef_0 1
+subaddr curLine_step0_newline tmp
 rem End setaddr
 
 
-rem Start strcpy linesPass1Cur_newline NEWLINE tmp tmp2
+rem Start strcpy curLine_step0_newline NEWLINE tmp tmp2
 addr strcpy_0_strA 0
 
-rem Start setaddr strcpy_0_strA linesPass1Cur_newline tmp tmp2
+rem Start setaddr strcpy_0_strA curLine_step0_newline tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcpy_0_strA_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_newline 1
+relsq tmp curLine_step0_newline 1
 subaddr strcpy_0_strA tmp
 rem End setaddr
 
@@ -1162,16 +1162,16 @@ relsq tmp NEWLINE 1
 subaddr strcpy_0_strB tmp
 rem End setaddr
 
-rem incaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_-8
+rem incaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_-8
 rem incaddr NEWLINE 8
 subaddr NEWLINE CONST_-8
 
-rem Start mov linesPass1Cur_newline NEWLINE tmp
+rem Start mov curLine_step0_newline NEWLINE tmp
 relsq tmp tmp 1
 relsq tmp NEWLINE 1
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-relsq linesPass1Cur_newline tmp 1
+relsq curLine_step0_newline curLine_step0_newline 1
+relsq curLine_step0_newline tmp 1
 rem End mov
 
 var strcpy_0_strLen 0
@@ -1183,8 +1183,8 @@ relsq strcpy_0_strLen strcpy_0_strLen 1
 relsq strcpy_0_strLen tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_8
+rem decaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_8
 rem decaddr NEWLINE 8
 subaddr NEWLINE CONST_8
 label STRCPY_0_LOOP
@@ -1210,198 +1210,198 @@ label STRCPY_0_END
 rem End strcpy
 
 
-subaddr linesPass1Cur_newline CONST_-18
+subaddr curLine_step0_newline CONST_-18
 
-rem Start alloc_array linesPass1Cur_newline 18 0 tmp
+rem Start alloc_array curLine_step0_newline 18 0 tmp
 
-rem Start malloc_const linesPass1Cur_newline 0 tmp
+rem Start malloc_const curLine_step0_newline 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-relsq linesPass1Cur_newline tmp 1
+relsq curLine_step0_newline curLine_step0_newline 1
+relsq curLine_step0_newline tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_-8
-rem zero linesPass1Cur_newline
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-rem incaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_-8
+rem incaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_-8
+rem zero curLine_step0_newline
+relsq curLine_step0_newline curLine_step0_newline 1
+rem incaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_-8
 
-rem Start mov linesPass1Cur_newline CONST_18 tmp
+rem Start mov curLine_step0_newline CONST_18 tmp
 relsq tmp tmp 1
 relsq tmp CONST_18 1
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-relsq linesPass1Cur_newline tmp 1
+relsq curLine_step0_newline curLine_step0_newline 1
+relsq curLine_step0_newline tmp 1
 rem End mov
 
-rem incaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_-8
+rem incaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_-8
 
-rem Start mov linesPass1Cur_newline CONST_0 tmp
+rem Start mov curLine_step0_newline CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-relsq linesPass1Cur_newline tmp 1
+relsq curLine_step0_newline curLine_step0_newline 1
+relsq curLine_step0_newline tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_newline 18
-subaddr linesPass1Cur_newline CONST_18
+rem decaddr curLine_step0_newline 18
+subaddr curLine_step0_newline CONST_18
 rem End alloc_array
 
 
-subaddr linesPass1Cur_newline CONST_-20
+subaddr curLine_step0_newline CONST_-20
 
-rem Start alloc_str linesPass1Cur_newline 0 tmp
+rem Start alloc_str curLine_step0_newline 0 tmp
 
-rem Start malloc_const linesPass1Cur_newline 0 tmp
+rem Start malloc_const curLine_step0_newline 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-relsq linesPass1Cur_newline tmp 1
+relsq curLine_step0_newline curLine_step0_newline 1
+relsq curLine_step0_newline tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_-8
-rem zero linesPass1Cur_newline
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-rem incaddr linesPass1Cur_newline 8
-subaddr linesPass1Cur_newline CONST_-8
+rem incaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_-8
+rem zero curLine_step0_newline
+relsq curLine_step0_newline curLine_step0_newline 1
+rem incaddr curLine_step0_newline 8
+subaddr curLine_step0_newline CONST_-8
 
-rem Start mov linesPass1Cur_newline CONST_0 tmp
+rem Start mov curLine_step0_newline CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
-relsq linesPass1Cur_newline tmp 1
+relsq curLine_step0_newline curLine_step0_newline 1
+relsq curLine_step0_newline tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_newline 10
-subaddr linesPass1Cur_newline CONST_10
+rem decaddr curLine_step0_newline 10
+subaddr curLine_step0_newline CONST_10
 rem End alloc_str
 
 
-subaddr linesPass1Cur_newline CONST_-18
-relsq linesPass1Cur_newline linesPass1Cur_newline 1
+subaddr curLine_step0_newline CONST_-18
+relsq curLine_step0_newline curLine_step0_newline 1
 
-subaddr linesPass1Cur_newline CONST_-8
-rem copyaddr linesPass1Cur linesPass1Cur_newline tmp tmp2
+subaddr curLine_step0_newline CONST_-8
+rem copyaddr curLine_step0 curLine_step0_newline tmp tmp2
 
-rem Start setaddr linesPass1Cur linesPass1Cur_newline_addrRef_0 tmp tmp2
+rem Start setaddr curLine_step0 curLine_step0_newline_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass1Cur_addrRef_0 1
+relsq tmp2 curLine_step0_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_newline_addrRef_0 1
-subaddr linesPass1Cur tmp
+relsq tmp curLine_step0_newline_addrRef_0 1
+subaddr curLine_step0 tmp
 rem End setaddr
 
 lblsq ZERO ZERO STEP0_INPUT_INST
 
 
 label STEP0_HANDLE_REM
-addr linesPass1Cur_rem 0
-rem copyaddr linesPass1Cur_rem linesPass1Cur tmp tmp2
+addr curLine_step0_rem 0
+rem copyaddr curLine_step0_rem curLine_step0 tmp tmp2
 
-rem Start setaddr linesPass1Cur_rem linesPass1Cur_addrRef_0 tmp tmp2
+rem Start setaddr curLine_step0_rem curLine_step0_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass1Cur_rem_addrRef_0 1
+relsq tmp2 curLine_step0_rem_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_addrRef_0 1
-subaddr linesPass1Cur_rem tmp
+relsq tmp curLine_step0_addrRef_0 1
+subaddr curLine_step0_rem tmp
 rem End setaddr
 
-subaddr linesPass1Cur_rem CONST_-18
+subaddr curLine_step0_rem CONST_-18
 
-rem Start alloc_array linesPass1Cur_rem 18 0 tmp
+rem Start alloc_array curLine_step0_rem 18 0 tmp
 
-rem Start malloc_const linesPass1Cur_rem 0 tmp
+rem Start malloc_const curLine_step0_rem 0 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-relsq linesPass1Cur_rem tmp 1
+relsq curLine_step0_rem curLine_step0_rem 1
+relsq curLine_step0_rem tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_0 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_-8
-rem zero linesPass1Cur_rem
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-rem incaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_-8
+rem incaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_-8
+rem zero curLine_step0_rem
+relsq curLine_step0_rem curLine_step0_rem 1
+rem incaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_-8
 
-rem Start mov linesPass1Cur_rem CONST_18 tmp
+rem Start mov curLine_step0_rem CONST_18 tmp
 relsq tmp tmp 1
 relsq tmp CONST_18 1
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-relsq linesPass1Cur_rem tmp 1
+relsq curLine_step0_rem curLine_step0_rem 1
+relsq curLine_step0_rem tmp 1
 rem End mov
 
-rem incaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_-8
+rem incaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_-8
 
-rem Start mov linesPass1Cur_rem CONST_0 tmp
+rem Start mov curLine_step0_rem CONST_0 tmp
 relsq tmp tmp 1
 relsq tmp CONST_0 1
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-relsq linesPass1Cur_rem tmp 1
+relsq curLine_step0_rem curLine_step0_rem 1
+relsq curLine_step0_rem tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_rem 18
-subaddr linesPass1Cur_rem CONST_18
+rem decaddr curLine_step0_rem 18
+subaddr curLine_step0_rem CONST_18
 rem End alloc_array
 
 
-subaddr linesPass1Cur_rem CONST_-20
+subaddr curLine_step0_rem CONST_-20
 
-rem Start alloc_str linesPass1Cur_rem 800 tmp
+rem Start alloc_str curLine_step0_rem 800 tmp
 
-rem Start malloc_const linesPass1Cur_rem 800 tmp
+rem Start malloc_const curLine_step0_rem 800 tmp
 relsq tmp tmp 1
 relsq tmp FREE_START 1
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-relsq linesPass1Cur_rem tmp 1
+relsq curLine_step0_rem curLine_step0_rem 1
+relsq curLine_step0_rem tmp 1
 relsq tmp tmp 1
 relsq tmp CONST_800 1
 relsq FREE_START tmp 1
 rem End malloc_const
 
-rem incaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_-8
-rem zero linesPass1Cur_rem
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-rem incaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_-8
+rem incaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_-8
+rem zero curLine_step0_rem
+relsq curLine_step0_rem curLine_step0_rem 1
+rem incaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_-8
 
-rem Start mov linesPass1Cur_rem CONST_800 tmp
+rem Start mov curLine_step0_rem CONST_800 tmp
 relsq tmp tmp 1
 relsq tmp CONST_800 1
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-relsq linesPass1Cur_rem tmp 1
+relsq curLine_step0_rem curLine_step0_rem 1
+relsq curLine_step0_rem tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_rem 10
-subaddr linesPass1Cur_rem CONST_10
+rem decaddr curLine_step0_rem 10
+subaddr curLine_step0_rem CONST_10
 rem End alloc_str
 
 
-rem Start inp_line linesPass1Cur_rem tmp tmp2
+rem Start inp_line curLine_step0_rem tmp tmp2
 addr inp_line_1_str 0
 
-rem Start setaddr inp_line_1_str linesPass1Cur_rem tmp tmp2
+rem Start setaddr inp_line_1_str curLine_step0_rem tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_line_1_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_rem 1
+relsq tmp curLine_step0_rem 1
 subaddr inp_line_1_str tmp
 rem End setaddr
 
@@ -1463,34 +1463,34 @@ subaddr inp_line_1_str CONST_-8
 rem lbljmp INP_LINE_1_LOOP
 lblsq ZERO ZERO INP_LINE_1_LOOP
 label INP_LINE_1_TERM
-rem incaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_-8
+rem incaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_-8
 
-rem Start mov linesPass1Cur_rem inp_line_1_len tmp
+rem Start mov curLine_step0_rem inp_line_1_len tmp
 relsq tmp tmp 1
 relsq tmp inp_line_1_len 1
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
-relsq linesPass1Cur_rem tmp 1
+relsq curLine_step0_rem curLine_step0_rem 1
+relsq curLine_step0_rem tmp 1
 rem End mov
 
-rem decaddr linesPass1Cur_rem 8
-subaddr linesPass1Cur_rem CONST_8
+rem decaddr curLine_step0_rem 8
+subaddr curLine_step0_rem CONST_8
 rem End inp_line
 
 
-subaddr linesPass1Cur_rem CONST_-18
-relsq linesPass1Cur_rem linesPass1Cur_rem 1
+subaddr curLine_step0_rem CONST_-18
+relsq curLine_step0_rem curLine_step0_rem 1
 
-subaddr linesPass1Cur_rem CONST_-8
-rem copyaddr linesPass1Cur linesPass1Cur_rem tmp tmp2
+subaddr curLine_step0_rem CONST_-8
+rem copyaddr curLine_step0 curLine_step0_rem tmp tmp2
 
-rem Start setaddr linesPass1Cur linesPass1Cur_rem_addrRef_0 tmp tmp2
+rem Start setaddr curLine_step0 curLine_step0_rem_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass1Cur_addrRef_0 1
+relsq tmp2 curLine_step0_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp linesPass1Cur_rem_addrRef_0 1
-subaddr linesPass1Cur tmp
+relsq tmp curLine_step0_rem_addrRef_0 1
+subaddr curLine_step0 tmp
 rem End setaddr
 
 lblsq ZERO ZERO STEP0_INPUT_INST
@@ -1506,20 +1506,20 @@ rem 0x28 The default value of the symbol (SYM_VAL_PLACEHOLDER if None)
 var symbolsBegin 200000
 var symbolsLen 0
 
-addr curLine 0
+addr curLine_step1 0
 
-rem Start setaddr curLine linesPass1Begin tmp tmp2
+rem Start setaddr curLine_step1 linesPass1Begin tmp tmp2
 
-rem Start mov tmp curLine_addrRef_0 tmp2
+rem Start mov tmp curLine_step1_addrRef_0 tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 curLine_addrRef_0 1
+relsq tmp2 curLine_step1_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
 rem sub tmp linesPass1Begin
 relsq tmp linesPass1Begin 1
-subaddr curLine tmp
+subaddr curLine_step1 tmp
 rem End setaddr
 
 var linesLeft 0
@@ -1539,16 +1539,16 @@ lblsq linesLeft CONST_0 STEP2_START
 relsq linesLeft CONST_1 1
 
 
-rem Start strcmp_const curLine VAR STEP1_CREATE_SYMBOL tmp tmp2
+rem Start strcmp_const curLine_step1 VAR STEP1_CREATE_SYMBOL tmp tmp2
 addr strcmp_const_3_a 0
-rem copyaddr strcmp_const_3_a curLine tmp tmp2
+rem copyaddr strcmp_const_3_a curLine_step1 tmp tmp2
 
-rem Start setaddr strcmp_const_3_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_3_a curLine_step1_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_3_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step1_addrRef_0 1
 subaddr strcmp_const_3_a tmp
 rem End setaddr
 
@@ -1677,16 +1677,16 @@ label STRCMP_CONST_3_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine LABEL STEP1_CREATE_SYMBOL tmp tmp2
+rem Start strcmp_const curLine_step1 LABEL STEP1_CREATE_SYMBOL tmp tmp2
 addr strcmp_const_4_a 0
-rem copyaddr strcmp_const_4_a curLine tmp tmp2
+rem copyaddr strcmp_const_4_a curLine_step1 tmp tmp2
 
-rem Start setaddr strcmp_const_4_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_4_a curLine_step1_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_4_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step1_addrRef_0 1
 subaddr strcmp_const_4_a tmp
 rem End setaddr
 
@@ -1815,16 +1815,16 @@ label STRCMP_CONST_4_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine ADDR STEP1_CREATE_SYMBOL tmp tmp2
+rem Start strcmp_const curLine_step1 ADDR STEP1_CREATE_SYMBOL tmp tmp2
 addr strcmp_const_5_a 0
-rem copyaddr strcmp_const_5_a curLine tmp tmp2
+rem copyaddr strcmp_const_5_a curLine_step1 tmp tmp2
 
-rem Start setaddr strcmp_const_5_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_5_a curLine_step1_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_5_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step1_addrRef_0 1
 subaddr strcmp_const_5_a tmp
 rem End setaddr
 
@@ -1952,15 +1952,15 @@ subaddr ADDR CONST_8
 label STRCMP_CONST_5_END
 rem End strcmp_const
 
-subaddr curLine CONST_-58
+subaddr curLine_step1 CONST_-58
 lblsq ZERO ZERO STEP1_LOOP
 
 label STEP1_CREATE_SYMBOL
 rem Set the symbol name
-subaddr curLine CONST_-18
+subaddr curLine_step1 CONST_-18
 addr curTokens_step1 0
 
-rem Start setaddr curTokens_step1 curLine tmp tmp2
+rem Start setaddr curTokens_step1 curLine_step1 tmp tmp2
 
 rem Start mov tmp curTokens_step1_addrRef_0 tmp2
 relsq tmp2 tmp2 1
@@ -1969,12 +1969,12 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp curLine
-relsq tmp curLine 1
+rem sub tmp curLine_step1
+relsq tmp curLine_step1 1
 subaddr curTokens_step1 tmp
 rem End setaddr
 
-subaddr curLine CONST_18
+subaddr curLine_step1 CONST_18
 
 addr symbolsCur_step1 200000
 
@@ -2081,22 +2081,22 @@ rem End strcpy
 
 subaddr curTokens_step1 CONST_-18
 
-rem Set the symbol address
+rem Handle the symbol address
 subaddr symbolsCur_step1 CONST_-18
 rem set symbolsCur_step1 -1
 relsq symbolsCur_step1 symbolsCur_step1 1
 relsq symbolsCur_step1 CONST_1 1
 
-rem Start strcmp_const curLine ADDR STEP1_SET_ADDRESS tmp tmp2
+rem Start strcmp_const curLine_step1 ADDR STEP1_SET_ADDRESS tmp tmp2
 addr strcmp_const_6_a 0
-rem copyaddr strcmp_const_6_a curLine tmp tmp2
+rem copyaddr strcmp_const_6_a curLine_step1 tmp tmp2
 
-rem Start setaddr strcmp_const_6_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_6_a curLine_step1_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_6_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step1_addrRef_0 1
 subaddr strcmp_const_6_a tmp
 rem End setaddr
 
@@ -2422,16 +2422,16 @@ relsq symbolsCur_step1 tmp 1
 rem End mov
 
 
-rem Start strcmp_const curLine VAR STEP1_SET_VALUE tmp tmp2
+rem Start strcmp_const curLine_step1 VAR STEP1_SET_VALUE tmp tmp2
 addr strcmp_const_7_a 0
-rem copyaddr strcmp_const_7_a curLine tmp tmp2
+rem copyaddr strcmp_const_7_a curLine_step1 tmp tmp2
 
-rem Start setaddr strcmp_const_7_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_7_a curLine_step1_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_7_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step1_addrRef_0 1
 subaddr strcmp_const_7_a tmp
 rem End setaddr
 
@@ -2741,7 +2741,7 @@ rem End from_hex
 
 
 label STEP1_END
-subaddr curLine CONST_-58
+subaddr curLine_step1 CONST_-58
 subaddr symbolsCur_step1 CONST_-8
 relsq symbolsLen CONST_-1 1
 lblsq ZERO ZERO STEP1_LOOP
@@ -2749,19 +2749,20 @@ lblsq ZERO ZERO STEP1_LOOP
 
 rem 2. Count symbol references (Pass 1)
 label STEP2_START
+addr curLine_step2 0
 
-rem Start setaddr curLine linesPass1Begin tmp tmp2
+rem Start setaddr curLine_step2 linesPass1Begin tmp tmp2
 
-rem Start mov tmp curLine_addrRef_0 tmp2
+rem Start mov tmp curLine_step2_addrRef_0 tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 curLine_addrRef_0 1
+relsq tmp2 curLine_step2_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
 rem sub tmp linesPass1Begin
 relsq tmp linesPass1Begin 1
-subaddr curLine tmp
+subaddr curLine_step2 tmp
 rem End setaddr
 
 
@@ -2779,9 +2780,9 @@ label STEP2_LOOP
 lblsq linesLeft CONST_0 STEP3_START
 relsq linesLeft CONST_1 1
 
-subaddr curLine CONST_-18
+subaddr curLine_step2 CONST_-18
 
-rem Start setaddr incRefCount_key curLine tmp tmp2
+rem Start setaddr incRefCount_key curLine_step2 tmp tmp2
 
 rem Start mov tmp incRefCount_key_addrRef_0 tmp2
 relsq tmp2 tmp2 1
@@ -2790,24 +2791,24 @@ relsq tmp tmp 1
 relsq tmp tmp2 1
 rem End mov
 
-rem sub tmp curLine
-relsq tmp curLine 1
+rem sub tmp curLine_step2
+relsq tmp curLine_step2 1
 subaddr incRefCount_key tmp
 rem End setaddr
 
-subaddr curLine CONST_18
+subaddr curLine_step2 CONST_18
 
 
-rem Start strcmp_const curLine ABSSQ STEP2_HANDLE_SQ tmp tmp2
+rem Start strcmp_const curLine_step2 ABSSQ STEP2_HANDLE_SQ tmp tmp2
 addr strcmp_const_8_a 0
-rem copyaddr strcmp_const_8_a curLine tmp tmp2
+rem copyaddr strcmp_const_8_a curLine_step2 tmp tmp2
 
-rem Start setaddr strcmp_const_8_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_8_a curLine_step2_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_8_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step2_addrRef_0 1
 subaddr strcmp_const_8_a tmp
 rem End setaddr
 
@@ -2936,16 +2937,16 @@ label STRCMP_CONST_8_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine RELSQ STEP2_HANDLE_SQ tmp tmp2
+rem Start strcmp_const curLine_step2 RELSQ STEP2_HANDLE_SQ tmp tmp2
 addr strcmp_const_9_a 0
-rem copyaddr strcmp_const_9_a curLine tmp tmp2
+rem copyaddr strcmp_const_9_a curLine_step2 tmp tmp2
 
-rem Start setaddr strcmp_const_9_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_9_a curLine_step2_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_9_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step2_addrRef_0 1
 subaddr strcmp_const_9_a tmp
 rem End setaddr
 
@@ -3074,16 +3075,16 @@ label STRCMP_CONST_9_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine LBLSQ STEP2_HANDLE_SQ tmp tmp2
+rem Start strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_SQ tmp tmp2
 addr strcmp_const_10_a 0
-rem copyaddr strcmp_const_10_a curLine tmp tmp2
+rem copyaddr strcmp_const_10_a curLine_step2 tmp tmp2
 
-rem Start setaddr strcmp_const_10_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_10_a curLine_step2_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_10_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step2_addrRef_0 1
 subaddr strcmp_const_10_a tmp
 rem End setaddr
 
@@ -3212,16 +3213,16 @@ label STRCMP_CONST_10_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+rem Start strcmp_const curLine_step2 SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 addr strcmp_const_11_a 0
-rem copyaddr strcmp_const_11_a curLine tmp tmp2
+rem copyaddr strcmp_const_11_a curLine_step2 tmp tmp2
 
-rem Start setaddr strcmp_const_11_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_11_a curLine_step2_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_11_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step2_addrRef_0 1
 subaddr strcmp_const_11_a tmp
 rem End setaddr
 
@@ -3350,16 +3351,16 @@ label STRCMP_CONST_11_END
 rem End strcmp_const
 
 
-rem Start strcmp_const curLine RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+rem Start strcmp_const curLine_step2 RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
 addr strcmp_const_12_a 0
-rem copyaddr strcmp_const_12_a curLine tmp tmp2
+rem copyaddr strcmp_const_12_a curLine_step2 tmp tmp2
 
-rem Start setaddr strcmp_const_12_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_12_a curLine_step2_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_12_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step2_addrRef_0 1
 subaddr strcmp_const_12_a tmp
 rem End setaddr
 
@@ -3736,16 +3737,16 @@ raw_ref incRefCount_retPos_1
 label incRefCount_retPos_1
 
 
-rem Start strcmp_const curLine LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+rem Start strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 addr strcmp_const_14_a 0
-rem copyaddr strcmp_const_14_a curLine tmp tmp2
+rem copyaddr strcmp_const_14_a curLine_step2 tmp tmp2
 
-rem Start setaddr strcmp_const_14_a curLine_addrRef_0 tmp tmp2
+rem Start setaddr strcmp_const_14_a curLine_step2_addrRef_0 tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_14_a_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-relsq tmp curLine_addrRef_0 1
+relsq tmp curLine_step2_addrRef_0 1
 subaddr strcmp_const_14_a tmp
 rem End setaddr
 
@@ -3896,19 +3897,19 @@ lblsq ZERO ZERO STEP2_END
 
 
 label STEP2_HANDLE_RAW_REF
-subaddr curLine CONST_-20
+subaddr curLine_step2 CONST_-20
 var tokensCount 0
 
-rem Start mov tokensCount curLine tmp
-rem movneg tmp curLine
+rem Start mov tokensCount curLine_step2 tmp
+rem movneg tmp curLine_step2
 relsq tmp tmp 1
-relsq tmp curLine 1
+relsq tmp curLine_step2 1
 rem movneg tokensCount tmp
 relsq tokensCount tokensCount 1
 relsq tokensCount tmp 1
 rem End mov
 
-subaddr curLine CONST_20
+subaddr curLine_step2 CONST_20
 
 label STEP2_RAW_REF_LOOP
 lblsq tokensCount CONST_0 STEP2_END
@@ -3932,7 +3933,7 @@ lblsq ZERO ZERO STEP2_RAW_REF_LOOP
 
 
 label STEP2_END
-subaddr curLine CONST_-58
+subaddr curLine_step2 CONST_-58
 lblsq ZERO ZERO STEP2_LOOP
 
 
