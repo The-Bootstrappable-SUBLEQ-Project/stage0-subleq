@@ -180,7 +180,7 @@ decleq c2 26 RECORD_REF
 
 rem Handle label (:)
 inc lblCount 1
-alloc_str lblArrNext 1000 tmp
+alloc_str_const lblArrNext 800 tmp
 inp_token lblArrNext tmp tmp2
 incaddr lblArrNext 18
 mov lblArrNext codeLen tmp
@@ -190,7 +190,7 @@ lbljmp MAIN
 rem Handle reference (&)
 label RECORD_REF
 inc refCount 1
-alloc_str refArrNext 1000 tmp
+alloc_str_const refArrNext 800 tmp
 inp_token refArrNext tmp tmp2
 incaddr refArrNext 18
 mov refArrNext codeLen tmp

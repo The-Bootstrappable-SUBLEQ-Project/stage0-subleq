@@ -25,12 +25,17 @@ addr CPU_CONTROL_START 13EE0000
 var FREE_START 1000000
 var LINE_FEED a
 var SPACE 20
-rem Generated from https://www.random.org/colors/hex
-rem F to whoever is unlucky enough to use this number in their lsq, which is about a 1 / 3.4e38 chance
-var SYM_VAL_PLACEHOLDER 130b197121c2627e
+
 lblsq ZERO ZERO EP
 
 label EP
+
+rem Generated from https://www.random.org/colors/hex
+rem F to whoever is unlucky enough to use this number in their lsq
+var SYM_VAL_PLACEHOLDER 130b197121c2627d
+rem Dirty, hopefully temporary hack to ensure it can build itself
+inc SYM_VAL_PLACEHOLDER 1
+
 var LF a
 
 var hex_version 0
@@ -45,6 +50,7 @@ putchar hex_version tmp
 dec hex_version 30
 putchar LF tmp
 
+
 rem 0. Parse file into lines
 rem A Line is made of four components, adding to a total of 0x58 bytes:
 rem 0x0 String containing the instruction
@@ -56,7 +62,7 @@ var linesPass1Len 0
 addr curLine_step0 100000
 
 label STEP0_INPUT_INST
-alloc_str curLine_step0 100 tmp
+alloc_str_const curLine_step0 50 tmp
 inp_token_allow_empty curLine_step0 tmp tmp2
 inc linesPass1Len 1
 
@@ -74,12 +80,12 @@ alloc_array curLine_step0_other 18 20 tmp
 malloc_const tmp 18 tmp2
 addr tmpStr 0
 setaddr tmpStr tmp tmp2 tmp3
-alloc_str tmpStr 1000 tmp
+alloc_str_const tmpStr 1000 tmp
 inp_line tmpStr tmp tmp2
-str_split curLine_step0_other tmpStr SPACE 800 tmp tmp2
+str_split curLine_step0_other tmpStr SPACE 400 tmp tmp2
 
 incaddr curLine_step0_other 20
-alloc_str curLine_step0_other 0 tmp
+alloc_str_const curLine_step0_other 0 tmp
 
 incaddr curLine_step0_other 18
 zero curLine_step0_other
@@ -98,7 +104,7 @@ incaddr curLine_step0_newline 18
 alloc_array curLine_step0_newline 18 0 tmp
 
 incaddr curLine_step0_newline 20
-alloc_str curLine_step0_newline 0 tmp
+alloc_str_const curLine_step0_newline 0 tmp
 
 incaddr curLine_step0_newline 18
 zero curLine_step0_newline
@@ -115,7 +121,7 @@ incaddr curLine_step0_rem 18
 alloc_array curLine_step0_rem 18 0 tmp
 
 incaddr curLine_step0_rem 20
-alloc_str curLine_step0_rem 800 tmp
+alloc_str_const curLine_step0_rem 1000 tmp
 inp_line curLine_step0_rem tmp tmp2
 
 incaddr curLine_step0_rem 18
@@ -159,7 +165,7 @@ setaddr curTokens_step1 curLine_step1 tmp tmp2
 decaddr curLine_step1 18
 
 addr symbolsCur_step1 200000
-alloc_str symbolsCur_step1 800 tmp
+alloc_str_const symbolsCur_step1 400 tmp
 strcpy symbolsCur_step1 curTokens_step1 tmp tmp2
 incaddr curTokens_step1 18
 
@@ -192,28 +198,6 @@ inc symbolsLen 1
 lbljmp STEP1_LOOP
 
 
-rem 2. Count symbol references (Pass 1)
-label STEP2_START
-addr curLine_step2 0
-setaddr curLine_step2 linesPass1Begin tmp tmp2
-mov linesLeft linesPass1Len tmp
-
-label STEP2_LOOP
-decleq linesLeft 0 STEP3_START
-dec linesLeft 1
-
-incaddr curLine_step2 18
-setaddr incRefCount_key curLine_step2 tmp tmp2
-decaddr curLine_step2 18
-
-strcmp_const curLine_step2 ABSSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp_const curLine_step2 RELSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_SQ tmp tmp2
-strcmp_const curLine_step2 SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
-strcmp_const curLine_step2 RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
-lbljmp STEP2_END
-
-
 label incRefCount
 addr incRefCount_key 0
 addr incRefCount_it 0
@@ -236,6 +220,27 @@ incaddr incRefCount_it 20
 inc incRefCount_it 1
 ret incRefCount
 
+
+rem 2. Count symbol references (Pass 1)
+label STEP2_START
+addr curLine_step2 0
+setaddr curLine_step2 linesPass1Begin tmp tmp2
+mov linesLeft linesPass1Len tmp
+
+label STEP2_LOOP
+decleq linesLeft 0 STEP3_START
+dec linesLeft 1
+
+incaddr curLine_step2 18
+setaddr incRefCount_key curLine_step2 tmp tmp2
+decaddr curLine_step2 18
+
+strcmp_const curLine_step2 ABSSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step2 RELSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step2 SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
+strcmp_const curLine_step2 RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
+lbljmp STEP2_END
 
 label STEP2_HANDLE_SQ
 call incRefCount tmp
@@ -275,36 +280,209 @@ lbljmp STEP2_LOOP
 rem 3. Create subaddr/zeroaddr stubs
 label STEP3_START
 
-addr symbolsCur_step3 0
-setaddr symbolsCur_step3 symbolsBegin tmp tmp2
+rem An item in addrSymbols is made of two components, adding to a total of 0x20 bytes:
+rem 0x0 String containing the name of the symbol
+rem 0x18 Next id to assign to an addrRef
+var addrSymbolsBegin 300000
+var addrSymbolsLen 0
+
+var linesPass2Begin 400000
+var linesPass2Len 0
+addr curLinePass1_step3 100000
+addr curLinePass2_step3 400000
+
+label STEP3_LOOP
+decleq linesPass1Len 0 STEP4_START
+dec linesPass1Len 1
+
+addr inst_step3 0
+copyaddr inst_step3 curLinePass1_step3 tmp tmp2
+strcmp_const inst_step3 SUBADDR STEP3_PROCESS tmp tmp2
+strcmp_const inst_step3 ZEROADDR STEP3_PROCESS tmp tmp2
+
+memcpy_const curLinePass2_step3 curLinePass1_step3 58 tmp tmp2
+inc linesPass2Len 1
+incaddr curLinePass1_step3 58
+incaddr curLinePass2_step3 58
+lbljmp STEP3_LOOP
+
+label STEP3_PROCESS
+rem Py: sym = lines[i].tokens[0]
+addr sym0_step3 0
+addr sym1_step3 0
+incaddr curLinePass1_step3 18
+setaddr sym0_step3 curLinePass1_step3 tmp tmp2
+setaddr sym1_step3 curLinePass1_step3 tmp tmp2
+incaddr sym1_step3 18
+incaddr curLinePass1_step3 40
+
+rem Py: addrSymbols[sym] = 0
+addr addrSymbols_it_step3 0
+setaddr addrSymbols_it_step3 addrSymbolsBegin tmp tmp2
+find_item_in_buf_with_str_key addrSymbols_it_step3 sym0_step3 20 addrSymbolsLen STEP3_FOUND_ADDRSYMBOL tmp tmp2
+
+rem No match. Create a new item instead
+memcpy_const addrSymbols_it_step3 sym0_step3 18 tmp tmp2
+incaddr addrSymbols_it_step3 18
+zero addrSymbols_it_step3
+decaddr addrSymbols_it_step3 18
+inc addrSymbolsLen 1
+
+rem Py: stubPrefix = f"{sym}_addrRef_"
+label STEP3_FOUND_ADDRSYMBOL
+rem Set stubPrefix_step3
+addr stubPrefix_step3 0
+strcat stubPrefix_step3 sym0_step3 ADDRREF tmp tmp2 tmp3
+
+rem Find refCount
+var refCount_step3 0
+var nextId_step3 0
+addr symbols_it_step3 0
+setaddr symbols_it_step3 symbolsBegin tmp tmp2
+find_item_in_buf_with_str_key symbols_it_step3 sym0_step3 30 symbolsLen STEP3_FOUND_SYMBOL tmp tmp2
+
+puts STEP3_MISSING_SYMBOL tmp tmp2
+lbljmp HALT
+
+label STEP3_FOUND_SYMBOL
+incaddr symbols_it_step3 20
+mov refCount_step3 symbols_it_step3 tmp
+zero nextId_step3
+
+label STEP3_STUB_LOOP
+decleq refCount_step3 0 STEP3_LOOP
+dec refCount_step3 1
+
+addr nextId_str_step3 0
+itoa nextId_str_step3 nextId_step3 tmp tmp2 tmp3
+addr stubSym_step3 0
+strcat stubSym_step3 stubPrefix_step3 nextId_str_step3 tmp tmp2 tmp3
+
+rem Py: Line("relsq", ...)
+memcpy_const curLinePass2_step3 RELSQ 18 tmp tmp2
+incaddr curLinePass2_step3 18
+alloc_array curLinePass2_step3 18 3 tmp
+
+rem Add the three tokens
+addr curTokens_step3 0
+setaddr curTokens_step3 curLinePass2_step3 tmp tmp2
+memcpy_const curTokens_step3 stubSym_step3 18 tmp tmp2
+incaddr curTokens_step3 18
+
+strcmp_const inst_step3 SUBADDR STEP3_TOKEN2_SUBADDR tmp tmp2
+label STEP3_TOKEN2_ZEROADDR
+memcpy_const curTokens_step3 stubSym_step3 18 tmp tmp2
+lbljmp STEP3_TOKEN3
+
+label STEP3_TOKEN2_SUBADDR
+memcpy_const curTokens_step3 sym1_step3 18 tmp tmp2
+
+label STEP3_TOKEN3
+incaddr curTokens_step3 18
+memcpy_const curTokens_step3 ONE 18 tmp tmp2
+
+incaddr curLinePass2_step3 8
+set curLinePass2_step3 3
+
+rem Handle comment and offset
+incaddr curLinePass2_step3 18
+alloc_str_const curLinePass2_step3 0 tmp
+incaddr curLinePass2_step3 18
+zero curLinePass2_step3
+incaddr curLinePass2_step3 8
+
+rem Py: incRefCount(f"{stubPrefix}{k}")
+copyaddr incRefCount_key stubSym_step3 tmp tmp2
+call incRefCount tmp
+
+inc linesPass2Len 1
+inc nextId_step3 1
+lbljmp STEP3_STUB_LOOP
+
+rem 4. Find label+stub addresses
+label STEP4_START
+addr symbolsCur_dbg 0
+setaddr symbolsCur_dbg symbolsBegin tmp tmp2
 var symbolsLeft 0
 mov symbolsLeft symbolsLen tmp
 
-label LOOP
-decleq symbolsLeft 0 HALT
+label DBG_LOOP
+decleq symbolsLeft 0 DBG_LINES
 dec symbolsLeft 1
 
 puts SYMBOL_PART_1 tmp tmp2
-puts symbolsCur_step3 tmp tmp2
+puts symbolsCur_dbg tmp tmp2
 putchar LINE_FEED tmp
 
-incaddr symbolsCur_step3 18
+incaddr symbolsCur_dbg 18
 puts SYMBOL_PART_2 tmp tmp2
-print_qword symbolsCur_step3 tmp tmp2 tmp3
+print_qword symbolsCur_dbg tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
-incaddr symbolsCur_step3 8
+incaddr symbolsCur_dbg 8
 puts SYMBOL_PART_3 tmp tmp2
-print_qword symbolsCur_step3 tmp tmp2 tmp3
+print_qword symbolsCur_dbg tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
-incaddr symbolsCur_step3 8
+incaddr symbolsCur_dbg 8
 puts SYMBOL_PART_4 tmp tmp2
-print_qword symbolsCur_step3 tmp tmp2 tmp3
+print_qword symbolsCur_dbg tmp tmp2 tmp3
 putchar LINE_FEED tmp
 
-incaddr symbolsCur_step3 8
-lbljmp LOOP
+incaddr symbolsCur_dbg 8
+lbljmp DBG_LOOP
+
+label DBG_LINES
+addr linesPass2Cur_dbg 0
+setaddr linesPass2Cur_dbg linesPass2Begin tmp tmp2
+var linesLeft_dbg 0
+mov linesLeft_dbg linesPass2Len tmp
+
+label DBG_LOOP_2
+decleq linesLeft_dbg 0 HALT
+dec linesLeft_dbg 1
+
+puts LINE_PART_1 tmp tmp2
+puts linesPass2Cur_dbg tmp tmp2
+putchar LINE_FEED tmp
+
+incaddr linesPass2Cur_dbg 18
+puts LINE_PART_2 tmp tmp2
+
+addr tokensBuf 0
+setaddr tokensBuf linesPass2Cur_dbg tmp tmp2
+incaddr linesPass2Cur_dbg 8
+var tokenCount 0
+mov tokenCount linesPass2Cur_dbg tmp
+
+label TOKEN_PRINT_LOOP
+decleq tokenCount 0 TOKEN_PRINT_END
+dec tokenCount 1
+puts tokensBuf tmp tmp2
+
+set tmp 2c
+putchar tmp tmp2
+putchar SPACE tmp
+incaddr tokensBuf 18
+lbljmp TOKEN_PRINT_LOOP
+
+label TOKEN_PRINT_END
+putchar LINE_FEED tmp
+
+
+incaddr linesPass2Cur_dbg 18
+puts LINE_PART_3 tmp tmp2
+puts linesPass2Cur_dbg tmp tmp2
+putchar LINE_FEED tmp
+
+incaddr linesPass2Cur_dbg 18
+puts LINE_PART_4 tmp tmp2
+print_qword linesPass2Cur_dbg tmp tmp2 tmp3
+putchar LINE_FEED tmp
+
+incaddr linesPass2Cur_dbg 8
+putchar LINE_FEED tmp
+lbljmp DBG_LOOP_2
 
 label HALT
 halt tmp tmp2
@@ -325,14 +503,27 @@ def_string ABSSQ abssq
 def_string RELSQ relsq
 def_string LBLSQ lblsq
 def_string SUBADDR subaddr
+def_string ZEROADDR zeroaddr
 def_string RAW_REF raw_ref
+def_string ADDRREF _addrRef_
 
-rem def_string LINE_PART_1 inst: 
-rem def_string LINE_PART_2 tokens: 
-rem def_string LINE_PART_3 comment: 
-rem def_string LINE_PART_4 offset: 
+def_string ONE 1
+
+def_string LINE_PART_1 inst: 
+def_string LINE_PART_2 tokens: 
+def_string LINE_PART_3 comment: 
+def_string LINE_PART_4 offset: 
 
 def_string SYMBOL_PART_1 name: 
 def_string SYMBOL_PART_2 addr: 
 def_string SYMBOL_PART_3 refCount: 
 def_string SYMBOL_PART_4 val: 
+
+def_string STEP3_MISSING_SYMBOL STEP3_MISSING_SYMBOL
+
+rem WA for `assert sym.val is not None` errors
+inc inst_step3 0
+inc sym1_step3 0
+inc curTokens_step3 0
+subaddr ONE ZERO
+inc ONE 0

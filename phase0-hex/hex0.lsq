@@ -1,4 +1,4 @@
-rem Copyright (C) 2022 NyanCatTW1
+0rem Copyright (C) 2022 NyanCatTW1
 rem This file is part of stage0-subleq.
 rem 
 rem stage0-subleq is free software: you can redistribute it and/or modify
@@ -29,138 +29,269 @@ label MAIN
 rem val is intentionally kept negative to make it easier to add to cur
 var val 0
 var c 0
-
-rem Start getchar c tmp
-rem set tmp 1
+rem MSQ_START 0 getchar c tmp
+rem MSQ_START 1 set tmp 1
+rem MSQ_START 2 zero tmp
 relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc tmp 1
 relsq tmp CONST_-1 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
 relsq tmp SERIAL_IN 2
-rem reljmp -1
+rem MSQ_START 1 reljmp -1
 relsq ZERO ZERO -1
-rem zero SERIAL_IN
+rem MSQ_END 1 reljmp
+rem MSQ_START 1 zero SERIAL_IN
+rem MSQ_START 2 sub SERIAL_IN SERIAL_IN
 relsq SERIAL_IN SERIAL_IN 1
-rem movneg c tmp
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 movneg c tmp
+rem MSQ_START 2 zero c
 relsq c c 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub c tmp
 relsq c tmp 1
-rem End getchar
-
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 getchar
 rem putchar c tmp
 
 rem Handle NUL ~ "
+rem MSQ_START 0 decleq c 22 MAIN
 lblsq c CONST_22 MAIN
+rem MSQ_END 0 decleq
 
 rem Handle #
+rem MSQ_START 0 decleq c 1 COMMENT
 lblsq c CONST_1 COMMENT
+rem MSQ_END 0 decleq
 
 rem Handle $ ~ /
+rem MSQ_START 0 decleq c c MAIN
 lblsq c CONST_C MAIN
+rem MSQ_END 0 decleq
 
 rem Handle 0 ~ 9
-rem movneg val c
+rem MSQ_START 0 movneg val c
+rem MSQ_START 1 zero val
+rem MSQ_START 2 sub val val
 relsq val val 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 sub val c
 relsq val c 1
+rem MSQ_END 1 sub
+rem MSQ_END 0 movneg
+rem MSQ_START 0 inc val 1
+rem MSQ_START 1 dec val -1
 relsq val CONST_-1 1
+rem MSQ_END 1 dec
+rem MSQ_END 0 inc
+rem MSQ_START 0 decleq c a WRITE
 lblsq c CONST_A WRITE
+rem MSQ_END 0 decleq
 
 rem Handle :
+rem MSQ_START 0 decleq c 1 MAIN
 lblsq c CONST_1 MAIN
+rem MSQ_END 0 decleq
 
 rem Handle ;
+rem MSQ_START 0 decleq c 1 COMMENT
 lblsq c CONST_1 COMMENT
+rem MSQ_END 0 decleq
 
 rem Handle < ~ @
+rem MSQ_START 0 decleq c 5 MAIN
 lblsq c CONST_5 MAIN
+rem MSQ_END 0 decleq
 
 rem Handle A ~ F
-rem movneg val c
+rem MSQ_START 0 movneg val c
+rem MSQ_START 1 zero val
+rem MSQ_START 2 sub val val
 relsq val val 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 sub val c
 relsq val c 1
+rem MSQ_END 1 sub
+rem MSQ_END 0 movneg
+rem MSQ_START 0 dec val 9
 relsq val CONST_9 1
+rem MSQ_END 0 dec
+rem MSQ_START 0 decleq c 6 WRITE
 lblsq c CONST_6 WRITE
+rem MSQ_END 0 decleq
 
 rem Handle G ~ `
+rem MSQ_START 0 decleq c 1a MAIN
 lblsq c CONST_1A MAIN
+rem MSQ_END 0 decleq
 
 rem Handle a ~ f
-rem movneg val c
+rem MSQ_START 0 movneg val c
+rem MSQ_START 1 zero val
+rem MSQ_START 2 sub val val
 relsq val val 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 sub val c
 relsq val c 1
+rem MSQ_END 1 sub
+rem MSQ_END 0 movneg
+rem MSQ_START 0 dec val 9
 relsq val CONST_9 1
+rem MSQ_END 0 dec
+rem MSQ_START 0 decleq c 6 WRITE
 lblsq c CONST_6 WRITE
+rem MSQ_END 0 decleq
 
 rem Handle g ~ }
+rem MSQ_START 0 decleq c 17 MAIN
 lblsq c CONST_17 MAIN
+rem MSQ_END 0 decleq
 
 rem Handle ~ and DEL (0x7f)
+rem MSQ_START 0 lbljmp PRINT
 lblsq ZERO ZERO PRINT
+rem MSQ_END 0 lbljmp
 
 
 rem COMMENT ignores characters until \r or \n is fed
 label COMMENT
-
-rem Start getchar c tmp
-rem set tmp 1
+rem MSQ_START 0 getchar c tmp
+rem MSQ_START 1 set tmp 1
+rem MSQ_START 2 zero tmp
 relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc tmp 1
 relsq tmp CONST_-1 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
 relsq tmp SERIAL_IN 2
-rem reljmp -1
+rem MSQ_START 1 reljmp -1
 relsq ZERO ZERO -1
-rem zero SERIAL_IN
+rem MSQ_END 1 reljmp
+rem MSQ_START 1 zero SERIAL_IN
+rem MSQ_START 2 sub SERIAL_IN SERIAL_IN
 relsq SERIAL_IN SERIAL_IN 1
-rem movneg c tmp
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 movneg c tmp
+rem MSQ_START 2 zero c
 relsq c c 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub c tmp
 relsq c tmp 1
-rem End getchar
-
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 getchar
 rem putchar c tmp
+rem MSQ_START 0 decleq c 9 COMMENT
 lblsq c CONST_9 COMMENT
+rem MSQ_END 0 decleq
 rem Handle LF
+rem MSQ_START 0 decleq c 1 MAIN
 lblsq c CONST_1 MAIN
+rem MSQ_END 0 decleq
+rem MSQ_START 0 decleq c 2 COMMENT
 lblsq c CONST_2 COMMENT
+rem MSQ_END 0 decleq
 rem Handle CR
+rem MSQ_START 0 decleq c 1 MAIN
 lblsq c CONST_1 MAIN
+rem MSQ_END 0 decleq
+rem MSQ_START 0 lbljmp COMMENT
 lblsq ZERO ZERO COMMENT
+rem MSQ_END 0 lbljmp
 
 
 rem WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
 label WRITE
 var cur 0
-
-rem Start mul_16 cur tmp
+rem MSQ_START 0 mul_16 cur tmp
+rem MSQ_START 1 zero tmp
+rem MSQ_START 2 sub tmp tmp
 relsq tmp tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 sub tmp cur
 relsq tmp cur 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp cur
 relsq tmp cur 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp cur
 relsq tmp cur 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp cur
 relsq tmp cur 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp cur
 relsq tmp cur 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub cur tmp
 relsq cur tmp 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub cur tmp
 relsq cur tmp 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub cur tmp
 relsq cur tmp 1
-rem End mul_16
-
+rem MSQ_END 1 sub
+rem MSQ_END 0 mul_16
+rem MSQ_START 0 sub cur val
 relsq cur val 1
+rem MSQ_END 0 sub
 
 rem i will turn positive every 16 iterations
 var i -f
+rem MSQ_START 0 incleq i 1 MAIN
+rem MSQ_START 1 decleq i -1 MAIN
 lblsq i CONST_-1 MAIN
+rem MSQ_END 1 decleq
+rem MSQ_END 0 incleq
 
 rem Copy to the buffer and increase its address
 addr bufEnd 100000
 var codeLen 0
-
-rem Start mov bufEnd cur tmp
-rem movneg tmp cur
+rem MSQ_START 0 mov bufEnd cur tmp
+rem MSQ_START 1 movneg tmp cur
+rem MSQ_START 2 zero tmp
 relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp cur
 relsq tmp cur 1
-rem movneg bufEnd tmp
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg bufEnd tmp
+rem MSQ_START 2 zero bufEnd
 relsq bufEnd bufEnd 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub bufEnd tmp
 relsq bufEnd tmp 1
-rem End mov
-
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+rem MSQ_START 0 zero cur
+rem MSQ_START 1 sub cur cur
 relsq cur cur 1
+rem MSQ_END 1 sub
+rem MSQ_END 0 zero
+rem MSQ_START 0 decaddr bufEnd -8
 subaddr bufEnd CONST_-8
+rem MSQ_END 0 decaddr
+rem MSQ_START 0 inc codeLen 8
+rem MSQ_START 1 dec codeLen -8
 relsq codeLen CONST_-8 1
+rem MSQ_END 1 dec
+rem MSQ_END 0 inc
+rem MSQ_START 0 decleq i 10 MAIN
 lblsq i CONST_10 MAIN
+rem MSQ_END 0 decleq
 
 
 rem PRINT prints the assembled binary file to the serial
@@ -169,109 +300,128 @@ label PRINT
 addr charToPrint 100000
 
 rem Start from the most significant byte
-rem set i 8
+rem MSQ_START 0 set i 8
+rem MSQ_START 1 zero i
+rem MSQ_START 2 sub i i
 relsq i i 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 inc i 8
+rem MSQ_START 2 dec i -8
 relsq i CONST_-8 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+rem MSQ_END 0 set
+rem MSQ_START 0 decaddr charToPrint 8
 subaddr charToPrint CONST_8
+rem MSQ_END 0 decaddr
 
 label PRINT_CHAR_START
+rem MSQ_START 0 decaddr charToPrint -1
 subaddr charToPrint CONST_-1
-
-rem Start mov c charToPrint tmp
-rem movneg tmp charToPrint
+rem MSQ_END 0 decaddr
+rem MSQ_START 0 mov c charToPrint tmp
+rem MSQ_START 1 movneg tmp charToPrint
+rem MSQ_START 2 zero tmp
 relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp charToPrint
 relsq tmp charToPrint 1
-rem movneg c tmp
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg c tmp
+rem MSQ_START 2 zero c
 relsq c c 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub c tmp
 relsq c tmp 1
-rem End mov
-
-
-rem Start mod_256 c tmp tmp2
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+rem MSQ_START 0 mod_256 c tmp tmp2
 var mod_256_0_isNeg 0
-rem zero mod_256_0_isNeg
-rem sub mod_256_0_isNeg mod_256_0_isNeg
+rem MSQ_START 1 zero mod_256_0_isNeg
+rem MSQ_START 2 sub mod_256_0_isNeg mod_256_0_isNeg
 relsq mod_256_0_isNeg mod_256_0_isNeg 1
-rem jn c MOD_256_0_IS_NEG tmp tmp2
-
-rem Start jl c ZERO MOD_256_0_IS_NEG tmp tmp2
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 jn c MOD_256_0_IS_NEG tmp tmp2
+rem MSQ_START 2 jl c ZERO MOD_256_0_IS_NEG tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 c 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 relsq tmp CONST_-1 1
 lblsq tmp ZERO MOD_256_0_IS_NEG
-rem End jl
-
-rem lbljmp MOD_256_0_START
+rem MSQ_END 2 jl
+rem MSQ_END 1 jn
+rem MSQ_START 1 lbljmp MOD_256_0_START
 lblsq ZERO ZERO MOD_256_0_START
+rem MSQ_END 1 lbljmp
 label MOD_256_0_IS_NEG
-rem inc mod_256_0_isNeg 1
-rem dec mod_256_0_isNeg -1
+rem MSQ_START 1 inc mod_256_0_isNeg 1
+rem MSQ_START 2 dec mod_256_0_isNeg -1
 relsq mod_256_0_isNeg CONST_-1 1
-
-rem Start neg c tmp tmp2
-rem movneg tmp c
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+rem MSQ_START 1 neg c tmp tmp2
+rem MSQ_START 2 movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
-
-rem Start mov c tmp tmp2
+rem MSQ_END 2 movneg
+rem MSQ_START 2 mov c tmp tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 relsq c c 1
 relsq c tmp2 1
-rem End mov
-
-rem End neg
-
+rem MSQ_END 2 mov
+rem MSQ_END 1 neg
 label MOD_256_0_START
 var mod_256_0_subber 0
-rem set mod_256_0_subber 100
-rem zero mod_256_0_subber
+rem MSQ_START 1 set mod_256_0_subber 100
+rem MSQ_START 2 zero mod_256_0_subber
 relsq mod_256_0_subber mod_256_0_subber 1
-rem inc mod_256_0_subber 100
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc mod_256_0_subber 100
 relsq mod_256_0_subber CONST_-100 1
-
-rem Start jl c mod_256_0_subber MOD_256_0_CHECK_NEG tmp tmp2
-
-rem Start mov tmp c tmp2
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
+rem MSQ_START 1 jl c mod_256_0_subber MOD_256_0_CHECK_NEG tmp tmp2
+rem MSQ_START 2 mov tmp c tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 c 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem End mov
-
-rem inc tmp 1
+rem MSQ_END 2 mov
+rem MSQ_START 2 inc tmp 1
 relsq tmp CONST_-1 1
+rem MSQ_END 2 inc
 lblsq tmp mod_256_0_subber MOD_256_0_CHECK_NEG
-rem End jl
-
+rem MSQ_END 1 jl
 var mod_256_0_nextSubber 0
-rem set mod_256_0_nextSubber 10000
-rem zero mod_256_0_nextSubber
+rem MSQ_START 1 set mod_256_0_nextSubber 10000
+rem MSQ_START 2 zero mod_256_0_nextSubber
 relsq mod_256_0_nextSubber mod_256_0_nextSubber 1
-rem inc mod_256_0_nextSubber 10000
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc mod_256_0_nextSubber 10000
 relsq mod_256_0_nextSubber CONST_-10000 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
 label MOD_256_0_MULT_SUBBER_START
-
-rem Start jl c mod_256_0_nextSubber MOD_256_0_SUBTRACT_A tmp tmp2
-
-rem Start mov tmp c tmp2
+rem MSQ_START 1 jl c mod_256_0_nextSubber MOD_256_0_SUBTRACT_A tmp tmp2
+rem MSQ_START 2 mov tmp c tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 c 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem End mov
-
-rem inc tmp 1
+rem MSQ_END 2 mov
+rem MSQ_START 2 inc tmp 1
 relsq tmp CONST_-1 1
+rem MSQ_END 2 inc
 lblsq tmp mod_256_0_nextSubber MOD_256_0_SUBTRACT_A
-rem End jl
-
-
-rem Start mul_256 mod_256_0_subber tmp
-
-rem Start mul_16 mod_256_0_subber tmp
+rem MSQ_END 1 jl
+rem MSQ_START 1 mul_256 mod_256_0_subber tmp
+rem MSQ_START 2 mul_16 mod_256_0_subber tmp
 relsq tmp tmp 1
 relsq tmp mod_256_0_subber 1
 relsq tmp mod_256_0_subber 1
@@ -281,10 +431,8 @@ relsq tmp mod_256_0_subber 1
 relsq mod_256_0_subber tmp 1
 relsq mod_256_0_subber tmp 1
 relsq mod_256_0_subber tmp 1
-rem End mul_16
-
-
-rem Start mul_16 mod_256_0_subber tmp
+rem MSQ_END 2 mul_16
+rem MSQ_START 2 mul_16 mod_256_0_subber tmp
 relsq tmp tmp 1
 relsq tmp mod_256_0_subber 1
 relsq tmp mod_256_0_subber 1
@@ -294,14 +442,10 @@ relsq tmp mod_256_0_subber 1
 relsq mod_256_0_subber tmp 1
 relsq mod_256_0_subber tmp 1
 relsq mod_256_0_subber tmp 1
-rem End mul_16
-
-rem End mul_256
-
-
-rem Start mul_256 mod_256_0_nextSubber tmp
-
-rem Start mul_16 mod_256_0_nextSubber tmp
+rem MSQ_END 2 mul_16
+rem MSQ_END 1 mul_256
+rem MSQ_START 1 mul_256 mod_256_0_nextSubber tmp
+rem MSQ_START 2 mul_16 mod_256_0_nextSubber tmp
 relsq tmp tmp 1
 relsq tmp mod_256_0_nextSubber 1
 relsq tmp mod_256_0_nextSubber 1
@@ -311,10 +455,8 @@ relsq tmp mod_256_0_nextSubber 1
 relsq mod_256_0_nextSubber tmp 1
 relsq mod_256_0_nextSubber tmp 1
 relsq mod_256_0_nextSubber tmp 1
-rem End mul_16
-
-
-rem Start mul_16 mod_256_0_nextSubber tmp
+rem MSQ_END 2 mul_16
+rem MSQ_START 2 mul_16 mod_256_0_nextSubber tmp
 relsq tmp tmp 1
 relsq tmp mod_256_0_nextSubber 1
 relsq tmp mod_256_0_nextSubber 1
@@ -324,113 +466,154 @@ relsq tmp mod_256_0_nextSubber 1
 relsq mod_256_0_nextSubber tmp 1
 relsq mod_256_0_nextSubber tmp 1
 relsq mod_256_0_nextSubber tmp 1
-rem End mul_16
-
-rem End mul_256
-
-rem decleq mod_256_0_nextSubber 0 MOD_256_0_SUBTRACT_A
+rem MSQ_END 2 mul_16
+rem MSQ_END 1 mul_256
+rem MSQ_START 1 decleq mod_256_0_nextSubber 0 MOD_256_0_SUBTRACT_A
 lblsq mod_256_0_nextSubber CONST_0 MOD_256_0_SUBTRACT_A
-rem lbljmp MOD_256_0_MULT_SUBBER_START
+rem MSQ_END 1 decleq
+rem MSQ_START 1 lbljmp MOD_256_0_MULT_SUBBER_START
 lblsq ZERO ZERO MOD_256_0_MULT_SUBBER_START
+rem MSQ_END 1 lbljmp
 label MOD_256_0_SUBTRACT_A
 lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
 lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
 lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
 lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
-rem lbljmp MOD_256_0_SUBTRACT_A
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+lblsq c mod_256_0_subber MOD_256_0_REVERT_SUB
+rem MSQ_START 1 lbljmp MOD_256_0_SUBTRACT_A
 lblsq ZERO ZERO MOD_256_0_SUBTRACT_A
+rem MSQ_END 1 lbljmp
 label MOD_256_0_REVERT_SUB
-
-rem Start jz c MOD_256_0_START tmp
-rem movneg tmp c
+rem MSQ_START 1 jz c MOD_256_0_START tmp
+rem MSQ_START 2 movneg tmp c
 relsq tmp tmp 1
 relsq tmp c 1
-rem incleq tmp 1 JZ_0_END
+rem MSQ_END 2 movneg
+rem MSQ_START 2 incleq tmp 1 JZ_0_END
 lblsq tmp CONST_-1 JZ_0_END
-rem incleq c 1 JZ_0_REVERT_A
+rem MSQ_END 2 incleq
+rem MSQ_START 2 incleq c 1 JZ_0_REVERT_A
 lblsq c CONST_-1 JZ_0_REVERT_A
-rem dec c 1
+rem MSQ_END 2 incleq
+rem MSQ_START 2 dec c 1
 relsq c CONST_1 1
-rem lbljmp MOD_256_0_START
+rem MSQ_END 2 dec
+rem MSQ_START 2 lbljmp MOD_256_0_START
 lblsq ZERO ZERO MOD_256_0_START
+rem MSQ_END 2 lbljmp
 label JZ_0_REVERT_A
-rem dec c 1
+rem MSQ_START 2 dec c 1
 relsq c CONST_1 1
+rem MSQ_END 2 dec
 label JZ_0_END
-rem End jz
-
-
-rem Start add c mod_256_0_subber tmp
-rem movneg tmp mod_256_0_subber
+rem MSQ_END 1 jz
+rem MSQ_START 1 add c mod_256_0_subber tmp
+rem MSQ_START 2 movneg tmp mod_256_0_subber
 relsq tmp tmp 1
 relsq tmp mod_256_0_subber 1
-rem sub c tmp
+rem MSQ_END 2 movneg
+rem MSQ_START 2 sub c tmp
 relsq c tmp 1
-rem End add
-
-rem lbljmp MOD_256_0_START
+rem MSQ_END 2 sub
+rem MSQ_END 1 add
+rem MSQ_START 1 lbljmp MOD_256_0_START
 lblsq ZERO ZERO MOD_256_0_START
+rem MSQ_END 1 lbljmp
 label MOD_256_0_CHECK_NEG
-rem decleq mod_256_0_isNeg 0 MOD_256_0_END
+rem MSQ_START 1 decleq mod_256_0_isNeg 0 MOD_256_0_END
 lblsq mod_256_0_isNeg CONST_0 MOD_256_0_END
-rem decleq c 0 MOD_256_0_END
+rem MSQ_END 1 decleq
+rem MSQ_START 1 decleq c 0 MOD_256_0_END
 lblsq c CONST_0 MOD_256_0_END
-
-rem Start mov tmp c tmp2
-rem movneg tmp2 c
+rem MSQ_END 1 decleq
+rem MSQ_START 1 mov tmp c tmp2
+rem MSQ_START 2 movneg tmp2 c
 relsq tmp2 tmp2 1
 relsq tmp2 c 1
-rem movneg tmp tmp2
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem End mov
-
-rem set c 100
-rem zero c
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 set c 100
+rem MSQ_START 2 zero c
 relsq c c 1
-rem inc c 100
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc c 100
 relsq c CONST_-100 1
-rem sub c tmp
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
+rem MSQ_START 1 sub c tmp
 relsq c tmp 1
+rem MSQ_END 1 sub
 label MOD_256_0_END
-
-rem Start putchar c tmp
+rem MSQ_END 0 mod_256
+rem MSQ_START 0 putchar c tmp
 relsq SERIAL_OUT ZERO 2
-rem reljmp -1
+rem MSQ_START 1 reljmp -1
 relsq ZERO ZERO -1
-rem movneg tmp c
+rem MSQ_END 1 reljmp
+rem MSQ_START 1 movneg tmp c
+rem MSQ_START 2 zero tmp
 relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp c
 relsq tmp c 1
-rem dec tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 dec tmp 1
 relsq tmp CONST_1 1
-rem movneg SERIAL_OUT tmp
+rem MSQ_END 1 dec
+rem MSQ_START 1 movneg SERIAL_OUT tmp
+rem MSQ_START 2 zero SERIAL_OUT
 relsq SERIAL_OUT SERIAL_OUT 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub SERIAL_OUT tmp
 relsq SERIAL_OUT tmp 1
-rem End putchar
-
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 putchar
+rem MSQ_START 0 decleq i 1 PRINT_CHAR_END
 lblsq i CONST_1 PRINT_CHAR_END
+rem MSQ_END 0 decleq
+rem MSQ_START 0 lbljmp PRINT_CHAR_START
 lblsq ZERO ZERO PRINT_CHAR_START
+rem MSQ_END 0 lbljmp
 
 label PRINT_CHAR_END
 rem Go to the next qword
+rem MSQ_START 0 decaddr charToPrint -8
 subaddr charToPrint CONST_-8
+rem MSQ_END 0 decaddr
+rem MSQ_START 0 decleq codeLen 8 HALT
 lblsq codeLen CONST_8 HALT
+rem MSQ_END 0 decleq
+rem MSQ_START 0 lbljmp PRINT
 lblsq ZERO ZERO PRINT
+rem MSQ_END 0 lbljmp
 
 label HALT
-
-rem Start halt tmp tmp2
-
-rem Start set_safe CPU_CONTROL_START 2 tmp tmp2
+rem MSQ_START 0 halt tmp tmp2
+rem MSQ_START 1 set_safe CPU_CONTROL_START 2 tmp tmp2
+rem MSQ_START 2 mov tmp CPU_CONTROL_START tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 CPU_CONTROL_START 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_START 2 dec tmp 2
 relsq tmp CONST_2 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 sub CPU_CONTROL_START tmp
 relsq CPU_CONTROL_START tmp 1
-rem End set_safe
-
+rem MSQ_END 2 sub
+rem MSQ_END 1 set_safe
 relsq ZERO ZERO 0
+rem MSQ_END 0 halt
 
 var CONST_-1 -1
 var CONST_22 22

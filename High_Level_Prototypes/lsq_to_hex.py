@@ -64,19 +64,19 @@ def toLong(inp):
 
 parser = argparse.ArgumentParser(prog="lsq_to_hex", description="Assembles a lsq program into hex0~hex2 codes")
 parser.add_argument("lsq_path", help="Path to the lsq file")
-parser.add_argument("--hex-version", dest="hex_version", metavar="N", type=int, default=0, help="The hex version to output (0~2, default is 0)")
+parser.add_argument("--hex-version", dest="hex_version", metavar="N", type=int, default=-1, help="The hex version to output (0~2, default is to use the one set in the file)")
 args = parser.parse_args()
-
-hex_version = args.hex_version
-assert hex_version in [0, 1, 2]
-print(f"# hex{hex_version}")
 
 # 0. Parse file into lines
 lines = []
 inp = open(args.lsq_path).read()
 
-if args.lsq_path == "test.lsq":
-    inp = inp[1:]
+hex_version = int(inp[0])
+inp = inp[1:]
+if args.hex_version != -1:
+    hex_version = args.hex_version
+assert hex_version in [0, 1, 2]
+print(f"# hex{hex_version}")
 
 inp = inp.split("\n")
 for line in inp:
@@ -95,6 +95,7 @@ for line in inp:
     elif inst in lsq_insts:
         lines.append(Line(inst, tokens[1:]))
     elif inst == "end":
+        lines.append(Line("end"))
         break
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
@@ -103,7 +104,9 @@ for line in inp:
 symbols = {}
 for line in lines:
     if line.inst in ["var", "label", "addr"]:
-        assert line.tokens[0] not in symbols
+        if line.tokens[0] in symbols:
+            print(line, file=sys.stderr)
+            assert line.tokens[0] not in symbols
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
         if line.inst == "var":
             symbols[line.tokens[0]].val = int(line.tokens[1], 16)
@@ -130,7 +133,29 @@ for line in lines:
             incRefCount(token)
 
 
-# This is used to ensure that the Step 2 implementation of lsq_to_hex.msq is correct
+# 3. Create subaddr/zeroaddr stubs
+i = 0
+# Format: {SymbolName: NextId}
+addrSymbols = {}
+while i < len(lines):
+    if lines[i].inst not in ["subaddr", "zeroaddr"]:
+        i += 1
+        continue
+    sym = lines[i].tokens[0]
+    addrSymbols[sym] = 0
+
+    stubPrefix = f"{sym}_addrRef_"
+
+    if lines[i].inst == "subaddr":
+        lines[i:i + 1] = [Line("relsq", [f"{stubPrefix}{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
+    elif lines[i].inst == "zeroaddr":
+        lines[i:i + 1] = [Line("relsq", [f"{stubPrefix}{x}", f"{stubPrefix}{x}", "1"]) for x in range(symbols[sym].refCount)]
+
+    for k in range(symbols[sym].refCount):
+        incRefCount(f"{stubPrefix}{k}")
+    i += 1
+
+# This is used to ensure that the Step 3 implementation of lsq_to_hex.msq is correct
 if args.lsq_path == "test.lsq":
     import ctypes
 
@@ -147,31 +172,16 @@ if args.lsq_path == "test.lsq":
         val = sym[1].val
         print("val:", numToRawInst(val) if val is not None else numToRawInst(0x130b197121c2627e))
 
+    for line in lines:
+        print("inst:", line.inst)
+        print("tokens:", "".join(x + ", " for x in line.tokens))
+        print("comment:", line.comment)
+        print("offset:", numToRawInst(line.offset))
+        print()
+
     sys.exit()
 
-# 3. Create subaddr/zeroaddr stubs
-i = 0
-# Format: {SymbolName: NextId}
-addrSymbols = {}
-while i < len(lines):
-    if lines[i].inst not in ["subaddr", "zeroaddr"]:
-        i += 1
-        continue
-    sym = lines[i].tokens[0]
-    addrSymbols[sym] = 0
-
-    stubSym = f"{sym}_addrRef_"
-
-    if lines[i].inst == "subaddr":
-        lines[i:i + 1] = [Line("relsq", [f"{stubSym}{x}", lines[i].tokens[1], "1"]) for x in range(symbols[sym].refCount)]
-    elif lines[i].inst == "zeroaddr":
-        lines[i:i + 1] = [Line("relsq", [f"{stubSym}{x}", f"{stubSym}{x}", "1"]) for x in range(symbols[sym].refCount)]
-
-    for k in range(symbols[sym].refCount):
-        incRefCount(f"{stubSym}{k}")
-    i += 1
-
-# 4. Find label+stub addresses and convert relsq to abssq on hex0
+# 4. Find label+stub addresses
 size = 0
 for line in lines:
     line.offset = size
@@ -270,6 +280,8 @@ for line in lines:
     elif line.inst == "raw_ref":
         for token in line.tokens:
             addToken(resolveSymbol(token))
+    elif line.inst == "end":
+        continue
     else:
         raise RuntimeError(f"Instruction {line.inst} shouldn't have appeared at this step!")
 

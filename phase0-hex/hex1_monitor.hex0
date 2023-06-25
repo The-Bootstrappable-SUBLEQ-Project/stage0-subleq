@@ -30,120 +30,223 @@
 # val is intentionally kept negative to make it easier to add to cur
 ; var val 0
 ; var c 0
-
-# Start getchar c tmp
-# set tmp 1
+# MSQ_START 0 getchar c tmp
+# MSQ_START 1 set tmp 1
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000030 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 inc tmp 1
 00000000000019e8 0000000000001a58 0000000000000048 ; relsq tmp CONST_-1 1
+# MSQ_END 2 inc
+# MSQ_END 1 set
 00000000000019e8 0000000013ed27e8 0000000000000078 ; relsq tmp SERIAL_IN 2
-# reljmp -1
+# MSQ_START 1 reljmp -1
 0000000000000000 0000000000000000 0000000000000048 ; relsq ZERO ZERO -1
-# zero SERIAL_IN
+# MSQ_END 1 reljmp
+# MSQ_START 1 zero SERIAL_IN
+# MSQ_START 2 sub SERIAL_IN SERIAL_IN
 0000000013ed27e8 0000000013ed27e8 0000000000000090 ; relsq SERIAL_IN SERIAL_IN 1
-# movneg c tmp
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 movneg c tmp
+# MSQ_START 2 zero c
 0000000000001a08 0000000000001a08 00000000000000a8 ; relsq c c 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub c tmp
 0000000000001a08 00000000000019e8 00000000000000c0 ; relsq c tmp 1
-# End getchar
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 getchar
 # Keep a backup of c for INPUT_LABEL
 ; var c2 0
-
-# Start mov c2 c tmp
-# movneg tmp c
+# MSQ_START 0 mov c2 c tmp
+# MSQ_START 1 movneg tmp c
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 00000000000000d8 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp c
 00000000000019e8 0000000000001a08 00000000000000f0 ; relsq tmp c 1
-# movneg c2 tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 movneg c2 tmp
+# MSQ_START 2 zero c2
 0000000000001a10 0000000000001a10 0000000000000108 ; relsq c2 c2 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub c2 tmp
 0000000000001a10 00000000000019e8 0000000000000120 ; relsq c2 tmp 1
-# End mov
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 mov
 
 # Handle NUL ~ "
+# MSQ_START 0 decleq c 22 MAIN
 0000000000001a08 0000000000001a60 0000000000000018 ; lblsq c CONST_22 MAIN
+# MSQ_END 0 decleq
 
 # Handle #
+# MSQ_START 0 decleq c 1 COMMENT
 0000000000001a08 0000000000001a68 0000000000000378 ; lblsq c CONST_1 COMMENT
+# MSQ_END 0 decleq
 
 # Handle $ and %
+# MSQ_START 0 decleq c 2 MAIN
 0000000000001a08 0000000000001a70 0000000000000018 ; lblsq c CONST_2 MAIN
+# MSQ_END 0 decleq
 
 # Handle &
+# MSQ_START 0 decleq c 1 INPUT_LABEL
 0000000000001a08 0000000000001a68 00000000000009f0 ; lblsq c CONST_1 INPUT_LABEL
+# MSQ_END 0 decleq
 
 # Handle ' ~ /
+# MSQ_START 0 decleq c 9 MAIN
 0000000000001a08 0000000000001a78 0000000000000018 ; lblsq c CONST_9 MAIN
+# MSQ_END 0 decleq
 
 # Handle 0 ~ 9
-# movneg val c
+# MSQ_START 0 movneg val c
+# MSQ_START 1 zero val
+# MSQ_START 2 sub val val
 0000000000001a00 0000000000001a00 00000000000001b0 ; relsq val val 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub val c
 0000000000001a00 0000000000001a08 00000000000001c8 ; relsq val c 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 inc val 1
+# MSQ_START 1 dec val -1
 0000000000001a00 0000000000001a58 00000000000001e0 ; relsq val CONST_-1 1
+# MSQ_END 1 dec
+# MSQ_END 0 inc
+# MSQ_START 0 decleq c a WRITE
 0000000000001a08 0000000000001a80 0000000000001290 ; lblsq c CONST_A WRITE
+# MSQ_END 0 decleq
 
 # Handle :
+# MSQ_START 0 decleq c 1 INPUT_LABEL
 0000000000001a08 0000000000001a68 00000000000009f0 ; lblsq c CONST_1 INPUT_LABEL
+# MSQ_END 0 decleq
 
 # Handle ;
+# MSQ_START 0 decleq c 1 COMMENT
 0000000000001a08 0000000000001a68 0000000000000378 ; lblsq c CONST_1 COMMENT
+# MSQ_END 0 decleq
 
 # Handle < ~ >
+# MSQ_START 0 decleq c 3 MAIN
 0000000000001a08 0000000000001a88 0000000000000018 ; lblsq c CONST_3 MAIN
+# MSQ_END 0 decleq
 
 # Handle ?
+# MSQ_START 0 decleq c 1 HANDLE_REL
 0000000000001a08 0000000000001a68 0000000000000498 ; lblsq c CONST_1 HANDLE_REL
+# MSQ_END 0 decleq
 
 # Handle @
+# MSQ_START 0 decleq c 1 MAIN
 0000000000001a08 0000000000001a68 0000000000000018 ; lblsq c CONST_1 MAIN
+# MSQ_END 0 decleq
 
 # Handle A ~ F
-# movneg val c
+# MSQ_START 0 movneg val c
+# MSQ_START 1 zero val
+# MSQ_START 2 sub val val
 0000000000001a00 0000000000001a00 0000000000000288 ; relsq val val 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub val c
 0000000000001a00 0000000000001a08 00000000000002a0 ; relsq val c 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 dec val 9
 0000000000001a00 0000000000001a78 00000000000002b8 ; relsq val CONST_9 1
+# MSQ_END 0 dec
+# MSQ_START 0 decleq c 6 WRITE
 0000000000001a08 0000000000001a90 0000000000001290 ; lblsq c CONST_6 WRITE
+# MSQ_END 0 decleq
 
 # Handle G ~ `
+# MSQ_START 0 decleq c 1a MAIN
 0000000000001a08 0000000000001a98 0000000000000018 ; lblsq c CONST_1A MAIN
+# MSQ_END 0 decleq
 
 # Handle a ~ f
-# movneg val c
+# MSQ_START 0 movneg val c
+# MSQ_START 1 zero val
+# MSQ_START 2 sub val val
 0000000000001a00 0000000000001a00 0000000000000300 ; relsq val val 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub val c
 0000000000001a00 0000000000001a08 0000000000000318 ; relsq val c 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 dec val 9
 0000000000001a00 0000000000001a78 0000000000000330 ; relsq val CONST_9 1
+# MSQ_END 0 dec
+# MSQ_START 0 decleq c 6 WRITE
 0000000000001a08 0000000000001a90 0000000000001290 ; lblsq c CONST_6 WRITE
+# MSQ_END 0 decleq
 
 # Handle g ~ }
+# MSQ_START 0 decleq c 17 MAIN
 0000000000001a08 0000000000001aa0 0000000000000018 ; lblsq c CONST_17 MAIN
+# MSQ_END 0 decleq
 
 # Handle ~ and DEL (0x7f)
+# MSQ_START 0 lbljmp RESOLVE_REF
 0000000000000000 0000000000000000 00000000000014d0 ; lblsq ZERO ZERO RESOLVE_REF
+# MSQ_END 0 lbljmp
 
 
 # COMMENT ignores characters until \r or \n is fed
 ; label COMMENT
-
-# Start getchar c tmp
-# set tmp 1
+# MSQ_START 0 getchar c tmp
+# MSQ_START 1 set tmp 1
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000390 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 inc tmp 1
 00000000000019e8 0000000000001a58 00000000000003a8 ; relsq tmp CONST_-1 1
+# MSQ_END 2 inc
+# MSQ_END 1 set
 00000000000019e8 0000000013ed27e8 00000000000003d8 ; relsq tmp SERIAL_IN 2
-# reljmp -1
+# MSQ_START 1 reljmp -1
 0000000000000000 0000000000000000 00000000000003a8 ; relsq ZERO ZERO -1
-# zero SERIAL_IN
+# MSQ_END 1 reljmp
+# MSQ_START 1 zero SERIAL_IN
+# MSQ_START 2 sub SERIAL_IN SERIAL_IN
 0000000013ed27e8 0000000013ed27e8 00000000000003f0 ; relsq SERIAL_IN SERIAL_IN 1
-# movneg c tmp
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 movneg c tmp
+# MSQ_START 2 zero c
 0000000000001a08 0000000000001a08 0000000000000408 ; relsq c c 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub c tmp
 0000000000001a08 00000000000019e8 0000000000000420 ; relsq c tmp 1
-# End getchar
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 getchar
 # putchar c tmp
+# MSQ_START 0 decleq c 9 COMMENT
 0000000000001a08 0000000000001a78 0000000000000378 ; lblsq c CONST_9 COMMENT
+# MSQ_END 0 decleq
 # Handle LF
+# MSQ_START 0 decleq c 1 MAIN
 0000000000001a08 0000000000001a68 0000000000000018 ; lblsq c CONST_1 MAIN
+# MSQ_END 0 decleq
+# MSQ_START 0 decleq c 2 COMMENT
 0000000000001a08 0000000000001a70 0000000000000378 ; lblsq c CONST_2 COMMENT
+# MSQ_END 0 decleq
 # Handle CR
+# MSQ_START 0 decleq c 1 MAIN
 0000000000001a08 0000000000001a68 0000000000000018 ; lblsq c CONST_1 MAIN
+# MSQ_END 0 decleq
+# MSQ_START 0 lbljmp COMMENT
 0000000000000000 0000000000000000 0000000000000378 ; lblsq ZERO ZERO COMMENT
+# MSQ_END 0 lbljmp
 
 
 # HANDLE_REL handles relative labels
@@ -151,121 +254,244 @@
 
 # Handle sign (+-)
 ; var isNeg 0
+# MSQ_START 0 zero isNeg
+# MSQ_START 1 sub isNeg isNeg
 0000000000001a18 0000000000001a18 00000000000004b0 ; relsq isNeg isNeg 1
-
-# Start getchar c tmp
-# set tmp 1
+# MSQ_END 1 sub
+# MSQ_END 0 zero
+# MSQ_START 0 getchar c tmp
+# MSQ_START 1 set tmp 1
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 00000000000004c8 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 inc tmp 1
 00000000000019e8 0000000000001a58 00000000000004e0 ; relsq tmp CONST_-1 1
+# MSQ_END 2 inc
+# MSQ_END 1 set
 00000000000019e8 0000000013ed27e8 0000000000000510 ; relsq tmp SERIAL_IN 2
-# reljmp -1
+# MSQ_START 1 reljmp -1
 0000000000000000 0000000000000000 00000000000004e0 ; relsq ZERO ZERO -1
-# zero SERIAL_IN
+# MSQ_END 1 reljmp
+# MSQ_START 1 zero SERIAL_IN
+# MSQ_START 2 sub SERIAL_IN SERIAL_IN
 0000000013ed27e8 0000000013ed27e8 0000000000000528 ; relsq SERIAL_IN SERIAL_IN 1
-# movneg c tmp
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 movneg c tmp
+# MSQ_START 2 zero c
 0000000000001a08 0000000000001a08 0000000000000540 ; relsq c c 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub c tmp
 0000000000001a08 00000000000019e8 0000000000000558 ; relsq c tmp 1
-# End getchar
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 getchar
 # Handle NUL ~ ,
+# MSQ_START 0 decleq c 2c REL_INP
 0000000000001a08 0000000000001aa8 00000000000005b8 ; lblsq c CONST_2C REL_INP
+# MSQ_END 0 decleq
+# MSQ_START 0 inc isNeg 1
+# MSQ_START 1 dec isNeg -1
 0000000000001a18 0000000000001a58 0000000000000588 ; relsq isNeg CONST_-1 1
+# MSQ_END 1 dec
+# MSQ_END 0 inc
 # Handle -
+# MSQ_START 0 decleq c 1 REL_INP
 0000000000001a08 0000000000001a68 00000000000005b8 ; lblsq c CONST_1 REL_INP
+# MSQ_END 0 decleq
+# MSQ_START 0 zero isNeg
+# MSQ_START 1 sub isNeg isNeg
 0000000000001a18 0000000000001a18 00000000000005b8 ; relsq isNeg isNeg 1
+# MSQ_END 1 sub
+# MSQ_END 0 zero
 
 ; label REL_INP
-
-# Start getchar c tmp
-# set tmp 1
+# MSQ_START 0 getchar c tmp
+# MSQ_START 1 set tmp 1
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 00000000000005d0 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 inc tmp 1
 00000000000019e8 0000000000001a58 00000000000005e8 ; relsq tmp CONST_-1 1
+# MSQ_END 2 inc
+# MSQ_END 1 set
 00000000000019e8 0000000013ed27e8 0000000000000618 ; relsq tmp SERIAL_IN 2
-# reljmp -1
+# MSQ_START 1 reljmp -1
 0000000000000000 0000000000000000 00000000000005e8 ; relsq ZERO ZERO -1
-# zero SERIAL_IN
+# MSQ_END 1 reljmp
+# MSQ_START 1 zero SERIAL_IN
+# MSQ_START 2 sub SERIAL_IN SERIAL_IN
 0000000013ed27e8 0000000013ed27e8 0000000000000630 ; relsq SERIAL_IN SERIAL_IN 1
-# movneg c tmp
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 movneg c tmp
+# MSQ_START 2 zero c
 0000000000001a08 0000000000001a08 0000000000000648 ; relsq c c 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub c tmp
 0000000000001a08 00000000000019e8 0000000000000660 ; relsq c tmp 1
-# End getchar
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 getchar
 
 # Handle NUL ~ /
+# MSQ_START 0 decleq c 2f REL_NEG
 0000000000001a08 0000000000001ab0 00000000000008e8 ; lblsq c CONST_2F REL_NEG
+# MSQ_END 0 decleq
 
 # Handle 0 ~ 9
-# movneg val c
+# MSQ_START 0 movneg val c
+# MSQ_START 1 zero val
+# MSQ_START 2 sub val val
 0000000000001a00 0000000000001a00 0000000000000690 ; relsq val val 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub val c
 0000000000001a00 0000000000001a08 00000000000006a8 ; relsq val c 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 inc val 1
+# MSQ_START 1 dec val -1
 0000000000001a00 0000000000001a58 00000000000006c0 ; relsq val CONST_-1 1
+# MSQ_END 1 dec
+# MSQ_END 0 inc
+# MSQ_START 0 decleq c a REL_WRITE
 0000000000001a08 0000000000001a80 00000000000007e0 ; lblsq c CONST_A REL_WRITE
+# MSQ_END 0 decleq
 
 # Handle : ~ @
+# MSQ_START 0 decleq c 7 REL_NEG
 0000000000001a08 0000000000001ab8 00000000000008e8 ; lblsq c CONST_7 REL_NEG
+# MSQ_END 0 decleq
 
 # Handle A ~ F
-# movneg val c
+# MSQ_START 0 movneg val c
+# MSQ_START 1 zero val
+# MSQ_START 2 sub val val
 0000000000001a00 0000000000001a00 0000000000000708 ; relsq val val 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub val c
 0000000000001a00 0000000000001a08 0000000000000720 ; relsq val c 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 dec val 9
 0000000000001a00 0000000000001a78 0000000000000738 ; relsq val CONST_9 1
+# MSQ_END 0 dec
+# MSQ_START 0 decleq c 6 REL_WRITE
 0000000000001a08 0000000000001a90 00000000000007e0 ; lblsq c CONST_6 REL_WRITE
+# MSQ_END 0 decleq
 
 # Handle G ~ `
+# MSQ_START 0 decleq c 1a REL_NEG
 0000000000001a08 0000000000001a98 00000000000008e8 ; lblsq c CONST_1A REL_NEG
+# MSQ_END 0 decleq
 
 # Handle a ~ f
-# movneg val c
+# MSQ_START 0 movneg val c
+# MSQ_START 1 zero val
+# MSQ_START 2 sub val val
 0000000000001a00 0000000000001a00 0000000000000780 ; relsq val val 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub val c
 0000000000001a00 0000000000001a08 0000000000000798 ; relsq val c 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 dec val 9
 0000000000001a00 0000000000001a78 00000000000007b0 ; relsq val CONST_9 1
+# MSQ_END 0 dec
+# MSQ_START 0 decleq c 6 REL_WRITE
 0000000000001a08 0000000000001a90 00000000000007e0 ; lblsq c CONST_6 REL_WRITE
+# MSQ_END 0 decleq
 
 # Handle g ~ DEL
+# MSQ_START 0 lbljmp REL_INP
 0000000000000000 0000000000000000 00000000000005b8 ; lblsq ZERO ZERO REL_INP
+# MSQ_END 0 lbljmp
 
 ; label REL_WRITE
-
-# Start mul_16 cur tmp
+# MSQ_START 0 mul_16 cur tmp
+# MSQ_START 1 zero tmp
+# MSQ_START 2 sub tmp tmp
 00000000000019e8 00000000000019e8 00000000000007f8 ; relsq tmp tmp 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000000810 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000000828 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000000840 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000000858 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000000870 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 0000000000000888 ; relsq cur tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 00000000000008a0 ; relsq cur tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 00000000000008b8 ; relsq cur tmp 1
-# End mul_16
-
+# MSQ_END 1 sub
+# MSQ_END 0 mul_16
+# MSQ_START 0 sub cur val
 0000000000001a38 0000000000001a00 00000000000008d0 ; relsq cur val 1
+# MSQ_END 0 sub
+# MSQ_START 0 lbljmp REL_INP
 0000000000000000 0000000000000000 00000000000005b8 ; lblsq ZERO ZERO REL_INP
+# MSQ_END 0 lbljmp
 
 # Negate cur if the relative jump is negative
 ; label REL_NEG
+# MSQ_START 0 decleq isNeg 0 REL_FIN
 0000000000001a18 0000000000001ac0 0000000000000990 ; lblsq isNeg CONST_0 REL_FIN
-
-# Start neg cur tmp tmp2
+# MSQ_END 0 decleq
+# MSQ_START 0 neg cur tmp tmp2
+# MSQ_START 1 movneg tmp cur
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000918 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000000930 ; relsq tmp cur 1
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 mov cur tmp tmp2
+# MSQ_START 2 movneg tmp2 tmp
 00000000000019f0 00000000000019f0 0000000000000948 ; relsq tmp2 tmp2 1
 00000000000019f0 00000000000019e8 0000000000000960 ; relsq tmp2 tmp 1
+# MSQ_END 2 movneg
+# MSQ_START 2 movneg cur tmp2
 0000000000001a38 0000000000001a38 0000000000000978 ; relsq cur cur 1
 0000000000001a38 00000000000019f0 0000000000000990 ; relsq cur tmp2 1
-# End neg
-
+# MSQ_END 2 movneg
+# MSQ_END 1 mov
+# MSQ_END 0 neg
 
 ; label REL_FIN
-
-# Start add cur codeLen tmp
-# movneg tmp codeLen
+# MSQ_START 0 add cur codeLen tmp
+# MSQ_START 1 movneg tmp codeLen
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 00000000000009a8 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp codeLen
 00000000000019e8 00000000000019f8 00000000000009c0 ; relsq tmp codeLen 1
-# sub cur tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 00000000000009d8 ; relsq cur tmp 1
-# End add
-
+# MSQ_END 1 sub
+# MSQ_END 0 add
+# MSQ_START 0 lbljmp WRITE_QWORD
 0000000000000000 0000000000000000 00000000000013b0 ; lblsq ZERO ZERO WRITE_QWORD
+# MSQ_END 0 lbljmp
 
 
 ; var labelArrStart 300000
@@ -274,141 +500,249 @@
 ; label INPUT_LABEL
 # Transform label name to offset
 ; var labelOffset 0
-
-# Start getchar labelOffset tmp
-# set tmp 1
+# MSQ_START 0 getchar labelOffset tmp
+# MSQ_START 1 set tmp 1
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000a08 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 inc tmp 1
 00000000000019e8 0000000000001a58 0000000000000a20 ; relsq tmp CONST_-1 1
+# MSQ_END 2 inc
+# MSQ_END 1 set
 00000000000019e8 0000000013ed27e8 0000000000000a50 ; relsq tmp SERIAL_IN 2
-# reljmp -1
+# MSQ_START 1 reljmp -1
 0000000000000000 0000000000000000 0000000000000a20 ; relsq ZERO ZERO -1
-# zero SERIAL_IN
+# MSQ_END 1 reljmp
+# MSQ_START 1 zero SERIAL_IN
+# MSQ_START 2 sub SERIAL_IN SERIAL_IN
 0000000013ed27e8 0000000013ed27e8 0000000000000a68 ; relsq SERIAL_IN SERIAL_IN 1
-# movneg labelOffset tmp
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 movneg labelOffset tmp
+# MSQ_START 2 zero labelOffset
 0000000000001a28 0000000000001a28 0000000000000a80 ; relsq labelOffset labelOffset 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000a98 ; relsq labelOffset tmp 1
-# End getchar
-
-
-# Start mul_16 labelOffset tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 getchar
+# MSQ_START 0 mul_16 labelOffset tmp
+# MSQ_START 1 zero tmp
+# MSQ_START 2 sub tmp tmp
 00000000000019e8 00000000000019e8 0000000000000ab0 ; relsq tmp tmp 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000ac8 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000ae0 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000af8 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000b10 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000b28 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000b40 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000b58 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000b70 ; relsq labelOffset tmp 1
-# End mul_16
-
-
-# Start mul_16 labelOffset tmp
+# MSQ_END 1 sub
+# MSQ_END 0 mul_16
+# MSQ_START 0 mul_16 labelOffset tmp
+# MSQ_START 1 zero tmp
+# MSQ_START 2 sub tmp tmp
 00000000000019e8 00000000000019e8 0000000000000b88 ; relsq tmp tmp 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000ba0 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000bb8 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000bd0 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000be8 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000c00 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000c18 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000c30 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000c48 ; relsq labelOffset tmp 1
-# End mul_16
-
-
-# Start getchar tmp2 tmp
-# set tmp 1
+# MSQ_END 1 sub
+# MSQ_END 0 mul_16
+# MSQ_START 0 getchar tmp2 tmp
+# MSQ_START 1 set tmp 1
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000c60 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 inc tmp 1
 00000000000019e8 0000000000001a58 0000000000000c78 ; relsq tmp CONST_-1 1
+# MSQ_END 2 inc
+# MSQ_END 1 set
 00000000000019e8 0000000013ed27e8 0000000000000ca8 ; relsq tmp SERIAL_IN 2
-# reljmp -1
+# MSQ_START 1 reljmp -1
 0000000000000000 0000000000000000 0000000000000c78 ; relsq ZERO ZERO -1
-# zero SERIAL_IN
+# MSQ_END 1 reljmp
+# MSQ_START 1 zero SERIAL_IN
+# MSQ_START 2 sub SERIAL_IN SERIAL_IN
 0000000013ed27e8 0000000013ed27e8 0000000000000cc0 ; relsq SERIAL_IN SERIAL_IN 1
-# movneg tmp2 tmp
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 movneg tmp2 tmp
+# MSQ_START 2 zero tmp2
 00000000000019f0 00000000000019f0 0000000000000cd8 ; relsq tmp2 tmp2 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp2 tmp
 00000000000019f0 00000000000019e8 0000000000000cf0 ; relsq tmp2 tmp 1
-# End getchar
-
-
-# Start add labelOffset tmp2 tmp
-# movneg tmp tmp2
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 getchar
+# MSQ_START 0 add labelOffset tmp2 tmp
+# MSQ_START 1 movneg tmp tmp2
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000d08 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp tmp2
 00000000000019e8 00000000000019f0 0000000000000d20 ; relsq tmp tmp2 1
-# sub labelOffset tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000d38 ; relsq labelOffset tmp 1
-# End add
-
-
-# Start mul_8 labelOffset tmp
+# MSQ_END 1 sub
+# MSQ_END 0 add
+# MSQ_START 0 mul_8 labelOffset tmp
+# MSQ_START 1 movneg tmp labelOffset
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000d50 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000d68 ; relsq tmp labelOffset 1
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000d80 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000d98 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000db0 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000dc8 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000de0 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000df8 ; relsq labelOffset tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000e10 ; relsq labelOffset tmp 1
-# End mul_8
-
-
-# Start add labelOffset labelArrStart tmp
-# movneg tmp labelArrStart
+# MSQ_END 1 sub
+# MSQ_END 0 mul_8
+# MSQ_START 0 add labelOffset labelArrStart tmp
+# MSQ_START 1 movneg tmp labelArrStart
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000e28 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp labelArrStart
 00000000000019e8 0000000000001a20 0000000000000e40 ; relsq tmp labelArrStart 1
-# sub labelOffset tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 sub labelOffset tmp
 0000000000001a28 00000000000019e8 0000000000000e58 ; relsq labelOffset tmp 1
-# End add
+# MSQ_END 1 sub
+# MSQ_END 0 add
 
-
+# MSQ_START 0 decleq c2 26 RECORD_REF
 0000000000001a10 0000000000001ac8 0000000000000fa8 ; lblsq c2 CONST_26 RECORD_REF
+# MSQ_END 0 decleq
 
 # Handle label (:)
 ; addr curLabel 0
-
-# Start setaddr curLabel labelOffset tmp tmp2
-
-# Start mov tmp curLabel_addrRef_0 tmp2
+# MSQ_START 0 setaddr curLabel labelOffset tmp tmp2
+# MSQ_START 1 mov tmp curLabel_addrRef_0 tmp2
+# MSQ_START 2 movneg tmp2 curLabel_addrRef_0
 00000000000019f0 00000000000019f0 0000000000000e88 ; relsq tmp2 tmp2 1
 00000000000019f0 0000000000000f60 0000000000000ea0 ; relsq tmp2 curLabel_addrRef_0 1
+# MSQ_END 2 movneg
+# MSQ_START 2 movneg tmp tmp2
 00000000000019e8 00000000000019e8 0000000000000eb8 ; relsq tmp tmp 1
 00000000000019e8 00000000000019f0 0000000000000ed0 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp labelOffset
+# MSQ_END 2 movneg
+# MSQ_END 1 mov
+# MSQ_START 1 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000ee8 ; relsq tmp labelOffset 1
+# MSQ_END 1 sub
 0000000000000f60 00000000000019e8 0000000000000f00 ; relsq curLabel_addrRef_0 tmp 1
 0000000000000f68 00000000000019e8 0000000000000f18 ; relsq curLabel_addrRef_1 tmp 1
 0000000000000f78 00000000000019e8 0000000000000f30 ; relsq curLabel_addrRef_2 tmp 1
-# End setaddr
-
-
-# Start mov curLabel codeLen tmp
-# movneg tmp codeLen
+# MSQ_END 0 setaddr
+# MSQ_START 0 mov curLabel codeLen tmp
+# MSQ_START 1 movneg tmp codeLen
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000f48 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp codeLen
 00000000000019e8 00000000000019f8 0000000000000f60 ; relsq tmp codeLen 1
-# movneg curLabel tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 movneg curLabel tmp
+# MSQ_START 2 zero curLabel
 0000000000000000 0000000000000000 0000000000000f78 ; relsq curLabel curLabel 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub curLabel tmp
 0000000000000000 00000000000019e8 0000000000000f90 ; relsq curLabel tmp 1
-# End mov
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 mov
+# MSQ_START 0 lbljmp MAIN
 0000000000000000 0000000000000000 0000000000000018 ; lblsq ZERO ZERO MAIN
+# MSQ_END 0 lbljmp
 
 # Handle reference (&)
 ; label RECORD_REF
 ; var refs 0
 ; addr nextRef 400000
-
-# Start mov nextRef labelOffset tmp
-# movneg tmp labelOffset
+# MSQ_START 0 mov nextRef labelOffset tmp
+# MSQ_START 1 movneg tmp labelOffset
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000000fc0 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp labelOffset
 00000000000019e8 0000000000001a28 0000000000000fd8 ; relsq tmp labelOffset 1
-# movneg nextRef tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 movneg nextRef tmp
+# MSQ_START 2 zero nextRef
 0000000000400000 0000000000400000 0000000000000ff0 ; relsq nextRef nextRef 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub nextRef tmp
 0000000000400000 00000000000019e8 0000000000001008 ; relsq nextRef tmp 1
-# End mov
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 mov
+# MSQ_START 0 decaddr nextRef -8
 0000000000000fd8 0000000000001ad0 0000000000001020 ; relsq nextRef_addrRef_0 CONST_-8 1
 0000000000000fe0 0000000000001ad0 0000000000001038 ; relsq nextRef_addrRef_1 CONST_-8 1
 0000000000000ff0 0000000000001ad0 0000000000001050 ; relsq nextRef_addrRef_2 CONST_-8 1
@@ -418,25 +752,39 @@
 0000000000001170 0000000000001ad0 00000000000010b0 ; relsq nextRef_addrRef_6 CONST_-8 1
 0000000000001640 0000000000001ad0 00000000000010c8 ; relsq nextRef_addrRef_7 CONST_-8 1
 00000000000017d8 0000000000001ad0 00000000000010e0 ; relsq nextRef_addrRef_8 CONST_-8 1
-
-# Start mov nextRef codeLen tmp
-# movneg tmp codeLen
+# MSQ_END 0 decaddr
+# MSQ_START 0 mov nextRef codeLen tmp
+# MSQ_START 1 movneg tmp codeLen
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 00000000000010f8 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp codeLen
 00000000000019e8 00000000000019f8 0000000000001110 ; relsq tmp codeLen 1
-# movneg nextRef tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 movneg nextRef tmp
+# MSQ_START 2 zero nextRef
 0000000000400000 0000000000400000 0000000000001128 ; relsq nextRef nextRef 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub nextRef tmp
 0000000000400000 00000000000019e8 0000000000001140 ; relsq nextRef tmp 1
-# End mov
-
-
-# Start add nextRef bufStart tmp
-# movneg tmp bufStart
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 mov
+# MSQ_START 0 add nextRef bufStart tmp
+# MSQ_START 1 movneg tmp bufStart
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000001158 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp bufStart
 00000000000019e8 0000000000001a48 0000000000001170 ; relsq tmp bufStart 1
-# sub nextRef tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 sub nextRef tmp
 0000000000400000 00000000000019e8 0000000000001188 ; relsq nextRef tmp 1
-# End add
-
+# MSQ_END 1 sub
+# MSQ_END 0 add
+# MSQ_START 0 decaddr nextRef -8
 0000000000000fd8 0000000000001ad0 00000000000011a0 ; relsq nextRef_addrRef_0 CONST_-8 1
 0000000000000fe0 0000000000001ad0 00000000000011b8 ; relsq nextRef_addrRef_1 CONST_-8 1
 0000000000000ff0 0000000000001ad0 00000000000011d0 ; relsq nextRef_addrRef_2 CONST_-8 1
@@ -446,32 +794,65 @@
 0000000000001170 0000000000001ad0 0000000000001230 ; relsq nextRef_addrRef_6 CONST_-8 1
 0000000000001640 0000000000001ad0 0000000000001248 ; relsq nextRef_addrRef_7 CONST_-8 1
 00000000000017d8 0000000000001ad0 0000000000001260 ; relsq nextRef_addrRef_8 CONST_-8 1
+# MSQ_END 0 decaddr
+# MSQ_START 0 inc refs 1
+# MSQ_START 1 dec refs -1
 0000000000001a30 0000000000001a58 0000000000001278 ; relsq refs CONST_-1 1
+# MSQ_END 1 dec
+# MSQ_END 0 inc
+# MSQ_START 0 lbljmp WRITE_QWORD
 0000000000000000 0000000000000000 00000000000013b0 ; lblsq ZERO ZERO WRITE_QWORD
+# MSQ_END 0 lbljmp
 
 
 # WRITE adds the hex character to cur, and copies cur to the buffer + increases its address by 8 every 16 characters
 ; label WRITE
 ; var cur 0
-
-# Start mul_16 cur tmp
+# MSQ_START 0 mul_16 cur tmp
+# MSQ_START 1 zero tmp
+# MSQ_START 2 sub tmp tmp
 00000000000019e8 00000000000019e8 00000000000012a8 ; relsq tmp tmp 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 00000000000012c0 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 00000000000012d8 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 00000000000012f0 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000001308 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub tmp cur
 00000000000019e8 0000000000001a38 0000000000001320 ; relsq tmp cur 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 0000000000001338 ; relsq cur tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 0000000000001350 ; relsq cur tmp 1
+# MSQ_END 1 sub
+# MSQ_START 1 sub cur tmp
 0000000000001a38 00000000000019e8 0000000000001368 ; relsq cur tmp 1
-# End mul_16
-
+# MSQ_END 1 sub
+# MSQ_END 0 mul_16
+# MSQ_START 0 sub cur val
 0000000000001a38 0000000000001a00 0000000000001380 ; relsq cur val 1
+# MSQ_END 0 sub
 
 # i will turn positive every 16 iterations
 ; var i -f
+# MSQ_START 0 incleq i 1 MAIN
+# MSQ_START 1 decleq i -1 MAIN
 0000000000001a40 0000000000001a58 0000000000000018 ; lblsq i CONST_-1 MAIN
+# MSQ_END 1 decleq
+# MSQ_END 0 incleq
+# MSQ_START 0 dec i 10
 0000000000001a40 0000000000001ad8 00000000000013b0 ; relsq i CONST_10 1
+# MSQ_END 0 dec
 
 ; label WRITE_QWORD
 ; addr dstEnd 0
@@ -479,25 +860,51 @@
 ; addr bufEnd 100000
 # Copy to the buffer and increase its address
 # The buffer is also intentionally kept negative to ease copying
-# movneg bufEnd cur
+# MSQ_START 0 movneg bufEnd cur
+# MSQ_START 1 zero bufEnd
+# MSQ_START 2 sub bufEnd bufEnd
 0000000000100000 0000000000100000 00000000000013c8 ; relsq bufEnd bufEnd 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub bufEnd cur
 0000000000100000 0000000000001a38 00000000000013e0 ; relsq bufEnd cur 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 zero cur
+# MSQ_START 1 sub cur cur
 0000000000001a38 0000000000001a38 00000000000013f8 ; relsq cur cur 1
+# MSQ_END 1 sub
+# MSQ_END 0 zero
+# MSQ_START 0 decaddr dstEnd -8
 0000000000001938 0000000000001ad0 0000000000001410 ; relsq dstEnd_addrRef_0 CONST_-8 1
 0000000000001940 0000000000001ad0 0000000000001428 ; relsq dstEnd_addrRef_1 CONST_-8 1
 0000000000001950 0000000000001ad0 0000000000001440 ; relsq dstEnd_addrRef_2 CONST_-8 1
+# MSQ_END 0 decaddr
+# MSQ_START 0 decaddr bufEnd -8
 00000000000013b0 0000000000001ad0 0000000000001458 ; relsq bufEnd_addrRef_0 CONST_-8 1
 00000000000013b8 0000000000001ad0 0000000000001470 ; relsq bufEnd_addrRef_1 CONST_-8 1
 00000000000013c8 0000000000001ad0 0000000000001488 ; relsq bufEnd_addrRef_2 CONST_-8 1
 0000000000001958 0000000000001ad0 00000000000014a0 ; relsq bufEnd_addrRef_3 CONST_-8 1
+# MSQ_END 0 decaddr
+# MSQ_START 0 inc codeLen 8
+# MSQ_START 1 dec codeLen -8
 00000000000019f8 0000000000001ad0 00000000000014b8 ; relsq codeLen CONST_-8 1
+# MSQ_END 1 dec
+# MSQ_END 0 inc
+# MSQ_START 0 lbljmp MAIN
 0000000000000000 0000000000000000 0000000000000018 ; lblsq ZERO ZERO MAIN
+# MSQ_END 0 lbljmp
 
 
 # RESOLVE_REF resolves references by setting their value to the label's address
 ; label RESOLVE_REF
+# MSQ_START 0 decleq refs 0 COPY
 0000000000001a30 0000000000001ac0 0000000000001848 ; lblsq refs CONST_0 COPY
+# MSQ_END 0 decleq
+# MSQ_START 0 dec refs 1
 0000000000001a30 0000000000001a68 0000000000001500 ; relsq refs CONST_1 1
+# MSQ_END 0 dec
+# MSQ_START 0 decaddr nextRef 8
 0000000000000fd8 0000000000001ae0 0000000000001518 ; relsq nextRef_addrRef_0 CONST_8 1
 0000000000000fe0 0000000000001ae0 0000000000001530 ; relsq nextRef_addrRef_1 CONST_8 1
 0000000000000ff0 0000000000001ae0 0000000000001548 ; relsq nextRef_addrRef_2 CONST_8 1
@@ -507,25 +914,28 @@
 0000000000001170 0000000000001ae0 00000000000015a8 ; relsq nextRef_addrRef_6 CONST_8 1
 0000000000001640 0000000000001ae0 00000000000015c0 ; relsq nextRef_addrRef_7 CONST_8 1
 00000000000017d8 0000000000001ae0 00000000000015d8 ; relsq nextRef_addrRef_8 CONST_8 1
+# MSQ_END 0 decaddr
 
 ; addr refAt 0
-
-# Start setaddr refAt nextRef tmp tmp2
-
-# Start mov tmp refAt_addrRef_0 tmp2
+# MSQ_START 0 setaddr refAt nextRef tmp tmp2
+# MSQ_START 1 mov tmp refAt_addrRef_0 tmp2
+# MSQ_START 2 movneg tmp2 refAt_addrRef_0
 00000000000019f0 00000000000019f0 00000000000015f0 ; relsq tmp2 tmp2 1
 00000000000019f0 0000000000001800 0000000000001608 ; relsq tmp2 refAt_addrRef_0 1
+# MSQ_END 2 movneg
+# MSQ_START 2 movneg tmp tmp2
 00000000000019e8 00000000000019e8 0000000000001620 ; relsq tmp tmp 1
 00000000000019e8 00000000000019f0 0000000000001638 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp nextRef
+# MSQ_END 2 movneg
+# MSQ_END 1 mov
+# MSQ_START 1 sub tmp nextRef
 00000000000019e8 0000000000400000 0000000000001650 ; relsq tmp nextRef 1
+# MSQ_END 1 sub
 0000000000001800 00000000000019e8 0000000000001668 ; relsq refAt_addrRef_0 tmp 1
 0000000000001808 00000000000019e8 0000000000001680 ; relsq refAt_addrRef_1 tmp 1
 0000000000001818 00000000000019e8 0000000000001698 ; relsq refAt_addrRef_2 tmp 1
-# End setaddr
-
+# MSQ_END 0 setaddr
+# MSQ_START 0 decaddr nextRef 8
 0000000000000fd8 0000000000001ae0 00000000000016b0 ; relsq nextRef_addrRef_0 CONST_8 1
 0000000000000fe0 0000000000001ae0 00000000000016c8 ; relsq nextRef_addrRef_1 CONST_8 1
 0000000000000ff0 0000000000001ae0 00000000000016e0 ; relsq nextRef_addrRef_2 CONST_8 1
@@ -535,29 +945,40 @@
 0000000000001170 0000000000001ae0 0000000000001740 ; relsq nextRef_addrRef_6 CONST_8 1
 0000000000001640 0000000000001ae0 0000000000001758 ; relsq nextRef_addrRef_7 CONST_8 1
 00000000000017d8 0000000000001ae0 0000000000001770 ; relsq nextRef_addrRef_8 CONST_8 1
+# MSQ_END 0 decaddr
 
 ; addr refVal 0
-
-# Start setaddr refVal nextRef tmp tmp2
-
-# Start mov tmp refVal_addrRef_0 tmp2
+# MSQ_START 0 setaddr refVal nextRef tmp tmp2
+# MSQ_START 1 mov tmp refVal_addrRef_0 tmp2
+# MSQ_START 2 movneg tmp2 refVal_addrRef_0
 00000000000019f0 00000000000019f0 0000000000001788 ; relsq tmp2 tmp2 1
 00000000000019f0 0000000000001820 00000000000017a0 ; relsq tmp2 refVal_addrRef_0 1
+# MSQ_END 2 movneg
+# MSQ_START 2 movneg tmp tmp2
 00000000000019e8 00000000000019e8 00000000000017b8 ; relsq tmp tmp 1
 00000000000019e8 00000000000019f0 00000000000017d0 ; relsq tmp tmp2 1
-# End mov
-
-# sub tmp nextRef
+# MSQ_END 2 movneg
+# MSQ_END 1 mov
+# MSQ_START 1 sub tmp nextRef
 00000000000019e8 0000000000400000 00000000000017e8 ; relsq tmp nextRef 1
+# MSQ_END 1 sub
 0000000000001820 00000000000019e8 0000000000001800 ; relsq refVal_addrRef_0 tmp 1
-# End setaddr
-
+# MSQ_END 0 setaddr
 
 # The buffer is kept negative
-# movneg refAt refVal
+# MSQ_START 0 movneg refAt refVal
+# MSQ_START 1 zero refAt
+# MSQ_START 2 sub refAt refAt
 0000000000000000 0000000000000000 0000000000001818 ; relsq refAt refAt 1
+# MSQ_END 2 sub
+# MSQ_END 1 zero
+# MSQ_START 1 sub refAt refVal
 0000000000000000 0000000000000000 0000000000001830 ; relsq refAt refVal 1
+# MSQ_END 1 sub
+# MSQ_END 0 movneg
+# MSQ_START 0 lbljmp RESOLVE_REF
 0000000000000000 0000000000000000 00000000000014d0 ; lblsq ZERO ZERO RESOLVE_REF
+# MSQ_END 0 lbljmp
 
 
 # COPY copies the loader to a lower memory (To avoid overwriting) and jumps to the loader
@@ -565,23 +986,39 @@
 ; addr loaderDst 200000
 ; addr loaderStart 200000
 ; var loaderLen b0
-
-# Start mov loaderDst LOADER tmp
-# movneg tmp LOADER
+# MSQ_START 0 mov loaderDst LOADER tmp
+# MSQ_START 1 movneg tmp LOADER
+# MSQ_START 2 zero tmp
 00000000000019e8 00000000000019e8 0000000000001860 ; relsq tmp tmp 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub tmp LOADER
 00000000000019e8 0000000000001938 0000000000001878 ; relsq tmp LOADER 1
-# movneg loaderDst tmp
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_START 1 movneg loaderDst tmp
+# MSQ_START 2 zero loaderDst
 0000000000200000 0000000000200000 0000000000001890 ; relsq loaderDst loaderDst 1
+# MSQ_END 2 zero
+# MSQ_START 2 sub loaderDst tmp
 0000000000200000 00000000000019e8 00000000000018a8 ; relsq loaderDst tmp 1
-# End mov
-
+# MSQ_END 2 sub
+# MSQ_END 1 movneg
+# MSQ_END 0 mov
+# MSQ_START 0 decaddr LOADER -8
 0000000000001868 0000000000001ad0 00000000000018c0 ; relsq LOADER_addrRef_0 CONST_-8 1
+# MSQ_END 0 decaddr
+# MSQ_START 0 decaddr loaderDst -8
 0000000000001878 0000000000001ad0 00000000000018d8 ; relsq loaderDst_addrRef_0 CONST_-8 1
 0000000000001880 0000000000001ad0 00000000000018f0 ; relsq loaderDst_addrRef_1 CONST_-8 1
 0000000000001890 0000000000001ad0 0000000000001908 ; relsq loaderDst_addrRef_2 CONST_-8 1
+# MSQ_END 0 decaddr
 # Jump to loaderDst once loaderLen is <= 0
+# MSQ_START 0 decleq loaderLen 8 loaderStart
 0000000000001a50 0000000000001ae0 0000000000200000 ; lblsq loaderLen CONST_8 loaderStart
+# MSQ_END 0 decleq
+# MSQ_START 0 lbljmp COPY
 0000000000000000 0000000000000000 0000000000001848 ; lblsq ZERO ZERO COPY
+# MSQ_END 0 lbljmp
 
 
 # LOADER copies the buffer to the highest memory (0~...) and jumps to 0

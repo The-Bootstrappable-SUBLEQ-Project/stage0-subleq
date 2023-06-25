@@ -19,52 +19,49 @@ addr ZERO 0
 var tmp 0
 var tmp2 0
 var tmp3 0
-var a 0
-addr SERIAL_IN 13ED27E8
+var FREE_START 1000000
 addr SERIAL_OUT 13ED27F0
 addr CPU_CONTROL_START 13EE0000
-var FREE_START 1000000
 lblsq ZERO ZERO EP
 
 label EP
+addr ret 0
+itoa ret TEST_DATA tmp tmp2 tmp3
+puts ret tmp tmp2
 
-addr string 10000
-alloc_str_const string 80 tmp
-inp_token string tmp tmp2
+putchar SPACE tmp
+incaddr TEST_DATA 8
+itoa ret TEST_DATA tmp tmp2 tmp3
+puts ret tmp tmp2
 
-strcmp_const string NYAN TEST_FAIL tmp tmp2
-strcmp_const string UNG TEST_FAIL tmp tmp2
-strcmp_const string GNU TEST_PART2 tmp tmp2
-lbljmp TEST_FAIL
+putchar SPACE tmp
+incaddr TEST_DATA 8
+itoa ret TEST_DATA tmp tmp2 tmp3
+puts ret tmp tmp2
 
-label TEST_PART2
-addr gnuNyan 0
-strcat gnuNyan string NYAN tmp tmp2 tmp3
-strcmp_const gnuNyan GNUNYAN TEST_PART3 tmp tmp2
-lbljmp TEST_FAIL
+putchar SPACE tmp
+incaddr TEST_DATA 8
+itoa ret TEST_DATA tmp tmp2 tmp3
+puts ret tmp tmp2
 
-label TEST_PART3
-var strLength 0
-strlen strLength gnuNyan tmp
-jeq_const strLength 7 TEST_SUCCESS tmp tmp2
-lbljmp TEST_FAIL
+putchar SPACE tmp
+incaddr TEST_DATA 8
+itoa ret TEST_DATA tmp tmp2 tmp3
+puts ret tmp tmp2
 
-label TEST_FAIL
-set a 46
-putchar a tmp
-lbljmp HALT
+putchar SPACE tmp
+incaddr TEST_DATA 8
+itoa ret TEST_DATA tmp tmp2 tmp3
+puts ret tmp tmp2
 
-label TEST_SUCCESS
-set a 2e
-putchar a tmp
-
-label HALT
-set a a
-putchar a tmp
+set tmp a
+putchar tmp tmp2
 
 halt tmp tmp2
 
-def_string NYAN NYAN
-def_string UNG UNG
-def_string GNU GNU
-def_string GNUNYAN GNUNYAN
+label TEST_DATA
+raw 0000000000000000 0000000027100000 ffffffffffffffff 0123456789abcdef fedcba9876543210 f123456789abcdef
+
+label SPACE
+rem Notice that there are two spaces
+raw_chars  

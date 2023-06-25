@@ -12,3 +12,7 @@ def test_msq_str():
 
 def test_msq_print_qword():
     assert runEmu("../Examples/test_print_qword", []) == b"0000000000000000 ffffffffffffffff 0123456789abcdef fedcba9876543210 f123456789abcdef\n"
+
+
+def test_msq_itoa():
+    assert runEmu("../Examples/test_itoa", []) == b"0 655360000 -1 81985529216486895 -81985529216486896 -1070935975390360081\n"
