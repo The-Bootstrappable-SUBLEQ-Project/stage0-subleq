@@ -155,7 +155,25 @@ while i < len(lines):
         incRefCount(f"{stubPrefix}{k}")
     i += 1
 
-# This is used to ensure that the Step 3 implementation of lsq_to_hex.msq is correct
+# 4. Find label+stub addresses
+size = 0
+for line in lines:
+    line.offset = size
+    if line.inst in ["abssq", "relsq", "lblsq"]:
+        for i in range(3):
+            sym = line.tokens[i]
+            if (line.inst == "lblsq" or i < 2) and sym in addrSymbols:
+                stubSym = f"{sym}_addrRef_{addrSymbols[sym]}"
+                symbols[stubSym].addr = size
+                addrSymbols[sym] += 1
+            size += 8
+    elif line.inst in ["raw", "raw_ref"]:
+        size += 8 * len(line.tokens)
+    elif line.inst == "label":
+        symbols[line.tokens[0]].addr = size
+    # print(line, size, file=sys.stderr)
+
+# This is used to ensure that the Step 4 implementation of lsq_to_hex.msq is correct
 if args.lsq_path == "test.lsq":
     import ctypes
 
@@ -180,26 +198,6 @@ if args.lsq_path == "test.lsq":
         print()
 
     sys.exit()
-
-# 4. Find label+stub addresses
-size = 0
-for line in lines:
-    line.offset = size
-    if line.inst in ["abssq", "relsq", "lblsq"]:
-        for i in range(3):
-            sym = line.tokens[i]
-            if (line.inst == "lblsq" or i < 2) and sym in addrSymbols:
-                stubSym = f"{sym}_addrRef_{addrSymbols[sym]}"
-                symbols[stubSym].addr = size
-                addrSymbols[sym] += 1
-            size += 8
-    elif line.inst == "raw":
-        size += 8 * len(line.tokens)
-    elif line.inst == "raw_ref":
-        size += 8 * len(line.tokens)
-    elif line.inst == "label":
-        symbols[line.tokens[0]].addr = size
-    # print(line, size, file=sys.stderr)
 
 # 5. Assign addresses to variables
 symsAtAddr = {}

@@ -342,6 +342,8 @@ setaddr symbols_it_step3 symbolsBegin tmp tmp2
 find_item_in_buf_with_str_key symbols_it_step3 sym0_step3 30 symbolsLen STEP3_FOUND_SYMBOL tmp tmp2
 
 puts STEP3_MISSING_SYMBOL tmp tmp2
+putchar SPACE tmp
+puts sym0_step3 tmp tmp2
 lbljmp HALT
 
 label STEP3_FOUND_SYMBOL
@@ -399,8 +401,135 @@ inc linesPass2Len 1
 inc nextId_step3 1
 lbljmp STEP3_STUB_LOOP
 
+
 rem 4. Find label+stub addresses
 label STEP4_START
+var size_step4 0
+
+addr curLine_step4 0
+setaddr curLine_step4 linesPass2Begin tmp tmp2
+mov linesLeft linesPass2Len tmp
+
+label STEP4_LOOP
+decleq linesLeft 0 STEP5_START
+dec linesLeft 1
+
+rem Py: line.offset = size
+incaddr curLine_step4 50
+mov curLine_step4 size_step4 tmp
+decaddr curLine_step4 50
+
+strcmp_const curLine_step4 ABSSQ STEP4_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step4 RELSQ STEP4_HANDLE_SQ tmp tmp2
+strcmp_const curLine_step4 LBLSQ STEP4_HANDLE_SQ tmp tmp2
+
+strcmp_const curLine_step4 RAW STEP4_HANDLE_RAW tmp tmp2
+strcmp_const curLine_step4 RAW_REF STEP4_HANDLE_RAW tmp tmp2
+
+strcmp_const curLine_step4 LABEL STEP4_HANDLE_LABEL tmp tmp2
+
+incaddr curLine_step4 58
+lbljmp STEP4_LOOP
+
+label STEP4_HANDLE_SQ
+var sq_i_step4 -2
+set sq_i_step4 -2
+
+addr curSym_step4 0
+incaddr curLine_step4 18
+setaddr curSym_step4 curLine_step4 tmp tmp2
+
+label STEP4_HANDLE_SQ_LOOP
+rem Jumps on first and second iterations
+incleq sq_i_step4 1 STEP4_HANDLE_SQ_TOKEN
+rem Jumps on third iteration
+decleq sq_i_step4 1 STEP4_HANDLE_SQ_THIRD_TOKEN
+
+incaddr curLine_step4 40
+lbljmp STEP4_LOOP
+
+label STEP4_HANDLE_SQ_THIRD_TOKEN
+rem Ensure the fourth iteration exits
+inc sq_i_step4 1
+
+strcmp_const curLine_step4 LBLSQ STEP4_HANDLE_SQ_TOKEN tmp tmp2
+lbljmp STEP4_HANDLE_SQ_INC_SIZE
+
+rem Only run if `line.inst == "lblsq" or i < 2`
+label STEP4_HANDLE_SQ_TOKEN
+addr addrSymbols_it_step4 0
+setaddr addrSymbols_it_step4 addrSymbolsBegin tmp tmp2
+find_item_in_buf_with_str_key addrSymbols_it_step4 curSym_step4 20 addrSymbolsLen STEP4_SQ_FOUND_ADDRSYMBOL tmp tmp2
+lbljmp STEP4_HANDLE_SQ_INC_SIZE
+
+rem Only run if `sym in addrSymbols`
+label STEP4_SQ_FOUND_ADDRSYMBOL
+incaddr addrSymbols_it_step4 18
+
+rem Py: stubSym = f"{sym}_addrRef_{addrSymbols[sym]}"
+addr stubPrefix_step4 0
+strcat stubPrefix_step4 curSym_step4 ADDRREF tmp tmp2 tmp3
+addr nextId_str_step4 0
+itoa nextId_str_step4 addrSymbols_it_step4 tmp tmp2 tmp3
+addr stubSym_step4 0
+strcat stubSym_step4 stubPrefix_step4 nextId_str_step4 tmp tmp2 tmp3
+
+rem Py: symbols[stubSym].addr = size
+addr symbols_it_step4 0
+setaddr symbols_it_step4 symbolsBegin tmp tmp2
+find_item_in_buf_with_str_key symbols_it_step4 stubSym_step4 30 symbolsLen STEP4_SQ_FOUND_SYMBOL tmp tmp2
+
+puts STEP4_SQ_MISSING_SYMBOL tmp tmp2
+putchar SPACE tmp
+puts stubSym_step4 tmp tmp2
+lbljmp HALT
+
+label STEP4_SQ_FOUND_SYMBOL
+incaddr symbols_it_step4 18
+mov symbols_it_step4 size_step4 tmp
+
+rem Py: addrSymbols[sym] += 1
+inc addrSymbols_it_step4 1
+
+label STEP4_HANDLE_SQ_INC_SIZE
+inc size_step4 8
+incaddr curSym_step4 18
+lbljmp STEP4_HANDLE_SQ_LOOP
+
+label STEP4_HANDLE_RAW
+rem Py: size += 8 * len(line.tokens)
+incaddr curLine_step4 20
+mov tmp curLine_step4 tmp2
+mul_8 tmp tmp2
+add size_step4 tmp tmp2
+
+incaddr curLine_step4 38
+lbljmp STEP4_LOOP
+
+label STEP4_HANDLE_LABEL
+rem Py: symbols[line.tokens[0]].addr = size
+addr sym0_step4 0
+incaddr curLine_step4 18
+setaddr sym0_step4 curLine_step4 tmp tmp2
+
+addr symbols_it2_step4 0
+setaddr symbols_it2_step4 symbolsBegin tmp tmp2
+find_item_in_buf_with_str_key symbols_it2_step4 sym0_step4 30 symbolsLen STEP4_LABEL_FOUND_SYMBOL tmp tmp2
+
+puts STEP4_LABEL_MISSING_SYMBOL tmp tmp2
+putchar SPACE tmp
+puts sym0_step4 tmp tmp2
+lbljmp HALT
+
+label STEP4_LABEL_FOUND_SYMBOL
+incaddr symbols_it2_step4 18
+mov symbols_it2_step4 size_step4 tmp
+
+incaddr curLine_step4 40
+lbljmp STEP4_LOOP
+
+rem 5. Assign addresses to variables
+label STEP5_START
 addr symbolsCur_dbg 0
 setaddr symbolsCur_dbg symbolsBegin tmp tmp2
 var symbolsLeft 0
@@ -504,6 +633,7 @@ def_string RELSQ relsq
 def_string LBLSQ lblsq
 def_string SUBADDR subaddr
 def_string ZEROADDR zeroaddr
+def_string RAW raw
 def_string RAW_REF raw_ref
 def_string ADDRREF _addrRef_
 
@@ -520,6 +650,8 @@ def_string SYMBOL_PART_3 refCount:
 def_string SYMBOL_PART_4 val: 
 
 def_string STEP3_MISSING_SYMBOL STEP3_MISSING_SYMBOL
+def_string STEP4_LABEL_MISSING_SYMBOL STEP4_LABEL_MISSING_SYMBOL
+def_string STEP4_SQ_MISSING_SYMBOL STEP4_SQ_MISSING_SYMBOL
 
 rem WA for `assert sym.val is not None` errors
 inc inst_step3 0
