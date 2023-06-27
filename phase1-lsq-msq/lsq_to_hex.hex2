@@ -2,8 +2,8 @@
 # Step 0: Processed 16364 lines
 # Step 1: Found 1185 symbols
 # Step 2: Now with 1420 symbols and 12056 references
-# Step 3: Now with 21504 lines and 18097 references
-# Step 4: Current size is 275736 bytes
+# Step 3: Now with 2240 symbols and 21504 lines
+# Step 4: Current size is 275712 bytes
 # Copyright (C) 2022 NyanCatTW1
 # This file is part of stage0-subleq.
 
@@ -32,7 +32,7 @@
 ; var LINE_FEED a
 ; var SPACE 20
 
-:ZERO :puts_0_str :inp_token_allow_empty_0_str :strcmp_const_0_a :strcmp_const_0_aStr :strcmp_const_0_bStr :strcmp_const_1_a :strcmp_const_1_aStr :strcmp_const_1_bStr :strcmp_const_2_a :strcmp_const_2_aStr :strcmp_const_2_bStr :curLine_step0_other :tmpStr :inp_line_0_str :str_split_0_aBuf :str_split_0_strBuf :str_split_0_partBuf :curLine_step0_newline :strcpy_0_strA :strcpy_0_strB :curLine_step0_rem :inp_line_1_str :puts_1_str :lineCountPrint_step0 :itoa_0_retBuf :itoa_0_retLength :puts_2_str :puts_3_str :curLine_step1 :strcmp_const_3_a :strcmp_const_3_aStr :strcmp_const_3_bStr :strcmp_const_4_a :strcmp_const_4_aStr :strcmp_const_4_bStr :strcmp_const_5_a :strcmp_const_5_aStr :strcmp_const_5_bStr :curTokens_step1 :strcpy_1_strA :strcpy_1_strB :strcmp_const_6_a :strcmp_const_6_aStr :strcmp_const_6_bStr :from_hex_0_a :from_hex_0_strBuf :strcmp_const_7_a :strcmp_const_7_aStr :strcmp_const_7_bStr :from_hex_1_a :from_hex_1_strBuf :puts_4_str :symbolCountPrint_step1 :itoa_1_retBuf :itoa_1_retLength :puts_5_str :puts_6_str :incRefCount_key :incRefCount_it :strcmp_const_8_a :strcmp_const_8_aStr :strcmp_const_8_bStr :memcpy_0_dst :memcpy_0_src :curLine_step2 :strcmp_const_9_a :strcmp_const_9_aStr :strcmp_const_9_bStr :strcmp_const_10_a :strcmp_const_10_aStr :strcmp_const_10_bStr :strcmp_const_11_a :strcmp_const_11_aStr :strcmp_const_11_bStr :strcmp_const_12_a :strcmp_const_12_aStr :strcmp_const_12_bStr :strcmp_const_13_a :strcmp_const_13_aStr :strcmp_const_13_bStr :strcmp_const_14_a :strcmp_const_14_aStr :strcmp_const_14_bStr :puts_7_str :symbolCountPrint_step2 :itoa_2_retBuf :itoa_2_retLength :puts_8_str :puts_9_str :totalRefCountStr_step2 :itoa_3_retBuf :itoa_3_retLength :puts_10_str :puts_11_str :inst_step3 :strcmp_const_15_a :strcmp_const_15_aStr :strcmp_const_15_bStr :strcmp_const_16_a :strcmp_const_16_aStr :strcmp_const_16_bStr :memcpy_1_dst :memcpy_1_src :sym0_step3 :sym1_step3 :addrSymbols_it_step3 :strcmp_const_17_a :strcmp_const_17_aStr :strcmp_const_17_bStr :memcpy_2_dst :memcpy_2_src :stubPrefix_step3 :strcpy_2_strA :strcpy_2_strB :strcpy_3_strA :strcpy_3_strB :symbols_it_step3 :strcmp_const_18_a :strcmp_const_18_aStr :strcmp_const_18_bStr :puts_12_str :puts_13_str :nextId_str_step3 :itoa_4_retBuf :itoa_4_retLength :stubSym_step3 :strcpy_4_strA :strcpy_4_strB :strcpy_5_strA :strcpy_5_strB :memcpy_3_dst :memcpy_3_src :curTokens_step3 :memcpy_4_dst :memcpy_4_src :strcmp_const_19_a :strcmp_const_19_aStr :strcmp_const_19_bStr :memcpy_5_dst :memcpy_5_src :memcpy_6_dst :memcpy_6_src :memcpy_7_dst :memcpy_7_src :puts_14_str :lineCountPrint_step3 :itoa_5_retBuf :itoa_5_retLength :puts_15_str :puts_16_str :totalRefCountStr_step3 :itoa_6_retBuf :itoa_6_retLength :puts_17_str :puts_18_str :curLine_step4 :strcmp_const_20_a :strcmp_const_20_aStr :strcmp_const_20_bStr :strcmp_const_21_a :strcmp_const_21_aStr :strcmp_const_21_bStr :strcmp_const_22_a :strcmp_const_22_aStr :strcmp_const_22_bStr :strcmp_const_23_a :strcmp_const_23_aStr :strcmp_const_23_bStr :strcmp_const_24_a :strcmp_const_24_aStr :strcmp_const_24_bStr :strcmp_const_25_a :strcmp_const_25_aStr :strcmp_const_25_bStr :curSym_step4 :strcmp_const_26_a :strcmp_const_26_aStr :strcmp_const_26_bStr :addrSymbols_it_step4 :strcmp_const_27_a :strcmp_const_27_aStr :strcmp_const_27_bStr :stubPrefix_step4 :strcpy_6_strA :strcpy_6_strB :strcpy_7_strA :strcpy_7_strB :nextId_str_step4 :itoa_7_retBuf :itoa_7_retLength :stubSym_step4 :strcpy_8_strA :strcpy_8_strB :strcpy_9_strA :strcpy_9_strB :symbols_it_step4 :strcmp_const_28_a :strcmp_const_28_aStr :strcmp_const_28_bStr :puts_19_str :puts_20_str :sym0_step4 :symbols_it2_step4 :strcmp_const_29_a :strcmp_const_29_aStr :strcmp_const_29_bStr :puts_21_str :puts_22_str :puts_23_str :sizeStr_step4 :itoa_8_retBuf :itoa_8_retLength :puts_24_str :puts_25_str :symbolsCur_dbg :puts_26_str :puts_27_str :puts_28_str :puts_29_str :puts_30_str :linesPass2Cur_dbg :puts_31_str :puts_32_str :puts_33_str :tokensBuf :puts_34_str :puts_35_str :puts_36_str :puts_37_str &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
+:ZERO :puts_0_str :inp_token_allow_empty_0_str :strcmp_const_0_a :strcmp_const_0_aStr :strcmp_const_0_bStr :strcmp_const_1_a :strcmp_const_1_aStr :strcmp_const_1_bStr :strcmp_const_2_a :strcmp_const_2_aStr :strcmp_const_2_bStr :curLine_step0_other :tmpStr :inp_line_0_str :str_split_0_aBuf :str_split_0_strBuf :str_split_0_partBuf :curLine_step0_newline :strcpy_0_strA :strcpy_0_strB :curLine_step0_rem :inp_line_1_str :puts_1_str :lineCountPrint_step0 :itoa_0_retBuf :itoa_0_retLength :puts_2_str :puts_3_str :curLine_step1 :strcmp_const_3_a :strcmp_const_3_aStr :strcmp_const_3_bStr :strcmp_const_4_a :strcmp_const_4_aStr :strcmp_const_4_bStr :strcmp_const_5_a :strcmp_const_5_aStr :strcmp_const_5_bStr :curTokens_step1 :strcpy_1_strA :strcpy_1_strB :strcmp_const_6_a :strcmp_const_6_aStr :strcmp_const_6_bStr :from_hex_0_a :from_hex_0_strBuf :strcmp_const_7_a :strcmp_const_7_aStr :strcmp_const_7_bStr :from_hex_1_a :from_hex_1_strBuf :puts_4_str :symbolCountPrint_step1 :itoa_1_retBuf :itoa_1_retLength :puts_5_str :puts_6_str :incRefCount_key :incRefCount_it :strcmp_const_8_a :strcmp_const_8_aStr :strcmp_const_8_bStr :memcpy_0_dst :memcpy_0_src :curLine_step2 :strcmp_const_9_a :strcmp_const_9_aStr :strcmp_const_9_bStr :strcmp_const_10_a :strcmp_const_10_aStr :strcmp_const_10_bStr :strcmp_const_11_a :strcmp_const_11_aStr :strcmp_const_11_bStr :strcmp_const_12_a :strcmp_const_12_aStr :strcmp_const_12_bStr :strcmp_const_13_a :strcmp_const_13_aStr :strcmp_const_13_bStr :strcmp_const_14_a :strcmp_const_14_aStr :strcmp_const_14_bStr :puts_7_str :symbolCountPrint_step2 :itoa_2_retBuf :itoa_2_retLength :puts_8_str :puts_9_str :totalRefCountStr_step2 :itoa_3_retBuf :itoa_3_retLength :puts_10_str :puts_11_str :inst_step3 :strcmp_const_15_a :strcmp_const_15_aStr :strcmp_const_15_bStr :strcmp_const_16_a :strcmp_const_16_aStr :strcmp_const_16_bStr :memcpy_1_dst :memcpy_1_src :sym0_step3 :sym1_step3 :addrSymbols_it_step3 :strcmp_const_17_a :strcmp_const_17_aStr :strcmp_const_17_bStr :memcpy_2_dst :memcpy_2_src :stubPrefix_step3 :strcpy_2_strA :strcpy_2_strB :strcpy_3_strA :strcpy_3_strB :symbols_it_step3 :strcmp_const_18_a :strcmp_const_18_aStr :strcmp_const_18_bStr :puts_12_str :puts_13_str :nextId_str_step3 :itoa_4_retBuf :itoa_4_retLength :stubSym_step3 :strcpy_4_strA :strcpy_4_strB :strcpy_5_strA :strcpy_5_strB :memcpy_3_dst :memcpy_3_src :curTokens_step3 :memcpy_4_dst :memcpy_4_src :strcmp_const_19_a :strcmp_const_19_aStr :strcmp_const_19_bStr :memcpy_5_dst :memcpy_5_src :memcpy_6_dst :memcpy_6_src :memcpy_7_dst :memcpy_7_src :puts_14_str :symbolCountPrint_step3 :itoa_5_retBuf :itoa_5_retLength :puts_15_str :puts_16_str :lineCountPrint_step3 :itoa_6_retBuf :itoa_6_retLength :puts_17_str :puts_18_str :curLine_step4 :strcmp_const_20_a :strcmp_const_20_aStr :strcmp_const_20_bStr :strcmp_const_21_a :strcmp_const_21_aStr :strcmp_const_21_bStr :strcmp_const_22_a :strcmp_const_22_aStr :strcmp_const_22_bStr :strcmp_const_23_a :strcmp_const_23_aStr :strcmp_const_23_bStr :strcmp_const_24_a :strcmp_const_24_aStr :strcmp_const_24_bStr :strcmp_const_25_a :strcmp_const_25_aStr :strcmp_const_25_bStr :curSym_step4 :strcmp_const_26_a :strcmp_const_26_aStr :strcmp_const_26_bStr :addrSymbols_it_step4 :strcmp_const_27_a :strcmp_const_27_aStr :strcmp_const_27_bStr :stubPrefix_step4 :strcpy_6_strA :strcpy_6_strB :strcpy_7_strA :strcpy_7_strB :nextId_str_step4 :itoa_7_retBuf :itoa_7_retLength :stubSym_step4 :strcpy_8_strA :strcpy_8_strB :strcpy_9_strA :strcpy_9_strB :symbols_it_step4 :strcmp_const_28_a :strcmp_const_28_aStr :strcmp_const_28_bStr :puts_19_str :puts_20_str :sym0_step4 :symbols_it2_step4 :strcmp_const_29_a :strcmp_const_29_aStr :strcmp_const_29_bStr :puts_21_str :puts_22_str :puts_23_str :sizeStr_step4 :itoa_8_retBuf :itoa_8_retLength :puts_24_str :puts_25_str :symbolsCur_dbg :puts_26_str :puts_27_str :puts_28_str :puts_29_str :puts_30_str :linesPass2Cur_dbg :puts_31_str :puts_32_str :puts_33_str :tokensBuf :puts_34_str :puts_35_str :puts_36_str :puts_37_str &ZERO &ZERO &EP ; lblsq ZERO ZERO EP
 
 ; label EP
 
@@ -12749,8 +12749,8 @@
 # MSQ_END 1 lbljmp
 ; label PUTS_14_END
 # MSQ_END 0 puts
-; addr lineCountPrint_step3 0
-# MSQ_START 0 itoa lineCountPrint_step3 linesPass2Len tmp tmp2 tmp3
+; addr symbolCountPrint_step3 0
+# MSQ_START 0 itoa symbolCountPrint_step3 symbolsLen tmp tmp2 tmp3
 # MSQ_START 1 malloc_const tmp2 18 tmp3
 # MSQ_START 2 malloc tmp2 CONST_18 tmp3
 :PUTS_14_END &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
@@ -12762,97 +12762,97 @@
 &FREE_START &tmp3 ?+8 ; relsq FREE_START tmp3 1
 # MSQ_END 2 malloc
 # MSQ_END 1 malloc_const
-# MSQ_START 1 setaddr lineCountPrint_step3 tmp2 tmp3 tmp
-# MSQ_START 2 mov tmp3 lineCountPrint_step3_addrRef_0 tmp
+# MSQ_START 1 setaddr symbolCountPrint_step3 tmp2 tmp3 tmp
+# MSQ_START 2 mov tmp3 symbolCountPrint_step3_addrRef_0 tmp
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &lineCountPrint_step3_addrRef_0 ?+8 ; relsq tmp lineCountPrint_step3_addrRef_0 1
+&tmp &symbolCountPrint_step3_addrRef_0 ?+8 ; relsq tmp symbolCountPrint_step3_addrRef_0 1
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &tmp ?+8 ; relsq tmp3 tmp 1
 # MSQ_END 2 mov
 # MSQ_START 2 sub tmp3 tmp2
 &tmp3 &tmp2 ?+8 ; relsq tmp3 tmp2 1
 # MSQ_END 2 sub
-&lineCountPrint_step3_addrRef_0 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_0 tmp3 1
-&lineCountPrint_step3_addrRef_1 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_1 tmp3 1
-&lineCountPrint_step3_addrRef_2 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_2 tmp3 1
-&lineCountPrint_step3_addrRef_3 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_3 tmp3 1
-&lineCountPrint_step3_addrRef_4 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_4 tmp3 1
-&lineCountPrint_step3_addrRef_5 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_5 tmp3 1
-&lineCountPrint_step3_addrRef_6 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_6 tmp3 1
-&lineCountPrint_step3_addrRef_7 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_7 tmp3 1
-&lineCountPrint_step3_addrRef_8 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_8 tmp3 1
-&lineCountPrint_step3_addrRef_9 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_9 tmp3 1
-&lineCountPrint_step3_addrRef_10 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_10 tmp3 1
+&symbolCountPrint_step3_addrRef_0 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_0 tmp3 1
+&symbolCountPrint_step3_addrRef_1 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_1 tmp3 1
+&symbolCountPrint_step3_addrRef_2 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_2 tmp3 1
+&symbolCountPrint_step3_addrRef_3 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_3 tmp3 1
+&symbolCountPrint_step3_addrRef_4 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_4 tmp3 1
+&symbolCountPrint_step3_addrRef_5 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_5 tmp3 1
+&symbolCountPrint_step3_addrRef_6 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_6 tmp3 1
+&symbolCountPrint_step3_addrRef_7 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_7 tmp3 1
+&symbolCountPrint_step3_addrRef_8 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_8 tmp3 1
+&symbolCountPrint_step3_addrRef_9 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_9 tmp3 1
+&symbolCountPrint_step3_addrRef_10 &tmp3 ?+8 ; relsq symbolCountPrint_step3_addrRef_10 tmp3 1
 # MSQ_END 1 setaddr
-# MSQ_START 1 alloc_str_const lineCountPrint_step3 a0 tmp3
-# MSQ_START 2 malloc_const lineCountPrint_step3 a0 tmp3
+# MSQ_START 1 alloc_str_const symbolCountPrint_step3 a0 tmp3
+# MSQ_START 2 malloc_const symbolCountPrint_step3 a0 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &FREE_START ?+8 ; relsq tmp3 FREE_START 1
-:lineCountPrint_step3_addrRef_0 &lineCountPrint_step3 :lineCountPrint_step3_addrRef_1 &lineCountPrint_step3 ?+8 ; relsq lineCountPrint_step3 lineCountPrint_step3 1
-:lineCountPrint_step3_addrRef_2 &lineCountPrint_step3 &tmp3 ?+8 ; relsq lineCountPrint_step3 tmp3 1
+:symbolCountPrint_step3_addrRef_0 &symbolCountPrint_step3 :symbolCountPrint_step3_addrRef_1 &symbolCountPrint_step3 ?+8 ; relsq symbolCountPrint_step3 symbolCountPrint_step3 1
+:symbolCountPrint_step3_addrRef_2 &symbolCountPrint_step3 &tmp3 ?+8 ; relsq symbolCountPrint_step3 tmp3 1
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &CONST_A0 ?+8 ; relsq tmp3 CONST_A0 1
 &FREE_START &tmp3 ?+8 ; relsq FREE_START tmp3 1
 # MSQ_END 2 malloc_const
-# MSQ_START 2 incaddr lineCountPrint_step3 8
-&lineCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_-8 1
-&lineCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_-8 1
-&lineCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_-8 1
-&lineCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_-8 1
-&lineCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_-8 1
-&lineCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_-8 1
-&lineCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_-8 1
-&lineCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_-8 1
-&lineCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_-8 1
-&lineCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_-8 1
-&lineCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_-8 1
+# MSQ_START 2 incaddr symbolCountPrint_step3 8
+&symbolCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_0 CONST_-8 1
+&symbolCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_1 CONST_-8 1
+&symbolCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_2 CONST_-8 1
+&symbolCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_3 CONST_-8 1
+&symbolCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_4 CONST_-8 1
+&symbolCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_5 CONST_-8 1
+&symbolCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_6 CONST_-8 1
+&symbolCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_7 CONST_-8 1
+&symbolCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_8 CONST_-8 1
+&symbolCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_9 CONST_-8 1
+&symbolCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_10 CONST_-8 1
 # MSQ_END 2 incaddr
-# MSQ_START 2 zero lineCountPrint_step3
-:lineCountPrint_step3_addrRef_3 &lineCountPrint_step3 :lineCountPrint_step3_addrRef_4 &lineCountPrint_step3 ?+8 ; relsq lineCountPrint_step3 lineCountPrint_step3 1
+# MSQ_START 2 zero symbolCountPrint_step3
+:symbolCountPrint_step3_addrRef_3 &symbolCountPrint_step3 :symbolCountPrint_step3_addrRef_4 &symbolCountPrint_step3 ?+8 ; relsq symbolCountPrint_step3 symbolCountPrint_step3 1
 # MSQ_END 2 zero
-# MSQ_START 2 incaddr lineCountPrint_step3 8
-&lineCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_-8 1
-&lineCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_-8 1
-&lineCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_-8 1
-&lineCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_-8 1
-&lineCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_-8 1
-&lineCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_-8 1
-&lineCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_-8 1
-&lineCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_-8 1
-&lineCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_-8 1
-&lineCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_-8 1
-&lineCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_-8 1
+# MSQ_START 2 incaddr symbolCountPrint_step3 8
+&symbolCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_0 CONST_-8 1
+&symbolCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_1 CONST_-8 1
+&symbolCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_2 CONST_-8 1
+&symbolCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_3 CONST_-8 1
+&symbolCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_4 CONST_-8 1
+&symbolCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_5 CONST_-8 1
+&symbolCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_6 CONST_-8 1
+&symbolCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_7 CONST_-8 1
+&symbolCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_8 CONST_-8 1
+&symbolCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_9 CONST_-8 1
+&symbolCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_10 CONST_-8 1
 # MSQ_END 2 incaddr
-# MSQ_START 2 mov lineCountPrint_step3 CONST_A0 tmp3
+# MSQ_START 2 mov symbolCountPrint_step3 CONST_A0 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &CONST_A0 ?+8 ; relsq tmp3 CONST_A0 1
-:lineCountPrint_step3_addrRef_5 &lineCountPrint_step3 :lineCountPrint_step3_addrRef_6 &lineCountPrint_step3 ?+8 ; relsq lineCountPrint_step3 lineCountPrint_step3 1
-:lineCountPrint_step3_addrRef_7 &lineCountPrint_step3 &tmp3 ?+8 ; relsq lineCountPrint_step3 tmp3 1
+:symbolCountPrint_step3_addrRef_5 &symbolCountPrint_step3 :symbolCountPrint_step3_addrRef_6 &symbolCountPrint_step3 ?+8 ; relsq symbolCountPrint_step3 symbolCountPrint_step3 1
+:symbolCountPrint_step3_addrRef_7 &symbolCountPrint_step3 &tmp3 ?+8 ; relsq symbolCountPrint_step3 tmp3 1
 # MSQ_END 2 mov
-# MSQ_START 2 decaddr lineCountPrint_step3 10
-&lineCountPrint_step3_addrRef_0 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_10 1
-&lineCountPrint_step3_addrRef_1 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_10 1
-&lineCountPrint_step3_addrRef_2 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_10 1
-&lineCountPrint_step3_addrRef_3 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_10 1
-&lineCountPrint_step3_addrRef_4 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_10 1
-&lineCountPrint_step3_addrRef_5 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_10 1
-&lineCountPrint_step3_addrRef_6 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_10 1
-&lineCountPrint_step3_addrRef_7 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_10 1
-&lineCountPrint_step3_addrRef_8 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_10 1
-&lineCountPrint_step3_addrRef_9 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_10 1
-&lineCountPrint_step3_addrRef_10 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_10 1
+# MSQ_START 2 decaddr symbolCountPrint_step3 10
+&symbolCountPrint_step3_addrRef_0 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_0 CONST_10 1
+&symbolCountPrint_step3_addrRef_1 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_1 CONST_10 1
+&symbolCountPrint_step3_addrRef_2 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_2 CONST_10 1
+&symbolCountPrint_step3_addrRef_3 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_3 CONST_10 1
+&symbolCountPrint_step3_addrRef_4 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_4 CONST_10 1
+&symbolCountPrint_step3_addrRef_5 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_5 CONST_10 1
+&symbolCountPrint_step3_addrRef_6 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_6 CONST_10 1
+&symbolCountPrint_step3_addrRef_7 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_7 CONST_10 1
+&symbolCountPrint_step3_addrRef_8 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_8 CONST_10 1
+&symbolCountPrint_step3_addrRef_9 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_9 CONST_10 1
+&symbolCountPrint_step3_addrRef_10 &CONST_10 ?+8 ; relsq symbolCountPrint_step3_addrRef_10 CONST_10 1
 # MSQ_END 2 decaddr
 # MSQ_END 1 alloc_str_const
 ; addr itoa_5_retBuf 0
-# MSQ_START 1 setaddr itoa_5_retBuf lineCountPrint_step3 tmp2 tmp3
+# MSQ_START 1 setaddr itoa_5_retBuf symbolCountPrint_step3 tmp2 tmp3
 # MSQ_START 2 mov tmp2 itoa_5_retBuf_addrRef_0 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &itoa_5_retBuf_addrRef_0 ?+8 ; relsq tmp3 itoa_5_retBuf_addrRef_0 1
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp3 ?+8 ; relsq tmp2 tmp3 1
 # MSQ_END 2 mov
-# MSQ_START 2 sub tmp2 lineCountPrint_step3
-&tmp2 :lineCountPrint_step3_addrRef_8 &lineCountPrint_step3 ?+8 ; relsq tmp2 lineCountPrint_step3 1
+# MSQ_START 2 sub tmp2 symbolCountPrint_step3
+&tmp2 :symbolCountPrint_step3_addrRef_8 &symbolCountPrint_step3 ?+8 ; relsq tmp2 symbolCountPrint_step3 1
 # MSQ_END 2 sub
 &itoa_5_retBuf_addrRef_0 &tmp2 ?+8 ; relsq itoa_5_retBuf_addrRef_0 tmp2 1
 &itoa_5_retBuf_addrRef_1 &tmp2 ?+8 ; relsq itoa_5_retBuf_addrRef_1 tmp2 1
@@ -12866,13 +12866,13 @@
 &itoa_5_retBuf_addrRef_9 &tmp2 ?+8 ; relsq itoa_5_retBuf_addrRef_9 tmp2 1
 # MSQ_END 1 setaddr
 ; addr itoa_5_retLength 0
-# MSQ_START 1 copyaddr itoa_5_retLength lineCountPrint_step3 tmp2 tmp3
-# MSQ_START 2 setaddr itoa_5_retLength lineCountPrint_step3_addrRef_0 tmp2 tmp3
+# MSQ_START 1 copyaddr itoa_5_retLength symbolCountPrint_step3 tmp2 tmp3
+# MSQ_START 2 setaddr itoa_5_retLength symbolCountPrint_step3_addrRef_0 tmp2 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &itoa_5_retLength_addrRef_0 ?+8 ; relsq tmp3 itoa_5_retLength_addrRef_0 1
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp3 ?+8 ; relsq tmp2 tmp3 1
-&tmp2 &lineCountPrint_step3_addrRef_0 ?+8 ; relsq tmp2 lineCountPrint_step3_addrRef_0 1
+&tmp2 &symbolCountPrint_step3_addrRef_0 ?+8 ; relsq tmp2 symbolCountPrint_step3_addrRef_0 1
 &itoa_5_retLength_addrRef_0 &tmp2 ?+8 ; relsq itoa_5_retLength_addrRef_0 tmp2 1
 &itoa_5_retLength_addrRef_1 &tmp2 ?+8 ; relsq itoa_5_retLength_addrRef_1 tmp2 1
 &itoa_5_retLength_addrRef_2 &tmp2 ?+8 ; relsq itoa_5_retLength_addrRef_2 tmp2 1
@@ -12892,10 +12892,10 @@
 &itoa_5_noDigits &CONST_-1 ?+8 ; relsq itoa_5_noDigits CONST_-1 1
 # MSQ_END 2 inc
 # MSQ_END 1 set
-# MSQ_START 1 mov tmp linesPass2Len tmp2
-# MSQ_START 2 movneg tmp2 linesPass2Len
+# MSQ_START 1 mov tmp symbolsLen tmp2
+# MSQ_START 2 movneg tmp2 symbolsLen
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &linesPass2Len ?+8 ; relsq tmp2 linesPass2Len 1
+&tmp2 &symbolsLen ?+8 ; relsq tmp2 symbolsLen 1
 # MSQ_END 2 movneg
 # MSQ_START 2 movneg tmp tmp2
 &tmp &tmp ?+8 ; relsq tmp tmp 1
@@ -13173,56 +13173,56 @@
 # MSQ_END 1 decaddr
 ; label ITOA_5_END
 # MSQ_END 0 itoa
-# MSQ_START 0 puts lineCountPrint_step3 tmp tmp2
+# MSQ_START 0 puts symbolCountPrint_step3 tmp tmp2
 ; addr puts_15_str 0
-# MSQ_START 1 setaddr puts_15_str lineCountPrint_step3 tmp tmp2
+# MSQ_START 1 setaddr puts_15_str symbolCountPrint_step3 tmp tmp2
 # MSQ_START 2 mov tmp puts_15_str_addrRef_0 tmp2
 :ITOA_5_END &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &puts_15_str_addrRef_0 ?+8 ; relsq tmp2 puts_15_str_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
 # MSQ_END 2 mov
-# MSQ_START 2 sub tmp lineCountPrint_step3
-&tmp :lineCountPrint_step3_addrRef_9 &lineCountPrint_step3 ?+8 ; relsq tmp lineCountPrint_step3 1
+# MSQ_START 2 sub tmp symbolCountPrint_step3
+&tmp :symbolCountPrint_step3_addrRef_9 &symbolCountPrint_step3 ?+8 ; relsq tmp symbolCountPrint_step3 1
 # MSQ_END 2 sub
 &puts_15_str_addrRef_0 &tmp ?+8 ; relsq puts_15_str_addrRef_0 tmp 1
 # MSQ_END 1 setaddr
 ; var puts_15_len 0
-# MSQ_START 1 incaddr lineCountPrint_step3 8
-&lineCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_-8 1
-&lineCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_-8 1
-&lineCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_-8 1
-&lineCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_-8 1
-&lineCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_-8 1
-&lineCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_-8 1
-&lineCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_-8 1
-&lineCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_-8 1
-&lineCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_-8 1
-&lineCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_-8 1
-&lineCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_-8 1
+# MSQ_START 1 incaddr symbolCountPrint_step3 8
+&symbolCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_0 CONST_-8 1
+&symbolCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_1 CONST_-8 1
+&symbolCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_2 CONST_-8 1
+&symbolCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_3 CONST_-8 1
+&symbolCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_4 CONST_-8 1
+&symbolCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_5 CONST_-8 1
+&symbolCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_6 CONST_-8 1
+&symbolCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_7 CONST_-8 1
+&symbolCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_8 CONST_-8 1
+&symbolCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_9 CONST_-8 1
+&symbolCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq symbolCountPrint_step3_addrRef_10 CONST_-8 1
 # MSQ_END 1 incaddr
-# MSQ_START 1 mov puts_15_len lineCountPrint_step3 tmp
-# MSQ_START 2 movneg tmp lineCountPrint_step3
+# MSQ_START 1 mov puts_15_len symbolCountPrint_step3 tmp
+# MSQ_START 2 movneg tmp symbolCountPrint_step3
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :lineCountPrint_step3_addrRef_10 &lineCountPrint_step3 ?+8 ; relsq tmp lineCountPrint_step3 1
+&tmp :symbolCountPrint_step3_addrRef_10 &symbolCountPrint_step3 ?+8 ; relsq tmp symbolCountPrint_step3 1
 # MSQ_END 2 movneg
 # MSQ_START 2 movneg puts_15_len tmp
 &puts_15_len &puts_15_len ?+8 ; relsq puts_15_len puts_15_len 1
 &puts_15_len &tmp ?+8 ; relsq puts_15_len tmp 1
 # MSQ_END 2 movneg
 # MSQ_END 1 mov
-# MSQ_START 1 decaddr lineCountPrint_step3 8
-&lineCountPrint_step3_addrRef_0 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_8 1
-&lineCountPrint_step3_addrRef_1 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_8 1
-&lineCountPrint_step3_addrRef_2 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_8 1
-&lineCountPrint_step3_addrRef_3 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_8 1
-&lineCountPrint_step3_addrRef_4 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_8 1
-&lineCountPrint_step3_addrRef_5 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_8 1
-&lineCountPrint_step3_addrRef_6 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_8 1
-&lineCountPrint_step3_addrRef_7 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_8 1
-&lineCountPrint_step3_addrRef_8 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_8 1
-&lineCountPrint_step3_addrRef_9 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_8 1
-&lineCountPrint_step3_addrRef_10 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_8 1
+# MSQ_START 1 decaddr symbolCountPrint_step3 8
+&symbolCountPrint_step3_addrRef_0 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_0 CONST_8 1
+&symbolCountPrint_step3_addrRef_1 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_1 CONST_8 1
+&symbolCountPrint_step3_addrRef_2 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_2 CONST_8 1
+&symbolCountPrint_step3_addrRef_3 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_3 CONST_8 1
+&symbolCountPrint_step3_addrRef_4 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_4 CONST_8 1
+&symbolCountPrint_step3_addrRef_5 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_5 CONST_8 1
+&symbolCountPrint_step3_addrRef_6 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_6 CONST_8 1
+&symbolCountPrint_step3_addrRef_7 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_7 CONST_8 1
+&symbolCountPrint_step3_addrRef_8 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_8 CONST_8 1
+&symbolCountPrint_step3_addrRef_9 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_9 CONST_8 1
+&symbolCountPrint_step3_addrRef_10 &CONST_8 ?+8 ; relsq symbolCountPrint_step3_addrRef_10 CONST_8 1
 # MSQ_END 1 decaddr
 ; label PUTS_15_LOOP
 # MSQ_START 1 decleq puts_15_len 0 PUTS_15_END
@@ -13321,8 +13321,8 @@
 # MSQ_END 1 lbljmp
 ; label PUTS_16_END
 # MSQ_END 0 puts
-; addr totalRefCountStr_step3 0
-# MSQ_START 0 itoa totalRefCountStr_step3 totalRefCount tmp tmp2 tmp3
+; addr lineCountPrint_step3 0
+# MSQ_START 0 itoa lineCountPrint_step3 linesPass2Len tmp tmp2 tmp3
 # MSQ_START 1 malloc_const tmp2 18 tmp3
 # MSQ_START 2 malloc tmp2 CONST_18 tmp3
 :PUTS_16_END &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
@@ -13334,97 +13334,97 @@
 &FREE_START &tmp3 ?+8 ; relsq FREE_START tmp3 1
 # MSQ_END 2 malloc
 # MSQ_END 1 malloc_const
-# MSQ_START 1 setaddr totalRefCountStr_step3 tmp2 tmp3 tmp
-# MSQ_START 2 mov tmp3 totalRefCountStr_step3_addrRef_0 tmp
+# MSQ_START 1 setaddr lineCountPrint_step3 tmp2 tmp3 tmp
+# MSQ_START 2 mov tmp3 lineCountPrint_step3_addrRef_0 tmp
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp &totalRefCountStr_step3_addrRef_0 ?+8 ; relsq tmp totalRefCountStr_step3_addrRef_0 1
+&tmp &lineCountPrint_step3_addrRef_0 ?+8 ; relsq tmp lineCountPrint_step3_addrRef_0 1
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &tmp ?+8 ; relsq tmp3 tmp 1
 # MSQ_END 2 mov
 # MSQ_START 2 sub tmp3 tmp2
 &tmp3 &tmp2 ?+8 ; relsq tmp3 tmp2 1
 # MSQ_END 2 sub
-&totalRefCountStr_step3_addrRef_0 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_0 tmp3 1
-&totalRefCountStr_step3_addrRef_1 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_1 tmp3 1
-&totalRefCountStr_step3_addrRef_2 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_2 tmp3 1
-&totalRefCountStr_step3_addrRef_3 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_3 tmp3 1
-&totalRefCountStr_step3_addrRef_4 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_4 tmp3 1
-&totalRefCountStr_step3_addrRef_5 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_5 tmp3 1
-&totalRefCountStr_step3_addrRef_6 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_6 tmp3 1
-&totalRefCountStr_step3_addrRef_7 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_7 tmp3 1
-&totalRefCountStr_step3_addrRef_8 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_8 tmp3 1
-&totalRefCountStr_step3_addrRef_9 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_9 tmp3 1
-&totalRefCountStr_step3_addrRef_10 &tmp3 ?+8 ; relsq totalRefCountStr_step3_addrRef_10 tmp3 1
+&lineCountPrint_step3_addrRef_0 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_0 tmp3 1
+&lineCountPrint_step3_addrRef_1 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_1 tmp3 1
+&lineCountPrint_step3_addrRef_2 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_2 tmp3 1
+&lineCountPrint_step3_addrRef_3 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_3 tmp3 1
+&lineCountPrint_step3_addrRef_4 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_4 tmp3 1
+&lineCountPrint_step3_addrRef_5 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_5 tmp3 1
+&lineCountPrint_step3_addrRef_6 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_6 tmp3 1
+&lineCountPrint_step3_addrRef_7 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_7 tmp3 1
+&lineCountPrint_step3_addrRef_8 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_8 tmp3 1
+&lineCountPrint_step3_addrRef_9 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_9 tmp3 1
+&lineCountPrint_step3_addrRef_10 &tmp3 ?+8 ; relsq lineCountPrint_step3_addrRef_10 tmp3 1
 # MSQ_END 1 setaddr
-# MSQ_START 1 alloc_str_const totalRefCountStr_step3 a0 tmp3
-# MSQ_START 2 malloc_const totalRefCountStr_step3 a0 tmp3
+# MSQ_START 1 alloc_str_const lineCountPrint_step3 a0 tmp3
+# MSQ_START 2 malloc_const lineCountPrint_step3 a0 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &FREE_START ?+8 ; relsq tmp3 FREE_START 1
-:totalRefCountStr_step3_addrRef_0 &totalRefCountStr_step3 :totalRefCountStr_step3_addrRef_1 &totalRefCountStr_step3 ?+8 ; relsq totalRefCountStr_step3 totalRefCountStr_step3 1
-:totalRefCountStr_step3_addrRef_2 &totalRefCountStr_step3 &tmp3 ?+8 ; relsq totalRefCountStr_step3 tmp3 1
+:lineCountPrint_step3_addrRef_0 &lineCountPrint_step3 :lineCountPrint_step3_addrRef_1 &lineCountPrint_step3 ?+8 ; relsq lineCountPrint_step3 lineCountPrint_step3 1
+:lineCountPrint_step3_addrRef_2 &lineCountPrint_step3 &tmp3 ?+8 ; relsq lineCountPrint_step3 tmp3 1
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &CONST_A0 ?+8 ; relsq tmp3 CONST_A0 1
 &FREE_START &tmp3 ?+8 ; relsq FREE_START tmp3 1
 # MSQ_END 2 malloc_const
-# MSQ_START 2 incaddr totalRefCountStr_step3 8
-&totalRefCountStr_step3_addrRef_0 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_0 CONST_-8 1
-&totalRefCountStr_step3_addrRef_1 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_1 CONST_-8 1
-&totalRefCountStr_step3_addrRef_2 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_2 CONST_-8 1
-&totalRefCountStr_step3_addrRef_3 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_3 CONST_-8 1
-&totalRefCountStr_step3_addrRef_4 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_4 CONST_-8 1
-&totalRefCountStr_step3_addrRef_5 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_5 CONST_-8 1
-&totalRefCountStr_step3_addrRef_6 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_6 CONST_-8 1
-&totalRefCountStr_step3_addrRef_7 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_7 CONST_-8 1
-&totalRefCountStr_step3_addrRef_8 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_8 CONST_-8 1
-&totalRefCountStr_step3_addrRef_9 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_9 CONST_-8 1
-&totalRefCountStr_step3_addrRef_10 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_10 CONST_-8 1
+# MSQ_START 2 incaddr lineCountPrint_step3 8
+&lineCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_-8 1
+&lineCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_-8 1
+&lineCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_-8 1
+&lineCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_-8 1
+&lineCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_-8 1
+&lineCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_-8 1
+&lineCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_-8 1
+&lineCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_-8 1
+&lineCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_-8 1
+&lineCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_-8 1
+&lineCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_-8 1
 # MSQ_END 2 incaddr
-# MSQ_START 2 zero totalRefCountStr_step3
-:totalRefCountStr_step3_addrRef_3 &totalRefCountStr_step3 :totalRefCountStr_step3_addrRef_4 &totalRefCountStr_step3 ?+8 ; relsq totalRefCountStr_step3 totalRefCountStr_step3 1
+# MSQ_START 2 zero lineCountPrint_step3
+:lineCountPrint_step3_addrRef_3 &lineCountPrint_step3 :lineCountPrint_step3_addrRef_4 &lineCountPrint_step3 ?+8 ; relsq lineCountPrint_step3 lineCountPrint_step3 1
 # MSQ_END 2 zero
-# MSQ_START 2 incaddr totalRefCountStr_step3 8
-&totalRefCountStr_step3_addrRef_0 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_0 CONST_-8 1
-&totalRefCountStr_step3_addrRef_1 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_1 CONST_-8 1
-&totalRefCountStr_step3_addrRef_2 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_2 CONST_-8 1
-&totalRefCountStr_step3_addrRef_3 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_3 CONST_-8 1
-&totalRefCountStr_step3_addrRef_4 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_4 CONST_-8 1
-&totalRefCountStr_step3_addrRef_5 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_5 CONST_-8 1
-&totalRefCountStr_step3_addrRef_6 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_6 CONST_-8 1
-&totalRefCountStr_step3_addrRef_7 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_7 CONST_-8 1
-&totalRefCountStr_step3_addrRef_8 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_8 CONST_-8 1
-&totalRefCountStr_step3_addrRef_9 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_9 CONST_-8 1
-&totalRefCountStr_step3_addrRef_10 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_10 CONST_-8 1
+# MSQ_START 2 incaddr lineCountPrint_step3 8
+&lineCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_-8 1
+&lineCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_-8 1
+&lineCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_-8 1
+&lineCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_-8 1
+&lineCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_-8 1
+&lineCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_-8 1
+&lineCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_-8 1
+&lineCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_-8 1
+&lineCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_-8 1
+&lineCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_-8 1
+&lineCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_-8 1
 # MSQ_END 2 incaddr
-# MSQ_START 2 mov totalRefCountStr_step3 CONST_A0 tmp3
+# MSQ_START 2 mov lineCountPrint_step3 CONST_A0 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &CONST_A0 ?+8 ; relsq tmp3 CONST_A0 1
-:totalRefCountStr_step3_addrRef_5 &totalRefCountStr_step3 :totalRefCountStr_step3_addrRef_6 &totalRefCountStr_step3 ?+8 ; relsq totalRefCountStr_step3 totalRefCountStr_step3 1
-:totalRefCountStr_step3_addrRef_7 &totalRefCountStr_step3 &tmp3 ?+8 ; relsq totalRefCountStr_step3 tmp3 1
+:lineCountPrint_step3_addrRef_5 &lineCountPrint_step3 :lineCountPrint_step3_addrRef_6 &lineCountPrint_step3 ?+8 ; relsq lineCountPrint_step3 lineCountPrint_step3 1
+:lineCountPrint_step3_addrRef_7 &lineCountPrint_step3 &tmp3 ?+8 ; relsq lineCountPrint_step3 tmp3 1
 # MSQ_END 2 mov
-# MSQ_START 2 decaddr totalRefCountStr_step3 10
-&totalRefCountStr_step3_addrRef_0 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_0 CONST_10 1
-&totalRefCountStr_step3_addrRef_1 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_1 CONST_10 1
-&totalRefCountStr_step3_addrRef_2 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_2 CONST_10 1
-&totalRefCountStr_step3_addrRef_3 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_3 CONST_10 1
-&totalRefCountStr_step3_addrRef_4 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_4 CONST_10 1
-&totalRefCountStr_step3_addrRef_5 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_5 CONST_10 1
-&totalRefCountStr_step3_addrRef_6 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_6 CONST_10 1
-&totalRefCountStr_step3_addrRef_7 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_7 CONST_10 1
-&totalRefCountStr_step3_addrRef_8 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_8 CONST_10 1
-&totalRefCountStr_step3_addrRef_9 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_9 CONST_10 1
-&totalRefCountStr_step3_addrRef_10 &CONST_10 ?+8 ; relsq totalRefCountStr_step3_addrRef_10 CONST_10 1
+# MSQ_START 2 decaddr lineCountPrint_step3 10
+&lineCountPrint_step3_addrRef_0 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_10 1
+&lineCountPrint_step3_addrRef_1 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_10 1
+&lineCountPrint_step3_addrRef_2 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_10 1
+&lineCountPrint_step3_addrRef_3 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_10 1
+&lineCountPrint_step3_addrRef_4 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_10 1
+&lineCountPrint_step3_addrRef_5 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_10 1
+&lineCountPrint_step3_addrRef_6 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_10 1
+&lineCountPrint_step3_addrRef_7 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_10 1
+&lineCountPrint_step3_addrRef_8 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_10 1
+&lineCountPrint_step3_addrRef_9 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_10 1
+&lineCountPrint_step3_addrRef_10 &CONST_10 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_10 1
 # MSQ_END 2 decaddr
 # MSQ_END 1 alloc_str_const
 ; addr itoa_6_retBuf 0
-# MSQ_START 1 setaddr itoa_6_retBuf totalRefCountStr_step3 tmp2 tmp3
+# MSQ_START 1 setaddr itoa_6_retBuf lineCountPrint_step3 tmp2 tmp3
 # MSQ_START 2 mov tmp2 itoa_6_retBuf_addrRef_0 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &itoa_6_retBuf_addrRef_0 ?+8 ; relsq tmp3 itoa_6_retBuf_addrRef_0 1
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp3 ?+8 ; relsq tmp2 tmp3 1
 # MSQ_END 2 mov
-# MSQ_START 2 sub tmp2 totalRefCountStr_step3
-&tmp2 :totalRefCountStr_step3_addrRef_8 &totalRefCountStr_step3 ?+8 ; relsq tmp2 totalRefCountStr_step3 1
+# MSQ_START 2 sub tmp2 lineCountPrint_step3
+&tmp2 :lineCountPrint_step3_addrRef_8 &lineCountPrint_step3 ?+8 ; relsq tmp2 lineCountPrint_step3 1
 # MSQ_END 2 sub
 &itoa_6_retBuf_addrRef_0 &tmp2 ?+8 ; relsq itoa_6_retBuf_addrRef_0 tmp2 1
 &itoa_6_retBuf_addrRef_1 &tmp2 ?+8 ; relsq itoa_6_retBuf_addrRef_1 tmp2 1
@@ -13438,13 +13438,13 @@
 &itoa_6_retBuf_addrRef_9 &tmp2 ?+8 ; relsq itoa_6_retBuf_addrRef_9 tmp2 1
 # MSQ_END 1 setaddr
 ; addr itoa_6_retLength 0
-# MSQ_START 1 copyaddr itoa_6_retLength totalRefCountStr_step3 tmp2 tmp3
-# MSQ_START 2 setaddr itoa_6_retLength totalRefCountStr_step3_addrRef_0 tmp2 tmp3
+# MSQ_START 1 copyaddr itoa_6_retLength lineCountPrint_step3 tmp2 tmp3
+# MSQ_START 2 setaddr itoa_6_retLength lineCountPrint_step3_addrRef_0 tmp2 tmp3
 &tmp3 &tmp3 ?+8 ; relsq tmp3 tmp3 1
 &tmp3 &itoa_6_retLength_addrRef_0 ?+8 ; relsq tmp3 itoa_6_retLength_addrRef_0 1
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &tmp3 ?+8 ; relsq tmp2 tmp3 1
-&tmp2 &totalRefCountStr_step3_addrRef_0 ?+8 ; relsq tmp2 totalRefCountStr_step3_addrRef_0 1
+&tmp2 &lineCountPrint_step3_addrRef_0 ?+8 ; relsq tmp2 lineCountPrint_step3_addrRef_0 1
 &itoa_6_retLength_addrRef_0 &tmp2 ?+8 ; relsq itoa_6_retLength_addrRef_0 tmp2 1
 &itoa_6_retLength_addrRef_1 &tmp2 ?+8 ; relsq itoa_6_retLength_addrRef_1 tmp2 1
 &itoa_6_retLength_addrRef_2 &tmp2 ?+8 ; relsq itoa_6_retLength_addrRef_2 tmp2 1
@@ -13464,10 +13464,10 @@
 &itoa_6_noDigits &CONST_-1 ?+8 ; relsq itoa_6_noDigits CONST_-1 1
 # MSQ_END 2 inc
 # MSQ_END 1 set
-# MSQ_START 1 mov tmp totalRefCount tmp2
-# MSQ_START 2 movneg tmp2 totalRefCount
+# MSQ_START 1 mov tmp linesPass2Len tmp2
+# MSQ_START 2 movneg tmp2 linesPass2Len
 &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
-&tmp2 &totalRefCount ?+8 ; relsq tmp2 totalRefCount 1
+&tmp2 &linesPass2Len ?+8 ; relsq tmp2 linesPass2Len 1
 # MSQ_END 2 movneg
 # MSQ_START 2 movneg tmp tmp2
 &tmp &tmp ?+8 ; relsq tmp tmp 1
@@ -13745,56 +13745,56 @@
 # MSQ_END 1 decaddr
 ; label ITOA_6_END
 # MSQ_END 0 itoa
-# MSQ_START 0 puts totalRefCountStr_step3 tmp tmp2
+# MSQ_START 0 puts lineCountPrint_step3 tmp tmp2
 ; addr puts_17_str 0
-# MSQ_START 1 setaddr puts_17_str totalRefCountStr_step3 tmp tmp2
+# MSQ_START 1 setaddr puts_17_str lineCountPrint_step3 tmp tmp2
 # MSQ_START 2 mov tmp puts_17_str_addrRef_0 tmp2
 :ITOA_6_END &tmp2 &tmp2 ?+8 ; relsq tmp2 tmp2 1
 &tmp2 &puts_17_str_addrRef_0 ?+8 ; relsq tmp2 puts_17_str_addrRef_0 1
 &tmp &tmp ?+8 ; relsq tmp tmp 1
 &tmp &tmp2 ?+8 ; relsq tmp tmp2 1
 # MSQ_END 2 mov
-# MSQ_START 2 sub tmp totalRefCountStr_step3
-&tmp :totalRefCountStr_step3_addrRef_9 &totalRefCountStr_step3 ?+8 ; relsq tmp totalRefCountStr_step3 1
+# MSQ_START 2 sub tmp lineCountPrint_step3
+&tmp :lineCountPrint_step3_addrRef_9 &lineCountPrint_step3 ?+8 ; relsq tmp lineCountPrint_step3 1
 # MSQ_END 2 sub
 &puts_17_str_addrRef_0 &tmp ?+8 ; relsq puts_17_str_addrRef_0 tmp 1
 # MSQ_END 1 setaddr
 ; var puts_17_len 0
-# MSQ_START 1 incaddr totalRefCountStr_step3 8
-&totalRefCountStr_step3_addrRef_0 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_0 CONST_-8 1
-&totalRefCountStr_step3_addrRef_1 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_1 CONST_-8 1
-&totalRefCountStr_step3_addrRef_2 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_2 CONST_-8 1
-&totalRefCountStr_step3_addrRef_3 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_3 CONST_-8 1
-&totalRefCountStr_step3_addrRef_4 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_4 CONST_-8 1
-&totalRefCountStr_step3_addrRef_5 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_5 CONST_-8 1
-&totalRefCountStr_step3_addrRef_6 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_6 CONST_-8 1
-&totalRefCountStr_step3_addrRef_7 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_7 CONST_-8 1
-&totalRefCountStr_step3_addrRef_8 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_8 CONST_-8 1
-&totalRefCountStr_step3_addrRef_9 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_9 CONST_-8 1
-&totalRefCountStr_step3_addrRef_10 &CONST_-8 ?+8 ; relsq totalRefCountStr_step3_addrRef_10 CONST_-8 1
+# MSQ_START 1 incaddr lineCountPrint_step3 8
+&lineCountPrint_step3_addrRef_0 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_-8 1
+&lineCountPrint_step3_addrRef_1 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_-8 1
+&lineCountPrint_step3_addrRef_2 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_-8 1
+&lineCountPrint_step3_addrRef_3 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_-8 1
+&lineCountPrint_step3_addrRef_4 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_-8 1
+&lineCountPrint_step3_addrRef_5 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_-8 1
+&lineCountPrint_step3_addrRef_6 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_-8 1
+&lineCountPrint_step3_addrRef_7 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_-8 1
+&lineCountPrint_step3_addrRef_8 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_-8 1
+&lineCountPrint_step3_addrRef_9 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_-8 1
+&lineCountPrint_step3_addrRef_10 &CONST_-8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_-8 1
 # MSQ_END 1 incaddr
-# MSQ_START 1 mov puts_17_len totalRefCountStr_step3 tmp
-# MSQ_START 2 movneg tmp totalRefCountStr_step3
+# MSQ_START 1 mov puts_17_len lineCountPrint_step3 tmp
+# MSQ_START 2 movneg tmp lineCountPrint_step3
 &tmp &tmp ?+8 ; relsq tmp tmp 1
-&tmp :totalRefCountStr_step3_addrRef_10 &totalRefCountStr_step3 ?+8 ; relsq tmp totalRefCountStr_step3 1
+&tmp :lineCountPrint_step3_addrRef_10 &lineCountPrint_step3 ?+8 ; relsq tmp lineCountPrint_step3 1
 # MSQ_END 2 movneg
 # MSQ_START 2 movneg puts_17_len tmp
 &puts_17_len &puts_17_len ?+8 ; relsq puts_17_len puts_17_len 1
 &puts_17_len &tmp ?+8 ; relsq puts_17_len tmp 1
 # MSQ_END 2 movneg
 # MSQ_END 1 mov
-# MSQ_START 1 decaddr totalRefCountStr_step3 8
-&totalRefCountStr_step3_addrRef_0 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_0 CONST_8 1
-&totalRefCountStr_step3_addrRef_1 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_1 CONST_8 1
-&totalRefCountStr_step3_addrRef_2 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_2 CONST_8 1
-&totalRefCountStr_step3_addrRef_3 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_3 CONST_8 1
-&totalRefCountStr_step3_addrRef_4 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_4 CONST_8 1
-&totalRefCountStr_step3_addrRef_5 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_5 CONST_8 1
-&totalRefCountStr_step3_addrRef_6 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_6 CONST_8 1
-&totalRefCountStr_step3_addrRef_7 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_7 CONST_8 1
-&totalRefCountStr_step3_addrRef_8 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_8 CONST_8 1
-&totalRefCountStr_step3_addrRef_9 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_9 CONST_8 1
-&totalRefCountStr_step3_addrRef_10 &CONST_8 ?+8 ; relsq totalRefCountStr_step3_addrRef_10 CONST_8 1
+# MSQ_START 1 decaddr lineCountPrint_step3 8
+&lineCountPrint_step3_addrRef_0 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_0 CONST_8 1
+&lineCountPrint_step3_addrRef_1 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_1 CONST_8 1
+&lineCountPrint_step3_addrRef_2 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_2 CONST_8 1
+&lineCountPrint_step3_addrRef_3 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_3 CONST_8 1
+&lineCountPrint_step3_addrRef_4 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_4 CONST_8 1
+&lineCountPrint_step3_addrRef_5 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_5 CONST_8 1
+&lineCountPrint_step3_addrRef_6 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_6 CONST_8 1
+&lineCountPrint_step3_addrRef_7 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_7 CONST_8 1
+&lineCountPrint_step3_addrRef_8 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_8 CONST_8 1
+&lineCountPrint_step3_addrRef_9 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_9 CONST_8 1
+&lineCountPrint_step3_addrRef_10 &CONST_8 ?+8 ; relsq lineCountPrint_step3_addrRef_10 CONST_8 1
 # MSQ_END 1 decaddr
 ; label PUTS_17_LOOP
 # MSQ_START 1 decleq puts_17_len 0 PUTS_17_END
@@ -21404,23 +21404,23 @@
 :STEP3_PRINT_PREFIX &STEP3_PRINT_PREFIX_BUF ; raw_ref STEP3_PRINT_PREFIX_BUF
 0000000000000013 0000000000000098 ; raw 0000000000000013 0000000000000098
 # MSQ_END 0 def_string
-# MSQ_START 0 def_string STEP3_PRINT_MIDDLE  lines and 
+# MSQ_START 0 def_string STEP3_PRINT_MIDDLE  symbols and 
 ; label STEP3_PRINT_MIDDLE_BUF
-# MSQ_START 1 raw_chars  lines and 
-:STEP3_PRINT_MIDDLE_BUF 0000000000000020 000000000000006c 0000000000000069 000000000000006e 0000000000000065 0000000000000073 0000000000000020 0000000000000061 000000000000006e 0000000000000064 0000000000000020 ; raw 0000000000000020 000000000000006c 0000000000000069 000000000000006e 0000000000000065 0000000000000073 0000000000000020 0000000000000061 000000000000006e 0000000000000064 0000000000000020
+# MSQ_START 1 raw_chars  symbols and 
+:STEP3_PRINT_MIDDLE_BUF 0000000000000020 0000000000000073 0000000000000079 000000000000006d 0000000000000062 000000000000006f 000000000000006c 0000000000000073 0000000000000020 0000000000000061 000000000000006e 0000000000000064 0000000000000020 ; raw 0000000000000020 0000000000000073 0000000000000079 000000000000006d 0000000000000062 000000000000006f 000000000000006c 0000000000000073 0000000000000020 0000000000000061 000000000000006e 0000000000000064 0000000000000020
 # MSQ_END 1 raw_chars
 ; label STEP3_PRINT_MIDDLE
 :STEP3_PRINT_MIDDLE &STEP3_PRINT_MIDDLE_BUF ; raw_ref STEP3_PRINT_MIDDLE_BUF
-000000000000000b 0000000000000058 ; raw 000000000000000b 0000000000000058
+000000000000000d 0000000000000068 ; raw 000000000000000d 0000000000000068
 # MSQ_END 0 def_string
-# MSQ_START 0 def_string STEP3_PRINT_SUFFIX  references
+# MSQ_START 0 def_string STEP3_PRINT_SUFFIX  lines
 ; label STEP3_PRINT_SUFFIX_BUF
-# MSQ_START 1 raw_chars  references
-:STEP3_PRINT_SUFFIX_BUF 0000000000000020 0000000000000072 0000000000000065 0000000000000066 0000000000000065 0000000000000072 0000000000000065 000000000000006e 0000000000000063 0000000000000065 0000000000000073 ; raw 0000000000000020 0000000000000072 0000000000000065 0000000000000066 0000000000000065 0000000000000072 0000000000000065 000000000000006e 0000000000000063 0000000000000065 0000000000000073
+# MSQ_START 1 raw_chars  lines
+:STEP3_PRINT_SUFFIX_BUF 0000000000000020 000000000000006c 0000000000000069 000000000000006e 0000000000000065 0000000000000073 ; raw 0000000000000020 000000000000006c 0000000000000069 000000000000006e 0000000000000065 0000000000000073
 # MSQ_END 1 raw_chars
 ; label STEP3_PRINT_SUFFIX
 :STEP3_PRINT_SUFFIX &STEP3_PRINT_SUFFIX_BUF ; raw_ref STEP3_PRINT_SUFFIX_BUF
-000000000000000b 0000000000000058 ; raw 000000000000000b 0000000000000058
+0000000000000006 0000000000000030 ; raw 0000000000000006 0000000000000030
 # MSQ_END 0 def_string
 
 # MSQ_START 0 def_string STEP4_PRINT_PREFIX # Step 4: Current size is 

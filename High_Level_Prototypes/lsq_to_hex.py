@@ -162,7 +162,7 @@ while i < len(lines):
     for k in range(symbols[sym].refCount):
         incRefCount(f"{stubPrefix}{k}")
     i += 1
-print(f"# Step 3: Now with {len(lines)} lines and {totalRefCount} references")
+print(f"# Step 3: Now with {len(symbols)} symbols and {len(lines)} lines")
 
 
 # 4. Find label+stub addresses
@@ -211,7 +211,6 @@ if args.lsq_path == "test.lsq":
     sys.exit()
 
 # 5. Assign addresses to variables
-symsAtAddr = {}
 for name, sym in symbols.items():
     if sym.addr is None:
         if sym.val is None:
@@ -221,11 +220,17 @@ for name, sym in symbols.items():
         lines.append(Line("raw", [toLong(sym.val)], name))
         size += 8
 
-    if sym.addr not in symsAtAddr:
-        symsAtAddr[sym.addr] = []
-    symsAtAddr[sym.addr].append(name)
+# 6. Populate symsAtAddr
+# The 0th array have larger capacity than others in the SUBLEQ implementation
+symsAtAddr = [[]]
+for _i in range(8, size, 8):
+    symsAtAddr.append([])
 
-# 6. Output
+for name, sym in symbols.items():
+    if sym.addr < size:
+        symsAtAddr[sym.addr // 8].append(name)
+
+# 7. Output
 """
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
@@ -233,23 +238,31 @@ lsq_insts = ["var", "label", "addr",
              "raw", "raw_ref", "rem"]
 """
 
-out = []
+isFirstToken = True
 offset = 0
 availShortNames = ["".join(p) for p in itertools.product(string.ascii_letters, repeat=2)]
 shortNames = {}
 
 
+def printToken(token):
+    global isFirstToken
+    if isFirstToken:
+        isFirstToken = False
+    else:
+        print(" ", end="")
+    print(token, end="")
+
+
 def addToken(token):
     global offset
-    if offset in symsAtAddr:
-        for name in symsAtAddr[offset]:
-            if hex_version == 1:
-                if name not in shortNames:
-                    shortNames[name] = availShortNames.pop(0)
-                out.append(f":{shortNames[name]}")
-            elif hex_version == 2:
-                out.append(f":{name}")
-    out.append(token)
+    for name in symsAtAddr[offset // 8]:
+        if hex_version == 1:
+            if name not in shortNames:
+                shortNames[name] = availShortNames.pop(0)
+            printToken(f":{shortNames[name]}")
+        elif hex_version == 2:
+            printToken(f":{name}")
+    printToken(token)
     offset += 8
 
 
@@ -266,6 +279,7 @@ def resolveSymbol(name):
 
 
 for line in lines:
+    isFirstToken = True
     out = []
     if line.inst in ["var", "label", "addr", "rem", "newline"]:
         pass
@@ -295,11 +309,15 @@ for line in lines:
         raise RuntimeError(f"Instruction {line.inst} shouldn't have appeared at this step!")
 
     if line.inst not in ["rem", "newline"]:
-        out.append(f"; {line.inst} {' '.join(line.tokens)}")
+        printToken(";")
+        printToken(line.inst)
+        for token in line.tokens:
+            printToken(token)
     if len(line.comment) != 0:
-        out.append(f"# {line.comment}")
+        printToken("#")
+        printToken(line.comment)
 
-    print(" ".join(out))
+    print()
 
 # ~ is the terminator of hex files
 print("~")

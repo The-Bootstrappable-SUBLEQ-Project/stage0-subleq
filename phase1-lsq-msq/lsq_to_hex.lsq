@@ -9212,8 +9212,8 @@ lblsq ZERO ZERO PUTS_14_LOOP
 rem MSQ_END 1 lbljmp
 label PUTS_14_END
 rem MSQ_END 0 puts
-addr lineCountPrint_step3 0
-rem MSQ_START 0 itoa lineCountPrint_step3 linesPass2Len tmp tmp2 tmp3
+addr symbolCountPrint_step3 0
+rem MSQ_START 0 itoa symbolCountPrint_step3 symbolsLen tmp tmp2 tmp3
 rem MSQ_START 1 malloc_const tmp2 18 tmp3
 rem MSQ_START 2 malloc tmp2 CONST_18 tmp3
 relsq tmp3 tmp3 1
@@ -9225,68 +9225,68 @@ relsq tmp3 CONST_18 1
 relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
-rem MSQ_START 1 setaddr lineCountPrint_step3 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 lineCountPrint_step3_addrRef_0 tmp
+rem MSQ_START 1 setaddr symbolCountPrint_step3 tmp2 tmp3 tmp
+rem MSQ_START 2 mov tmp3 symbolCountPrint_step3_addrRef_0 tmp
 relsq tmp tmp 1
-relsq tmp lineCountPrint_step3_addrRef_0 1
+relsq tmp symbolCountPrint_step3_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
 rem MSQ_END 2 mov
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
-subaddr lineCountPrint_step3 tmp3
+subaddr symbolCountPrint_step3 tmp3
 rem MSQ_END 1 setaddr
-rem MSQ_START 1 alloc_str_const lineCountPrint_step3 a0 tmp3
-rem MSQ_START 2 malloc_const lineCountPrint_step3 a0 tmp3
+rem MSQ_START 1 alloc_str_const symbolCountPrint_step3 a0 tmp3
+rem MSQ_START 2 malloc_const symbolCountPrint_step3 a0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 FREE_START 1
-relsq lineCountPrint_step3 lineCountPrint_step3 1
-relsq lineCountPrint_step3 tmp3 1
+relsq symbolCountPrint_step3 symbolCountPrint_step3 1
+relsq symbolCountPrint_step3 tmp3 1
 relsq tmp3 tmp3 1
 relsq tmp3 CONST_A0 1
 relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc_const
-rem MSQ_START 2 incaddr lineCountPrint_step3 8
-subaddr lineCountPrint_step3 CONST_-8
+rem MSQ_START 2 incaddr symbolCountPrint_step3 8
+subaddr symbolCountPrint_step3 CONST_-8
 rem MSQ_END 2 incaddr
-rem MSQ_START 2 zero lineCountPrint_step3
-relsq lineCountPrint_step3 lineCountPrint_step3 1
+rem MSQ_START 2 zero symbolCountPrint_step3
+relsq symbolCountPrint_step3 symbolCountPrint_step3 1
 rem MSQ_END 2 zero
-rem MSQ_START 2 incaddr lineCountPrint_step3 8
-subaddr lineCountPrint_step3 CONST_-8
+rem MSQ_START 2 incaddr symbolCountPrint_step3 8
+subaddr symbolCountPrint_step3 CONST_-8
 rem MSQ_END 2 incaddr
-rem MSQ_START 2 mov lineCountPrint_step3 CONST_A0 tmp3
+rem MSQ_START 2 mov symbolCountPrint_step3 CONST_A0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 CONST_A0 1
-relsq lineCountPrint_step3 lineCountPrint_step3 1
-relsq lineCountPrint_step3 tmp3 1
+relsq symbolCountPrint_step3 symbolCountPrint_step3 1
+relsq symbolCountPrint_step3 tmp3 1
 rem MSQ_END 2 mov
-rem MSQ_START 2 decaddr lineCountPrint_step3 10
-subaddr lineCountPrint_step3 CONST_10
+rem MSQ_START 2 decaddr symbolCountPrint_step3 10
+subaddr symbolCountPrint_step3 CONST_10
 rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_5_retBuf 0
-rem MSQ_START 1 setaddr itoa_5_retBuf lineCountPrint_step3 tmp2 tmp3
+rem MSQ_START 1 setaddr itoa_5_retBuf symbolCountPrint_step3 tmp2 tmp3
 rem MSQ_START 2 mov tmp2 itoa_5_retBuf_addrRef_0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_5_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
 rem MSQ_END 2 mov
-rem MSQ_START 2 sub tmp2 lineCountPrint_step3
-relsq tmp2 lineCountPrint_step3 1
+rem MSQ_START 2 sub tmp2 symbolCountPrint_step3
+relsq tmp2 symbolCountPrint_step3 1
 rem MSQ_END 2 sub
 subaddr itoa_5_retBuf tmp2
 rem MSQ_END 1 setaddr
 addr itoa_5_retLength 0
-rem MSQ_START 1 copyaddr itoa_5_retLength lineCountPrint_step3 tmp2 tmp3
-rem MSQ_START 2 setaddr itoa_5_retLength lineCountPrint_step3_addrRef_0 tmp2 tmp3
+rem MSQ_START 1 copyaddr itoa_5_retLength symbolCountPrint_step3 tmp2 tmp3
+rem MSQ_START 2 setaddr itoa_5_retLength symbolCountPrint_step3_addrRef_0 tmp2 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_5_retLength_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-relsq tmp2 lineCountPrint_step3_addrRef_0 1
+relsq tmp2 symbolCountPrint_step3_addrRef_0 1
 subaddr itoa_5_retLength tmp2
 rem MSQ_END 2 setaddr
 rem MSQ_END 1 copyaddr
@@ -9302,10 +9302,10 @@ rem MSQ_START 2 inc itoa_5_noDigits 1
 relsq itoa_5_noDigits CONST_-1 1
 rem MSQ_END 2 inc
 rem MSQ_END 1 set
-rem MSQ_START 1 mov tmp linesPass2Len tmp2
-rem MSQ_START 2 movneg tmp2 linesPass2Len
+rem MSQ_START 1 mov tmp symbolsLen tmp2
+rem MSQ_START 2 movneg tmp2 symbolsLen
 relsq tmp2 tmp2 1
-relsq tmp2 linesPass2Len 1
+relsq tmp2 symbolsLen 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
@@ -9555,36 +9555,36 @@ subaddr ITOA_5_SUBBERS CONST_98
 rem MSQ_END 1 decaddr
 label ITOA_5_END
 rem MSQ_END 0 itoa
-rem MSQ_START 0 puts lineCountPrint_step3 tmp tmp2
+rem MSQ_START 0 puts symbolCountPrint_step3 tmp tmp2
 addr puts_15_str 0
-rem MSQ_START 1 setaddr puts_15_str lineCountPrint_step3 tmp tmp2
+rem MSQ_START 1 setaddr puts_15_str symbolCountPrint_step3 tmp tmp2
 rem MSQ_START 2 mov tmp puts_15_str_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_15_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem MSQ_END 2 mov
-rem MSQ_START 2 sub tmp lineCountPrint_step3
-relsq tmp lineCountPrint_step3 1
+rem MSQ_START 2 sub tmp symbolCountPrint_step3
+relsq tmp symbolCountPrint_step3 1
 rem MSQ_END 2 sub
 subaddr puts_15_str tmp
 rem MSQ_END 1 setaddr
 var puts_15_len 0
-rem MSQ_START 1 incaddr lineCountPrint_step3 8
-subaddr lineCountPrint_step3 CONST_-8
+rem MSQ_START 1 incaddr symbolCountPrint_step3 8
+subaddr symbolCountPrint_step3 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_15_len lineCountPrint_step3 tmp
-rem MSQ_START 2 movneg tmp lineCountPrint_step3
+rem MSQ_START 1 mov puts_15_len symbolCountPrint_step3 tmp
+rem MSQ_START 2 movneg tmp symbolCountPrint_step3
 relsq tmp tmp 1
-relsq tmp lineCountPrint_step3 1
+relsq tmp symbolCountPrint_step3 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 movneg puts_15_len tmp
 relsq puts_15_len puts_15_len 1
 relsq puts_15_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
-rem MSQ_START 1 decaddr lineCountPrint_step3 8
-subaddr lineCountPrint_step3 CONST_8
+rem MSQ_START 1 decaddr symbolCountPrint_step3 8
+subaddr symbolCountPrint_step3 CONST_8
 rem MSQ_END 1 decaddr
 label PUTS_15_LOOP
 rem MSQ_START 1 decleq puts_15_len 0 PUTS_15_END
@@ -9681,8 +9681,8 @@ lblsq ZERO ZERO PUTS_16_LOOP
 rem MSQ_END 1 lbljmp
 label PUTS_16_END
 rem MSQ_END 0 puts
-addr totalRefCountStr_step3 0
-rem MSQ_START 0 itoa totalRefCountStr_step3 totalRefCount tmp tmp2 tmp3
+addr lineCountPrint_step3 0
+rem MSQ_START 0 itoa lineCountPrint_step3 linesPass2Len tmp tmp2 tmp3
 rem MSQ_START 1 malloc_const tmp2 18 tmp3
 rem MSQ_START 2 malloc tmp2 CONST_18 tmp3
 relsq tmp3 tmp3 1
@@ -9694,68 +9694,68 @@ relsq tmp3 CONST_18 1
 relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
-rem MSQ_START 1 setaddr totalRefCountStr_step3 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 totalRefCountStr_step3_addrRef_0 tmp
+rem MSQ_START 1 setaddr lineCountPrint_step3 tmp2 tmp3 tmp
+rem MSQ_START 2 mov tmp3 lineCountPrint_step3_addrRef_0 tmp
 relsq tmp tmp 1
-relsq tmp totalRefCountStr_step3_addrRef_0 1
+relsq tmp lineCountPrint_step3_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
 rem MSQ_END 2 mov
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
-subaddr totalRefCountStr_step3 tmp3
+subaddr lineCountPrint_step3 tmp3
 rem MSQ_END 1 setaddr
-rem MSQ_START 1 alloc_str_const totalRefCountStr_step3 a0 tmp3
-rem MSQ_START 2 malloc_const totalRefCountStr_step3 a0 tmp3
+rem MSQ_START 1 alloc_str_const lineCountPrint_step3 a0 tmp3
+rem MSQ_START 2 malloc_const lineCountPrint_step3 a0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 FREE_START 1
-relsq totalRefCountStr_step3 totalRefCountStr_step3 1
-relsq totalRefCountStr_step3 tmp3 1
+relsq lineCountPrint_step3 lineCountPrint_step3 1
+relsq lineCountPrint_step3 tmp3 1
 relsq tmp3 tmp3 1
 relsq tmp3 CONST_A0 1
 relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc_const
-rem MSQ_START 2 incaddr totalRefCountStr_step3 8
-subaddr totalRefCountStr_step3 CONST_-8
+rem MSQ_START 2 incaddr lineCountPrint_step3 8
+subaddr lineCountPrint_step3 CONST_-8
 rem MSQ_END 2 incaddr
-rem MSQ_START 2 zero totalRefCountStr_step3
-relsq totalRefCountStr_step3 totalRefCountStr_step3 1
+rem MSQ_START 2 zero lineCountPrint_step3
+relsq lineCountPrint_step3 lineCountPrint_step3 1
 rem MSQ_END 2 zero
-rem MSQ_START 2 incaddr totalRefCountStr_step3 8
-subaddr totalRefCountStr_step3 CONST_-8
+rem MSQ_START 2 incaddr lineCountPrint_step3 8
+subaddr lineCountPrint_step3 CONST_-8
 rem MSQ_END 2 incaddr
-rem MSQ_START 2 mov totalRefCountStr_step3 CONST_A0 tmp3
+rem MSQ_START 2 mov lineCountPrint_step3 CONST_A0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 CONST_A0 1
-relsq totalRefCountStr_step3 totalRefCountStr_step3 1
-relsq totalRefCountStr_step3 tmp3 1
+relsq lineCountPrint_step3 lineCountPrint_step3 1
+relsq lineCountPrint_step3 tmp3 1
 rem MSQ_END 2 mov
-rem MSQ_START 2 decaddr totalRefCountStr_step3 10
-subaddr totalRefCountStr_step3 CONST_10
+rem MSQ_START 2 decaddr lineCountPrint_step3 10
+subaddr lineCountPrint_step3 CONST_10
 rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_6_retBuf 0
-rem MSQ_START 1 setaddr itoa_6_retBuf totalRefCountStr_step3 tmp2 tmp3
+rem MSQ_START 1 setaddr itoa_6_retBuf lineCountPrint_step3 tmp2 tmp3
 rem MSQ_START 2 mov tmp2 itoa_6_retBuf_addrRef_0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_6_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
 rem MSQ_END 2 mov
-rem MSQ_START 2 sub tmp2 totalRefCountStr_step3
-relsq tmp2 totalRefCountStr_step3 1
+rem MSQ_START 2 sub tmp2 lineCountPrint_step3
+relsq tmp2 lineCountPrint_step3 1
 rem MSQ_END 2 sub
 subaddr itoa_6_retBuf tmp2
 rem MSQ_END 1 setaddr
 addr itoa_6_retLength 0
-rem MSQ_START 1 copyaddr itoa_6_retLength totalRefCountStr_step3 tmp2 tmp3
-rem MSQ_START 2 setaddr itoa_6_retLength totalRefCountStr_step3_addrRef_0 tmp2 tmp3
+rem MSQ_START 1 copyaddr itoa_6_retLength lineCountPrint_step3 tmp2 tmp3
+rem MSQ_START 2 setaddr itoa_6_retLength lineCountPrint_step3_addrRef_0 tmp2 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_6_retLength_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-relsq tmp2 totalRefCountStr_step3_addrRef_0 1
+relsq tmp2 lineCountPrint_step3_addrRef_0 1
 subaddr itoa_6_retLength tmp2
 rem MSQ_END 2 setaddr
 rem MSQ_END 1 copyaddr
@@ -9771,10 +9771,10 @@ rem MSQ_START 2 inc itoa_6_noDigits 1
 relsq itoa_6_noDigits CONST_-1 1
 rem MSQ_END 2 inc
 rem MSQ_END 1 set
-rem MSQ_START 1 mov tmp totalRefCount tmp2
-rem MSQ_START 2 movneg tmp2 totalRefCount
+rem MSQ_START 1 mov tmp linesPass2Len tmp2
+rem MSQ_START 2 movneg tmp2 linesPass2Len
 relsq tmp2 tmp2 1
-relsq tmp2 totalRefCount 1
+relsq tmp2 linesPass2Len 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
@@ -10024,36 +10024,36 @@ subaddr ITOA_6_SUBBERS CONST_98
 rem MSQ_END 1 decaddr
 label ITOA_6_END
 rem MSQ_END 0 itoa
-rem MSQ_START 0 puts totalRefCountStr_step3 tmp tmp2
+rem MSQ_START 0 puts lineCountPrint_step3 tmp tmp2
 addr puts_17_str 0
-rem MSQ_START 1 setaddr puts_17_str totalRefCountStr_step3 tmp tmp2
+rem MSQ_START 1 setaddr puts_17_str lineCountPrint_step3 tmp tmp2
 rem MSQ_START 2 mov tmp puts_17_str_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_17_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem MSQ_END 2 mov
-rem MSQ_START 2 sub tmp totalRefCountStr_step3
-relsq tmp totalRefCountStr_step3 1
+rem MSQ_START 2 sub tmp lineCountPrint_step3
+relsq tmp lineCountPrint_step3 1
 rem MSQ_END 2 sub
 subaddr puts_17_str tmp
 rem MSQ_END 1 setaddr
 var puts_17_len 0
-rem MSQ_START 1 incaddr totalRefCountStr_step3 8
-subaddr totalRefCountStr_step3 CONST_-8
+rem MSQ_START 1 incaddr lineCountPrint_step3 8
+subaddr lineCountPrint_step3 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_17_len totalRefCountStr_step3 tmp
-rem MSQ_START 2 movneg tmp totalRefCountStr_step3
+rem MSQ_START 1 mov puts_17_len lineCountPrint_step3 tmp
+rem MSQ_START 2 movneg tmp lineCountPrint_step3
 relsq tmp tmp 1
-relsq tmp totalRefCountStr_step3 1
+relsq tmp lineCountPrint_step3 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 movneg puts_17_len tmp
 relsq puts_17_len puts_17_len 1
 relsq puts_17_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
-rem MSQ_START 1 decaddr totalRefCountStr_step3 8
-subaddr totalRefCountStr_step3 CONST_8
+rem MSQ_START 1 decaddr lineCountPrint_step3 8
+subaddr lineCountPrint_step3 CONST_8
 rem MSQ_END 1 decaddr
 label PUTS_17_LOOP
 rem MSQ_START 1 decleq puts_17_len 0 PUTS_17_END
@@ -16258,23 +16258,23 @@ label STEP3_PRINT_PREFIX
 raw_ref STEP3_PRINT_PREFIX_BUF
 raw 0000000000000013 0000000000000098
 rem MSQ_END 0 def_string
-rem MSQ_START 0 def_string STEP3_PRINT_MIDDLE  lines and 
+rem MSQ_START 0 def_string STEP3_PRINT_MIDDLE  symbols and 
 label STEP3_PRINT_MIDDLE_BUF
-rem MSQ_START 1 raw_chars  lines and 
-raw 0000000000000020 000000000000006c 0000000000000069 000000000000006e 0000000000000065 0000000000000073 0000000000000020 0000000000000061 000000000000006e 0000000000000064 0000000000000020
+rem MSQ_START 1 raw_chars  symbols and 
+raw 0000000000000020 0000000000000073 0000000000000079 000000000000006d 0000000000000062 000000000000006f 000000000000006c 0000000000000073 0000000000000020 0000000000000061 000000000000006e 0000000000000064 0000000000000020
 rem MSQ_END 1 raw_chars
 label STEP3_PRINT_MIDDLE
 raw_ref STEP3_PRINT_MIDDLE_BUF
-raw 000000000000000b 0000000000000058
+raw 000000000000000d 0000000000000068
 rem MSQ_END 0 def_string
-rem MSQ_START 0 def_string STEP3_PRINT_SUFFIX  references
+rem MSQ_START 0 def_string STEP3_PRINT_SUFFIX  lines
 label STEP3_PRINT_SUFFIX_BUF
-rem MSQ_START 1 raw_chars  references
-raw 0000000000000020 0000000000000072 0000000000000065 0000000000000066 0000000000000065 0000000000000072 0000000000000065 000000000000006e 0000000000000063 0000000000000065 0000000000000073
+rem MSQ_START 1 raw_chars  lines
+raw 0000000000000020 000000000000006c 0000000000000069 000000000000006e 0000000000000065 0000000000000073
 rem MSQ_END 1 raw_chars
 label STEP3_PRINT_SUFFIX
 raw_ref STEP3_PRINT_SUFFIX_BUF
-raw 000000000000000b 0000000000000058
+raw 0000000000000006 0000000000000030
 rem MSQ_END 0 def_string
 
 rem MSQ_START 0 def_string STEP4_PRINT_PREFIX # Step 4: Current size is 

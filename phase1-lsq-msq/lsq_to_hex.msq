@@ -432,13 +432,13 @@ lbljmp STEP3_STUB_LOOP
 
 label STEP3_END
 puts STEP3_PRINT_PREFIX tmp tmp2
+addr symbolCountPrint_step3 0
+itoa symbolCountPrint_step3 symbolsLen tmp tmp2 tmp3
+puts symbolCountPrint_step3 tmp tmp2
+puts STEP3_PRINT_MIDDLE tmp tmp2
 addr lineCountPrint_step3 0
 itoa lineCountPrint_step3 linesPass2Len tmp tmp2 tmp3
 puts lineCountPrint_step3 tmp tmp2
-puts STEP3_PRINT_MIDDLE tmp tmp2
-addr totalRefCountStr_step3 0
-itoa totalRefCountStr_step3 totalRefCount tmp tmp2 tmp3
-puts totalRefCountStr_step3 tmp tmp2
 puts STEP3_PRINT_SUFFIX tmp tmp2
 putchar LINE_FEED tmp
 
@@ -714,8 +714,8 @@ def_string STEP2_PRINT_MIDDLE  symbols and
 def_string STEP2_PRINT_SUFFIX  references
 
 def_string STEP3_PRINT_PREFIX # Step 3: Now with 
-def_string STEP3_PRINT_MIDDLE  lines and 
-def_string STEP3_PRINT_SUFFIX  references
+def_string STEP3_PRINT_MIDDLE  symbols and 
+def_string STEP3_PRINT_SUFFIX  lines
 
 def_string STEP4_PRINT_PREFIX # Step 4: Current size is 
 def_string STEP4_PRINT_SUFFIX  bytes
