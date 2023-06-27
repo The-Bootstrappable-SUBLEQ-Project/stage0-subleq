@@ -68,7 +68,7 @@ inc linesPass1Len 1
 
 strcmp_const curLine_step0 EMPTY_STRING STEP0_HANDLE_NEWLINE tmp tmp2
 strcmp_const curLine_step0 REM STEP0_HANDLE_REM tmp tmp2
-strcmp_const curLine_step0 END STEP1_START tmp tmp2
+strcmp_const curLine_step0 END STEP0_END tmp tmp2
 
 
 rem Handle other instructions
@@ -131,6 +131,13 @@ incaddr curLine_step0_rem 8
 copyaddr curLine_step0 curLine_step0_rem tmp tmp2
 lbljmp STEP0_INPUT_INST
 
+label STEP0_END
+puts STEP0_PRINT_PREFIX tmp tmp2
+addr lineCountPrint_step0 0
+itoa lineCountPrint_step0 linesPass1Len tmp tmp2 tmp3
+puts lineCountPrint_step0 tmp tmp2
+puts STEP0_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
 
 rem 1. Find symbols
 label STEP1_START
@@ -148,7 +155,7 @@ var linesLeft 0
 mov linesLeft linesPass1Len tmp
 
 label STEP1_LOOP
-decleq linesLeft 0 STEP2_START
+decleq linesLeft 0 STEP1_END
 dec linesLeft 1
 
 strcmp_const curLine_step1 VAR STEP1_CREATE_SYMBOL tmp tmp2
@@ -186,19 +193,29 @@ label STEP1_HANDLE_VALUE
 incaddr symbolsCur_step1 8
 mov symbolsCur_step1 SYM_VAL_PLACEHOLDER tmp
 strcmp_const curLine_step1 VAR STEP1_SET_VALUE tmp tmp2
-lbljmp STEP1_END
+lbljmp STEP1_LOOP_END
 
 label STEP1_SET_VALUE
 from_hex symbolsCur_step1 curTokens_step1 tmp tmp2
 
-label STEP1_END
+label STEP1_LOOP_END
 incaddr curLine_step1 58
 incaddr symbolsCur_step1 8
 inc symbolsLen 1
 lbljmp STEP1_LOOP
 
+label STEP1_END
+puts STEP1_PRINT_PREFIX tmp tmp2
+addr symbolCountPrint_step1 0
+itoa symbolCountPrint_step1 symbolsLen tmp tmp2 tmp3
+puts symbolCountPrint_step1 tmp tmp2
+puts STEP1_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
+lbljmp STEP2_START
+
 
 label incRefCount
+var totalRefCount 0
 addr incRefCount_key 0
 addr incRefCount_it 0
 setaddr incRefCount_it symbolsBegin tmp tmp2
@@ -218,6 +235,7 @@ inc symbolsLen 1
 label incRefCount_doInc
 incaddr incRefCount_it 20
 inc incRefCount_it 1
+inc totalRefCount 1
 ret incRefCount
 
 
@@ -228,7 +246,7 @@ setaddr curLine_step2 linesPass1Begin tmp tmp2
 mov linesLeft linesPass1Len tmp
 
 label STEP2_LOOP
-decleq linesLeft 0 STEP3_START
+decleq linesLeft 0 STEP2_END
 dec linesLeft 1
 
 incaddr curLine_step2 18
@@ -240,7 +258,7 @@ strcmp_const curLine_step2 RELSQ STEP2_HANDLE_SQ tmp tmp2
 strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_SQ tmp tmp2
 strcmp_const curLine_step2 SUBADDR STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
 strcmp_const curLine_step2 RAW_REF STEP2_HANDLE_RAW_REF tmp tmp2
-lbljmp STEP2_END
+lbljmp STEP2_LOOP_END
 
 label STEP2_HANDLE_SQ
 call incRefCount tmp
@@ -249,13 +267,13 @@ incaddr incRefCount_key 18
 call incRefCount tmp
 
 strcmp_const curLine_step2 LBLSQ STEP2_HANDLE_LBLSQ_SUBADDR tmp tmp2
-lbljmp STEP2_END
+lbljmp STEP2_LOOP_END
 
 
 label STEP2_HANDLE_LBLSQ_SUBADDR
 incaddr incRefCount_key 18
 call incRefCount tmp
-lbljmp STEP2_END
+lbljmp STEP2_LOOP_END
 
 
 label STEP2_HANDLE_RAW_REF
@@ -265,17 +283,24 @@ mov tokensCount curLine_step2 tmp
 decaddr curLine_step2 20
 
 label STEP2_RAW_REF_LOOP
-decleq tokensCount 0 STEP2_END
+decleq tokensCount 0 STEP2_LOOP_END
 dec tokensCount 1
 call incRefCount tmp
 incaddr incRefCount_key 18
 lbljmp STEP2_RAW_REF_LOOP
 
 
-label STEP2_END
+label STEP2_LOOP_END
 incaddr curLine_step2 58
 lbljmp STEP2_LOOP
 
+label STEP2_END
+puts STEP2_PRINT_PREFIX tmp tmp2
+addr totalRefCountStr_step2 0
+itoa totalRefCountStr_step2 totalRefCount tmp tmp2 tmp3
+puts totalRefCountStr_step2 tmp tmp2
+puts STEP2_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
 
 rem 3. Create subaddr/zeroaddr stubs
 label STEP3_START
@@ -292,7 +317,7 @@ addr curLinePass1_step3 100000
 addr curLinePass2_step3 400000
 
 label STEP3_LOOP
-decleq linesPass1Len 0 STEP4_START
+decleq linesPass1Len 0 STEP3_END
 dec linesPass1Len 1
 
 addr inst_step3 0
@@ -401,6 +426,18 @@ inc linesPass2Len 1
 inc nextId_step3 1
 lbljmp STEP3_STUB_LOOP
 
+label STEP3_END
+puts STEP3_PRINT_PREFIX tmp tmp2
+addr lineCountPrint_step3 0
+itoa lineCountPrint_step3 linesPass2Len tmp tmp2 tmp3
+puts lineCountPrint_step3 tmp tmp2
+puts STEP3_PRINT_MIDDLE tmp tmp2
+addr totalRefCountStr_step3 0
+itoa totalRefCountStr_step3 totalRefCount tmp tmp2 tmp3
+puts totalRefCountStr_step3 tmp tmp2
+puts STEP3_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
+
 
 rem 4. Find label+stub addresses
 label STEP4_START
@@ -411,7 +448,7 @@ setaddr curLine_step4 linesPass2Begin tmp tmp2
 mov linesLeft linesPass2Len tmp
 
 label STEP4_LOOP
-decleq linesLeft 0 STEP5_START
+decleq linesLeft 0 STEP4_END
 dec linesLeft 1
 
 rem Py: line.offset = size
@@ -527,6 +564,15 @@ mov symbols_it2_step4 size_step4 tmp
 
 incaddr curLine_step4 40
 lbljmp STEP4_LOOP
+
+label STEP4_END
+puts STEP4_PRINT_PREFIX tmp tmp2
+addr sizeStr_step4 0
+itoa sizeStr_step4 size_step4 tmp tmp2 tmp3
+puts sizeStr_step4 tmp tmp2
+puts STEP4_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
+
 
 rem 5. Assign addresses to variables
 label STEP5_START
@@ -652,6 +698,22 @@ def_string SYMBOL_PART_4 val:
 def_string STEP3_MISSING_SYMBOL STEP3_MISSING_SYMBOL
 def_string STEP4_LABEL_MISSING_SYMBOL STEP4_LABEL_MISSING_SYMBOL
 def_string STEP4_SQ_MISSING_SYMBOL STEP4_SQ_MISSING_SYMBOL
+
+def_string STEP0_PRINT_PREFIX # Step 0: Processed 
+def_string STEP0_PRINT_SUFFIX  lines
+
+def_string STEP1_PRINT_PREFIX # Step 1: Found 
+def_string STEP1_PRINT_SUFFIX  symbols
+
+def_string STEP2_PRINT_PREFIX # Step 2: Counted 
+def_string STEP2_PRINT_SUFFIX  references
+
+def_string STEP3_PRINT_PREFIX # Step 3: Now with 
+def_string STEP3_PRINT_MIDDLE  lines and 
+def_string STEP3_PRINT_SUFFIX  references
+
+def_string STEP4_PRINT_PREFIX # Step 4: Current size is 
+def_string STEP4_PRINT_SUFFIX  bytes
 
 rem WA for `assert sym.val is not None` errors
 inc inst_step3 0

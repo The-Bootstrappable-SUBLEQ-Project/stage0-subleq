@@ -99,6 +99,7 @@ for line in inp:
         break
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
+print(f"# Step 0: Processed {len(lines)} lines")
 
 # 1. Find symbols
 symbols = {}
@@ -110,14 +111,20 @@ for line in lines:
         symbols[line.tokens[0]] = Symbol(int(line.tokens[1], 16) if line.inst == "addr" else None)
         if line.inst == "var":
             symbols[line.tokens[0]].val = int(line.tokens[1], 16)
+print(f"# Step 1: Found {len(symbols)} symbols")
 
 
 # 2. Count symbol references (Pass 1)
+totalRefCount = 0
+
+
 def incRefCount(token):
     if token in symbols:
         symbols[token].refCount += 1
     else:
         symbols[token] = Symbol(None, 1)
+    global totalRefCount
+    totalRefCount += 1
 
 
 for line in lines:
@@ -131,6 +138,7 @@ for line in lines:
     elif line.inst == "raw_ref":
         for token in line.tokens:
             incRefCount(token)
+print(f"# Step 2: Counted {totalRefCount} references")
 
 
 # 3. Create subaddr/zeroaddr stubs
@@ -154,6 +162,8 @@ while i < len(lines):
     for k in range(symbols[sym].refCount):
         incRefCount(f"{stubPrefix}{k}")
     i += 1
+print(f"# Step 3: Now with {len(lines)} lines and {totalRefCount} references")
+
 
 # 4. Find label+stub addresses
 size = 0
@@ -172,6 +182,7 @@ for line in lines:
     elif line.inst == "label":
         symbols[line.tokens[0]].addr = size
     # print(line, size, file=sys.stderr)
+print(f"# Step 4: Current size is {size} bytes")
 
 # This is used to ensure that the Step 4 implementation of lsq_to_hex.msq is correct
 if args.lsq_path == "test.lsq":
