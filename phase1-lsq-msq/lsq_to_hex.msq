@@ -146,7 +146,7 @@ rem 0x0 String containing the name of the symbol
 rem 0x18 The address of the symbol (ffffffffffffffff if None)
 rem 0x20 The reference count of the symbol
 rem 0x28 The default value of the symbol (SYM_VAL_PLACEHOLDER if None)
-var symbolsBegin 200000
+var symbolsBegin 400000
 var symbolsLen 0
 
 addr curLine_step1 0
@@ -171,7 +171,7 @@ addr curTokens_step1 0
 setaddr curTokens_step1 curLine_step1 tmp tmp2
 decaddr curLine_step1 18
 
-addr symbolsCur_step1 200000
+addr symbolsCur_step1 400000
 alloc_str_const symbolsCur_step1 400 tmp
 strcpy symbolsCur_step1 curTokens_step1 tmp tmp2
 incaddr curTokens_step1 18
@@ -296,6 +296,10 @@ lbljmp STEP2_LOOP
 
 label STEP2_END
 puts STEP2_PRINT_PREFIX tmp tmp2
+addr symbolCountPrint_step2 0
+itoa symbolCountPrint_step2 symbolsLen tmp tmp2 tmp3
+puts symbolCountPrint_step2 tmp tmp2
+puts STEP2_PRINT_MIDDLE tmp tmp2
 addr totalRefCountStr_step2 0
 itoa totalRefCountStr_step2 totalRefCount tmp tmp2 tmp3
 puts totalRefCountStr_step2 tmp tmp2
@@ -308,13 +312,13 @@ label STEP3_START
 rem An item in addrSymbols is made of two components, adding to a total of 0x20 bytes:
 rem 0x0 String containing the name of the symbol
 rem 0x18 Next id to assign to an addrRef
-var addrSymbolsBegin 300000
+var addrSymbolsBegin 600000
 var addrSymbolsLen 0
 
-var linesPass2Begin 400000
+var linesPass2Begin 700000
 var linesPass2Len 0
 addr curLinePass1_step3 100000
-addr curLinePass2_step3 400000
+addr curLinePass2_step3 700000
 
 label STEP3_LOOP
 decleq linesPass1Len 0 STEP3_END
@@ -705,7 +709,8 @@ def_string STEP0_PRINT_SUFFIX  lines
 def_string STEP1_PRINT_PREFIX # Step 1: Found 
 def_string STEP1_PRINT_SUFFIX  symbols
 
-def_string STEP2_PRINT_PREFIX # Step 2: Counted 
+def_string STEP2_PRINT_PREFIX # Step 2: Now with 
+def_string STEP2_PRINT_MIDDLE  symbols and 
 def_string STEP2_PRINT_SUFFIX  references
 
 def_string STEP3_PRINT_PREFIX # Step 3: Now with 

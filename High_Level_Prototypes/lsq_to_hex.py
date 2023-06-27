@@ -138,7 +138,7 @@ for line in lines:
     elif line.inst == "raw_ref":
         for token in line.tokens:
             incRefCount(token)
-print(f"# Step 2: Counted {totalRefCount} references")
+print(f"# Step 2: Now with {len(symbols)} symbols and {totalRefCount} references")
 
 
 # 3. Create subaddr/zeroaddr stubs
