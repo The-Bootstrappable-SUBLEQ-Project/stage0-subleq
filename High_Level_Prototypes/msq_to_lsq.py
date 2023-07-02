@@ -397,8 +397,7 @@ def addaddr(args):
 def setaddr(args):
     sym, val, tmp, tmp2 = args
     logStart()
-    addrRef = f"{sym}_addrRef_0"
-    mov([tmp, addrRef, tmp2])
+    getaddr([tmp, sym, tmp2])
     sub([tmp, val])
     print(f"subaddr {sym} {tmp}")
     logEnd()
@@ -410,6 +409,15 @@ def copyaddr(args):
     logStart()
     addrRef = f"{fromSym}_addrRef_0"
     setaddr([toSym, addrRef, tmp, tmp2])
+    logEnd()
+
+
+# Sets the value of ret to the address of sym
+def getaddr(args):
+    ret, sym, tmp = args
+    logStart()
+    addrRef = f"{sym}_addrRef_0"
+    mov([ret, addrRef, tmp])
     logEnd()
 
 

@@ -558,12 +558,12 @@ rem MSQ_END 0 alloc_str_const
 rem MSQ_START 0 inp_token lblArrNext tmp tmp2
 addr inp_token_0_str 0
 rem MSQ_START 1 setaddr inp_token_0_str lblArrNext tmp tmp2
-rem MSQ_START 2 mov tmp inp_token_0_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp inp_token_0_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_0_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp lblArrNext
 relsq tmp lblArrNext 1
 rem MSQ_END 2 sub
@@ -766,12 +766,12 @@ rem MSQ_END 0 alloc_str_const
 rem MSQ_START 0 inp_token refArrNext tmp tmp2
 addr inp_token_1_str 0
 rem MSQ_START 1 setaddr inp_token_1_str refArrNext tmp tmp2
-rem MSQ_START 2 mov tmp inp_token_1_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp inp_token_1_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_1_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp refArrNext
 relsq tmp refArrNext 1
 rem MSQ_END 2 sub
@@ -1054,16 +1054,14 @@ rem MSQ_END 0 dec
 
 addr curFindLabel 0
 rem MSQ_START 0 setaddr curFindLabel lblArrStart tmp tmp2
-rem MSQ_START 1 mov tmp curFindLabel_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curFindLabel_addrRef_0
+rem MSQ_START 1 getaddr tmp curFindLabel tmp2
+rem MSQ_START 2 mov tmp curFindLabel_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curFindLabel_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp lblArrStart
 relsq tmp lblArrStart 1
 rem MSQ_END 1 sub
@@ -1132,24 +1130,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_0_aStr 0
 addr strcmp_const_0_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_0_aStr strcmp_const_0_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_0_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_0_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_0_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_0_a
 relsq tmp strcmp_const_0_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_0_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_0_bStr curFindLabel tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_0_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_0_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_0_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curFindLabel
 relsq tmp curFindLabel 1
 rem MSQ_END 2 sub
@@ -1213,12 +1211,12 @@ label RESOLVE_REF_FOUND_LABEL
 addr curLabel 0
 rem MSQ_START 0 copyaddr curLabel curFindLabel tmp tmp2
 rem MSQ_START 1 setaddr curLabel curFindLabel_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLabel_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLabel tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLabel_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curFindLabel_addrRef_0
 relsq tmp curFindLabel_addrRef_0 1
 rem MSQ_END 2 sub
@@ -1248,16 +1246,14 @@ rem MSQ_END 1 sub
 rem MSQ_END 0 add
 addr refAt 0
 rem MSQ_START 0 setaddr refAt curRef tmp tmp2
-rem MSQ_START 1 mov tmp refAt_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 refAt_addrRef_0
+rem MSQ_START 1 getaddr tmp refAt tmp2
+rem MSQ_START 2 mov tmp refAt_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 refAt_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curRef
 relsq tmp curRef 1
 rem MSQ_END 1 sub

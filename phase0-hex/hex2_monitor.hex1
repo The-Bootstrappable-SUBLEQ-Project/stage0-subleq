@@ -1,10 +1,11 @@
 # hex1
-# Step 0: Processed 1364 lines
+# Step 0: Processed 1360 lines
 # Step 1: Found 102 symbols
 # Step 2: Now with 111 symbols and 827 references
-# Step 3: Now with 168 symbols and 1602 lines
+# Step 3: Now with 168 symbols and 1598 lines
 # Step 4: Current size is 15320 bytes
 # Step 5: Size is now 15664 bytes
+# Step 6: Found 10 symbols at address 0
 # Copyright (C) 2022 NyanCatTW1
 # This file is part of stage0-subleq.
 
@@ -606,12 +607,12 @@
 # MSQ_START 0 inp_token lblArrNext tmp tmp2
 ; addr inp_token_0_str 0
 # MSQ_START 1 setaddr inp_token_0_str lblArrNext tmp tmp2
-# MSQ_START 2 mov tmp inp_token_0_str_addrRef_0 tmp2
+# MSQ_START 2 getaddr tmp inp_token_0_str tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &bo ?+8 ; relsq tmp2 inp_token_0_str_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 mov
+# MSQ_END 2 getaddr
 # MSQ_START 2 sub tmp lblArrNext
 &al :bg 0000000000300000 ?+8 ; relsq tmp lblArrNext 1
 # MSQ_END 2 sub
@@ -922,12 +923,12 @@
 # MSQ_START 0 inp_token refArrNext tmp tmp2
 ; addr inp_token_1_str 0
 # MSQ_START 1 setaddr inp_token_1_str refArrNext tmp tmp2
-# MSQ_START 2 mov tmp inp_token_1_str_addrRef_0 tmp2
+# MSQ_START 2 getaddr tmp inp_token_1_str tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &bX ?+8 ; relsq tmp2 inp_token_1_str_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 mov
+# MSQ_END 2 getaddr
 # MSQ_START 2 sub tmp refArrNext
 &al :bQ 0000000000400000 ?+8 ; relsq tmp refArrNext 1
 # MSQ_END 2 sub
@@ -1278,16 +1279,14 @@
 
 ; addr curFindLabel 0
 # MSQ_START 0 setaddr curFindLabel lblArrStart tmp tmp2
-# MSQ_START 1 mov tmp curFindLabel_addrRef_0 tmp2
-# MSQ_START 2 movneg tmp2 curFindLabel_addrRef_0
+# MSQ_START 1 getaddr tmp curFindLabel tmp2
+# MSQ_START 2 mov tmp curFindLabel_addrRef_0 tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &cx ?+8 ; relsq tmp2 curFindLabel_addrRef_0 1
-# MSQ_END 2 movneg
-# MSQ_START 2 movneg tmp tmp2
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 movneg
-# MSQ_END 1 mov
+# MSQ_END 2 mov
+# MSQ_END 1 getaddr
 # MSQ_START 1 sub tmp lblArrStart
 &al &cy ?+8 ; relsq tmp lblArrStart 1
 # MSQ_END 1 sub
@@ -1365,24 +1364,24 @@
 ; addr strcmp_const_0_aStr 0
 ; addr strcmp_const_0_bStr 0
 # MSQ_START 1 setaddr strcmp_const_0_aStr strcmp_const_0_a tmp tmp2
-# MSQ_START 2 mov tmp strcmp_const_0_aStr_addrRef_0 tmp2
+# MSQ_START 2 getaddr tmp strcmp_const_0_aStr tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &cJ ?+8 ; relsq tmp2 strcmp_const_0_aStr_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 mov
+# MSQ_END 2 getaddr
 # MSQ_START 2 sub tmp strcmp_const_0_a
 &al :cE &af ?+8 ; relsq tmp strcmp_const_0_a 1
 # MSQ_END 2 sub
 &cJ &al ?+8 ; relsq strcmp_const_0_aStr_addrRef_0 tmp 1
 # MSQ_END 1 setaddr
 # MSQ_START 1 setaddr strcmp_const_0_bStr curFindLabel tmp tmp2
-# MSQ_START 2 mov tmp strcmp_const_0_bStr_addrRef_0 tmp2
+# MSQ_START 2 getaddr tmp strcmp_const_0_bStr tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &cK ?+8 ; relsq tmp2 strcmp_const_0_bStr_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 mov
+# MSQ_END 2 getaddr
 # MSQ_START 2 sub tmp curFindLabel
 &al :cz &ae ?+8 ; relsq tmp curFindLabel 1
 # MSQ_END 2 sub
@@ -1448,12 +1447,12 @@
 ; addr curLabel 0
 # MSQ_START 0 copyaddr curLabel curFindLabel tmp tmp2
 # MSQ_START 1 setaddr curLabel curFindLabel_addrRef_0 tmp tmp2
-# MSQ_START 2 mov tmp curLabel_addrRef_0 tmp2
+# MSQ_START 2 getaddr tmp curLabel tmp2
 :cM &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &cR ?+8 ; relsq tmp2 curLabel_addrRef_0 1
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 mov
+# MSQ_END 2 getaddr
 # MSQ_START 2 sub tmp curFindLabel_addrRef_0
 &al &cx ?+8 ; relsq tmp curFindLabel_addrRef_0 1
 # MSQ_END 2 sub
@@ -1484,16 +1483,14 @@
 # MSQ_END 0 add
 ; addr refAt 0
 # MSQ_START 0 setaddr refAt curRef tmp tmp2
-# MSQ_START 1 mov tmp refAt_addrRef_0 tmp2
-# MSQ_START 2 movneg tmp2 refAt_addrRef_0
+# MSQ_START 1 getaddr tmp refAt tmp2
+# MSQ_START 2 mov tmp refAt_addrRef_0 tmp2
 &aP &aP ?+8 ; relsq tmp2 tmp2 1
 &aP &cU ?+8 ; relsq tmp2 refAt_addrRef_0 1
-# MSQ_END 2 movneg
-# MSQ_START 2 movneg tmp tmp2
 &al &al ?+8 ; relsq tmp tmp 1
 &al &aP ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 movneg
-# MSQ_END 1 mov
+# MSQ_END 2 mov
+# MSQ_END 1 getaddr
 # MSQ_START 1 sub tmp curRef
 &al :cS 0000000000400000 ?+8 ; relsq tmp curRef 1
 # MSQ_END 1 sub

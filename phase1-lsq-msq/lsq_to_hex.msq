@@ -658,6 +658,73 @@ putchar LINE_FEED tmp
 
 
 label STEP6_START
+var symsAtAddrStart 900000
+addr curSymsArr_step6 0
+setaddr curSymsArr_step6 symsAtAddrStart tmp tmp2
+rem There are way more symbols at addr 0 than on others
+alloc_array curSymsArr_step6 8 1000 tmp
+incaddr curSymsArr_step6 20
+
+var i_step6 0
+mov i_step6 size tmp
+label STEP6_ALLOC_LOOP
+decleq i_step6 8 STEP6_ALLOC_LOOP_END
+alloc_array curSymsArr_step6 8 10 tmp
+incaddr curSymsArr_step6 20
+lbljmp STEP6_ALLOC_LOOP
+
+label STEP6_ALLOC_LOOP_END
+addr curSym_step6 0
+setaddr curSym_step6 symbolsBegin tmp tmp2
+
+var symsLeft_step6 0
+mov symsLeft_step6 symbolsLen tmp
+label STEP6_SYMBOL_LOOP
+decleq symsLeft_step6 0 STEP6_END
+dec symsLeft_step6 1
+
+incaddr curSym_step6 18
+jl curSym_step6 size STEP6_ADD_SYMBOL tmp tmp2
+incaddr curSym_step6 18
+lbljmp STEP6_SYMBOL_LOOP
+
+label STEP6_ADD_SYMBOL
+setaddr curSymsArr_step6 symsAtAddrStart tmp tmp2
+rem tmp = curSym_step6 * 4
+mov tmp curSym_step6 tmp2
+movneg tmp2 tmp
+sub tmp tmp2
+sub tmp tmp2
+sub tmp tmp2
+addaddr curSymsArr_step6 tmp tmp2
+
+addr curSymsBuffer 0
+setaddr curSymsBuffer curSymsArr_step6 tmp tmp2
+incaddr curSymsArr_step6 8
+mov tmp curSymsArr_step6 tmp2
+mul_8 tmp tmp2
+addaddr curSymsBuffer tmp tmp2
+decaddr curSym_step6 18
+getaddr curSymsBuffer curSym_step6 tmp
+inc curSymsArr_step6 1
+
+incaddr curSym_step6 30
+lbljmp STEP6_SYMBOL_LOOP
+
+label STEP6_END
+puts STEP6_PRINT_PREFIX tmp tmp2
+addr symbolCount_step6 0
+setaddr symbolCount_step6 symsAtAddrStart tmp tmp2
+incaddr symbolCount_step6 8
+
+addr symbolCountStr_step6 0
+itoa symbolCountStr_step6 symbolCount_step6 tmp tmp2 tmp3
+puts symbolCountStr_step6 tmp tmp2
+puts STEP6_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
+
+
+label STEP7_START
 addr symbolsCur_dbg 0
 setaddr symbolsCur_dbg symbolsBegin tmp tmp2
 var symbolsLeft 0
@@ -696,7 +763,7 @@ var linesLeft_dbg 0
 mov linesLeft_dbg linesPass2Len tmp
 
 label DBG_LOOP_2
-decleq linesLeft_dbg 0 HALT
+decleq linesLeft_dbg 0 LINE_PRINT_END
 dec linesLeft_dbg 1
 
 puts LINE_PART_1 tmp tmp2
@@ -740,6 +807,39 @@ putchar LINE_FEED tmp
 incaddr linesPass2Cur_dbg 8
 putchar LINE_FEED tmp
 lbljmp DBG_LOOP_2
+
+label LINE_PRINT_END
+addr curSymsArr_dbg 0
+setaddr curSymsArr_dbg symsAtAddrStart tmp tmp2
+
+var i_dbg 0
+mov i_dbg size tmp
+label DBG_LOOP_3
+decleq i_dbg 0 HALT
+dec i_dbg 8
+
+addr curSymsBuf_dbg 0
+setaddr curSymsBuf_dbg curSymsArr_dbg tmp tmp2
+incaddr curSymsArr_dbg 8
+var symsLeft_dbg 0
+mov symsLeft_dbg curSymsArr_dbg tmp
+incaddr curSymsArr_dbg 18
+
+label DBG_LOOP_3_1
+decleq symsLeft_dbg 0 DBG_LOOP_3_1_END
+dec symsLeft_dbg 1
+
+addr curSym_dbg 0
+setaddr curSym_dbg curSymsBuf_dbg tmp tmp2
+puts curSym_dbg tmp tmp2
+putchar SPACE tmp
+
+incaddr curSymsBuf_dbg 8
+lbljmp DBG_LOOP_3_1
+
+label DBG_LOOP_3_1_END
+putchar LINE_FEED tmp2
+lbljmp DBG_LOOP_3
 
 label HALT
 halt tmp tmp2
@@ -801,6 +901,9 @@ def_string STEP4_PRINT_SUFFIX  bytes
 
 def_string STEP5_PRINT_PREFIX # Step 5: Size is now 
 def_string STEP5_PRINT_SUFFIX  bytes
+
+def_string STEP6_PRINT_PREFIX # Step 6: Found 
+def_string STEP6_PRINT_SUFFIX  symbols at address 0
 
 rem WA for `assert sym.val is not None` errors
 inc inst_step3 0

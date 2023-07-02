@@ -680,16 +680,14 @@ rem MSQ_END 0 decleq
 rem Handle label (:)
 addr curLabel 0
 rem MSQ_START 0 setaddr curLabel labelOffset tmp tmp2
-rem MSQ_START 1 mov tmp curLabel_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLabel_addrRef_0
+rem MSQ_START 1 getaddr tmp curLabel tmp2
+rem MSQ_START 2 mov tmp curLabel_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLabel_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp labelOffset
 relsq tmp labelOffset 1
 rem MSQ_END 1 sub
@@ -886,16 +884,14 @@ rem MSQ_END 0 decaddr
 
 addr refAt 0
 rem MSQ_START 0 setaddr refAt nextRef tmp tmp2
-rem MSQ_START 1 mov tmp refAt_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 refAt_addrRef_0
+rem MSQ_START 1 getaddr tmp refAt tmp2
+rem MSQ_START 2 mov tmp refAt_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 refAt_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp nextRef
 relsq tmp nextRef 1
 rem MSQ_END 1 sub
@@ -907,16 +903,14 @@ rem MSQ_END 0 decaddr
 
 addr refVal 0
 rem MSQ_START 0 setaddr refVal nextRef tmp tmp2
-rem MSQ_START 1 mov tmp refVal_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 refVal_addrRef_0
+rem MSQ_START 1 getaddr tmp refVal tmp2
+rem MSQ_START 2 mov tmp refVal_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 refVal_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp nextRef
 relsq tmp nextRef 1
 rem MSQ_END 1 sub

@@ -98,12 +98,12 @@ rem Print the header
 rem MSQ_START 0 puts HEX_HEADER tmp tmp2
 addr puts_0_str 0
 rem MSQ_START 1 setaddr puts_0_str HEX_HEADER tmp tmp2
-rem MSQ_START 2 mov tmp puts_0_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_0_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_0_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp HEX_HEADER
 relsq tmp HEX_HEADER 1
 rem MSQ_END 2 sub
@@ -228,16 +228,14 @@ var linesPass1Begin 100000
 var linesPass1Len 0
 addr curLine_step0 0
 rem MSQ_START 0 setaddr curLine_step0 linesPass1Begin tmp tmp2
-rem MSQ_START 1 mov tmp curLine_step0_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLine_step0_addrRef_0
+rem MSQ_START 1 getaddr tmp curLine_step0 tmp2
+rem MSQ_START 2 mov tmp curLine_step0_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass1Begin
 relsq tmp linesPass1Begin 1
 rem MSQ_END 1 sub
@@ -285,12 +283,12 @@ rem MSQ_END 0 alloc_str_const
 rem MSQ_START 0 inp_token_allow_empty curLine_step0 tmp tmp2
 addr inp_token_allow_empty_0_str 0
 rem MSQ_START 1 setaddr inp_token_allow_empty_0_str curLine_step0 tmp tmp2
-rem MSQ_START 2 mov tmp inp_token_allow_empty_0_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp inp_token_allow_empty_0_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_token_allow_empty_0_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0
 relsq tmp curLine_step0 1
 rem MSQ_END 2 sub
@@ -482,24 +480,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_0_aStr 0
 addr strcmp_const_0_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_0_aStr strcmp_const_0_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_0_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_0_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_0_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_0_a
 relsq tmp strcmp_const_0_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_0_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_0_bStr EMPTY_STRING tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_0_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_0_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_0_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp EMPTY_STRING
 relsq tmp EMPTY_STRING 1
 rem MSQ_END 2 sub
@@ -611,24 +609,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_1_aStr 0
 addr strcmp_const_1_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_1_aStr strcmp_const_1_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_1_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_1_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_1_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_1_a
 relsq tmp strcmp_const_1_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_1_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_1_bStr REM tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_1_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_1_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_1_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp REM
 relsq tmp REM 1
 rem MSQ_END 2 sub
@@ -740,24 +738,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_2_aStr 0
 addr strcmp_const_2_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_2_aStr strcmp_const_2_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_2_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_2_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_2_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_2_a
 relsq tmp strcmp_const_2_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_2_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_2_bStr END tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_2_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_2_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_2_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp END
 relsq tmp END 1
 rem MSQ_END 2 sub
@@ -814,12 +812,12 @@ rem Handle other instructions
 addr curLine_step0_other 0
 rem MSQ_START 0 copyaddr curLine_step0_other curLine_step0 tmp tmp2
 rem MSQ_START 1 setaddr curLine_step0_other curLine_step0_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLine_step0_other_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLine_step0_other tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_other_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_addrRef_0
 relsq tmp curLine_step0_addrRef_0 1
 rem MSQ_END 2 sub
@@ -897,16 +895,14 @@ rem MSQ_END 1 malloc
 rem MSQ_END 0 malloc_const
 addr tmpStr 0
 rem MSQ_START 0 setaddr tmpStr tmp tmp2 tmp3
-rem MSQ_START 1 mov tmp2 tmpStr_addrRef_0 tmp3
-rem MSQ_START 2 movneg tmp3 tmpStr_addrRef_0
+rem MSQ_START 1 getaddr tmp2 tmpStr tmp3
+rem MSQ_START 2 mov tmp2 tmpStr_addrRef_0 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 tmpStr_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp2 tmp3
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp2 tmp
 relsq tmp2 tmp 1
 rem MSQ_END 1 sub
@@ -952,12 +948,12 @@ rem MSQ_END 0 alloc_str_const
 rem MSQ_START 0 inp_line tmpStr tmp tmp2
 addr inp_line_0_str 0
 rem MSQ_START 1 setaddr inp_line_0_str tmpStr tmp tmp2
-rem MSQ_START 2 mov tmp inp_line_0_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp inp_line_0_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_line_0_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp tmpStr
 relsq tmp tmpStr 1
 rem MSQ_END 2 sub
@@ -1063,12 +1059,12 @@ rem MSQ_END 0 inp_line
 rem MSQ_START 0 str_split curLine_step0_other tmpStr SPACE 400 tmp tmp2
 addr str_split_0_aBuf 0
 rem MSQ_START 1 setaddr str_split_0_aBuf curLine_step0_other tmp tmp2
-rem MSQ_START 2 mov tmp str_split_0_aBuf_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp str_split_0_aBuf tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 str_split_0_aBuf_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_other
 relsq tmp curLine_step0_other 1
 rem MSQ_END 2 sub
@@ -1076,12 +1072,12 @@ subaddr str_split_0_aBuf tmp
 rem MSQ_END 1 setaddr
 addr str_split_0_strBuf 0
 rem MSQ_START 1 setaddr str_split_0_strBuf tmpStr tmp tmp2
-rem MSQ_START 2 mov tmp str_split_0_strBuf_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp str_split_0_strBuf tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 str_split_0_strBuf_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp tmpStr
 relsq tmp tmpStr 1
 rem MSQ_END 2 sub
@@ -1156,12 +1152,12 @@ rem MSQ_END 2 sub
 rem MSQ_END 1 zero
 addr str_split_0_partBuf 0
 rem MSQ_START 1 setaddr str_split_0_partBuf str_split_0_aBuf tmp tmp2
-rem MSQ_START 2 mov tmp str_split_0_partBuf_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp str_split_0_partBuf tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 str_split_0_partBuf_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp str_split_0_aBuf
 relsq tmp str_split_0_aBuf 1
 rem MSQ_END 2 sub
@@ -1325,12 +1321,12 @@ subaddr curLine_step0_other CONST_-8
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 copyaddr curLine_step0 curLine_step0_other tmp tmp2
 rem MSQ_START 1 setaddr curLine_step0 curLine_step0_other_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLine_step0_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLine_step0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_other_addrRef_0
 relsq tmp curLine_step0_other_addrRef_0 1
 rem MSQ_END 2 sub
@@ -1346,12 +1342,12 @@ label STEP0_HANDLE_NEWLINE
 addr curLine_step0_newline 0
 rem MSQ_START 0 copyaddr curLine_step0_newline curLine_step0 tmp tmp2
 rem MSQ_START 1 setaddr curLine_step0_newline curLine_step0_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLine_step0_newline_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLine_step0_newline tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_newline_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_addrRef_0
 relsq tmp curLine_step0_addrRef_0 1
 rem MSQ_END 2 sub
@@ -1361,12 +1357,12 @@ rem MSQ_END 0 copyaddr
 rem MSQ_START 0 strcpy curLine_step0_newline NEWLINE tmp tmp2
 addr strcpy_0_strA 0
 rem MSQ_START 1 setaddr strcpy_0_strA curLine_step0_newline tmp tmp2
-rem MSQ_START 2 mov tmp strcpy_0_strA_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcpy_0_strA tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcpy_0_strA_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_newline
 relsq tmp curLine_step0_newline 1
 rem MSQ_END 2 sub
@@ -1374,12 +1370,12 @@ subaddr strcpy_0_strA tmp
 rem MSQ_END 1 setaddr
 addr strcpy_0_strB 0
 rem MSQ_START 1 setaddr strcpy_0_strB NEWLINE tmp tmp2
-rem MSQ_START 2 mov tmp strcpy_0_strB_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcpy_0_strB tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcpy_0_strB_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp NEWLINE
 relsq tmp NEWLINE 1
 rem MSQ_END 2 sub
@@ -1556,12 +1552,12 @@ subaddr curLine_step0_newline CONST_-8
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 copyaddr curLine_step0 curLine_step0_newline tmp tmp2
 rem MSQ_START 1 setaddr curLine_step0 curLine_step0_newline_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLine_step0_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLine_step0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_newline_addrRef_0
 relsq tmp curLine_step0_newline_addrRef_0 1
 rem MSQ_END 2 sub
@@ -1577,12 +1573,12 @@ label STEP0_HANDLE_REM
 addr curLine_step0_rem 0
 rem MSQ_START 0 copyaddr curLine_step0_rem curLine_step0 tmp tmp2
 rem MSQ_START 1 setaddr curLine_step0_rem curLine_step0_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLine_step0_rem_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLine_step0_rem tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_rem_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_addrRef_0
 relsq tmp curLine_step0_addrRef_0 1
 rem MSQ_END 2 sub
@@ -1686,12 +1682,12 @@ rem MSQ_END 0 alloc_str_const
 rem MSQ_START 0 inp_line curLine_step0_rem tmp tmp2
 addr inp_line_1_str 0
 rem MSQ_START 1 setaddr inp_line_1_str curLine_step0_rem tmp tmp2
-rem MSQ_START 2 mov tmp inp_line_1_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp inp_line_1_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inp_line_1_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_rem
 relsq tmp curLine_step0_rem 1
 rem MSQ_END 2 sub
@@ -1809,12 +1805,12 @@ subaddr curLine_step0_rem CONST_-8
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 copyaddr curLine_step0 curLine_step0_rem tmp tmp2
 rem MSQ_START 1 setaddr curLine_step0 curLine_step0_rem_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLine_step0_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLine_step0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step0_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLine_step0_rem_addrRef_0
 relsq tmp curLine_step0_rem_addrRef_0 1
 rem MSQ_END 2 sub
@@ -1829,12 +1825,12 @@ label STEP0_END
 rem MSQ_START 0 puts STEP0_PRINT_PREFIX tmp tmp2
 addr puts_1_str 0
 rem MSQ_START 1 setaddr puts_1_str STEP0_PRINT_PREFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_1_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_1_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_1_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP0_PRINT_PREFIX
 relsq tmp STEP0_PRINT_PREFIX 1
 rem MSQ_END 2 sub
@@ -1903,12 +1899,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr lineCountPrint_step0 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 lineCountPrint_step0_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 lineCountPrint_step0 tmp
 relsq tmp tmp 1
 relsq tmp lineCountPrint_step0_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -1945,12 +1941,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_0_retBuf 0
 rem MSQ_START 1 setaddr itoa_0_retBuf lineCountPrint_step0 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_0_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_0_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_0_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 lineCountPrint_step0
 relsq tmp2 lineCountPrint_step0 1
 rem MSQ_END 2 sub
@@ -2235,12 +2231,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts lineCountPrint_step0 tmp tmp2
 addr puts_2_str 0
 rem MSQ_START 1 setaddr puts_2_str lineCountPrint_step0 tmp tmp2
-rem MSQ_START 2 mov tmp puts_2_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_2_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_2_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp lineCountPrint_step0
 relsq tmp lineCountPrint_step0 1
 rem MSQ_END 2 sub
@@ -2298,12 +2294,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP0_PRINT_SUFFIX tmp tmp2
 addr puts_3_str 0
 rem MSQ_START 1 setaddr puts_3_str STEP0_PRINT_SUFFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_3_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_3_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_3_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP0_PRINT_SUFFIX
 relsq tmp STEP0_PRINT_SUFFIX 1
 rem MSQ_END 2 sub
@@ -2396,16 +2392,14 @@ var symbolsLen 0
 
 addr symbolsCur_step1 0
 rem MSQ_START 0 setaddr symbolsCur_step1 symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp symbolsCur_step1_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 symbolsCur_step1_addrRef_0
+rem MSQ_START 1 getaddr tmp symbolsCur_step1 tmp2
+rem MSQ_START 2 mov tmp symbolsCur_step1_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 symbolsCur_step1_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -2414,16 +2408,14 @@ rem MSQ_END 0 setaddr
 
 addr curLine_step1 0
 rem MSQ_START 0 setaddr curLine_step1 linesPass1Begin tmp tmp2
-rem MSQ_START 1 mov tmp curLine_step1_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLine_step1_addrRef_0
+rem MSQ_START 1 getaddr tmp curLine_step1 tmp2
+rem MSQ_START 2 mov tmp curLine_step1_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step1_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass1Begin
 relsq tmp linesPass1Begin 1
 rem MSQ_END 1 sub
@@ -2518,24 +2510,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_3_aStr 0
 addr strcmp_const_3_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_3_aStr strcmp_const_3_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_3_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_3_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_3_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_3_a
 relsq tmp strcmp_const_3_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_3_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_3_bStr VAR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_3_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_3_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_3_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp VAR
 relsq tmp VAR 1
 rem MSQ_END 2 sub
@@ -2647,24 +2639,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_4_aStr 0
 addr strcmp_const_4_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_4_aStr strcmp_const_4_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_4_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_4_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_4_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_4_a
 relsq tmp strcmp_const_4_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_4_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_4_bStr LABEL tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_4_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_4_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_4_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LABEL
 relsq tmp LABEL 1
 rem MSQ_END 2 sub
@@ -2776,24 +2768,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_5_aStr 0
 addr strcmp_const_5_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_5_aStr strcmp_const_5_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_5_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_5_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_5_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_5_a
 relsq tmp strcmp_const_5_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_5_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_5_bStr ADDR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_5_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_5_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_5_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp ADDR
 relsq tmp ADDR 1
 rem MSQ_END 2 sub
@@ -2858,16 +2850,14 @@ subaddr curLine_step1 CONST_-18
 rem MSQ_END 0 incaddr
 addr curTokens_step1 0
 rem MSQ_START 0 setaddr curTokens_step1 curLine_step1 tmp tmp2
-rem MSQ_START 1 mov tmp curTokens_step1_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curTokens_step1_addrRef_0
+rem MSQ_START 1 getaddr tmp curTokens_step1 tmp2
+rem MSQ_START 2 mov tmp curTokens_step1_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curTokens_step1_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLine_step1
 relsq tmp curLine_step1 1
 rem MSQ_END 1 sub
@@ -2917,12 +2907,12 @@ rem MSQ_END 0 alloc_str_const
 rem MSQ_START 0 strcpy symbolsCur_step1 curTokens_step1 tmp tmp2
 addr strcpy_1_strA 0
 rem MSQ_START 1 setaddr strcpy_1_strA symbolsCur_step1 tmp tmp2
-rem MSQ_START 2 mov tmp strcpy_1_strA_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcpy_1_strA tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcpy_1_strA_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp symbolsCur_step1
 relsq tmp symbolsCur_step1 1
 rem MSQ_END 2 sub
@@ -2930,12 +2920,12 @@ subaddr strcpy_1_strA tmp
 rem MSQ_END 1 setaddr
 addr strcpy_1_strB 0
 rem MSQ_START 1 setaddr strcpy_1_strB curTokens_step1 tmp tmp2
-rem MSQ_START 2 mov tmp strcpy_1_strB_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcpy_1_strB tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcpy_1_strB_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curTokens_step1
 relsq tmp curTokens_step1 1
 rem MSQ_END 2 sub
@@ -3089,24 +3079,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_6_aStr 0
 addr strcmp_const_6_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_6_aStr strcmp_const_6_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_6_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_6_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_6_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_6_a
 relsq tmp strcmp_const_6_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_6_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_6_bStr ADDR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_6_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_6_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_6_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp ADDR
 relsq tmp ADDR 1
 rem MSQ_END 2 sub
@@ -3181,12 +3171,12 @@ rem MSQ_END 2 sub
 rem MSQ_END 1 zero
 addr from_hex_0_strBuf 0
 rem MSQ_START 1 setaddr from_hex_0_strBuf curTokens_step1 tmp tmp2
-rem MSQ_START 2 mov tmp from_hex_0_strBuf_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp from_hex_0_strBuf tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 from_hex_0_strBuf_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curTokens_step1
 relsq tmp curTokens_step1 1
 rem MSQ_END 2 sub
@@ -3470,24 +3460,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_7_aStr 0
 addr strcmp_const_7_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_7_aStr strcmp_const_7_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_7_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_7_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_7_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_7_a
 relsq tmp strcmp_const_7_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_7_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_7_bStr VAR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_7_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_7_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_7_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp VAR
 relsq tmp VAR 1
 rem MSQ_END 2 sub
@@ -3562,12 +3552,12 @@ rem MSQ_END 2 sub
 rem MSQ_END 1 zero
 addr from_hex_1_strBuf 0
 rem MSQ_START 1 setaddr from_hex_1_strBuf curTokens_step1 tmp tmp2
-rem MSQ_START 2 mov tmp from_hex_1_strBuf_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp from_hex_1_strBuf tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 from_hex_1_strBuf_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curTokens_step1
 relsq tmp curTokens_step1 1
 rem MSQ_END 2 sub
@@ -3778,12 +3768,12 @@ label STEP1_END
 rem MSQ_START 0 puts STEP1_PRINT_PREFIX tmp tmp2
 addr puts_4_str 0
 rem MSQ_START 1 setaddr puts_4_str STEP1_PRINT_PREFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_4_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_4_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_4_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP1_PRINT_PREFIX
 relsq tmp STEP1_PRINT_PREFIX 1
 rem MSQ_END 2 sub
@@ -3852,12 +3842,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr symbolCountPrint_step1 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 symbolCountPrint_step1_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 symbolCountPrint_step1 tmp
 relsq tmp tmp 1
 relsq tmp symbolCountPrint_step1_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -3894,12 +3884,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_1_retBuf 0
 rem MSQ_START 1 setaddr itoa_1_retBuf symbolCountPrint_step1 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_1_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_1_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_1_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 symbolCountPrint_step1
 relsq tmp2 symbolCountPrint_step1 1
 rem MSQ_END 2 sub
@@ -4184,12 +4174,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts symbolCountPrint_step1 tmp tmp2
 addr puts_5_str 0
 rem MSQ_START 1 setaddr puts_5_str symbolCountPrint_step1 tmp tmp2
-rem MSQ_START 2 mov tmp puts_5_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_5_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_5_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp symbolCountPrint_step1
 relsq tmp symbolCountPrint_step1 1
 rem MSQ_END 2 sub
@@ -4247,12 +4237,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP1_PRINT_SUFFIX tmp tmp2
 addr puts_6_str 0
 rem MSQ_START 1 setaddr puts_6_str STEP1_PRINT_SUFFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_6_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_6_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_6_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP1_PRINT_SUFFIX
 relsq tmp STEP1_PRINT_SUFFIX 1
 rem MSQ_END 2 sub
@@ -4342,16 +4332,14 @@ var totalRefCount 0
 addr incRefCount_key 0
 addr incRefCount_it 0
 rem MSQ_START 0 setaddr incRefCount_it symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp incRefCount_it_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 incRefCount_it_addrRef_0
+rem MSQ_START 1 getaddr tmp incRefCount_it tmp2
+rem MSQ_START 2 mov tmp incRefCount_it_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 incRefCount_it_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -4619,16 +4607,14 @@ rem 2. Count symbol references (Pass 1)
 label STEP2_START
 addr curLine_step2 0
 rem MSQ_START 0 setaddr curLine_step2 linesPass1Begin tmp tmp2
-rem MSQ_START 1 mov tmp curLine_step2_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLine_step2_addrRef_0
+rem MSQ_START 1 getaddr tmp curLine_step2 tmp2
+rem MSQ_START 2 mov tmp curLine_step2_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step2_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass1Begin
 relsq tmp linesPass1Begin 1
 rem MSQ_END 1 sub
@@ -4665,16 +4651,14 @@ rem MSQ_START 0 incaddr curLine_step2 18
 subaddr curLine_step2 CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 setaddr incRefCount_key curLine_step2 tmp tmp2
-rem MSQ_START 1 mov tmp incRefCount_key_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 incRefCount_key_addrRef_0
+rem MSQ_START 1 getaddr tmp incRefCount_key tmp2
+rem MSQ_START 2 mov tmp incRefCount_key_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 incRefCount_key_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLine_step2
 relsq tmp curLine_step2 1
 rem MSQ_END 1 sub
@@ -4745,24 +4729,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_9_aStr 0
 addr strcmp_const_9_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_9_aStr strcmp_const_9_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_9_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_9_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_9_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_9_a
 relsq tmp strcmp_const_9_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_9_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_9_bStr ABSSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_9_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_9_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_9_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp ABSSQ
 relsq tmp ABSSQ 1
 rem MSQ_END 2 sub
@@ -4874,24 +4858,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_10_aStr 0
 addr strcmp_const_10_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_10_aStr strcmp_const_10_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_10_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_10_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_10_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_10_a
 relsq tmp strcmp_const_10_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_10_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_10_bStr RELSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_10_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_10_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_10_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp RELSQ
 relsq tmp RELSQ 1
 rem MSQ_END 2 sub
@@ -5003,24 +4987,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_11_aStr 0
 addr strcmp_const_11_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_11_aStr strcmp_const_11_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_11_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_11_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_11_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_11_a
 relsq tmp strcmp_const_11_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_11_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_11_bStr LBLSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_11_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_11_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_11_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LBLSQ
 relsq tmp LBLSQ 1
 rem MSQ_END 2 sub
@@ -5132,24 +5116,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_12_aStr 0
 addr strcmp_const_12_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_12_aStr strcmp_const_12_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_12_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_12_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_12_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_12_a
 relsq tmp strcmp_const_12_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_12_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_12_bStr SUBADDR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_12_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_12_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_12_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SUBADDR
 relsq tmp SUBADDR 1
 rem MSQ_END 2 sub
@@ -5261,24 +5245,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_13_aStr 0
 addr strcmp_const_13_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_13_aStr strcmp_const_13_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_13_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_13_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_13_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_13_a
 relsq tmp strcmp_const_13_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_13_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_13_bStr RAW_REF tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_13_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_13_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_13_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp RAW_REF
 relsq tmp RAW_REF 1
 rem MSQ_END 2 sub
@@ -5436,24 +5420,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_14_aStr 0
 addr strcmp_const_14_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_14_aStr strcmp_const_14_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_14_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_14_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_14_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_14_a
 relsq tmp strcmp_const_14_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_14_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_14_bStr LBLSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_14_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_14_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_14_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LBLSQ
 relsq tmp LBLSQ 1
 rem MSQ_END 2 sub
@@ -5608,12 +5592,12 @@ label STEP2_END
 rem MSQ_START 0 puts STEP2_PRINT_PREFIX tmp tmp2
 addr puts_7_str 0
 rem MSQ_START 1 setaddr puts_7_str STEP2_PRINT_PREFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_7_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_7_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_7_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP2_PRINT_PREFIX
 relsq tmp STEP2_PRINT_PREFIX 1
 rem MSQ_END 2 sub
@@ -5682,12 +5666,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr symbolCountPrint_step2 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 symbolCountPrint_step2_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 symbolCountPrint_step2 tmp
 relsq tmp tmp 1
 relsq tmp symbolCountPrint_step2_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -5724,12 +5708,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_2_retBuf 0
 rem MSQ_START 1 setaddr itoa_2_retBuf symbolCountPrint_step2 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_2_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_2_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_2_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 symbolCountPrint_step2
 relsq tmp2 symbolCountPrint_step2 1
 rem MSQ_END 2 sub
@@ -6014,12 +5998,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts symbolCountPrint_step2 tmp tmp2
 addr puts_8_str 0
 rem MSQ_START 1 setaddr puts_8_str symbolCountPrint_step2 tmp tmp2
-rem MSQ_START 2 mov tmp puts_8_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_8_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_8_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp symbolCountPrint_step2
 relsq tmp symbolCountPrint_step2 1
 rem MSQ_END 2 sub
@@ -6077,12 +6061,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP2_PRINT_MIDDLE tmp tmp2
 addr puts_9_str 0
 rem MSQ_START 1 setaddr puts_9_str STEP2_PRINT_MIDDLE tmp tmp2
-rem MSQ_START 2 mov tmp puts_9_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_9_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_9_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP2_PRINT_MIDDLE
 relsq tmp STEP2_PRINT_MIDDLE 1
 rem MSQ_END 2 sub
@@ -6151,12 +6135,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr totalRefCountStr_step2 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 totalRefCountStr_step2_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 totalRefCountStr_step2 tmp
 relsq tmp tmp 1
 relsq tmp totalRefCountStr_step2_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -6193,12 +6177,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_3_retBuf 0
 rem MSQ_START 1 setaddr itoa_3_retBuf totalRefCountStr_step2 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_3_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_3_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_3_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 totalRefCountStr_step2
 relsq tmp2 totalRefCountStr_step2 1
 rem MSQ_END 2 sub
@@ -6483,12 +6467,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts totalRefCountStr_step2 tmp tmp2
 addr puts_10_str 0
 rem MSQ_START 1 setaddr puts_10_str totalRefCountStr_step2 tmp tmp2
-rem MSQ_START 2 mov tmp puts_10_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_10_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_10_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp totalRefCountStr_step2
 relsq tmp totalRefCountStr_step2 1
 rem MSQ_END 2 sub
@@ -6546,12 +6530,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP2_PRINT_SUFFIX tmp tmp2
 addr puts_11_str 0
 rem MSQ_START 1 setaddr puts_11_str STEP2_PRINT_SUFFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_11_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_11_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_11_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP2_PRINT_SUFFIX
 relsq tmp STEP2_PRINT_SUFFIX 1
 rem MSQ_END 2 sub
@@ -6645,16 +6629,14 @@ var linesPass2Begin 600000
 var linesPass2Len 0
 addr curLinePass1_step3 0
 rem MSQ_START 0 setaddr curLinePass1_step3 linesPass1Begin tmp tmp2
-rem MSQ_START 1 mov tmp curLinePass1_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLinePass1_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp curLinePass1_step3 tmp2
+rem MSQ_START 2 mov tmp curLinePass1_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLinePass1_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass1Begin
 relsq tmp linesPass1Begin 1
 rem MSQ_END 1 sub
@@ -6662,16 +6644,14 @@ subaddr curLinePass1_step3 tmp
 rem MSQ_END 0 setaddr
 addr curLinePass2_step3 0
 rem MSQ_START 0 setaddr curLinePass2_step3 linesPass2Begin tmp tmp2
-rem MSQ_START 1 mov tmp curLinePass2_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLinePass2_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp curLinePass2_step3 tmp2
+rem MSQ_START 2 mov tmp curLinePass2_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLinePass2_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass2Begin
 relsq tmp linesPass2Begin 1
 rem MSQ_END 1 sub
@@ -6689,12 +6669,12 @@ rem MSQ_END 0 dec
 addr inst_step3 0
 rem MSQ_START 0 copyaddr inst_step3 curLinePass1_step3 tmp tmp2
 rem MSQ_START 1 setaddr inst_step3 curLinePass1_step3_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp inst_step3_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp inst_step3 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 inst_step3_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLinePass1_step3_addrRef_0
 relsq tmp curLinePass1_step3_addrRef_0 1
 rem MSQ_END 2 sub
@@ -6762,24 +6742,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_15_aStr 0
 addr strcmp_const_15_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_15_aStr strcmp_const_15_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_15_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_15_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_15_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_15_a
 relsq tmp strcmp_const_15_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_15_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_15_bStr SUBADDR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_15_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_15_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_15_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SUBADDR
 relsq tmp SUBADDR 1
 rem MSQ_END 2 sub
@@ -6891,24 +6871,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_16_aStr 0
 addr strcmp_const_16_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_16_aStr strcmp_const_16_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_16_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_16_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_16_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_16_a
 relsq tmp strcmp_const_16_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_16_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_16_bStr ZEROADDR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_16_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_16_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_16_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp ZEROADDR
 relsq tmp ZEROADDR 1
 rem MSQ_END 2 sub
@@ -7035,32 +7015,28 @@ rem MSQ_START 0 incaddr curLinePass1_step3 18
 subaddr curLinePass1_step3 CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 setaddr sym0_step3 curLinePass1_step3 tmp tmp2
-rem MSQ_START 1 mov tmp sym0_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 sym0_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp sym0_step3 tmp2
+rem MSQ_START 2 mov tmp sym0_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 sym0_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLinePass1_step3
 relsq tmp curLinePass1_step3 1
 rem MSQ_END 1 sub
 subaddr sym0_step3 tmp
 rem MSQ_END 0 setaddr
 rem MSQ_START 0 setaddr sym1_step3 curLinePass1_step3 tmp tmp2
-rem MSQ_START 1 mov tmp sym1_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 sym1_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp sym1_step3 tmp2
+rem MSQ_START 2 mov tmp sym1_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 sym1_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLinePass1_step3
 relsq tmp curLinePass1_step3 1
 rem MSQ_END 1 sub
@@ -7076,16 +7052,14 @@ rem MSQ_END 0 incaddr
 rem Py: addrSymbols[sym] = 0
 addr addrSymbols_it_step3 0
 rem MSQ_START 0 setaddr addrSymbols_it_step3 addrSymbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp addrSymbols_it_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 addrSymbols_it_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp addrSymbols_it_step3 tmp2
+rem MSQ_START 2 mov tmp addrSymbols_it_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 addrSymbols_it_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp addrSymbolsBegin
 relsq tmp addrSymbolsBegin 1
 rem MSQ_END 1 sub
@@ -7348,12 +7322,12 @@ relsq FREE_START tmp2 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr stubPrefix_step3 tmp tmp2 tmp3
-rem MSQ_START 2 mov tmp2 stubPrefix_step3_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 stubPrefix_step3 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 stubPrefix_step3_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 tmp
 relsq tmp2 tmp 1
 rem MSQ_END 2 sub
@@ -7623,16 +7597,14 @@ var refCount_step3 0
 var nextId_step3 0
 addr symbols_it_step3 0
 rem MSQ_START 0 setaddr symbols_it_step3 symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp symbols_it_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 symbols_it_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp symbols_it_step3 tmp2
+rem MSQ_START 2 mov tmp symbols_it_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 symbols_it_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -7772,12 +7744,12 @@ rem MSQ_END 0 find_item_in_buf_with_str_key
 rem MSQ_START 0 puts STEP3_MISSING_SYMBOL tmp tmp2
 addr puts_12_str 0
 rem MSQ_START 1 setaddr puts_12_str STEP3_MISSING_SYMBOL tmp tmp2
-rem MSQ_START 2 mov tmp puts_12_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_12_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_12_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP3_MISSING_SYMBOL
 relsq tmp STEP3_MISSING_SYMBOL 1
 rem MSQ_END 2 sub
@@ -7860,12 +7832,12 @@ rem MSQ_END 0 putchar
 rem MSQ_START 0 puts sym0_step3 tmp tmp2
 addr puts_13_str 0
 rem MSQ_START 1 setaddr puts_13_str sym0_step3 tmp tmp2
-rem MSQ_START 2 mov tmp puts_13_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_13_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_13_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp sym0_step3
 relsq tmp sym0_step3 1
 rem MSQ_END 2 sub
@@ -7974,12 +7946,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr nextId_str_step3 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 nextId_str_step3_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 nextId_str_step3 tmp
 relsq tmp tmp 1
 relsq tmp nextId_str_step3_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -8016,12 +7988,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_4_retBuf 0
 rem MSQ_START 1 setaddr itoa_4_retBuf nextId_str_step3 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_4_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_4_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_4_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 nextId_str_step3
 relsq tmp2 nextId_str_step3 1
 rem MSQ_END 2 sub
@@ -8356,12 +8328,12 @@ relsq FREE_START tmp2 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr stubSym_step3 tmp tmp2 tmp3
-rem MSQ_START 2 mov tmp2 stubSym_step3_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 stubSym_step3 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 stubSym_step3_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 tmp
 relsq tmp2 tmp 1
 rem MSQ_END 2 sub
@@ -8736,16 +8708,14 @@ rem MSQ_END 0 alloc_array
 rem Add the three tokens
 addr curTokens_step3 0
 rem MSQ_START 0 setaddr curTokens_step3 curLinePass2_step3 tmp tmp2
-rem MSQ_START 1 mov tmp curTokens_step3_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curTokens_step3_addrRef_0
+rem MSQ_START 1 getaddr tmp curTokens_step3 tmp2
+rem MSQ_START 2 mov tmp curTokens_step3_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curTokens_step3_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLinePass2_step3
 relsq tmp curLinePass2_step3 1
 rem MSQ_END 1 sub
@@ -8868,24 +8838,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_19_aStr 0
 addr strcmp_const_19_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_19_aStr strcmp_const_19_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_19_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_19_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_19_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_19_a
 relsq tmp strcmp_const_19_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_19_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_19_bStr SUBADDR tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_19_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_19_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_19_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SUBADDR
 relsq tmp SUBADDR 1
 rem MSQ_END 2 sub
@@ -9176,12 +9146,12 @@ rem MSQ_END 0 incaddr
 rem Py: incRefCount(f"{stubPrefix}{k}")
 rem MSQ_START 0 copyaddr incRefCount_key stubSym_step3 tmp tmp2
 rem MSQ_START 1 setaddr incRefCount_key stubSym_step3_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp incRefCount_key_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp incRefCount_key tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 incRefCount_key_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp stubSym_step3_addrRef_0
 relsq tmp stubSym_step3_addrRef_0 1
 rem MSQ_END 2 sub
@@ -9225,12 +9195,12 @@ label STEP3_END
 rem MSQ_START 0 puts STEP3_PRINT_PREFIX tmp tmp2
 addr puts_14_str 0
 rem MSQ_START 1 setaddr puts_14_str STEP3_PRINT_PREFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_14_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_14_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_14_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP3_PRINT_PREFIX
 relsq tmp STEP3_PRINT_PREFIX 1
 rem MSQ_END 2 sub
@@ -9299,12 +9269,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr symbolCountPrint_step3 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 symbolCountPrint_step3_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 symbolCountPrint_step3 tmp
 relsq tmp tmp 1
 relsq tmp symbolCountPrint_step3_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -9341,12 +9311,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_5_retBuf 0
 rem MSQ_START 1 setaddr itoa_5_retBuf symbolCountPrint_step3 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_5_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_5_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_5_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 symbolCountPrint_step3
 relsq tmp2 symbolCountPrint_step3 1
 rem MSQ_END 2 sub
@@ -9631,12 +9601,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts symbolCountPrint_step3 tmp tmp2
 addr puts_15_str 0
 rem MSQ_START 1 setaddr puts_15_str symbolCountPrint_step3 tmp tmp2
-rem MSQ_START 2 mov tmp puts_15_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_15_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_15_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp symbolCountPrint_step3
 relsq tmp symbolCountPrint_step3 1
 rem MSQ_END 2 sub
@@ -9694,12 +9664,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP3_PRINT_MIDDLE tmp tmp2
 addr puts_16_str 0
 rem MSQ_START 1 setaddr puts_16_str STEP3_PRINT_MIDDLE tmp tmp2
-rem MSQ_START 2 mov tmp puts_16_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_16_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_16_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP3_PRINT_MIDDLE
 relsq tmp STEP3_PRINT_MIDDLE 1
 rem MSQ_END 2 sub
@@ -9768,12 +9738,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr lineCountPrint_step3 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 lineCountPrint_step3_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 lineCountPrint_step3 tmp
 relsq tmp tmp 1
 relsq tmp lineCountPrint_step3_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -9810,12 +9780,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_6_retBuf 0
 rem MSQ_START 1 setaddr itoa_6_retBuf lineCountPrint_step3 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_6_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_6_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_6_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 lineCountPrint_step3
 relsq tmp2 lineCountPrint_step3 1
 rem MSQ_END 2 sub
@@ -10100,12 +10070,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts lineCountPrint_step3 tmp tmp2
 addr puts_17_str 0
 rem MSQ_START 1 setaddr puts_17_str lineCountPrint_step3 tmp tmp2
-rem MSQ_START 2 mov tmp puts_17_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_17_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_17_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp lineCountPrint_step3
 relsq tmp lineCountPrint_step3 1
 rem MSQ_END 2 sub
@@ -10163,12 +10133,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP3_PRINT_SUFFIX tmp tmp2
 addr puts_18_str 0
 rem MSQ_START 1 setaddr puts_18_str STEP3_PRINT_SUFFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_18_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_18_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_18_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP3_PRINT_SUFFIX
 relsq tmp STEP3_PRINT_SUFFIX 1
 rem MSQ_END 2 sub
@@ -10256,16 +10226,14 @@ var size 0
 
 addr curLine_step4 0
 rem MSQ_START 0 setaddr curLine_step4 linesPass2Begin tmp tmp2
-rem MSQ_START 1 mov tmp curLine_step4_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curLine_step4_addrRef_0
+rem MSQ_START 1 getaddr tmp curLine_step4 tmp2
+rem MSQ_START 2 mov tmp curLine_step4_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLine_step4_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass2Begin
 relsq tmp linesPass2Begin 1
 rem MSQ_END 1 sub
@@ -10385,24 +10353,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_20_aStr 0
 addr strcmp_const_20_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_20_aStr strcmp_const_20_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_20_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_20_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_20_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_20_a
 relsq tmp strcmp_const_20_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_20_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_20_bStr ABSSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_20_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_20_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_20_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp ABSSQ
 relsq tmp ABSSQ 1
 rem MSQ_END 2 sub
@@ -10514,24 +10482,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_21_aStr 0
 addr strcmp_const_21_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_21_aStr strcmp_const_21_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_21_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_21_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_21_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_21_a
 relsq tmp strcmp_const_21_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_21_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_21_bStr RELSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_21_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_21_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_21_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp RELSQ
 relsq tmp RELSQ 1
 rem MSQ_END 2 sub
@@ -10643,24 +10611,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_22_aStr 0
 addr strcmp_const_22_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_22_aStr strcmp_const_22_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_22_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_22_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_22_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_22_a
 relsq tmp strcmp_const_22_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_22_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_22_bStr LBLSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_22_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_22_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_22_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LBLSQ
 relsq tmp LBLSQ 1
 rem MSQ_END 2 sub
@@ -10773,24 +10741,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_23_aStr 0
 addr strcmp_const_23_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_23_aStr strcmp_const_23_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_23_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_23_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_23_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_23_a
 relsq tmp strcmp_const_23_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_23_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_23_bStr RAW tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_23_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_23_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_23_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp RAW
 relsq tmp RAW 1
 rem MSQ_END 2 sub
@@ -10902,24 +10870,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_24_aStr 0
 addr strcmp_const_24_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_24_aStr strcmp_const_24_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_24_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_24_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_24_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_24_a
 relsq tmp strcmp_const_24_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_24_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_24_bStr RAW_REF tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_24_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_24_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_24_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp RAW_REF
 relsq tmp RAW_REF 1
 rem MSQ_END 2 sub
@@ -11032,24 +11000,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_25_aStr 0
 addr strcmp_const_25_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_25_aStr strcmp_const_25_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_25_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_25_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_25_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_25_a
 relsq tmp strcmp_const_25_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_25_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_25_bStr LABEL tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_25_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_25_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_25_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LABEL
 relsq tmp LABEL 1
 rem MSQ_END 2 sub
@@ -11128,16 +11096,14 @@ rem MSQ_START 0 incaddr curLine_step4 18
 subaddr curLine_step4 CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 setaddr curSym_step4 curLine_step4 tmp tmp2
-rem MSQ_START 1 mov tmp curSym_step4_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curSym_step4_addrRef_0
+rem MSQ_START 1 getaddr tmp curSym_step4 tmp2
+rem MSQ_START 2 mov tmp curSym_step4_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curSym_step4_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLine_step4
 relsq tmp curLine_step4 1
 rem MSQ_END 1 sub
@@ -11232,24 +11198,24 @@ rem MSQ_END 1 decaddr
 addr strcmp_const_26_aStr 0
 addr strcmp_const_26_bStr 0
 rem MSQ_START 1 setaddr strcmp_const_26_aStr strcmp_const_26_a tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_26_aStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_26_aStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_26_aStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp strcmp_const_26_a
 relsq tmp strcmp_const_26_a 1
 rem MSQ_END 2 sub
 subaddr strcmp_const_26_aStr tmp
 rem MSQ_END 1 setaddr
 rem MSQ_START 1 setaddr strcmp_const_26_bStr LBLSQ tmp tmp2
-rem MSQ_START 2 mov tmp strcmp_const_26_bStr_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp strcmp_const_26_bStr tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 strcmp_const_26_bStr_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LBLSQ
 relsq tmp LBLSQ 1
 rem MSQ_END 2 sub
@@ -11308,16 +11274,14 @@ rem Only run if `line.inst == "lblsq" or i < 2`
 label STEP4_HANDLE_SQ_TOKEN
 addr addrSymbols_it_step4 0
 rem MSQ_START 0 setaddr addrSymbols_it_step4 addrSymbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp addrSymbols_it_step4_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 addrSymbols_it_step4_addrRef_0
+rem MSQ_START 1 getaddr tmp addrSymbols_it_step4 tmp2
+rem MSQ_START 2 mov tmp addrSymbols_it_step4_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 addrSymbols_it_step4_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp addrSymbolsBegin
 relsq tmp addrSymbolsBegin 1
 rem MSQ_END 1 sub
@@ -11517,12 +11481,12 @@ relsq FREE_START tmp2 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr stubPrefix_step4 tmp tmp2 tmp3
-rem MSQ_START 2 mov tmp2 stubPrefix_step4_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 stubPrefix_step4 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 stubPrefix_step4_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 tmp
 relsq tmp2 tmp 1
 rem MSQ_END 2 sub
@@ -11800,12 +11764,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr nextId_str_step4 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 nextId_str_step4_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 nextId_str_step4 tmp
 relsq tmp tmp 1
 relsq tmp nextId_str_step4_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -11842,12 +11806,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_7_retBuf 0
 rem MSQ_START 1 setaddr itoa_7_retBuf nextId_str_step4 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_7_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_7_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_7_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 nextId_str_step4
 relsq tmp2 nextId_str_step4 1
 rem MSQ_END 2 sub
@@ -12182,12 +12146,12 @@ relsq FREE_START tmp2 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr stubSym_step4 tmp tmp2 tmp3
-rem MSQ_START 2 mov tmp2 stubSym_step4_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 stubSym_step4 tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 stubSym_step4_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 tmp
 relsq tmp2 tmp 1
 rem MSQ_END 2 sub
@@ -12455,16 +12419,14 @@ rem MSQ_END 0 strcat
 rem Py: symbols[stubSym].addr = size
 addr symbols_it_step4 0
 rem MSQ_START 0 setaddr symbols_it_step4 symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp symbols_it_step4_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 symbols_it_step4_addrRef_0
+rem MSQ_START 1 getaddr tmp symbols_it_step4 tmp2
+rem MSQ_START 2 mov tmp symbols_it_step4_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 symbols_it_step4_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -12604,12 +12566,12 @@ rem MSQ_END 0 find_item_in_buf_with_str_key
 rem MSQ_START 0 puts STEP4_SQ_MISSING_SYMBOL tmp tmp2
 addr puts_19_str 0
 rem MSQ_START 1 setaddr puts_19_str STEP4_SQ_MISSING_SYMBOL tmp tmp2
-rem MSQ_START 2 mov tmp puts_19_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_19_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_19_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP4_SQ_MISSING_SYMBOL
 relsq tmp STEP4_SQ_MISSING_SYMBOL 1
 rem MSQ_END 2 sub
@@ -12692,12 +12654,12 @@ rem MSQ_END 0 putchar
 rem MSQ_START 0 puts stubSym_step4 tmp tmp2
 addr puts_20_str 0
 rem MSQ_START 1 setaddr puts_20_str stubSym_step4 tmp tmp2
-rem MSQ_START 2 mov tmp puts_20_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_20_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_20_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp stubSym_step4
 relsq tmp stubSym_step4 1
 rem MSQ_END 2 sub
@@ -12881,16 +12843,14 @@ rem MSQ_START 0 incaddr curLine_step4 18
 subaddr curLine_step4 CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 setaddr sym0_step4 curLine_step4 tmp tmp2
-rem MSQ_START 1 mov tmp sym0_step4_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 sym0_step4_addrRef_0
+rem MSQ_START 1 getaddr tmp sym0_step4 tmp2
+rem MSQ_START 2 mov tmp sym0_step4_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 sym0_step4_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLine_step4
 relsq tmp curLine_step4 1
 rem MSQ_END 1 sub
@@ -12899,16 +12859,14 @@ rem MSQ_END 0 setaddr
 
 addr symbols_it2_step4 0
 rem MSQ_START 0 setaddr symbols_it2_step4 symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp symbols_it2_step4_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 symbols_it2_step4_addrRef_0
+rem MSQ_START 1 getaddr tmp symbols_it2_step4 tmp2
+rem MSQ_START 2 mov tmp symbols_it2_step4_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 symbols_it2_step4_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -13048,12 +13006,12 @@ rem MSQ_END 0 find_item_in_buf_with_str_key
 rem MSQ_START 0 puts STEP4_LABEL_MISSING_SYMBOL tmp tmp2
 addr puts_21_str 0
 rem MSQ_START 1 setaddr puts_21_str STEP4_LABEL_MISSING_SYMBOL tmp tmp2
-rem MSQ_START 2 mov tmp puts_21_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_21_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_21_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP4_LABEL_MISSING_SYMBOL
 relsq tmp STEP4_LABEL_MISSING_SYMBOL 1
 rem MSQ_END 2 sub
@@ -13136,12 +13094,12 @@ rem MSQ_END 0 putchar
 rem MSQ_START 0 puts sym0_step4 tmp tmp2
 addr puts_22_str 0
 rem MSQ_START 1 setaddr puts_22_str sym0_step4 tmp tmp2
-rem MSQ_START 2 mov tmp puts_22_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_22_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_22_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp sym0_step4
 relsq tmp sym0_step4 1
 rem MSQ_END 2 sub
@@ -13234,12 +13192,12 @@ label STEP4_END
 rem MSQ_START 0 puts STEP4_PRINT_PREFIX tmp tmp2
 addr puts_23_str 0
 rem MSQ_START 1 setaddr puts_23_str STEP4_PRINT_PREFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_23_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_23_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_23_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP4_PRINT_PREFIX
 relsq tmp STEP4_PRINT_PREFIX 1
 rem MSQ_END 2 sub
@@ -13308,12 +13266,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr sizeStr_step4 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 sizeStr_step4_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 sizeStr_step4 tmp
 relsq tmp tmp 1
 relsq tmp sizeStr_step4_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -13350,12 +13308,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_8_retBuf 0
 rem MSQ_START 1 setaddr itoa_8_retBuf sizeStr_step4 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_8_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_8_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_8_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 sizeStr_step4
 relsq tmp2 sizeStr_step4 1
 rem MSQ_END 2 sub
@@ -13640,12 +13598,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts sizeStr_step4 tmp tmp2
 addr puts_24_str 0
 rem MSQ_START 1 setaddr puts_24_str sizeStr_step4 tmp tmp2
-rem MSQ_START 2 mov tmp puts_24_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_24_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_24_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp sizeStr_step4
 relsq tmp sizeStr_step4 1
 rem MSQ_END 2 sub
@@ -13703,12 +13661,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP4_PRINT_SUFFIX tmp tmp2
 addr puts_25_str 0
 rem MSQ_START 1 setaddr puts_25_str STEP4_PRINT_SUFFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_25_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_25_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_25_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP4_PRINT_SUFFIX
 relsq tmp STEP4_PRINT_SUFFIX 1
 rem MSQ_END 2 sub
@@ -13794,12 +13752,12 @@ rem 5. Assign addresses to variables
 addr curLinePass2_step5 0
 rem MSQ_START 0 copyaddr curLinePass2_step5 curLinePass2_step3 tmp tmp2
 rem MSQ_START 1 setaddr curLinePass2_step5 curLinePass2_step3_addrRef_0 tmp tmp2
-rem MSQ_START 2 mov tmp curLinePass2_step5_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp curLinePass2_step5 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curLinePass2_step5_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curLinePass2_step3_addrRef_0
 relsq tmp curLinePass2_step3_addrRef_0 1
 rem MSQ_END 2 sub
@@ -13809,16 +13767,14 @@ rem MSQ_END 0 copyaddr
 
 addr curSym_step5 0
 rem MSQ_START 0 setaddr curSym_step5 symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp curSym_step5_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curSym_step5_addrRef_0
+rem MSQ_START 1 getaddr tmp curSym_step5 tmp2
+rem MSQ_START 2 mov tmp curSym_step5_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curSym_step5_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -14097,16 +14053,14 @@ rem MSQ_END 0 alloc_array
 rem Add the token
 addr curTokens_step5 0
 rem MSQ_START 0 setaddr curTokens_step5 curLinePass2_step5 tmp tmp2
-rem MSQ_START 1 mov tmp curTokens_step5_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 curTokens_step5_addrRef_0
+rem MSQ_START 1 getaddr tmp curTokens_step5 tmp2
+rem MSQ_START 2 mov tmp curTokens_step5_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 curTokens_step5_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp curLinePass2_step5
 relsq tmp curLinePass2_step5 1
 rem MSQ_END 1 sub
@@ -14126,12 +14080,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr qword_step5 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 qword_step5_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 qword_step5 tmp
 relsq tmp tmp 1
 relsq tmp qword_step5_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -14168,12 +14122,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr to_qword_0_retBuf 0
 rem MSQ_START 1 setaddr to_qword_0_retBuf qword_step5 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 to_qword_0_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 to_qword_0_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 to_qword_0_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 qword_step5
 relsq tmp2 qword_step5 1
 rem MSQ_END 2 sub
@@ -14601,12 +14555,12 @@ label STEP5_VALUE_ERROR
 rem MSQ_START 0 puts STEP5_VALUE_IS_NONE tmp tmp2
 addr puts_26_str 0
 rem MSQ_START 1 setaddr puts_26_str STEP5_VALUE_IS_NONE tmp tmp2
-rem MSQ_START 2 mov tmp puts_26_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_26_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_26_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP5_VALUE_IS_NONE
 relsq tmp STEP5_VALUE_IS_NONE 1
 rem MSQ_END 2 sub
@@ -14689,12 +14643,12 @@ rem MSQ_END 0 putchar
 rem MSQ_START 0 puts curSym_step5 tmp tmp2
 addr puts_27_str 0
 rem MSQ_START 1 setaddr puts_27_str curSym_step5 tmp tmp2
-rem MSQ_START 2 mov tmp puts_27_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_27_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_27_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp curSym_step5
 relsq tmp curSym_step5 1
 rem MSQ_END 2 sub
@@ -14757,12 +14711,12 @@ label STEP5_END
 rem MSQ_START 0 puts STEP5_PRINT_PREFIX tmp tmp2
 addr puts_28_str 0
 rem MSQ_START 1 setaddr puts_28_str STEP5_PRINT_PREFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_28_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_28_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_28_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP5_PRINT_PREFIX
 relsq tmp STEP5_PRINT_PREFIX 1
 rem MSQ_END 2 sub
@@ -14831,12 +14785,12 @@ relsq FREE_START tmp3 1
 rem MSQ_END 2 malloc
 rem MSQ_END 1 malloc_const
 rem MSQ_START 1 setaddr sizeStr_step5 tmp2 tmp3 tmp
-rem MSQ_START 2 mov tmp3 sizeStr_step5_addrRef_0 tmp
+rem MSQ_START 2 getaddr tmp3 sizeStr_step5 tmp
 relsq tmp tmp 1
 relsq tmp sizeStr_step5_addrRef_0 1
 relsq tmp3 tmp3 1
 relsq tmp3 tmp 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp3 tmp2
 relsq tmp3 tmp2 1
 rem MSQ_END 2 sub
@@ -14873,12 +14827,12 @@ rem MSQ_END 2 decaddr
 rem MSQ_END 1 alloc_str_const
 addr itoa_9_retBuf 0
 rem MSQ_START 1 setaddr itoa_9_retBuf sizeStr_step5 tmp2 tmp3
-rem MSQ_START 2 mov tmp2 itoa_9_retBuf_addrRef_0 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_9_retBuf tmp3
 relsq tmp3 tmp3 1
 relsq tmp3 itoa_9_retBuf_addrRef_0 1
 relsq tmp2 tmp2 1
 relsq tmp2 tmp3 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp2 sizeStr_step5
 relsq tmp2 sizeStr_step5 1
 rem MSQ_END 2 sub
@@ -15163,12 +15117,12 @@ rem MSQ_END 0 itoa
 rem MSQ_START 0 puts sizeStr_step5 tmp tmp2
 addr puts_29_str 0
 rem MSQ_START 1 setaddr puts_29_str sizeStr_step5 tmp tmp2
-rem MSQ_START 2 mov tmp puts_29_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_29_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_29_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp sizeStr_step5
 relsq tmp sizeStr_step5 1
 rem MSQ_END 2 sub
@@ -15226,12 +15180,12 @@ rem MSQ_END 0 puts
 rem MSQ_START 0 puts STEP5_PRINT_SUFFIX tmp tmp2
 addr puts_30_str 0
 rem MSQ_START 1 setaddr puts_30_str STEP5_PRINT_SUFFIX tmp tmp2
-rem MSQ_START 2 mov tmp puts_30_str_addrRef_0 tmp2
+rem MSQ_START 2 getaddr tmp puts_30_str tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 puts_30_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp STEP5_PRINT_SUFFIX
 relsq tmp STEP5_PRINT_SUFFIX 1
 rem MSQ_END 2 sub
@@ -15314,18 +15268,990 @@ rem MSQ_END 0 putchar
 
 
 label STEP6_START
-addr symbolsCur_dbg 0
-rem MSQ_START 0 setaddr symbolsCur_dbg symbolsBegin tmp tmp2
-rem MSQ_START 1 mov tmp symbolsCur_dbg_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 symbolsCur_dbg_addrRef_0
+var symsAtAddrStart 900000
+addr curSymsArr_step6 0
+rem MSQ_START 0 setaddr curSymsArr_step6 symsAtAddrStart tmp tmp2
+rem MSQ_START 1 getaddr tmp curSymsArr_step6 tmp2
+rem MSQ_START 2 mov tmp curSymsArr_step6_addrRef_0 tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 symbolsCur_dbg_addrRef_0 1
+relsq tmp2 curSymsArr_step6_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp symsAtAddrStart
+relsq tmp symsAtAddrStart 1
+rem MSQ_END 1 sub
+subaddr curSymsArr_step6 tmp
+rem MSQ_END 0 setaddr
+rem There are way more symbols at addr 0 than on others
+rem MSQ_START 0 alloc_array curSymsArr_step6 8 1000 tmp
+rem MSQ_START 1 malloc_const curSymsArr_step6 8000 tmp
+rem MSQ_START 2 malloc curSymsArr_step6 CONST_8000 tmp
+relsq tmp tmp 1
+relsq tmp FREE_START 1
+relsq curSymsArr_step6 curSymsArr_step6 1
+relsq curSymsArr_step6 tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_8000 1
+relsq FREE_START tmp 1
+rem MSQ_END 2 malloc
+rem MSQ_END 1 malloc_const
+rem MSQ_START 1 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 zero curSymsArr_step6
+rem MSQ_START 2 sub curSymsArr_step6 curSymsArr_step6
+relsq curSymsArr_step6 curSymsArr_step6 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov curSymsArr_step6 CONST_8 tmp
+rem MSQ_START 2 movneg tmp CONST_8
+relsq tmp tmp 1
+relsq tmp CONST_8 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg curSymsArr_step6 tmp
+relsq curSymsArr_step6 curSymsArr_step6 1
+relsq curSymsArr_step6 tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov curSymsArr_step6 CONST_8000 tmp
+rem MSQ_START 2 movneg tmp CONST_8000
+relsq tmp tmp 1
+relsq tmp CONST_8000 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg curSymsArr_step6 tmp
+relsq curSymsArr_step6 curSymsArr_step6 1
+relsq curSymsArr_step6 tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 decaddr curSymsArr_step6 18
+subaddr curSymsArr_step6 CONST_18
+rem MSQ_END 1 decaddr
+rem MSQ_END 0 alloc_array
+rem MSQ_START 0 incaddr curSymsArr_step6 20
+subaddr curSymsArr_step6 CONST_-20
+rem MSQ_END 0 incaddr
+
+var i_step6 0
+rem MSQ_START 0 mov i_step6 size tmp
+rem MSQ_START 1 movneg tmp size
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp size
+relsq tmp size 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg i_step6 tmp
+rem MSQ_START 2 zero i_step6
+relsq i_step6 i_step6 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub i_step6 tmp
+relsq i_step6 tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+label STEP6_ALLOC_LOOP
+rem MSQ_START 0 decleq i_step6 8 STEP6_ALLOC_LOOP_END
+lblsq i_step6 CONST_8 STEP6_ALLOC_LOOP_END
+rem MSQ_END 0 decleq
+rem MSQ_START 0 alloc_array curSymsArr_step6 8 10 tmp
+rem MSQ_START 1 malloc_const curSymsArr_step6 80 tmp
+rem MSQ_START 2 malloc curSymsArr_step6 CONST_80 tmp
+relsq tmp tmp 1
+relsq tmp FREE_START 1
+relsq curSymsArr_step6 curSymsArr_step6 1
+relsq curSymsArr_step6 tmp 1
+relsq tmp tmp 1
+relsq tmp CONST_80 1
+relsq FREE_START tmp 1
+rem MSQ_END 2 malloc
+rem MSQ_END 1 malloc_const
+rem MSQ_START 1 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 zero curSymsArr_step6
+rem MSQ_START 2 sub curSymsArr_step6 curSymsArr_step6
+relsq curSymsArr_step6 curSymsArr_step6 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov curSymsArr_step6 CONST_8 tmp
+rem MSQ_START 2 movneg tmp CONST_8
+relsq tmp tmp 1
+relsq tmp CONST_8 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg curSymsArr_step6 tmp
+relsq curSymsArr_step6 curSymsArr_step6 1
+relsq curSymsArr_step6 tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov curSymsArr_step6 CONST_80 tmp
+rem MSQ_START 2 movneg tmp CONST_80
+relsq tmp tmp 1
+relsq tmp CONST_80 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg curSymsArr_step6 tmp
+relsq curSymsArr_step6 curSymsArr_step6 1
+relsq curSymsArr_step6 tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 decaddr curSymsArr_step6 18
+subaddr curSymsArr_step6 CONST_18
+rem MSQ_END 1 decaddr
+rem MSQ_END 0 alloc_array
+rem MSQ_START 0 incaddr curSymsArr_step6 20
+subaddr curSymsArr_step6 CONST_-20
+rem MSQ_END 0 incaddr
+rem MSQ_START 0 lbljmp STEP6_ALLOC_LOOP
+lblsq ZERO ZERO STEP6_ALLOC_LOOP
+rem MSQ_END 0 lbljmp
+
+label STEP6_ALLOC_LOOP_END
+addr curSym_step6 0
+rem MSQ_START 0 setaddr curSym_step6 symbolsBegin tmp tmp2
+rem MSQ_START 1 getaddr tmp curSym_step6 tmp2
+rem MSQ_START 2 mov tmp curSym_step6_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curSym_step6_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp symbolsBegin
+relsq tmp symbolsBegin 1
+rem MSQ_END 1 sub
+subaddr curSym_step6 tmp
+rem MSQ_END 0 setaddr
+
+var symsLeft_step6 0
+rem MSQ_START 0 mov symsLeft_step6 symbolsLen tmp
+rem MSQ_START 1 movneg tmp symbolsLen
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp symbolsLen
+relsq tmp symbolsLen 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg symsLeft_step6 tmp
+rem MSQ_START 2 zero symsLeft_step6
+relsq symsLeft_step6 symsLeft_step6 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub symsLeft_step6 tmp
+relsq symsLeft_step6 tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+label STEP6_SYMBOL_LOOP
+rem MSQ_START 0 decleq symsLeft_step6 0 STEP6_END
+lblsq symsLeft_step6 CONST_0 STEP6_END
+rem MSQ_END 0 decleq
+rem MSQ_START 0 dec symsLeft_step6 1
+relsq symsLeft_step6 CONST_1 1
+rem MSQ_END 0 dec
+
+rem MSQ_START 0 incaddr curSym_step6 18
+subaddr curSym_step6 CONST_-18
+rem MSQ_END 0 incaddr
+rem MSQ_START 0 jl curSym_step6 size STEP6_ADD_SYMBOL tmp tmp2
+rem MSQ_START 1 mov tmp curSym_step6 tmp2
+rem MSQ_START 2 movneg tmp2 curSym_step6
+relsq tmp2 tmp2 1
+relsq tmp2 curSym_step6 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
+rem MSQ_START 1 inc tmp 1
+rem MSQ_START 2 dec tmp -1
+relsq tmp CONST_-1 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+lblsq tmp size STEP6_ADD_SYMBOL
+rem MSQ_END 0 jl
+rem MSQ_START 0 incaddr curSym_step6 18
+subaddr curSym_step6 CONST_-18
+rem MSQ_END 0 incaddr
+rem MSQ_START 0 lbljmp STEP6_SYMBOL_LOOP
+lblsq ZERO ZERO STEP6_SYMBOL_LOOP
+rem MSQ_END 0 lbljmp
+
+label STEP6_ADD_SYMBOL
+rem MSQ_START 0 setaddr curSymsArr_step6 symsAtAddrStart tmp tmp2
+rem MSQ_START 1 getaddr tmp curSymsArr_step6 tmp2
+rem MSQ_START 2 mov tmp curSymsArr_step6_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curSymsArr_step6_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp symsAtAddrStart
+relsq tmp symsAtAddrStart 1
+rem MSQ_END 1 sub
+subaddr curSymsArr_step6 tmp
+rem MSQ_END 0 setaddr
+rem tmp = curSym_step6 * 4
+rem MSQ_START 0 mov tmp curSym_step6 tmp2
+rem MSQ_START 1 movneg tmp2 curSym_step6
+rem MSQ_START 2 zero tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp2 curSym_step6
+relsq tmp2 curSym_step6 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg tmp tmp2
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+rem MSQ_START 0 movneg tmp2 tmp
+rem MSQ_START 1 zero tmp2
+rem MSQ_START 2 sub tmp2 tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 sub tmp2 tmp
+relsq tmp2 tmp 1
+rem MSQ_END 1 sub
+rem MSQ_END 0 movneg
+rem MSQ_START 0 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 0 sub
+rem MSQ_START 0 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 0 sub
+rem MSQ_START 0 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 0 sub
+rem MSQ_START 0 addaddr curSymsArr_step6 tmp tmp2
+rem MSQ_START 1 movneg tmp2 tmp
+rem MSQ_START 2 zero tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp2 tmp
+relsq tmp2 tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+subaddr curSymsArr_step6 tmp2
+rem MSQ_END 0 addaddr
+
+addr curSymsBuffer 0
+rem MSQ_START 0 setaddr curSymsBuffer curSymsArr_step6 tmp tmp2
+rem MSQ_START 1 getaddr tmp curSymsBuffer tmp2
+rem MSQ_START 2 mov tmp curSymsBuffer_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curSymsBuffer_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp curSymsArr_step6
+relsq tmp curSymsArr_step6 1
+rem MSQ_END 1 sub
+subaddr curSymsBuffer tmp
+rem MSQ_END 0 setaddr
+rem MSQ_START 0 incaddr curSymsArr_step6 8
+subaddr curSymsArr_step6 CONST_-8
+rem MSQ_END 0 incaddr
+rem MSQ_START 0 mov tmp curSymsArr_step6 tmp2
+rem MSQ_START 1 movneg tmp2 curSymsArr_step6
+rem MSQ_START 2 zero tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp2 curSymsArr_step6
+relsq tmp2 curSymsArr_step6 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg tmp tmp2
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+rem MSQ_START 0 mul_8 tmp tmp2
+rem MSQ_START 1 movneg tmp2 tmp
+rem MSQ_START 2 zero tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp2 tmp
+relsq tmp2 tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 sub tmp tmp2
+relsq tmp tmp2 1
+rem MSQ_END 1 sub
+rem MSQ_END 0 mul_8
+rem MSQ_START 0 addaddr curSymsBuffer tmp tmp2
+rem MSQ_START 1 movneg tmp2 tmp
+rem MSQ_START 2 zero tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp2 tmp
+relsq tmp2 tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+subaddr curSymsBuffer tmp2
+rem MSQ_END 0 addaddr
+rem MSQ_START 0 decaddr curSym_step6 18
+subaddr curSym_step6 CONST_18
+rem MSQ_END 0 decaddr
+rem MSQ_START 0 getaddr curSymsBuffer curSym_step6 tmp
+rem MSQ_START 1 mov curSymsBuffer curSym_step6_addrRef_0 tmp
+rem MSQ_START 2 movneg tmp curSym_step6_addrRef_0
+relsq tmp tmp 1
+relsq tmp curSym_step6_addrRef_0 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg curSymsBuffer tmp
+relsq curSymsBuffer curSymsBuffer 1
+relsq curSymsBuffer tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_END 0 getaddr
+rem MSQ_START 0 inc curSymsArr_step6 1
+rem MSQ_START 1 dec curSymsArr_step6 -1
+relsq curSymsArr_step6 CONST_-1 1
+rem MSQ_END 1 dec
+rem MSQ_END 0 inc
+
+rem MSQ_START 0 incaddr curSym_step6 30
+subaddr curSym_step6 CONST_-30
+rem MSQ_END 0 incaddr
+rem MSQ_START 0 lbljmp STEP6_SYMBOL_LOOP
+lblsq ZERO ZERO STEP6_SYMBOL_LOOP
+rem MSQ_END 0 lbljmp
+
+label STEP6_END
+rem MSQ_START 0 puts STEP6_PRINT_PREFIX tmp tmp2
+addr puts_31_str 0
+rem MSQ_START 1 setaddr puts_31_str STEP6_PRINT_PREFIX tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_31_str tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 puts_31_str_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 getaddr
+rem MSQ_START 2 sub tmp STEP6_PRINT_PREFIX
+relsq tmp STEP6_PRINT_PREFIX 1
+rem MSQ_END 2 sub
+subaddr puts_31_str tmp
+rem MSQ_END 1 setaddr
+var puts_31_len 0
+rem MSQ_START 1 incaddr STEP6_PRINT_PREFIX 8
+subaddr STEP6_PRINT_PREFIX CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov puts_31_len STEP6_PRINT_PREFIX tmp
+rem MSQ_START 2 movneg tmp STEP6_PRINT_PREFIX
+relsq tmp tmp 1
+relsq tmp STEP6_PRINT_PREFIX 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg puts_31_len tmp
+relsq puts_31_len puts_31_len 1
+relsq puts_31_len tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 decaddr STEP6_PRINT_PREFIX 8
+subaddr STEP6_PRINT_PREFIX CONST_8
+rem MSQ_END 1 decaddr
+label PUTS_31_LOOP
+rem MSQ_START 1 decleq puts_31_len 0 PUTS_31_END
+lblsq puts_31_len CONST_0 PUTS_31_END
+rem MSQ_END 1 decleq
+rem MSQ_START 1 dec puts_31_len 1
+relsq puts_31_len CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 putchar puts_31_str tmp
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 2 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 2 reljmp
+rem MSQ_START 2 movneg tmp puts_31_str
+relsq tmp tmp 1
+relsq tmp puts_31_str 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 putchar
+rem MSQ_START 1 incaddr puts_31_str 8
+subaddr puts_31_str CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 lbljmp PUTS_31_LOOP
+lblsq ZERO ZERO PUTS_31_LOOP
+rem MSQ_END 1 lbljmp
+label PUTS_31_END
+rem MSQ_END 0 puts
+addr symbolCount_step6 0
+rem MSQ_START 0 setaddr symbolCount_step6 symsAtAddrStart tmp tmp2
+rem MSQ_START 1 getaddr tmp symbolCount_step6 tmp2
+rem MSQ_START 2 mov tmp symbolCount_step6_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 symbolCount_step6_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp symsAtAddrStart
+relsq tmp symsAtAddrStart 1
+rem MSQ_END 1 sub
+subaddr symbolCount_step6 tmp
+rem MSQ_END 0 setaddr
+rem MSQ_START 0 incaddr symbolCount_step6 8
+subaddr symbolCount_step6 CONST_-8
+rem MSQ_END 0 incaddr
+
+addr symbolCountStr_step6 0
+rem MSQ_START 0 itoa symbolCountStr_step6 symbolCount_step6 tmp tmp2 tmp3
+rem MSQ_START 1 malloc_const tmp2 18 tmp3
+rem MSQ_START 2 malloc tmp2 CONST_18 tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 FREE_START 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp3 1
+relsq tmp3 tmp3 1
+relsq tmp3 CONST_18 1
+relsq FREE_START tmp3 1
+rem MSQ_END 2 malloc
+rem MSQ_END 1 malloc_const
+rem MSQ_START 1 setaddr symbolCountStr_step6 tmp2 tmp3 tmp
+rem MSQ_START 2 getaddr tmp3 symbolCountStr_step6 tmp
+relsq tmp tmp 1
+relsq tmp symbolCountStr_step6_addrRef_0 1
+relsq tmp3 tmp3 1
+relsq tmp3 tmp 1
+rem MSQ_END 2 getaddr
+rem MSQ_START 2 sub tmp3 tmp2
+relsq tmp3 tmp2 1
+rem MSQ_END 2 sub
+subaddr symbolCountStr_step6 tmp3
+rem MSQ_END 1 setaddr
+rem MSQ_START 1 alloc_str_const symbolCountStr_step6 a0 tmp3
+rem MSQ_START 2 malloc_const symbolCountStr_step6 a0 tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 FREE_START 1
+relsq symbolCountStr_step6 symbolCountStr_step6 1
+relsq symbolCountStr_step6 tmp3 1
+relsq tmp3 tmp3 1
+relsq tmp3 CONST_A0 1
+relsq FREE_START tmp3 1
+rem MSQ_END 2 malloc_const
+rem MSQ_START 2 incaddr symbolCountStr_step6 8
+subaddr symbolCountStr_step6 CONST_-8
+rem MSQ_END 2 incaddr
+rem MSQ_START 2 zero symbolCountStr_step6
+relsq symbolCountStr_step6 symbolCountStr_step6 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 incaddr symbolCountStr_step6 8
+subaddr symbolCountStr_step6 CONST_-8
+rem MSQ_END 2 incaddr
+rem MSQ_START 2 mov symbolCountStr_step6 CONST_A0 tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 CONST_A0 1
+relsq symbolCountStr_step6 symbolCountStr_step6 1
+relsq symbolCountStr_step6 tmp3 1
+rem MSQ_END 2 mov
+rem MSQ_START 2 decaddr symbolCountStr_step6 10
+subaddr symbolCountStr_step6 CONST_10
+rem MSQ_END 2 decaddr
+rem MSQ_END 1 alloc_str_const
+addr itoa_10_retBuf 0
+rem MSQ_START 1 setaddr itoa_10_retBuf symbolCountStr_step6 tmp2 tmp3
+rem MSQ_START 2 getaddr tmp2 itoa_10_retBuf tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 itoa_10_retBuf_addrRef_0 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp3 1
+rem MSQ_END 2 getaddr
+rem MSQ_START 2 sub tmp2 symbolCountStr_step6
+relsq tmp2 symbolCountStr_step6 1
+rem MSQ_END 2 sub
+subaddr itoa_10_retBuf tmp2
+rem MSQ_END 1 setaddr
+addr itoa_10_retLength 0
+rem MSQ_START 1 copyaddr itoa_10_retLength symbolCountStr_step6 tmp2 tmp3
+rem MSQ_START 2 setaddr itoa_10_retLength symbolCountStr_step6_addrRef_0 tmp2 tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 itoa_10_retLength_addrRef_0 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp3 1
+relsq tmp2 symbolCountStr_step6_addrRef_0 1
+subaddr itoa_10_retLength tmp2
+rem MSQ_END 2 setaddr
+rem MSQ_END 1 copyaddr
+rem MSQ_START 1 incaddr itoa_10_retLength 8
+subaddr itoa_10_retLength CONST_-8
+rem MSQ_END 1 incaddr
+var itoa_10_noDigits 0
+rem MSQ_START 1 set itoa_10_noDigits 1
+rem MSQ_START 2 zero itoa_10_noDigits
+relsq itoa_10_noDigits itoa_10_noDigits 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc itoa_10_noDigits 1
+relsq itoa_10_noDigits CONST_-1 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
+rem MSQ_START 1 mov tmp symbolCount_step6 tmp2
+rem MSQ_START 2 movneg tmp2 symbolCount_step6
+relsq tmp2 tmp2 1
+relsq tmp2 symbolCount_step6 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg tmp tmp2
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+var itoa_10_isNeg 0
+rem MSQ_START 1 zero itoa_10_isNeg
+rem MSQ_START 2 sub itoa_10_isNeg itoa_10_isNeg
+relsq itoa_10_isNeg itoa_10_isNeg 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 jn tmp ITOA_10_IS_NEG tmp2 tmp3
+rem MSQ_START 2 jl tmp ZERO ITOA_10_IS_NEG tmp2 tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 tmp 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp3 1
+relsq tmp2 CONST_-1 1
+lblsq tmp2 ZERO ITOA_10_IS_NEG
+rem MSQ_END 2 jl
+rem MSQ_END 1 jn
+rem MSQ_START 1 jz tmp ITOA_10_IS_ZERO tmp2
+rem MSQ_START 2 movneg tmp2 tmp
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 incleq tmp2 1 JZ_52_END
+lblsq tmp2 CONST_-1 JZ_52_END
+rem MSQ_END 2 incleq
+rem MSQ_START 2 incleq tmp 1 JZ_52_REVERT_A
+lblsq tmp CONST_-1 JZ_52_REVERT_A
+rem MSQ_END 2 incleq
+rem MSQ_START 2 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 lbljmp ITOA_10_IS_ZERO
+lblsq ZERO ZERO ITOA_10_IS_ZERO
+rem MSQ_END 2 lbljmp
+label JZ_52_REVERT_A
+rem MSQ_START 2 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 2 dec
+label JZ_52_END
+rem MSQ_END 1 jz
+rem MSQ_START 1 lbljmp ITOA_10_LOOP
+lblsq ZERO ZERO ITOA_10_LOOP
+rem MSQ_END 1 lbljmp
+label ITOA_10_IS_ZERO
+rem MSQ_START 1 set itoa_10_retBuf 30
+rem MSQ_START 2 zero itoa_10_retBuf
+relsq itoa_10_retBuf itoa_10_retBuf 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc itoa_10_retBuf 30
+relsq itoa_10_retBuf CONST_-30 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
+rem MSQ_START 1 inc itoa_10_retLength 1
+rem MSQ_START 2 dec itoa_10_retLength -1
+relsq itoa_10_retLength CONST_-1 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+rem MSQ_START 1 lbljmp ITOA_10_END
+lblsq ZERO ZERO ITOA_10_END
+rem MSQ_END 1 lbljmp
+label ITOA_10_IS_NEG
+rem MSQ_START 1 inc itoa_10_isNeg 1
+rem MSQ_START 2 dec itoa_10_isNeg -1
+relsq itoa_10_isNeg CONST_-1 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+rem MSQ_START 1 neg tmp tmp2 tmp3
+rem MSQ_START 2 movneg tmp2 tmp
+relsq tmp2 tmp2 1
+relsq tmp2 tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 mov tmp tmp2 tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 tmp2 1
+relsq tmp tmp 1
+relsq tmp tmp3 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 neg
+rem MSQ_START 1 set itoa_10_retBuf 2d
+rem MSQ_START 2 zero itoa_10_retBuf
+relsq itoa_10_retBuf itoa_10_retBuf 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc itoa_10_retBuf 2d
+relsq itoa_10_retBuf CONST_-2D 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
+rem MSQ_START 1 incaddr itoa_10_retBuf 8
+subaddr itoa_10_retBuf CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 inc itoa_10_retLength 1
+rem MSQ_START 2 dec itoa_10_retLength -1
+relsq itoa_10_retLength CONST_-1 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+rem MSQ_START 1 lbljmp ITOA_10_LOOP
+lblsq ZERO ZERO ITOA_10_LOOP
+rem MSQ_END 1 lbljmp
+label ITOA_10_SUBBERS
+raw 0de0b6b3a7640000 016345785d8a0000 002386f26fc10000 00038d7ea4c68000 00005af3107a4000 000009184e72a000 000000e8d4a51000 000000174876e800 00000002540be400 000000003b9aca00 0000000005f5e100 0000000000989680 00000000000f4240 00000000000186a0 0000000000002710 00000000000003e8 0000000000000064 000000000000000a 0000000000000001 0000000000000000
+label ITOA_10_LOOP
+rem MSQ_START 1 jz ITOA_10_SUBBERS ITOA_10_REVERT_SUBBERS tmp2
+rem MSQ_START 2 movneg tmp2 ITOA_10_SUBBERS
+relsq tmp2 tmp2 1
+relsq tmp2 ITOA_10_SUBBERS 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 incleq tmp2 1 JZ_53_END
+lblsq tmp2 CONST_-1 JZ_53_END
+rem MSQ_END 2 incleq
+rem MSQ_START 2 incleq ITOA_10_SUBBERS 1 JZ_53_REVERT_A
+lblsq ITOA_10_SUBBERS CONST_-1 JZ_53_REVERT_A
+rem MSQ_END 2 incleq
+rem MSQ_START 2 dec ITOA_10_SUBBERS 1
+relsq ITOA_10_SUBBERS CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 lbljmp ITOA_10_REVERT_SUBBERS
+lblsq ZERO ZERO ITOA_10_REVERT_SUBBERS
+rem MSQ_END 2 lbljmp
+label JZ_53_REVERT_A
+rem MSQ_START 2 dec ITOA_10_SUBBERS 1
+relsq ITOA_10_SUBBERS CONST_1 1
+rem MSQ_END 2 dec
+label JZ_53_END
+rem MSQ_END 1 jz
+var itoa_10_digitVal 0
+rem MSQ_START 1 zero itoa_10_digitVal
+rem MSQ_START 2 sub itoa_10_digitVal itoa_10_digitVal
+relsq itoa_10_digitVal itoa_10_digitVal 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+label ITOA_10_SUBTRACT_A
+rem MSQ_START 1 jl tmp ITOA_10_SUBBERS ITOA_10_HANDLE_DIGIT tmp2 tmp3
+rem MSQ_START 2 mov tmp2 tmp tmp3
+relsq tmp3 tmp3 1
+relsq tmp3 tmp 1
+relsq tmp2 tmp2 1
+relsq tmp2 tmp3 1
+rem MSQ_END 2 mov
+rem MSQ_START 2 inc tmp2 1
+relsq tmp2 CONST_-1 1
+rem MSQ_END 2 inc
+lblsq tmp2 ITOA_10_SUBBERS ITOA_10_HANDLE_DIGIT
+rem MSQ_END 1 jl
+rem MSQ_START 1 inc itoa_10_digitVal 1
+rem MSQ_START 2 dec itoa_10_digitVal -1
+relsq itoa_10_digitVal CONST_-1 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+rem MSQ_START 1 sub tmp ITOA_10_SUBBERS
+relsq tmp ITOA_10_SUBBERS 1
+rem MSQ_END 1 sub
+rem MSQ_START 1 lbljmp ITOA_10_SUBTRACT_A
+lblsq ZERO ZERO ITOA_10_SUBTRACT_A
+rem MSQ_END 1 lbljmp
+label ITOA_10_HANDLE_DIGIT
+rem MSQ_START 1 jz itoa_10_noDigits ITOA_10_PRINT_DIGIT tmp2
+rem MSQ_START 2 movneg tmp2 itoa_10_noDigits
+relsq tmp2 tmp2 1
+relsq tmp2 itoa_10_noDigits 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 incleq tmp2 1 JZ_54_END
+lblsq tmp2 CONST_-1 JZ_54_END
+rem MSQ_END 2 incleq
+rem MSQ_START 2 incleq itoa_10_noDigits 1 JZ_54_REVERT_A
+lblsq itoa_10_noDigits CONST_-1 JZ_54_REVERT_A
+rem MSQ_END 2 incleq
+rem MSQ_START 2 dec itoa_10_noDigits 1
+relsq itoa_10_noDigits CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 lbljmp ITOA_10_PRINT_DIGIT
+lblsq ZERO ZERO ITOA_10_PRINT_DIGIT
+rem MSQ_END 2 lbljmp
+label JZ_54_REVERT_A
+rem MSQ_START 2 dec itoa_10_noDigits 1
+relsq itoa_10_noDigits CONST_1 1
+rem MSQ_END 2 dec
+label JZ_54_END
+rem MSQ_END 1 jz
+rem MSQ_START 1 jz itoa_10_digitVal ITOA_10_DONT_PRINT_DIGIT tmp2
+rem MSQ_START 2 movneg tmp2 itoa_10_digitVal
+relsq tmp2 tmp2 1
+relsq tmp2 itoa_10_digitVal 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 incleq tmp2 1 JZ_55_END
+lblsq tmp2 CONST_-1 JZ_55_END
+rem MSQ_END 2 incleq
+rem MSQ_START 2 incleq itoa_10_digitVal 1 JZ_55_REVERT_A
+lblsq itoa_10_digitVal CONST_-1 JZ_55_REVERT_A
+rem MSQ_END 2 incleq
+rem MSQ_START 2 dec itoa_10_digitVal 1
+relsq itoa_10_digitVal CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 lbljmp ITOA_10_DONT_PRINT_DIGIT
+lblsq ZERO ZERO ITOA_10_DONT_PRINT_DIGIT
+rem MSQ_END 2 lbljmp
+label JZ_55_REVERT_A
+rem MSQ_START 2 dec itoa_10_digitVal 1
+relsq itoa_10_digitVal CONST_1 1
+rem MSQ_END 2 dec
+label JZ_55_END
+rem MSQ_END 1 jz
+label ITOA_10_PRINT_DIGIT
+rem MSQ_START 1 zero itoa_10_noDigits
+rem MSQ_START 2 sub itoa_10_noDigits itoa_10_noDigits
+relsq itoa_10_noDigits itoa_10_noDigits 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 zero
+rem MSQ_START 1 set itoa_10_retBuf 30
+rem MSQ_START 2 zero itoa_10_retBuf
+relsq itoa_10_retBuf itoa_10_retBuf 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 inc itoa_10_retBuf 30
+relsq itoa_10_retBuf CONST_-30 1
+rem MSQ_END 2 inc
+rem MSQ_END 1 set
+rem MSQ_START 1 add itoa_10_retBuf itoa_10_digitVal tmp2
+rem MSQ_START 2 movneg tmp2 itoa_10_digitVal
+relsq tmp2 tmp2 1
+relsq tmp2 itoa_10_digitVal 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 sub itoa_10_retBuf tmp2
+relsq itoa_10_retBuf tmp2 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 add
+rem MSQ_START 1 incaddr itoa_10_retBuf 8
+subaddr itoa_10_retBuf CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 inc itoa_10_retLength 1
+rem MSQ_START 2 dec itoa_10_retLength -1
+relsq itoa_10_retLength CONST_-1 1
+rem MSQ_END 2 dec
+rem MSQ_END 1 inc
+label ITOA_10_DONT_PRINT_DIGIT
+rem MSQ_START 1 incaddr ITOA_10_SUBBERS 8
+subaddr ITOA_10_SUBBERS CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 lbljmp ITOA_10_LOOP
+lblsq ZERO ZERO ITOA_10_LOOP
+rem MSQ_END 1 lbljmp
+label ITOA_10_REVERT_SUBBERS
+rem MSQ_START 1 decaddr ITOA_10_SUBBERS 98
+subaddr ITOA_10_SUBBERS CONST_98
+rem MSQ_END 1 decaddr
+label ITOA_10_END
+rem MSQ_END 0 itoa
+rem MSQ_START 0 puts symbolCountStr_step6 tmp tmp2
+addr puts_32_str 0
+rem MSQ_START 1 setaddr puts_32_str symbolCountStr_step6 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_32_str tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 puts_32_str_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 getaddr
+rem MSQ_START 2 sub tmp symbolCountStr_step6
+relsq tmp symbolCountStr_step6 1
+rem MSQ_END 2 sub
+subaddr puts_32_str tmp
+rem MSQ_END 1 setaddr
+var puts_32_len 0
+rem MSQ_START 1 incaddr symbolCountStr_step6 8
+subaddr symbolCountStr_step6 CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov puts_32_len symbolCountStr_step6 tmp
+rem MSQ_START 2 movneg tmp symbolCountStr_step6
+relsq tmp tmp 1
+relsq tmp symbolCountStr_step6 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg puts_32_len tmp
+relsq puts_32_len puts_32_len 1
+relsq puts_32_len tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 decaddr symbolCountStr_step6 8
+subaddr symbolCountStr_step6 CONST_8
+rem MSQ_END 1 decaddr
+label PUTS_32_LOOP
+rem MSQ_START 1 decleq puts_32_len 0 PUTS_32_END
+lblsq puts_32_len CONST_0 PUTS_32_END
+rem MSQ_END 1 decleq
+rem MSQ_START 1 dec puts_32_len 1
+relsq puts_32_len CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 putchar puts_32_str tmp
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 2 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 2 reljmp
+rem MSQ_START 2 movneg tmp puts_32_str
+relsq tmp tmp 1
+relsq tmp puts_32_str 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 putchar
+rem MSQ_START 1 incaddr puts_32_str 8
+subaddr puts_32_str CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 lbljmp PUTS_32_LOOP
+lblsq ZERO ZERO PUTS_32_LOOP
+rem MSQ_END 1 lbljmp
+label PUTS_32_END
+rem MSQ_END 0 puts
+rem MSQ_START 0 puts STEP6_PRINT_SUFFIX tmp tmp2
+addr puts_33_str 0
+rem MSQ_START 1 setaddr puts_33_str STEP6_PRINT_SUFFIX tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_33_str tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 puts_33_str_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 getaddr
+rem MSQ_START 2 sub tmp STEP6_PRINT_SUFFIX
+relsq tmp STEP6_PRINT_SUFFIX 1
+rem MSQ_END 2 sub
+subaddr puts_33_str tmp
+rem MSQ_END 1 setaddr
+var puts_33_len 0
+rem MSQ_START 1 incaddr STEP6_PRINT_SUFFIX 8
+subaddr STEP6_PRINT_SUFFIX CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov puts_33_len STEP6_PRINT_SUFFIX tmp
+rem MSQ_START 2 movneg tmp STEP6_PRINT_SUFFIX
+relsq tmp tmp 1
+relsq tmp STEP6_PRINT_SUFFIX 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg puts_33_len tmp
+relsq puts_33_len puts_33_len 1
+relsq puts_33_len tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 decaddr STEP6_PRINT_SUFFIX 8
+subaddr STEP6_PRINT_SUFFIX CONST_8
+rem MSQ_END 1 decaddr
+label PUTS_33_LOOP
+rem MSQ_START 1 decleq puts_33_len 0 PUTS_33_END
+lblsq puts_33_len CONST_0 PUTS_33_END
+rem MSQ_END 1 decleq
+rem MSQ_START 1 dec puts_33_len 1
+relsq puts_33_len CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 putchar puts_33_str tmp
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 2 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 2 reljmp
+rem MSQ_START 2 movneg tmp puts_33_str
+relsq tmp tmp 1
+relsq tmp puts_33_str 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 putchar
+rem MSQ_START 1 incaddr puts_33_str 8
+subaddr puts_33_str CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 lbljmp PUTS_33_LOOP
+lblsq ZERO ZERO PUTS_33_LOOP
+rem MSQ_END 1 lbljmp
+label PUTS_33_END
+rem MSQ_END 0 puts
+rem MSQ_START 0 putchar LINE_FEED tmp
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 1 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 1 reljmp
+rem MSQ_START 1 movneg tmp LINE_FEED
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp LINE_FEED
+relsq tmp LINE_FEED 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 movneg SERIAL_OUT tmp
+rem MSQ_START 2 zero SERIAL_OUT
+relsq SERIAL_OUT SERIAL_OUT 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub SERIAL_OUT tmp
+relsq SERIAL_OUT tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 putchar
+
+
+label STEP7_START
+addr symbolsCur_dbg 0
+rem MSQ_START 0 setaddr symbolsCur_dbg symbolsBegin tmp tmp2
+rem MSQ_START 1 getaddr tmp symbolsCur_dbg tmp2
+rem MSQ_START 2 mov tmp symbolsCur_dbg_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 symbolsCur_dbg_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp symbolsBegin
 relsq tmp symbolsBegin 1
 rem MSQ_END 1 sub
@@ -15360,51 +16286,51 @@ relsq symbolsLeft CONST_1 1
 rem MSQ_END 0 dec
 
 rem MSQ_START 0 puts SYMBOL_PART_1 tmp tmp2
-addr puts_31_str 0
-rem MSQ_START 1 setaddr puts_31_str SYMBOL_PART_1 tmp tmp2
-rem MSQ_START 2 mov tmp puts_31_str_addrRef_0 tmp2
+addr puts_34_str 0
+rem MSQ_START 1 setaddr puts_34_str SYMBOL_PART_1 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_34_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_31_str_addrRef_0 1
+relsq tmp2 puts_34_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SYMBOL_PART_1
 relsq tmp SYMBOL_PART_1 1
 rem MSQ_END 2 sub
-subaddr puts_31_str tmp
+subaddr puts_34_str tmp
 rem MSQ_END 1 setaddr
-var puts_31_len 0
+var puts_34_len 0
 rem MSQ_START 1 incaddr SYMBOL_PART_1 8
 subaddr SYMBOL_PART_1 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_31_len SYMBOL_PART_1 tmp
+rem MSQ_START 1 mov puts_34_len SYMBOL_PART_1 tmp
 rem MSQ_START 2 movneg tmp SYMBOL_PART_1
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_1 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_31_len tmp
-relsq puts_31_len puts_31_len 1
-relsq puts_31_len tmp 1
+rem MSQ_START 2 movneg puts_34_len tmp
+relsq puts_34_len puts_34_len 1
+relsq puts_34_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr SYMBOL_PART_1 8
 subaddr SYMBOL_PART_1 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_31_LOOP
-rem MSQ_START 1 decleq puts_31_len 0 PUTS_31_END
-lblsq puts_31_len CONST_0 PUTS_31_END
+label PUTS_34_LOOP
+rem MSQ_START 1 decleq puts_34_len 0 PUTS_34_END
+lblsq puts_34_len CONST_0 PUTS_34_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_31_len 1
-relsq puts_31_len CONST_1 1
+rem MSQ_START 1 dec puts_34_len 1
+relsq puts_34_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_31_str tmp
+rem MSQ_START 1 putchar puts_34_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_31_str
+rem MSQ_START 2 movneg tmp puts_34_str
 relsq tmp tmp 1
-relsq tmp puts_31_str 1
+relsq tmp puts_34_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -15414,60 +16340,60 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_31_str 8
-subaddr puts_31_str CONST_-8
+rem MSQ_START 1 incaddr puts_34_str 8
+subaddr puts_34_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_31_LOOP
-lblsq ZERO ZERO PUTS_31_LOOP
+rem MSQ_START 1 lbljmp PUTS_34_LOOP
+lblsq ZERO ZERO PUTS_34_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_31_END
+label PUTS_34_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 puts symbolsCur_dbg tmp tmp2
-addr puts_32_str 0
-rem MSQ_START 1 setaddr puts_32_str symbolsCur_dbg tmp tmp2
-rem MSQ_START 2 mov tmp puts_32_str_addrRef_0 tmp2
+addr puts_35_str 0
+rem MSQ_START 1 setaddr puts_35_str symbolsCur_dbg tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_35_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_32_str_addrRef_0 1
+relsq tmp2 puts_35_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp symbolsCur_dbg
 relsq tmp symbolsCur_dbg 1
 rem MSQ_END 2 sub
-subaddr puts_32_str tmp
+subaddr puts_35_str tmp
 rem MSQ_END 1 setaddr
-var puts_32_len 0
+var puts_35_len 0
 rem MSQ_START 1 incaddr symbolsCur_dbg 8
 subaddr symbolsCur_dbg CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_32_len symbolsCur_dbg tmp
+rem MSQ_START 1 mov puts_35_len symbolsCur_dbg tmp
 rem MSQ_START 2 movneg tmp symbolsCur_dbg
 relsq tmp tmp 1
 relsq tmp symbolsCur_dbg 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_32_len tmp
-relsq puts_32_len puts_32_len 1
-relsq puts_32_len tmp 1
+rem MSQ_START 2 movneg puts_35_len tmp
+relsq puts_35_len puts_35_len 1
+relsq puts_35_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr symbolsCur_dbg 8
 subaddr symbolsCur_dbg CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_32_LOOP
-rem MSQ_START 1 decleq puts_32_len 0 PUTS_32_END
-lblsq puts_32_len CONST_0 PUTS_32_END
+label PUTS_35_LOOP
+rem MSQ_START 1 decleq puts_35_len 0 PUTS_35_END
+lblsq puts_35_len CONST_0 PUTS_35_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_32_len 1
-relsq puts_32_len CONST_1 1
+rem MSQ_START 1 dec puts_35_len 1
+relsq puts_35_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_32_str tmp
+rem MSQ_START 1 putchar puts_35_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_32_str
+rem MSQ_START 2 movneg tmp puts_35_str
 relsq tmp tmp 1
-relsq tmp puts_32_str 1
+relsq tmp puts_35_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -15477,13 +16403,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_32_str 8
-subaddr puts_32_str CONST_-8
+rem MSQ_START 1 incaddr puts_35_str 8
+subaddr puts_35_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_32_LOOP
-lblsq ZERO ZERO PUTS_32_LOOP
+rem MSQ_START 1 lbljmp PUTS_35_LOOP
+lblsq ZERO ZERO PUTS_35_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_32_END
+label PUTS_35_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 putchar LINE_FEED tmp
 relsq SERIAL_OUT ZERO 2
@@ -15515,51 +16441,51 @@ rem MSQ_START 0 incaddr symbolsCur_dbg 18
 subaddr symbolsCur_dbg CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 puts SYMBOL_PART_2 tmp tmp2
-addr puts_33_str 0
-rem MSQ_START 1 setaddr puts_33_str SYMBOL_PART_2 tmp tmp2
-rem MSQ_START 2 mov tmp puts_33_str_addrRef_0 tmp2
+addr puts_36_str 0
+rem MSQ_START 1 setaddr puts_36_str SYMBOL_PART_2 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_36_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_33_str_addrRef_0 1
+relsq tmp2 puts_36_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SYMBOL_PART_2
 relsq tmp SYMBOL_PART_2 1
 rem MSQ_END 2 sub
-subaddr puts_33_str tmp
+subaddr puts_36_str tmp
 rem MSQ_END 1 setaddr
-var puts_33_len 0
+var puts_36_len 0
 rem MSQ_START 1 incaddr SYMBOL_PART_2 8
 subaddr SYMBOL_PART_2 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_33_len SYMBOL_PART_2 tmp
+rem MSQ_START 1 mov puts_36_len SYMBOL_PART_2 tmp
 rem MSQ_START 2 movneg tmp SYMBOL_PART_2
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_2 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_33_len tmp
-relsq puts_33_len puts_33_len 1
-relsq puts_33_len tmp 1
+rem MSQ_START 2 movneg puts_36_len tmp
+relsq puts_36_len puts_36_len 1
+relsq puts_36_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr SYMBOL_PART_2 8
 subaddr SYMBOL_PART_2 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_33_LOOP
-rem MSQ_START 1 decleq puts_33_len 0 PUTS_33_END
-lblsq puts_33_len CONST_0 PUTS_33_END
+label PUTS_36_LOOP
+rem MSQ_START 1 decleq puts_36_len 0 PUTS_36_END
+lblsq puts_36_len CONST_0 PUTS_36_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_33_len 1
-relsq puts_33_len CONST_1 1
+rem MSQ_START 1 dec puts_36_len 1
+relsq puts_36_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_33_str tmp
+rem MSQ_START 1 putchar puts_36_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_33_str
+rem MSQ_START 2 movneg tmp puts_36_str
 relsq tmp tmp 1
-relsq tmp puts_33_str 1
+relsq tmp puts_36_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -15569,13 +16495,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_33_str 8
-subaddr puts_33_str CONST_-8
+rem MSQ_START 1 incaddr puts_36_str 8
+subaddr puts_36_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_33_LOOP
-lblsq ZERO ZERO PUTS_33_LOOP
+rem MSQ_START 1 lbljmp PUTS_36_LOOP
+lblsq ZERO ZERO PUTS_36_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_33_END
+label PUTS_36_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 print_qword symbolsCur_dbg tmp tmp2 tmp3 tmp4
 rem MSQ_START 1 mov tmp symbolsCur_dbg tmp2
@@ -15636,11 +16562,11 @@ rem MSQ_START 2 movneg tmp2 PRINT_QWORD_0_SUBBERS
 relsq tmp2 tmp2 1
 relsq tmp2 PRINT_QWORD_0_SUBBERS 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_52_END
-lblsq tmp2 CONST_-1 JZ_52_END
+rem MSQ_START 2 incleq tmp2 1 JZ_56_END
+lblsq tmp2 CONST_-1 JZ_56_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq PRINT_QWORD_0_SUBBERS 1 JZ_52_REVERT_A
-lblsq PRINT_QWORD_0_SUBBERS CONST_-1 JZ_52_REVERT_A
+rem MSQ_START 2 incleq PRINT_QWORD_0_SUBBERS 1 JZ_56_REVERT_A
+lblsq PRINT_QWORD_0_SUBBERS CONST_-1 JZ_56_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec PRINT_QWORD_0_SUBBERS 1
 relsq PRINT_QWORD_0_SUBBERS CONST_1 1
@@ -15648,11 +16574,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_0_END
 lblsq ZERO ZERO PRINT_QWORD_0_END
 rem MSQ_END 2 lbljmp
-label JZ_52_REVERT_A
+label JZ_56_REVERT_A
 rem MSQ_START 2 dec PRINT_QWORD_0_SUBBERS 1
 relsq PRINT_QWORD_0_SUBBERS CONST_1 1
 rem MSQ_END 2 dec
-label JZ_52_END
+label JZ_56_END
 rem MSQ_END 1 jz
 var print_qword_0_nibbleVal 0
 rem MSQ_START 1 zero print_qword_0_nibbleVal
@@ -15690,11 +16616,11 @@ rem MSQ_START 2 movneg tmp2 tmp
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_53_END
-lblsq tmp2 CONST_-1 JZ_53_END
+rem MSQ_START 2 incleq tmp2 1 JZ_57_END
+lblsq tmp2 CONST_-1 JZ_57_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq tmp 1 JZ_53_REVERT_A
-lblsq tmp CONST_-1 JZ_53_REVERT_A
+rem MSQ_START 2 incleq tmp 1 JZ_57_REVERT_A
+lblsq tmp CONST_-1 JZ_57_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -15702,11 +16628,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_0_HANDLE_LOW_NIBBLE
 lblsq ZERO ZERO PRINT_QWORD_0_HANDLE_LOW_NIBBLE
 rem MSQ_END 2 lbljmp
-label JZ_53_REVERT_A
+label JZ_57_REVERT_A
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
 rem MSQ_END 2 dec
-label JZ_53_END
+label JZ_57_END
 rem MSQ_END 1 jz
 rem MSQ_START 1 decleq print_qword_0_isNeg 0 PRINT_QWORD_0_PRINT_NIBBLE
 lblsq print_qword_0_isNeg CONST_0 PRINT_QWORD_0_PRINT_NIBBLE
@@ -15859,51 +16785,51 @@ rem MSQ_START 0 incaddr symbolsCur_dbg 8
 subaddr symbolsCur_dbg CONST_-8
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 puts SYMBOL_PART_3 tmp tmp2
-addr puts_34_str 0
-rem MSQ_START 1 setaddr puts_34_str SYMBOL_PART_3 tmp tmp2
-rem MSQ_START 2 mov tmp puts_34_str_addrRef_0 tmp2
+addr puts_37_str 0
+rem MSQ_START 1 setaddr puts_37_str SYMBOL_PART_3 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_37_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_34_str_addrRef_0 1
+relsq tmp2 puts_37_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SYMBOL_PART_3
 relsq tmp SYMBOL_PART_3 1
 rem MSQ_END 2 sub
-subaddr puts_34_str tmp
+subaddr puts_37_str tmp
 rem MSQ_END 1 setaddr
-var puts_34_len 0
+var puts_37_len 0
 rem MSQ_START 1 incaddr SYMBOL_PART_3 8
 subaddr SYMBOL_PART_3 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_34_len SYMBOL_PART_3 tmp
+rem MSQ_START 1 mov puts_37_len SYMBOL_PART_3 tmp
 rem MSQ_START 2 movneg tmp SYMBOL_PART_3
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_3 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_34_len tmp
-relsq puts_34_len puts_34_len 1
-relsq puts_34_len tmp 1
+rem MSQ_START 2 movneg puts_37_len tmp
+relsq puts_37_len puts_37_len 1
+relsq puts_37_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr SYMBOL_PART_3 8
 subaddr SYMBOL_PART_3 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_34_LOOP
-rem MSQ_START 1 decleq puts_34_len 0 PUTS_34_END
-lblsq puts_34_len CONST_0 PUTS_34_END
+label PUTS_37_LOOP
+rem MSQ_START 1 decleq puts_37_len 0 PUTS_37_END
+lblsq puts_37_len CONST_0 PUTS_37_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_34_len 1
-relsq puts_34_len CONST_1 1
+rem MSQ_START 1 dec puts_37_len 1
+relsq puts_37_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_34_str tmp
+rem MSQ_START 1 putchar puts_37_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_34_str
+rem MSQ_START 2 movneg tmp puts_37_str
 relsq tmp tmp 1
-relsq tmp puts_34_str 1
+relsq tmp puts_37_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -15913,13 +16839,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_34_str 8
-subaddr puts_34_str CONST_-8
+rem MSQ_START 1 incaddr puts_37_str 8
+subaddr puts_37_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_34_LOOP
-lblsq ZERO ZERO PUTS_34_LOOP
+rem MSQ_START 1 lbljmp PUTS_37_LOOP
+lblsq ZERO ZERO PUTS_37_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_34_END
+label PUTS_37_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 print_qword symbolsCur_dbg tmp tmp2 tmp3 tmp4
 rem MSQ_START 1 mov tmp symbolsCur_dbg tmp2
@@ -15980,11 +16906,11 @@ rem MSQ_START 2 movneg tmp2 PRINT_QWORD_1_SUBBERS
 relsq tmp2 tmp2 1
 relsq tmp2 PRINT_QWORD_1_SUBBERS 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_54_END
-lblsq tmp2 CONST_-1 JZ_54_END
+rem MSQ_START 2 incleq tmp2 1 JZ_58_END
+lblsq tmp2 CONST_-1 JZ_58_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq PRINT_QWORD_1_SUBBERS 1 JZ_54_REVERT_A
-lblsq PRINT_QWORD_1_SUBBERS CONST_-1 JZ_54_REVERT_A
+rem MSQ_START 2 incleq PRINT_QWORD_1_SUBBERS 1 JZ_58_REVERT_A
+lblsq PRINT_QWORD_1_SUBBERS CONST_-1 JZ_58_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec PRINT_QWORD_1_SUBBERS 1
 relsq PRINT_QWORD_1_SUBBERS CONST_1 1
@@ -15992,11 +16918,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_1_END
 lblsq ZERO ZERO PRINT_QWORD_1_END
 rem MSQ_END 2 lbljmp
-label JZ_54_REVERT_A
+label JZ_58_REVERT_A
 rem MSQ_START 2 dec PRINT_QWORD_1_SUBBERS 1
 relsq PRINT_QWORD_1_SUBBERS CONST_1 1
 rem MSQ_END 2 dec
-label JZ_54_END
+label JZ_58_END
 rem MSQ_END 1 jz
 var print_qword_1_nibbleVal 0
 rem MSQ_START 1 zero print_qword_1_nibbleVal
@@ -16034,11 +16960,11 @@ rem MSQ_START 2 movneg tmp2 tmp
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_55_END
-lblsq tmp2 CONST_-1 JZ_55_END
+rem MSQ_START 2 incleq tmp2 1 JZ_59_END
+lblsq tmp2 CONST_-1 JZ_59_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq tmp 1 JZ_55_REVERT_A
-lblsq tmp CONST_-1 JZ_55_REVERT_A
+rem MSQ_START 2 incleq tmp 1 JZ_59_REVERT_A
+lblsq tmp CONST_-1 JZ_59_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16046,11 +16972,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_1_HANDLE_LOW_NIBBLE
 lblsq ZERO ZERO PRINT_QWORD_1_HANDLE_LOW_NIBBLE
 rem MSQ_END 2 lbljmp
-label JZ_55_REVERT_A
+label JZ_59_REVERT_A
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
 rem MSQ_END 2 dec
-label JZ_55_END
+label JZ_59_END
 rem MSQ_END 1 jz
 rem MSQ_START 1 decleq print_qword_1_isNeg 0 PRINT_QWORD_1_PRINT_NIBBLE
 lblsq print_qword_1_isNeg CONST_0 PRINT_QWORD_1_PRINT_NIBBLE
@@ -16203,51 +17129,51 @@ rem MSQ_START 0 incaddr symbolsCur_dbg 8
 subaddr symbolsCur_dbg CONST_-8
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 puts SYMBOL_PART_4 tmp tmp2
-addr puts_35_str 0
-rem MSQ_START 1 setaddr puts_35_str SYMBOL_PART_4 tmp tmp2
-rem MSQ_START 2 mov tmp puts_35_str_addrRef_0 tmp2
+addr puts_38_str 0
+rem MSQ_START 1 setaddr puts_38_str SYMBOL_PART_4 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_38_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_35_str_addrRef_0 1
+relsq tmp2 puts_38_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp SYMBOL_PART_4
 relsq tmp SYMBOL_PART_4 1
 rem MSQ_END 2 sub
-subaddr puts_35_str tmp
+subaddr puts_38_str tmp
 rem MSQ_END 1 setaddr
-var puts_35_len 0
+var puts_38_len 0
 rem MSQ_START 1 incaddr SYMBOL_PART_4 8
 subaddr SYMBOL_PART_4 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_35_len SYMBOL_PART_4 tmp
+rem MSQ_START 1 mov puts_38_len SYMBOL_PART_4 tmp
 rem MSQ_START 2 movneg tmp SYMBOL_PART_4
 relsq tmp tmp 1
 relsq tmp SYMBOL_PART_4 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_35_len tmp
-relsq puts_35_len puts_35_len 1
-relsq puts_35_len tmp 1
+rem MSQ_START 2 movneg puts_38_len tmp
+relsq puts_38_len puts_38_len 1
+relsq puts_38_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr SYMBOL_PART_4 8
 subaddr SYMBOL_PART_4 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_35_LOOP
-rem MSQ_START 1 decleq puts_35_len 0 PUTS_35_END
-lblsq puts_35_len CONST_0 PUTS_35_END
+label PUTS_38_LOOP
+rem MSQ_START 1 decleq puts_38_len 0 PUTS_38_END
+lblsq puts_38_len CONST_0 PUTS_38_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_35_len 1
-relsq puts_35_len CONST_1 1
+rem MSQ_START 1 dec puts_38_len 1
+relsq puts_38_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_35_str tmp
+rem MSQ_START 1 putchar puts_38_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_35_str
+rem MSQ_START 2 movneg tmp puts_38_str
 relsq tmp tmp 1
-relsq tmp puts_35_str 1
+relsq tmp puts_38_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16257,13 +17183,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_35_str 8
-subaddr puts_35_str CONST_-8
+rem MSQ_START 1 incaddr puts_38_str 8
+subaddr puts_38_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_35_LOOP
-lblsq ZERO ZERO PUTS_35_LOOP
+rem MSQ_START 1 lbljmp PUTS_38_LOOP
+lblsq ZERO ZERO PUTS_38_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_35_END
+label PUTS_38_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 print_qword symbolsCur_dbg tmp tmp2 tmp3 tmp4
 rem MSQ_START 1 mov tmp symbolsCur_dbg tmp2
@@ -16324,11 +17250,11 @@ rem MSQ_START 2 movneg tmp2 PRINT_QWORD_2_SUBBERS
 relsq tmp2 tmp2 1
 relsq tmp2 PRINT_QWORD_2_SUBBERS 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_56_END
-lblsq tmp2 CONST_-1 JZ_56_END
+rem MSQ_START 2 incleq tmp2 1 JZ_60_END
+lblsq tmp2 CONST_-1 JZ_60_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq PRINT_QWORD_2_SUBBERS 1 JZ_56_REVERT_A
-lblsq PRINT_QWORD_2_SUBBERS CONST_-1 JZ_56_REVERT_A
+rem MSQ_START 2 incleq PRINT_QWORD_2_SUBBERS 1 JZ_60_REVERT_A
+lblsq PRINT_QWORD_2_SUBBERS CONST_-1 JZ_60_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec PRINT_QWORD_2_SUBBERS 1
 relsq PRINT_QWORD_2_SUBBERS CONST_1 1
@@ -16336,11 +17262,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_2_END
 lblsq ZERO ZERO PRINT_QWORD_2_END
 rem MSQ_END 2 lbljmp
-label JZ_56_REVERT_A
+label JZ_60_REVERT_A
 rem MSQ_START 2 dec PRINT_QWORD_2_SUBBERS 1
 relsq PRINT_QWORD_2_SUBBERS CONST_1 1
 rem MSQ_END 2 dec
-label JZ_56_END
+label JZ_60_END
 rem MSQ_END 1 jz
 var print_qword_2_nibbleVal 0
 rem MSQ_START 1 zero print_qword_2_nibbleVal
@@ -16378,11 +17304,11 @@ rem MSQ_START 2 movneg tmp2 tmp
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_57_END
-lblsq tmp2 CONST_-1 JZ_57_END
+rem MSQ_START 2 incleq tmp2 1 JZ_61_END
+lblsq tmp2 CONST_-1 JZ_61_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq tmp 1 JZ_57_REVERT_A
-lblsq tmp CONST_-1 JZ_57_REVERT_A
+rem MSQ_START 2 incleq tmp 1 JZ_61_REVERT_A
+lblsq tmp CONST_-1 JZ_61_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16390,11 +17316,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_2_HANDLE_LOW_NIBBLE
 lblsq ZERO ZERO PRINT_QWORD_2_HANDLE_LOW_NIBBLE
 rem MSQ_END 2 lbljmp
-label JZ_57_REVERT_A
+label JZ_61_REVERT_A
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
 rem MSQ_END 2 dec
-label JZ_57_END
+label JZ_61_END
 rem MSQ_END 1 jz
 rem MSQ_START 1 decleq print_qword_2_isNeg 0 PRINT_QWORD_2_PRINT_NIBBLE
 lblsq print_qword_2_isNeg CONST_0 PRINT_QWORD_2_PRINT_NIBBLE
@@ -16553,16 +17479,14 @@ rem MSQ_END 0 lbljmp
 label DBG_LINES
 addr linesPass2Cur_dbg 0
 rem MSQ_START 0 setaddr linesPass2Cur_dbg linesPass2Begin tmp tmp2
-rem MSQ_START 1 mov tmp linesPass2Cur_dbg_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 linesPass2Cur_dbg_addrRef_0
+rem MSQ_START 1 getaddr tmp linesPass2Cur_dbg tmp2
+rem MSQ_START 2 mov tmp linesPass2Cur_dbg_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 linesPass2Cur_dbg_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass2Begin
 relsq tmp linesPass2Begin 1
 rem MSQ_END 1 sub
@@ -16589,59 +17513,59 @@ rem MSQ_END 1 movneg
 rem MSQ_END 0 mov
 
 label DBG_LOOP_2
-rem MSQ_START 0 decleq linesLeft_dbg 0 HALT
-lblsq linesLeft_dbg CONST_0 HALT
+rem MSQ_START 0 decleq linesLeft_dbg 0 LINE_PRINT_END
+lblsq linesLeft_dbg CONST_0 LINE_PRINT_END
 rem MSQ_END 0 decleq
 rem MSQ_START 0 dec linesLeft_dbg 1
 relsq linesLeft_dbg CONST_1 1
 rem MSQ_END 0 dec
 
 rem MSQ_START 0 puts LINE_PART_1 tmp tmp2
-addr puts_36_str 0
-rem MSQ_START 1 setaddr puts_36_str LINE_PART_1 tmp tmp2
-rem MSQ_START 2 mov tmp puts_36_str_addrRef_0 tmp2
+addr puts_39_str 0
+rem MSQ_START 1 setaddr puts_39_str LINE_PART_1 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_39_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_36_str_addrRef_0 1
+relsq tmp2 puts_39_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LINE_PART_1
 relsq tmp LINE_PART_1 1
 rem MSQ_END 2 sub
-subaddr puts_36_str tmp
+subaddr puts_39_str tmp
 rem MSQ_END 1 setaddr
-var puts_36_len 0
+var puts_39_len 0
 rem MSQ_START 1 incaddr LINE_PART_1 8
 subaddr LINE_PART_1 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_36_len LINE_PART_1 tmp
+rem MSQ_START 1 mov puts_39_len LINE_PART_1 tmp
 rem MSQ_START 2 movneg tmp LINE_PART_1
 relsq tmp tmp 1
 relsq tmp LINE_PART_1 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_36_len tmp
-relsq puts_36_len puts_36_len 1
-relsq puts_36_len tmp 1
+rem MSQ_START 2 movneg puts_39_len tmp
+relsq puts_39_len puts_39_len 1
+relsq puts_39_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr LINE_PART_1 8
 subaddr LINE_PART_1 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_36_LOOP
-rem MSQ_START 1 decleq puts_36_len 0 PUTS_36_END
-lblsq puts_36_len CONST_0 PUTS_36_END
+label PUTS_39_LOOP
+rem MSQ_START 1 decleq puts_39_len 0 PUTS_39_END
+lblsq puts_39_len CONST_0 PUTS_39_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_36_len 1
-relsq puts_36_len CONST_1 1
+rem MSQ_START 1 dec puts_39_len 1
+relsq puts_39_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_36_str tmp
+rem MSQ_START 1 putchar puts_39_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_36_str
+rem MSQ_START 2 movneg tmp puts_39_str
 relsq tmp tmp 1
-relsq tmp puts_36_str 1
+relsq tmp puts_39_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16651,60 +17575,60 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_36_str 8
-subaddr puts_36_str CONST_-8
+rem MSQ_START 1 incaddr puts_39_str 8
+subaddr puts_39_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_36_LOOP
-lblsq ZERO ZERO PUTS_36_LOOP
+rem MSQ_START 1 lbljmp PUTS_39_LOOP
+lblsq ZERO ZERO PUTS_39_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_36_END
+label PUTS_39_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 puts linesPass2Cur_dbg tmp tmp2
-addr puts_37_str 0
-rem MSQ_START 1 setaddr puts_37_str linesPass2Cur_dbg tmp tmp2
-rem MSQ_START 2 mov tmp puts_37_str_addrRef_0 tmp2
+addr puts_40_str 0
+rem MSQ_START 1 setaddr puts_40_str linesPass2Cur_dbg tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_40_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_37_str_addrRef_0 1
+relsq tmp2 puts_40_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp linesPass2Cur_dbg
 relsq tmp linesPass2Cur_dbg 1
 rem MSQ_END 2 sub
-subaddr puts_37_str tmp
+subaddr puts_40_str tmp
 rem MSQ_END 1 setaddr
-var puts_37_len 0
+var puts_40_len 0
 rem MSQ_START 1 incaddr linesPass2Cur_dbg 8
 subaddr linesPass2Cur_dbg CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_37_len linesPass2Cur_dbg tmp
+rem MSQ_START 1 mov puts_40_len linesPass2Cur_dbg tmp
 rem MSQ_START 2 movneg tmp linesPass2Cur_dbg
 relsq tmp tmp 1
 relsq tmp linesPass2Cur_dbg 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_37_len tmp
-relsq puts_37_len puts_37_len 1
-relsq puts_37_len tmp 1
+rem MSQ_START 2 movneg puts_40_len tmp
+relsq puts_40_len puts_40_len 1
+relsq puts_40_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr linesPass2Cur_dbg 8
 subaddr linesPass2Cur_dbg CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_37_LOOP
-rem MSQ_START 1 decleq puts_37_len 0 PUTS_37_END
-lblsq puts_37_len CONST_0 PUTS_37_END
+label PUTS_40_LOOP
+rem MSQ_START 1 decleq puts_40_len 0 PUTS_40_END
+lblsq puts_40_len CONST_0 PUTS_40_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_37_len 1
-relsq puts_37_len CONST_1 1
+rem MSQ_START 1 dec puts_40_len 1
+relsq puts_40_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_37_str tmp
+rem MSQ_START 1 putchar puts_40_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_37_str
+rem MSQ_START 2 movneg tmp puts_40_str
 relsq tmp tmp 1
-relsq tmp puts_37_str 1
+relsq tmp puts_40_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16714,13 +17638,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_37_str 8
-subaddr puts_37_str CONST_-8
+rem MSQ_START 1 incaddr puts_40_str 8
+subaddr puts_40_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_37_LOOP
-lblsq ZERO ZERO PUTS_37_LOOP
+rem MSQ_START 1 lbljmp PUTS_40_LOOP
+lblsq ZERO ZERO PUTS_40_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_37_END
+label PUTS_40_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 putchar LINE_FEED tmp
 relsq SERIAL_OUT ZERO 2
@@ -16752,51 +17676,51 @@ rem MSQ_START 0 incaddr linesPass2Cur_dbg 18
 subaddr linesPass2Cur_dbg CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 puts LINE_PART_2 tmp tmp2
-addr puts_38_str 0
-rem MSQ_START 1 setaddr puts_38_str LINE_PART_2 tmp tmp2
-rem MSQ_START 2 mov tmp puts_38_str_addrRef_0 tmp2
+addr puts_41_str 0
+rem MSQ_START 1 setaddr puts_41_str LINE_PART_2 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_41_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_38_str_addrRef_0 1
+relsq tmp2 puts_41_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LINE_PART_2
 relsq tmp LINE_PART_2 1
 rem MSQ_END 2 sub
-subaddr puts_38_str tmp
+subaddr puts_41_str tmp
 rem MSQ_END 1 setaddr
-var puts_38_len 0
+var puts_41_len 0
 rem MSQ_START 1 incaddr LINE_PART_2 8
 subaddr LINE_PART_2 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_38_len LINE_PART_2 tmp
+rem MSQ_START 1 mov puts_41_len LINE_PART_2 tmp
 rem MSQ_START 2 movneg tmp LINE_PART_2
 relsq tmp tmp 1
 relsq tmp LINE_PART_2 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_38_len tmp
-relsq puts_38_len puts_38_len 1
-relsq puts_38_len tmp 1
+rem MSQ_START 2 movneg puts_41_len tmp
+relsq puts_41_len puts_41_len 1
+relsq puts_41_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr LINE_PART_2 8
 subaddr LINE_PART_2 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_38_LOOP
-rem MSQ_START 1 decleq puts_38_len 0 PUTS_38_END
-lblsq puts_38_len CONST_0 PUTS_38_END
+label PUTS_41_LOOP
+rem MSQ_START 1 decleq puts_41_len 0 PUTS_41_END
+lblsq puts_41_len CONST_0 PUTS_41_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_38_len 1
-relsq puts_38_len CONST_1 1
+rem MSQ_START 1 dec puts_41_len 1
+relsq puts_41_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_38_str tmp
+rem MSQ_START 1 putchar puts_41_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_38_str
+rem MSQ_START 2 movneg tmp puts_41_str
 relsq tmp tmp 1
-relsq tmp puts_38_str 1
+relsq tmp puts_41_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16806,27 +17730,25 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_38_str 8
-subaddr puts_38_str CONST_-8
+rem MSQ_START 1 incaddr puts_41_str 8
+subaddr puts_41_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_38_LOOP
-lblsq ZERO ZERO PUTS_38_LOOP
+rem MSQ_START 1 lbljmp PUTS_41_LOOP
+lblsq ZERO ZERO PUTS_41_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_38_END
+label PUTS_41_END
 rem MSQ_END 0 puts
 
 addr tokensBuf 0
 rem MSQ_START 0 setaddr tokensBuf linesPass2Cur_dbg tmp tmp2
-rem MSQ_START 1 mov tmp tokensBuf_addrRef_0 tmp2
-rem MSQ_START 2 movneg tmp2 tokensBuf_addrRef_0
+rem MSQ_START 1 getaddr tmp tokensBuf tmp2
+rem MSQ_START 2 mov tmp tokensBuf_addrRef_0 tmp2
 relsq tmp2 tmp2 1
 relsq tmp2 tokensBuf_addrRef_0 1
-rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg tmp tmp2
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 movneg
-rem MSQ_END 1 mov
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
 rem MSQ_START 1 sub tmp linesPass2Cur_dbg
 relsq tmp linesPass2Cur_dbg 1
 rem MSQ_END 1 sub
@@ -16863,51 +17785,51 @@ rem MSQ_START 0 dec tokenCount 1
 relsq tokenCount CONST_1 1
 rem MSQ_END 0 dec
 rem MSQ_START 0 puts tokensBuf tmp tmp2
-addr puts_39_str 0
-rem MSQ_START 1 setaddr puts_39_str tokensBuf tmp tmp2
-rem MSQ_START 2 mov tmp puts_39_str_addrRef_0 tmp2
+addr puts_42_str 0
+rem MSQ_START 1 setaddr puts_42_str tokensBuf tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_42_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_39_str_addrRef_0 1
+relsq tmp2 puts_42_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp tokensBuf
 relsq tmp tokensBuf 1
 rem MSQ_END 2 sub
-subaddr puts_39_str tmp
+subaddr puts_42_str tmp
 rem MSQ_END 1 setaddr
-var puts_39_len 0
+var puts_42_len 0
 rem MSQ_START 1 incaddr tokensBuf 8
 subaddr tokensBuf CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_39_len tokensBuf tmp
+rem MSQ_START 1 mov puts_42_len tokensBuf tmp
 rem MSQ_START 2 movneg tmp tokensBuf
 relsq tmp tmp 1
 relsq tmp tokensBuf 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_39_len tmp
-relsq puts_39_len puts_39_len 1
-relsq puts_39_len tmp 1
+rem MSQ_START 2 movneg puts_42_len tmp
+relsq puts_42_len puts_42_len 1
+relsq puts_42_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr tokensBuf 8
 subaddr tokensBuf CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_39_LOOP
-rem MSQ_START 1 decleq puts_39_len 0 PUTS_39_END
-lblsq puts_39_len CONST_0 PUTS_39_END
+label PUTS_42_LOOP
+rem MSQ_START 1 decleq puts_42_len 0 PUTS_42_END
+lblsq puts_42_len CONST_0 PUTS_42_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_39_len 1
-relsq puts_39_len CONST_1 1
+rem MSQ_START 1 dec puts_42_len 1
+relsq puts_42_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_39_str tmp
+rem MSQ_START 1 putchar puts_42_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_39_str
+rem MSQ_START 2 movneg tmp puts_42_str
 relsq tmp tmp 1
-relsq tmp puts_39_str 1
+relsq tmp puts_42_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -16917,13 +17839,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_39_str 8
-subaddr puts_39_str CONST_-8
+rem MSQ_START 1 incaddr puts_42_str 8
+subaddr puts_42_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_39_LOOP
-lblsq ZERO ZERO PUTS_39_LOOP
+rem MSQ_START 1 lbljmp PUTS_42_LOOP
+lblsq ZERO ZERO PUTS_42_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_39_END
+label PUTS_42_END
 rem MSQ_END 0 puts
 
 rem MSQ_START 0 set tmp 2c
@@ -17027,51 +17949,51 @@ rem MSQ_START 0 incaddr linesPass2Cur_dbg 18
 subaddr linesPass2Cur_dbg CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 puts LINE_PART_3 tmp tmp2
-addr puts_40_str 0
-rem MSQ_START 1 setaddr puts_40_str LINE_PART_3 tmp tmp2
-rem MSQ_START 2 mov tmp puts_40_str_addrRef_0 tmp2
+addr puts_43_str 0
+rem MSQ_START 1 setaddr puts_43_str LINE_PART_3 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_43_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_40_str_addrRef_0 1
+relsq tmp2 puts_43_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LINE_PART_3
 relsq tmp LINE_PART_3 1
 rem MSQ_END 2 sub
-subaddr puts_40_str tmp
+subaddr puts_43_str tmp
 rem MSQ_END 1 setaddr
-var puts_40_len 0
+var puts_43_len 0
 rem MSQ_START 1 incaddr LINE_PART_3 8
 subaddr LINE_PART_3 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_40_len LINE_PART_3 tmp
+rem MSQ_START 1 mov puts_43_len LINE_PART_3 tmp
 rem MSQ_START 2 movneg tmp LINE_PART_3
 relsq tmp tmp 1
 relsq tmp LINE_PART_3 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_40_len tmp
-relsq puts_40_len puts_40_len 1
-relsq puts_40_len tmp 1
+rem MSQ_START 2 movneg puts_43_len tmp
+relsq puts_43_len puts_43_len 1
+relsq puts_43_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr LINE_PART_3 8
 subaddr LINE_PART_3 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_40_LOOP
-rem MSQ_START 1 decleq puts_40_len 0 PUTS_40_END
-lblsq puts_40_len CONST_0 PUTS_40_END
+label PUTS_43_LOOP
+rem MSQ_START 1 decleq puts_43_len 0 PUTS_43_END
+lblsq puts_43_len CONST_0 PUTS_43_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_40_len 1
-relsq puts_40_len CONST_1 1
+rem MSQ_START 1 dec puts_43_len 1
+relsq puts_43_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_40_str tmp
+rem MSQ_START 1 putchar puts_43_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_40_str
+rem MSQ_START 2 movneg tmp puts_43_str
 relsq tmp tmp 1
-relsq tmp puts_40_str 1
+relsq tmp puts_43_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -17081,60 +18003,60 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_40_str 8
-subaddr puts_40_str CONST_-8
+rem MSQ_START 1 incaddr puts_43_str 8
+subaddr puts_43_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_40_LOOP
-lblsq ZERO ZERO PUTS_40_LOOP
+rem MSQ_START 1 lbljmp PUTS_43_LOOP
+lblsq ZERO ZERO PUTS_43_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_40_END
+label PUTS_43_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 puts linesPass2Cur_dbg tmp tmp2
-addr puts_41_str 0
-rem MSQ_START 1 setaddr puts_41_str linesPass2Cur_dbg tmp tmp2
-rem MSQ_START 2 mov tmp puts_41_str_addrRef_0 tmp2
+addr puts_44_str 0
+rem MSQ_START 1 setaddr puts_44_str linesPass2Cur_dbg tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_44_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_41_str_addrRef_0 1
+relsq tmp2 puts_44_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp linesPass2Cur_dbg
 relsq tmp linesPass2Cur_dbg 1
 rem MSQ_END 2 sub
-subaddr puts_41_str tmp
+subaddr puts_44_str tmp
 rem MSQ_END 1 setaddr
-var puts_41_len 0
+var puts_44_len 0
 rem MSQ_START 1 incaddr linesPass2Cur_dbg 8
 subaddr linesPass2Cur_dbg CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_41_len linesPass2Cur_dbg tmp
+rem MSQ_START 1 mov puts_44_len linesPass2Cur_dbg tmp
 rem MSQ_START 2 movneg tmp linesPass2Cur_dbg
 relsq tmp tmp 1
 relsq tmp linesPass2Cur_dbg 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_41_len tmp
-relsq puts_41_len puts_41_len 1
-relsq puts_41_len tmp 1
+rem MSQ_START 2 movneg puts_44_len tmp
+relsq puts_44_len puts_44_len 1
+relsq puts_44_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr linesPass2Cur_dbg 8
 subaddr linesPass2Cur_dbg CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_41_LOOP
-rem MSQ_START 1 decleq puts_41_len 0 PUTS_41_END
-lblsq puts_41_len CONST_0 PUTS_41_END
+label PUTS_44_LOOP
+rem MSQ_START 1 decleq puts_44_len 0 PUTS_44_END
+lblsq puts_44_len CONST_0 PUTS_44_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_41_len 1
-relsq puts_41_len CONST_1 1
+rem MSQ_START 1 dec puts_44_len 1
+relsq puts_44_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_41_str tmp
+rem MSQ_START 1 putchar puts_44_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_41_str
+rem MSQ_START 2 movneg tmp puts_44_str
 relsq tmp tmp 1
-relsq tmp puts_41_str 1
+relsq tmp puts_44_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -17144,13 +18066,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_41_str 8
-subaddr puts_41_str CONST_-8
+rem MSQ_START 1 incaddr puts_44_str 8
+subaddr puts_44_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_41_LOOP
-lblsq ZERO ZERO PUTS_41_LOOP
+rem MSQ_START 1 lbljmp PUTS_44_LOOP
+lblsq ZERO ZERO PUTS_44_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_41_END
+label PUTS_44_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 putchar LINE_FEED tmp
 relsq SERIAL_OUT ZERO 2
@@ -17182,51 +18104,51 @@ rem MSQ_START 0 incaddr linesPass2Cur_dbg 18
 subaddr linesPass2Cur_dbg CONST_-18
 rem MSQ_END 0 incaddr
 rem MSQ_START 0 puts LINE_PART_4 tmp tmp2
-addr puts_42_str 0
-rem MSQ_START 1 setaddr puts_42_str LINE_PART_4 tmp tmp2
-rem MSQ_START 2 mov tmp puts_42_str_addrRef_0 tmp2
+addr puts_45_str 0
+rem MSQ_START 1 setaddr puts_45_str LINE_PART_4 tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_45_str tmp2
 relsq tmp2 tmp2 1
-relsq tmp2 puts_42_str_addrRef_0 1
+relsq tmp2 puts_45_str_addrRef_0 1
 relsq tmp tmp 1
 relsq tmp tmp2 1
-rem MSQ_END 2 mov
+rem MSQ_END 2 getaddr
 rem MSQ_START 2 sub tmp LINE_PART_4
 relsq tmp LINE_PART_4 1
 rem MSQ_END 2 sub
-subaddr puts_42_str tmp
+subaddr puts_45_str tmp
 rem MSQ_END 1 setaddr
-var puts_42_len 0
+var puts_45_len 0
 rem MSQ_START 1 incaddr LINE_PART_4 8
 subaddr LINE_PART_4 CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 mov puts_42_len LINE_PART_4 tmp
+rem MSQ_START 1 mov puts_45_len LINE_PART_4 tmp
 rem MSQ_START 2 movneg tmp LINE_PART_4
 relsq tmp tmp 1
 relsq tmp LINE_PART_4 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 movneg puts_42_len tmp
-relsq puts_42_len puts_42_len 1
-relsq puts_42_len tmp 1
+rem MSQ_START 2 movneg puts_45_len tmp
+relsq puts_45_len puts_45_len 1
+relsq puts_45_len tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 mov
 rem MSQ_START 1 decaddr LINE_PART_4 8
 subaddr LINE_PART_4 CONST_8
 rem MSQ_END 1 decaddr
-label PUTS_42_LOOP
-rem MSQ_START 1 decleq puts_42_len 0 PUTS_42_END
-lblsq puts_42_len CONST_0 PUTS_42_END
+label PUTS_45_LOOP
+rem MSQ_START 1 decleq puts_45_len 0 PUTS_45_END
+lblsq puts_45_len CONST_0 PUTS_45_END
 rem MSQ_END 1 decleq
-rem MSQ_START 1 dec puts_42_len 1
-relsq puts_42_len CONST_1 1
+rem MSQ_START 1 dec puts_45_len 1
+relsq puts_45_len CONST_1 1
 rem MSQ_END 1 dec
-rem MSQ_START 1 putchar puts_42_str tmp
+rem MSQ_START 1 putchar puts_45_str tmp
 relsq SERIAL_OUT ZERO 2
 rem MSQ_START 2 reljmp -1
 relsq ZERO ZERO -1
 rem MSQ_END 2 reljmp
-rem MSQ_START 2 movneg tmp puts_42_str
+rem MSQ_START 2 movneg tmp puts_45_str
 relsq tmp tmp 1
-relsq tmp puts_42_str 1
+relsq tmp puts_45_str 1
 rem MSQ_END 2 movneg
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -17236,13 +18158,13 @@ relsq SERIAL_OUT SERIAL_OUT 1
 relsq SERIAL_OUT tmp 1
 rem MSQ_END 2 movneg
 rem MSQ_END 1 putchar
-rem MSQ_START 1 incaddr puts_42_str 8
-subaddr puts_42_str CONST_-8
+rem MSQ_START 1 incaddr puts_45_str 8
+subaddr puts_45_str CONST_-8
 rem MSQ_END 1 incaddr
-rem MSQ_START 1 lbljmp PUTS_42_LOOP
-lblsq ZERO ZERO PUTS_42_LOOP
+rem MSQ_START 1 lbljmp PUTS_45_LOOP
+lblsq ZERO ZERO PUTS_45_LOOP
 rem MSQ_END 1 lbljmp
-label PUTS_42_END
+label PUTS_45_END
 rem MSQ_END 0 puts
 rem MSQ_START 0 print_qword linesPass2Cur_dbg tmp tmp2 tmp3 tmp4
 rem MSQ_START 1 mov tmp linesPass2Cur_dbg tmp2
@@ -17303,11 +18225,11 @@ rem MSQ_START 2 movneg tmp2 PRINT_QWORD_3_SUBBERS
 relsq tmp2 tmp2 1
 relsq tmp2 PRINT_QWORD_3_SUBBERS 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_58_END
-lblsq tmp2 CONST_-1 JZ_58_END
+rem MSQ_START 2 incleq tmp2 1 JZ_62_END
+lblsq tmp2 CONST_-1 JZ_62_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq PRINT_QWORD_3_SUBBERS 1 JZ_58_REVERT_A
-lblsq PRINT_QWORD_3_SUBBERS CONST_-1 JZ_58_REVERT_A
+rem MSQ_START 2 incleq PRINT_QWORD_3_SUBBERS 1 JZ_62_REVERT_A
+lblsq PRINT_QWORD_3_SUBBERS CONST_-1 JZ_62_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec PRINT_QWORD_3_SUBBERS 1
 relsq PRINT_QWORD_3_SUBBERS CONST_1 1
@@ -17315,11 +18237,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_3_END
 lblsq ZERO ZERO PRINT_QWORD_3_END
 rem MSQ_END 2 lbljmp
-label JZ_58_REVERT_A
+label JZ_62_REVERT_A
 rem MSQ_START 2 dec PRINT_QWORD_3_SUBBERS 1
 relsq PRINT_QWORD_3_SUBBERS CONST_1 1
 rem MSQ_END 2 dec
-label JZ_58_END
+label JZ_62_END
 rem MSQ_END 1 jz
 var print_qword_3_nibbleVal 0
 rem MSQ_START 1 zero print_qword_3_nibbleVal
@@ -17357,11 +18279,11 @@ rem MSQ_START 2 movneg tmp2 tmp
 relsq tmp2 tmp2 1
 relsq tmp2 tmp 1
 rem MSQ_END 2 movneg
-rem MSQ_START 2 incleq tmp2 1 JZ_59_END
-lblsq tmp2 CONST_-1 JZ_59_END
+rem MSQ_START 2 incleq tmp2 1 JZ_63_END
+lblsq tmp2 CONST_-1 JZ_63_END
 rem MSQ_END 2 incleq
-rem MSQ_START 2 incleq tmp 1 JZ_59_REVERT_A
-lblsq tmp CONST_-1 JZ_59_REVERT_A
+rem MSQ_START 2 incleq tmp 1 JZ_63_REVERT_A
+lblsq tmp CONST_-1 JZ_63_REVERT_A
 rem MSQ_END 2 incleq
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
@@ -17369,11 +18291,11 @@ rem MSQ_END 2 dec
 rem MSQ_START 2 lbljmp PRINT_QWORD_3_HANDLE_LOW_NIBBLE
 lblsq ZERO ZERO PRINT_QWORD_3_HANDLE_LOW_NIBBLE
 rem MSQ_END 2 lbljmp
-label JZ_59_REVERT_A
+label JZ_63_REVERT_A
 rem MSQ_START 2 dec tmp 1
 relsq tmp CONST_1 1
 rem MSQ_END 2 dec
-label JZ_59_END
+label JZ_63_END
 rem MSQ_END 1 jz
 rem MSQ_START 1 decleq print_qword_3_isNeg 0 PRINT_QWORD_3_PRINT_NIBBLE
 lblsq print_qword_3_isNeg CONST_0 PRINT_QWORD_3_PRINT_NIBBLE
@@ -17552,6 +18474,240 @@ rem MSQ_END 1 movneg
 rem MSQ_END 0 putchar
 rem MSQ_START 0 lbljmp DBG_LOOP_2
 lblsq ZERO ZERO DBG_LOOP_2
+rem MSQ_END 0 lbljmp
+
+label LINE_PRINT_END
+addr curSymsArr_dbg 0
+rem MSQ_START 0 setaddr curSymsArr_dbg symsAtAddrStart tmp tmp2
+rem MSQ_START 1 getaddr tmp curSymsArr_dbg tmp2
+rem MSQ_START 2 mov tmp curSymsArr_dbg_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curSymsArr_dbg_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp symsAtAddrStart
+relsq tmp symsAtAddrStart 1
+rem MSQ_END 1 sub
+subaddr curSymsArr_dbg tmp
+rem MSQ_END 0 setaddr
+
+var i_dbg 0
+rem MSQ_START 0 mov i_dbg size tmp
+rem MSQ_START 1 movneg tmp size
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp size
+relsq tmp size 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg i_dbg tmp
+rem MSQ_START 2 zero i_dbg
+relsq i_dbg i_dbg 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub i_dbg tmp
+relsq i_dbg tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+label DBG_LOOP_3
+rem MSQ_START 0 decleq i_dbg 0 HALT
+lblsq i_dbg CONST_0 HALT
+rem MSQ_END 0 decleq
+rem MSQ_START 0 dec i_dbg 8
+relsq i_dbg CONST_8 1
+rem MSQ_END 0 dec
+
+addr curSymsBuf_dbg 0
+rem MSQ_START 0 setaddr curSymsBuf_dbg curSymsArr_dbg tmp tmp2
+rem MSQ_START 1 getaddr tmp curSymsBuf_dbg tmp2
+rem MSQ_START 2 mov tmp curSymsBuf_dbg_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curSymsBuf_dbg_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp curSymsArr_dbg
+relsq tmp curSymsArr_dbg 1
+rem MSQ_END 1 sub
+subaddr curSymsBuf_dbg tmp
+rem MSQ_END 0 setaddr
+rem MSQ_START 0 incaddr curSymsArr_dbg 8
+subaddr curSymsArr_dbg CONST_-8
+rem MSQ_END 0 incaddr
+var symsLeft_dbg 0
+rem MSQ_START 0 mov symsLeft_dbg curSymsArr_dbg tmp
+rem MSQ_START 1 movneg tmp curSymsArr_dbg
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp curSymsArr_dbg
+relsq tmp curSymsArr_dbg 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 movneg symsLeft_dbg tmp
+rem MSQ_START 2 zero symsLeft_dbg
+relsq symsLeft_dbg symsLeft_dbg 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub symsLeft_dbg tmp
+relsq symsLeft_dbg tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 mov
+rem MSQ_START 0 incaddr curSymsArr_dbg 18
+subaddr curSymsArr_dbg CONST_-18
+rem MSQ_END 0 incaddr
+
+label DBG_LOOP_3_1
+rem MSQ_START 0 decleq symsLeft_dbg 0 DBG_LOOP_3_1_END
+lblsq symsLeft_dbg CONST_0 DBG_LOOP_3_1_END
+rem MSQ_END 0 decleq
+rem MSQ_START 0 dec symsLeft_dbg 1
+relsq symsLeft_dbg CONST_1 1
+rem MSQ_END 0 dec
+
+addr curSym_dbg 0
+rem MSQ_START 0 setaddr curSym_dbg curSymsBuf_dbg tmp tmp2
+rem MSQ_START 1 getaddr tmp curSym_dbg tmp2
+rem MSQ_START 2 mov tmp curSym_dbg_addrRef_0 tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 curSym_dbg_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 mov
+rem MSQ_END 1 getaddr
+rem MSQ_START 1 sub tmp curSymsBuf_dbg
+relsq tmp curSymsBuf_dbg 1
+rem MSQ_END 1 sub
+subaddr curSym_dbg tmp
+rem MSQ_END 0 setaddr
+rem MSQ_START 0 puts curSym_dbg tmp tmp2
+addr puts_46_str 0
+rem MSQ_START 1 setaddr puts_46_str curSym_dbg tmp tmp2
+rem MSQ_START 2 getaddr tmp puts_46_str tmp2
+relsq tmp2 tmp2 1
+relsq tmp2 puts_46_str_addrRef_0 1
+relsq tmp tmp 1
+relsq tmp tmp2 1
+rem MSQ_END 2 getaddr
+rem MSQ_START 2 sub tmp curSym_dbg
+relsq tmp curSym_dbg 1
+rem MSQ_END 2 sub
+subaddr puts_46_str tmp
+rem MSQ_END 1 setaddr
+var puts_46_len 0
+rem MSQ_START 1 incaddr curSym_dbg 8
+subaddr curSym_dbg CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 mov puts_46_len curSym_dbg tmp
+rem MSQ_START 2 movneg tmp curSym_dbg
+relsq tmp tmp 1
+relsq tmp curSym_dbg 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 movneg puts_46_len tmp
+relsq puts_46_len puts_46_len 1
+relsq puts_46_len tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 mov
+rem MSQ_START 1 decaddr curSym_dbg 8
+subaddr curSym_dbg CONST_8
+rem MSQ_END 1 decaddr
+label PUTS_46_LOOP
+rem MSQ_START 1 decleq puts_46_len 0 PUTS_46_END
+lblsq puts_46_len CONST_0 PUTS_46_END
+rem MSQ_END 1 decleq
+rem MSQ_START 1 dec puts_46_len 1
+relsq puts_46_len CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 putchar puts_46_str tmp
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 2 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 2 reljmp
+rem MSQ_START 2 movneg tmp puts_46_str
+relsq tmp tmp 1
+relsq tmp puts_46_str 1
+rem MSQ_END 2 movneg
+rem MSQ_START 2 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 2 dec
+rem MSQ_START 2 movneg SERIAL_OUT tmp
+relsq SERIAL_OUT SERIAL_OUT 1
+relsq SERIAL_OUT tmp 1
+rem MSQ_END 2 movneg
+rem MSQ_END 1 putchar
+rem MSQ_START 1 incaddr puts_46_str 8
+subaddr puts_46_str CONST_-8
+rem MSQ_END 1 incaddr
+rem MSQ_START 1 lbljmp PUTS_46_LOOP
+lblsq ZERO ZERO PUTS_46_LOOP
+rem MSQ_END 1 lbljmp
+label PUTS_46_END
+rem MSQ_END 0 puts
+rem MSQ_START 0 putchar SPACE tmp
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 1 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 1 reljmp
+rem MSQ_START 1 movneg tmp SPACE
+rem MSQ_START 2 zero tmp
+relsq tmp tmp 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp SPACE
+relsq tmp SPACE 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 dec tmp 1
+relsq tmp CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 movneg SERIAL_OUT tmp
+rem MSQ_START 2 zero SERIAL_OUT
+relsq SERIAL_OUT SERIAL_OUT 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub SERIAL_OUT tmp
+relsq SERIAL_OUT tmp 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 putchar
+
+rem MSQ_START 0 incaddr curSymsBuf_dbg 8
+subaddr curSymsBuf_dbg CONST_-8
+rem MSQ_END 0 incaddr
+rem MSQ_START 0 lbljmp DBG_LOOP_3_1
+lblsq ZERO ZERO DBG_LOOP_3_1
+rem MSQ_END 0 lbljmp
+
+label DBG_LOOP_3_1_END
+rem MSQ_START 0 putchar LINE_FEED tmp2
+relsq SERIAL_OUT ZERO 2
+rem MSQ_START 1 reljmp -1
+relsq ZERO ZERO -1
+rem MSQ_END 1 reljmp
+rem MSQ_START 1 movneg tmp2 LINE_FEED
+rem MSQ_START 2 zero tmp2
+relsq tmp2 tmp2 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub tmp2 LINE_FEED
+relsq tmp2 LINE_FEED 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_START 1 dec tmp2 1
+relsq tmp2 CONST_1 1
+rem MSQ_END 1 dec
+rem MSQ_START 1 movneg SERIAL_OUT tmp2
+rem MSQ_START 2 zero SERIAL_OUT
+relsq SERIAL_OUT SERIAL_OUT 1
+rem MSQ_END 2 zero
+rem MSQ_START 2 sub SERIAL_OUT tmp2
+relsq SERIAL_OUT tmp2 1
+rem MSQ_END 2 sub
+rem MSQ_END 1 movneg
+rem MSQ_END 0 putchar
+rem MSQ_START 0 lbljmp DBG_LOOP_3
+lblsq ZERO ZERO DBG_LOOP_3
 rem MSQ_END 0 lbljmp
 
 label HALT
@@ -17975,6 +19131,25 @@ raw_ref STEP5_PRINT_SUFFIX_BUF
 raw 0000000000000006 0000000000000030
 rem MSQ_END 0 def_string
 
+rem MSQ_START 0 def_string STEP6_PRINT_PREFIX # Step 6: Found 
+label STEP6_PRINT_PREFIX_BUF
+rem MSQ_START 1 raw_chars # Step 6: Found 
+raw 0000000000000023 0000000000000020 0000000000000053 0000000000000074 0000000000000065 0000000000000070 0000000000000020 0000000000000036 000000000000003a 0000000000000020 0000000000000046 000000000000006f 0000000000000075 000000000000006e 0000000000000064 0000000000000020
+rem MSQ_END 1 raw_chars
+label STEP6_PRINT_PREFIX
+raw_ref STEP6_PRINT_PREFIX_BUF
+raw 0000000000000010 0000000000000080
+rem MSQ_END 0 def_string
+rem MSQ_START 0 def_string STEP6_PRINT_SUFFIX  symbols at address 0
+label STEP6_PRINT_SUFFIX_BUF
+rem MSQ_START 1 raw_chars  symbols at address 0
+raw 0000000000000020 0000000000000073 0000000000000079 000000000000006d 0000000000000062 000000000000006f 000000000000006c 0000000000000073 0000000000000020 0000000000000061 0000000000000074 0000000000000020 0000000000000061 0000000000000064 0000000000000064 0000000000000072 0000000000000065 0000000000000073 0000000000000073 0000000000000020 0000000000000030
+rem MSQ_END 1 raw_chars
+label STEP6_PRINT_SUFFIX
+raw_ref STEP6_PRINT_SUFFIX_BUF
+raw 0000000000000015 00000000000000a8
+rem MSQ_END 0 def_string
+
 rem WA for `assert sym.val is not None` errors
 rem MSQ_START 0 inc inst_step3 0
 rem MSQ_START 1 dec inst_step3 0
@@ -18042,6 +19217,7 @@ var CONST_2 2
 var CONST_-38 -38
 var CONST_80 80
 var CONST_-F -f
+var CONST_8000 8000
 var CONST_-2C -2c
 
 end

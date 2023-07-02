@@ -196,7 +196,18 @@ for name, sym in symbols.items():
         size += 8
 print(f"# Step 5: Size is now {size} bytes")
 
-# This is used to ensure that the Step 5 implementation of lsq_to_hex.msq is correct
+# 6. Populate symsAtAddr
+# The 0th array have larger capacity than others in the SUBLEQ implementation
+symsAtAddr = [[]]
+for _i in range(8, size, 8):
+    symsAtAddr.append([])
+
+for name, sym in symbols.items():
+    if sym.addr < size:
+        symsAtAddr[sym.addr // 8].append(name)
+print(f"# Step 6: Found {len(symsAtAddr[0])} symbols at address 0")
+
+# This is used to ensure that the Step 6 implementation of lsq_to_hex.msq is correct
 if args.lsq_path == "test.lsq":
     import ctypes
 
@@ -220,17 +231,12 @@ if args.lsq_path == "test.lsq":
         print("offset:", numToRawInst(line.offset))
         print()
 
+    for arr in symsAtAddr:
+        for sym in arr:
+            print(sym + " ", end="")
+        print()
+
     sys.exit()
-
-# 6. Populate symsAtAddr
-# The 0th array have larger capacity than others in the SUBLEQ implementation
-symsAtAddr = [[]]
-for _i in range(8, size, 8):
-    symsAtAddr.append([])
-
-for name, sym in symbols.items():
-    if sym.addr < size:
-        symsAtAddr[sym.addr // 8].append(name)
 
 # 7. Output
 """

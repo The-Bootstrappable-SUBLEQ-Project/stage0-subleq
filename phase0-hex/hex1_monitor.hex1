@@ -1,10 +1,11 @@
 # hex1
-# Step 0: Processed 1016 lines
+# Step 0: Processed 1010 lines
 # Step 1: Found 58 symbols
 # Step 2: Now with 61 symbols and 488 references
-# Step 3: Now with 85 symbols and 1059 lines
+# Step 3: Now with 85 symbols and 1053 lines
 # Step 4: Current size is 6632 bytes
 # Step 5: Size is now 6888 bytes
+# Step 6: Found 5 symbols at address 0
 # Copyright (C) 2022 NyanCatTW1
 # This file is part of stage0-subleq.
 
@@ -687,16 +688,14 @@
 # Handle label (:)
 ; addr curLabel 0
 # MSQ_START 0 setaddr curLabel labelOffset tmp tmp2
-# MSQ_START 1 mov tmp curLabel_addrRef_0 tmp2
-# MSQ_START 2 movneg tmp2 curLabel_addrRef_0
+# MSQ_START 1 getaddr tmp curLabel tmp2
+# MSQ_START 2 mov tmp curLabel_addrRef_0 tmp2
 &aK &aK ?+8 ; relsq tmp2 tmp2 1
 &aK &aR ?+8 ; relsq tmp2 curLabel_addrRef_0 1
-# MSQ_END 2 movneg
-# MSQ_START 2 movneg tmp tmp2
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &aK ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 movneg
-# MSQ_END 1 mov
+# MSQ_END 2 mov
+# MSQ_END 1 getaddr
 # MSQ_START 1 sub tmp labelOffset
 &ag &aN ?+8 ; relsq tmp labelOffset 1
 # MSQ_END 1 sub
@@ -924,16 +923,14 @@
 
 ; addr refAt 0
 # MSQ_START 0 setaddr refAt nextRef tmp tmp2
-# MSQ_START 1 mov tmp refAt_addrRef_0 tmp2
-# MSQ_START 2 movneg tmp2 refAt_addrRef_0
+# MSQ_START 1 getaddr tmp refAt tmp2
+# MSQ_START 2 mov tmp refAt_addrRef_0 tmp2
 &aK &aK ?+8 ; relsq tmp2 tmp2 1
 &aK &br ?+8 ; relsq tmp2 refAt_addrRef_0 1
-# MSQ_END 2 movneg
-# MSQ_START 2 movneg tmp tmp2
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &aK ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 movneg
-# MSQ_END 1 mov
+# MSQ_END 2 mov
+# MSQ_END 1 getaddr
 # MSQ_START 1 sub tmp nextRef
 &ag :bc 0000000000400000 ?+8 ; relsq tmp nextRef 1
 # MSQ_END 1 sub
@@ -955,16 +952,14 @@
 
 ; addr refVal 0
 # MSQ_START 0 setaddr refVal nextRef tmp tmp2
-# MSQ_START 1 mov tmp refVal_addrRef_0 tmp2
-# MSQ_START 2 movneg tmp2 refVal_addrRef_0
+# MSQ_START 1 getaddr tmp refVal tmp2
+# MSQ_START 2 mov tmp refVal_addrRef_0 tmp2
 &aK &aK ?+8 ; relsq tmp2 tmp2 1
 &aK &bu ?+8 ; relsq tmp2 refVal_addrRef_0 1
-# MSQ_END 2 movneg
-# MSQ_START 2 movneg tmp tmp2
 &ag &ag ?+8 ; relsq tmp tmp 1
 &ag &aK ?+8 ; relsq tmp tmp2 1
-# MSQ_END 2 movneg
-# MSQ_END 1 mov
+# MSQ_END 2 mov
+# MSQ_END 1 getaddr
 # MSQ_START 1 sub tmp nextRef
 &ag :bd 0000000000400000 ?+8 ; relsq tmp nextRef 1
 # MSQ_END 1 sub
