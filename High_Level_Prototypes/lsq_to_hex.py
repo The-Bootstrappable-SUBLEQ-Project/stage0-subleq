@@ -184,7 +184,18 @@ for line in lines:
     # print(line, size, file=sys.stderr)
 print(f"# Step 4: Current size is {size} bytes")
 
-# This is used to ensure that the Step 4 implementation of lsq_to_hex.msq is correct
+# 5. Assign addresses to variables
+for name, sym in symbols.items():
+    if sym.addr is None:
+        sym.addr = size
+        if sym.val is None:
+            print(name, sym, file=sys.stderr)
+            assert sym.val is not None
+        lines.append(Line("raw", [toLong(sym.val)], name, size))
+        size += 8
+print(f"# Step 5: Size is now {size} bytes")
+
+# This is used to ensure that the Step 5 implementation of lsq_to_hex.msq is correct
 if args.lsq_path == "test.lsq":
     import ctypes
 
@@ -209,16 +220,6 @@ if args.lsq_path == "test.lsq":
         print()
 
     sys.exit()
-
-# 5. Assign addresses to variables
-for name, sym in symbols.items():
-    if sym.addr is None:
-        if sym.val is None:
-            print(name, sym, file=sys.stderr)
-            assert sym.val is not None
-        sym.addr = size
-        lines.append(Line("raw", [toLong(sym.val)], name))
-        size += 8
 
 # 6. Populate symsAtAddr
 # The 0th array have larger capacity than others in the SUBLEQ implementation

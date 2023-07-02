@@ -19,12 +19,14 @@ addr ZERO 0
 var tmp 0
 var tmp2 0
 var tmp3 0
+var tmp4 0
 addr SERIAL_IN 13ED27E8
 addr SERIAL_OUT 13ED27F0
 addr CPU_CONTROL_START 13EE0000
 var FREE_START 1000000
 var LINE_FEED a
 var SPACE 20
+var ADDR_VAL_PLACEHOLDER -1
 
 lblsq ZERO ZERO EP
 
@@ -59,7 +61,8 @@ rem 0x38 String containing the comment
 rem 0x50 The offset of the line in the assembled program
 var linesPass1Begin 100000
 var linesPass1Len 0
-addr curLine_step0 100000
+addr curLine_step0 0
+setaddr curLine_step0 linesPass1Begin tmp tmp2
 
 label STEP0_INPUT_INST
 alloc_str_const curLine_step0 50 tmp
@@ -143,11 +146,14 @@ rem 1. Find symbols
 label STEP1_START
 rem A Symbol is made of four components, adding to a total of 0x30 bytes:
 rem 0x0 String containing the name of the symbol
-rem 0x18 The address of the symbol (ffffffffffffffff if None)
+rem 0x18 The address of the symbol (ADDR_VAL_PLACEHOLDER if None)
 rem 0x20 The reference count of the symbol
 rem 0x28 The default value of the symbol (SYM_VAL_PLACEHOLDER if None)
 var symbolsBegin 400000
 var symbolsLen 0
+
+addr symbolsCur_step1 0
+setaddr symbolsCur_step1 symbolsBegin tmp tmp2
 
 addr curLine_step1 0
 setaddr curLine_step1 linesPass1Begin tmp tmp2
@@ -171,14 +177,13 @@ addr curTokens_step1 0
 setaddr curTokens_step1 curLine_step1 tmp tmp2
 decaddr curLine_step1 18
 
-addr symbolsCur_step1 400000
 alloc_str_const symbolsCur_step1 400 tmp
 strcpy symbolsCur_step1 curTokens_step1 tmp tmp2
 incaddr curTokens_step1 18
 
 rem Handle the symbol address
 incaddr symbolsCur_step1 18
-set symbolsCur_step1 -1
+mov symbolsCur_step1 ADDR_VAL_PLACEHOLDER tmp
 strcmp_const curLine_step1 ADDR STEP1_SET_ADDRESS tmp tmp2
 lbljmp STEP1_HANDLE_REFCOUNT
 
@@ -312,13 +317,15 @@ label STEP3_START
 rem An item in addrSymbols is made of two components, adding to a total of 0x20 bytes:
 rem 0x0 String containing the name of the symbol
 rem 0x18 Next id to assign to an addrRef
-var addrSymbolsBegin 600000
+var addrSymbolsBegin 500000
 var addrSymbolsLen 0
 
-var linesPass2Begin 700000
+var linesPass2Begin 600000
 var linesPass2Len 0
-addr curLinePass1_step3 100000
-addr curLinePass2_step3 700000
+addr curLinePass1_step3 0
+setaddr curLinePass1_step3 linesPass1Begin tmp tmp2
+addr curLinePass2_step3 0
+setaddr curLinePass2_step3 linesPass2Begin tmp tmp2
 
 label STEP3_LOOP
 decleq linesPass1Len 0 STEP3_END
@@ -445,7 +452,7 @@ putchar LINE_FEED tmp
 
 rem 4. Find label+stub addresses
 label STEP4_START
-var size_step4 0
+var size 0
 
 addr curLine_step4 0
 setaddr curLine_step4 linesPass2Begin tmp tmp2
@@ -457,7 +464,7 @@ dec linesLeft 1
 
 rem Py: line.offset = size
 incaddr curLine_step4 50
-mov curLine_step4 size_step4 tmp
+mov curLine_step4 size tmp
 decaddr curLine_step4 50
 
 strcmp_const curLine_step4 ABSSQ STEP4_HANDLE_SQ tmp tmp2
@@ -527,13 +534,13 @@ lbljmp HALT
 
 label STEP4_SQ_FOUND_SYMBOL
 incaddr symbols_it_step4 18
-mov symbols_it_step4 size_step4 tmp
+mov symbols_it_step4 size tmp
 
 rem Py: addrSymbols[sym] += 1
 inc addrSymbols_it_step4 1
 
 label STEP4_HANDLE_SQ_INC_SIZE
-inc size_step4 8
+inc size 8
 incaddr curSym_step4 18
 lbljmp STEP4_HANDLE_SQ_LOOP
 
@@ -542,7 +549,7 @@ rem Py: size += 8 * len(line.tokens)
 incaddr curLine_step4 20
 mov tmp curLine_step4 tmp2
 mul_8 tmp tmp2
-add size_step4 tmp tmp2
+add size tmp tmp2
 
 incaddr curLine_step4 38
 lbljmp STEP4_LOOP
@@ -564,7 +571,7 @@ lbljmp HALT
 
 label STEP4_LABEL_FOUND_SYMBOL
 incaddr symbols_it2_step4 18
-mov symbols_it2_step4 size_step4 tmp
+mov symbols_it2_step4 size tmp
 
 incaddr curLine_step4 40
 lbljmp STEP4_LOOP
@@ -572,14 +579,85 @@ lbljmp STEP4_LOOP
 label STEP4_END
 puts STEP4_PRINT_PREFIX tmp tmp2
 addr sizeStr_step4 0
-itoa sizeStr_step4 size_step4 tmp tmp2 tmp3
+itoa sizeStr_step4 size tmp tmp2 tmp3
 puts sizeStr_step4 tmp tmp2
 puts STEP4_PRINT_SUFFIX tmp tmp2
 putchar LINE_FEED tmp
 
 
 rem 5. Assign addresses to variables
-label STEP5_START
+addr curLinePass2_step5 0
+copyaddr curLinePass2_step5 curLinePass2_step3 tmp tmp2
+
+addr curSym_step5 0
+setaddr curSym_step5 symbolsBegin tmp tmp2
+
+var symsLeft_step5 0
+mov symsLeft_step5 symbolsLen tmp
+label STEP5_LOOP
+decleq symsLeft_step5 0 STEP5_END
+dec symsLeft_step5 1
+
+rem Py: if sym.addr is None
+incaddr curSym_step5 18
+jeq curSym_step5 ADDR_VAL_PLACEHOLDER STEP5_CHECK_VALUE tmp tmp2
+incaddr curSym_step5 18
+lbljmp STEP5_LOOP
+
+label STEP5_CHECK_VALUE
+rem Py: sym.addr = size
+mov curSym_step5 size tmp
+
+rem Py: if sym.val is None:
+incaddr curSym_step5 10
+var curVal_step5 0
+mov curVal_step5 curSym_step5 tmp
+decaddr curSym_step5 28
+jeq curVal_step5 SYM_VAL_PLACEHOLDER STEP5_VALUE_ERROR tmp tmp2
+
+rem Py: Line("raw", ...)
+memcpy_const curLinePass2_step5 RAW 18 tmp tmp2
+incaddr curLinePass2_step5 18
+alloc_array curLinePass2_step5 18 1 tmp
+
+rem Add the token
+addr curTokens_step5 0
+setaddr curTokens_step5 curLinePass2_step5 tmp tmp2
+addr qword_step5 0
+to_qword qword_step5 curVal_step5 tmp tmp2 tmp3
+memcpy_const curTokens_step5 qword_step5 18 tmp tmp2
+
+incaddr curLinePass2_step5 8
+set curLinePass2_step5 1
+
+rem Handle comment and offset
+incaddr curLinePass2_step5 18
+memcpy_const curLinePass2_step5 curSym_step5 18 tmp tmp2
+incaddr curLinePass2_step5 18
+mov curLinePass2_step5 size tmp
+incaddr curLinePass2_step5 8
+
+inc linesPass2Len 1
+inc size 8
+incaddr curSym_step5 30
+lbljmp STEP5_LOOP
+
+label STEP5_VALUE_ERROR
+puts STEP5_VALUE_IS_NONE tmp tmp2
+putchar SPACE tmp
+puts curSym_step5 tmp tmp2
+lbljmp HALT
+
+label STEP5_END
+puts STEP5_PRINT_PREFIX tmp tmp2
+addr sizeStr_step5 0
+itoa sizeStr_step5 size tmp tmp2 tmp3
+puts sizeStr_step5 tmp tmp2
+puts STEP5_PRINT_SUFFIX tmp tmp2
+putchar LINE_FEED tmp
+
+
+label STEP6_START
 addr symbolsCur_dbg 0
 setaddr symbolsCur_dbg symbolsBegin tmp tmp2
 var symbolsLeft 0
@@ -595,17 +673,17 @@ putchar LINE_FEED tmp
 
 incaddr symbolsCur_dbg 18
 puts SYMBOL_PART_2 tmp tmp2
-print_qword symbolsCur_dbg tmp tmp2 tmp3
+print_qword symbolsCur_dbg tmp tmp2 tmp3 tmp4
 putchar LINE_FEED tmp
 
 incaddr symbolsCur_dbg 8
 puts SYMBOL_PART_3 tmp tmp2
-print_qword symbolsCur_dbg tmp tmp2 tmp3
+print_qword symbolsCur_dbg tmp tmp2 tmp3 tmp4
 putchar LINE_FEED tmp
 
 incaddr symbolsCur_dbg 8
 puts SYMBOL_PART_4 tmp tmp2
-print_qword symbolsCur_dbg tmp tmp2 tmp3
+print_qword symbolsCur_dbg tmp tmp2 tmp3 tmp4
 putchar LINE_FEED tmp
 
 incaddr symbolsCur_dbg 8
@@ -656,7 +734,7 @@ putchar LINE_FEED tmp
 
 incaddr linesPass2Cur_dbg 18
 puts LINE_PART_4 tmp tmp2
-print_qword linesPass2Cur_dbg tmp tmp2 tmp3
+print_qword linesPass2Cur_dbg tmp tmp2 tmp3 tmp4
 putchar LINE_FEED tmp
 
 incaddr linesPass2Cur_dbg 8
@@ -702,6 +780,7 @@ def_string SYMBOL_PART_4 val:
 def_string STEP3_MISSING_SYMBOL STEP3_MISSING_SYMBOL
 def_string STEP4_LABEL_MISSING_SYMBOL STEP4_LABEL_MISSING_SYMBOL
 def_string STEP4_SQ_MISSING_SYMBOL STEP4_SQ_MISSING_SYMBOL
+def_string STEP5_VALUE_IS_NONE STEP5_VALUE_IS_NONE
 
 def_string STEP0_PRINT_PREFIX # Step 0: Processed 
 def_string STEP0_PRINT_SUFFIX  lines
@@ -720,9 +799,13 @@ def_string STEP3_PRINT_SUFFIX  lines
 def_string STEP4_PRINT_PREFIX # Step 4: Current size is 
 def_string STEP4_PRINT_SUFFIX  bytes
 
+def_string STEP5_PRINT_PREFIX # Step 5: Size is now 
+def_string STEP5_PRINT_SUFFIX  bytes
+
 rem WA for `assert sym.val is not None` errors
 inc inst_step3 0
 inc sym1_step3 0
 inc curTokens_step3 0
 subaddr ONE ZERO
 inc ONE 0
+inc curTokens_step5 0

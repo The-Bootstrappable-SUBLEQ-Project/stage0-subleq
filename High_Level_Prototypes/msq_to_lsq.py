@@ -987,10 +987,10 @@ def halt(args):
     logEnd()
 
 
-# Prints a nibble into the serial output in hex format.
+# Converts a small integer into lowercase hex character
 # This function assumes that 0 <= a <= 15
-def print_nibble(args):
-    a, tmp, tmp2 = args
+def to_nibble(args):
+    ret, a, tmp, tmp2 = args
     logStart()
     startLabel = nameSym("START", True)
     charset = nameSym("HEX_CHARSET", True)
@@ -1004,7 +1004,7 @@ def print_nibble(args):
     mul_8([tmp, tmp2])
     print(f"subaddr {charset} {tmp}")
 
-    putchar([charset, tmp2])
+    mov([ret, charset, tmp2])
 
     # Revert the address
     movneg([tmp2, tmp])
@@ -1012,10 +1012,110 @@ def print_nibble(args):
     logEnd()
 
 
+# Converts integer to string qword
+# Handles negative numbers.
+def to_qword(args):
+    ret, a_orig, a_copy, tmp, tmp2 = args
+    logStart()
+    loopLabel = nameSym("LOOP", True)
+    isNegLabel = nameSym("IS_NEG", True)
+    subtractALabel = nameSym("SUBTRACT_A", True)
+    handleNibbleLabel = nameSym("HANDLE_NIBBLE", True)
+    printNibbleLabel = nameSym("PRINT_NIBBLE", True)
+    handleLowNibbleLabel = nameSym("HANDLE_LOW_NIBBLE", True)
+    endLabel = nameSym("END", True)
+
+    # Allocate ret
+    malloc_const([tmp, 24, tmp2])
+    setaddr([ret, tmp, tmp2, a_copy])
+    alloc_str_const([ret, 16 * 8, tmp2])
+
+    retBuf = nameSym("retBuf")
+    print(f"addr {retBuf} 0")
+    setaddr([retBuf, ret, tmp, tmp2])
+
+    # Set length
+    incaddr([ret, 8])
+    inst_set([ret, 16])
+    decaddr([ret, 8])
+
+    mov([a_copy, a_orig, tmp])
+
+    # Negate if a < 0
+    isNeg = nameSym("isNeg")
+    print(f"var {isNeg} 0")
+    zero([isNeg])
+    jn([a_copy, isNegLabel, tmp, tmp2])
+    lbljmp([loopLabel])
+
+    print(f"label {isNegLabel}")
+    inc([isNeg, 1])
+    neg([a_copy, tmp, tmp2])
+    lbljmp([loopLabel])
+
+    subbersLabel = nameSym("SUBBERS", True)
+    # The array of subbers is terminated with 0
+    subbers = [numToRawInst(0)]
+    curSubber = 1
+    for _i in range(16):
+        subbers.append(numToRawInst(curSubber))
+        curSubber *= 16
+    print(f"label {subbersLabel}")
+    print(f"raw {' '.join(subbers[::-1])}")
+
+    print(f"label {loopLabel}")
+    # Finish if the current subber is 0
+    jz([subbersLabel, endLabel, tmp])
+
+    nibbleVal = nameSym("nibbleVal")
+    print(f"var {nibbleVal} 0")
+    zero([nibbleVal])
+
+    # Subtract a by subber until the next subtraction makes a < 0
+    print(f"label {subtractALabel}")
+    jl([a_copy, subbersLabel, handleNibbleLabel, tmp, tmp2])
+    inc([nibbleVal, 1])
+    sub([a_copy, subbersLabel])
+    lbljmp([subtractALabel])
+
+    print(f"label {handleNibbleLabel}")
+    # The least significant nibble and the zeroes that follow it require special treatment
+    jz([a_copy, handleLowNibbleLabel, tmp])
+
+    # Handle high nibbles
+    decleq([isNeg, 0, printNibbleLabel])
+    # nibble = 15 - nibble
+    mov([tmp, nibbleVal, tmp2])
+    inst_set([nibbleVal, 0xf])
+    sub([nibbleVal, tmp])
+    lbljmp([printNibbleLabel])
+
+    # Handle low nibbles
+    print(f"label {handleLowNibbleLabel}")
+    decleq([isNeg, 0, printNibbleLabel])
+    # No need to invert a zero nibble
+    decleq([nibbleVal, 0, printNibbleLabel])
+    # nibble = 16 - nibble
+    mov([tmp, nibbleVal, tmp2])
+    inst_set([nibbleVal, 0x10])
+    sub([nibbleVal, tmp])
+
+    print(f"label {printNibbleLabel}")
+    to_nibble([retBuf, nibbleVal, tmp, tmp2])
+    incaddr([retBuf, 8])
+
+    incaddr([subbersLabel, 8])
+    lbljmp([loopLabel])
+
+    print(f"label {endLabel}")
+    decaddr([subbersLabel, 8 * (len(subbers) - 1)])
+    logEnd()
+
+
 # Prints a qword into the serial output in hex format.
 # Handles negative numbers.
 def print_qword(args):
-    a_orig, a_copy, tmp, tmp2 = args
+    a_orig, a_copy, tmp, tmp2, tmp3 = args
     logStart()
     loopLabel = nameSym("LOOP", True)
     isNegLabel = nameSym("IS_NEG", True)
@@ -1087,7 +1187,8 @@ def print_qword(args):
     sub([nibbleVal, tmp])
 
     print(f"label {printNibbleLabel}")
-    print_nibble([nibbleVal, tmp, tmp2])
+    to_nibble([tmp, nibbleVal, tmp2, tmp3])
+    putchar([tmp, tmp2])
 
     incaddr([subbersLabel, 8])
     lbljmp([loopLabel])

@@ -19,28 +19,29 @@ addr ZERO 0
 var tmp 0
 var tmp2 0
 var tmp3 0
+var tmp4 0
 addr SERIAL_OUT 13ED27F0
 addr CPU_CONTROL_START 13EE0000
 lblsq ZERO ZERO EP
 
 label EP
-print_qword TEST_DATA tmp tmp2 tmp3
+print_qword TEST_DATA tmp tmp2 tmp3 tmp4
 
 putchar SPACE tmp
 incaddr TEST_DATA 8
-print_qword TEST_DATA tmp tmp2 tmp3
+print_qword TEST_DATA tmp tmp2 tmp3 tmp4
 
 putchar SPACE tmp
 incaddr TEST_DATA 8
-print_qword TEST_DATA tmp tmp2 tmp3
+print_qword TEST_DATA tmp tmp2 tmp3 tmp4
 
 putchar SPACE tmp
 incaddr TEST_DATA 8
-print_qword TEST_DATA tmp tmp2 tmp3
+print_qword TEST_DATA tmp tmp2 tmp3 tmp4
 
 putchar SPACE tmp
 incaddr TEST_DATA 8
-print_qword TEST_DATA tmp tmp2 tmp3
+print_qword TEST_DATA tmp tmp2 tmp3 tmp4
 
 set tmp a
 putchar tmp tmp2
