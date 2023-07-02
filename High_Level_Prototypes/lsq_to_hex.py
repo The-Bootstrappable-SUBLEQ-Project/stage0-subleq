@@ -33,7 +33,8 @@ pp = pprint.PrettyPrinter()
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
-             "raw", "raw_ref", "rem"]
+             "raw", "raw_ref", "rem",
+             "end"]
 
 
 @dataclass
@@ -92,11 +93,11 @@ for line in inp:
 
         lines.append(Line("rem", [], " ".join(tokens[1:])))
         continue
-    elif inst in lsq_insts:
-        lines.append(Line(inst, tokens[1:]))
     elif inst == "end":
         lines.append(Line("end"))
         break
+    elif inst in lsq_insts:
+        lines.append(Line(inst, tokens[1:]))
     else:
         raise SyntaxError(f"Unknown instruction: {inst}")
 print(f"# Step 0: Processed {len(lines)} lines")
@@ -236,7 +237,8 @@ for name, sym in symbols.items():
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
-             "raw", "raw_ref", "rem"]
+             "raw", "raw_ref", "rem",
+             "end"]
 """
 
 isFirstToken = True
@@ -282,7 +284,7 @@ def resolveSymbol(name):
 for line in lines:
     isFirstToken = True
     out = []
-    if line.inst in ["var", "label", "addr", "rem", "newline"]:
+    if line.inst in ["var", "label", "addr", "rem", "newline", "end"]:
         pass
     elif line.inst in ["abssq", "relsq", "lblsq"]:
         addToken(resolveSymbol(line.tokens[0]))
@@ -304,8 +306,6 @@ for line in lines:
     elif line.inst == "raw_ref":
         for token in line.tokens:
             addToken(resolveSymbol(token))
-    elif line.inst == "end":
-        continue
     else:
         raise RuntimeError(f"Instruction {line.inst} shouldn't have appeared at this step!")
 
@@ -314,6 +314,7 @@ for line in lines:
         printToken(line.inst)
         for token in line.tokens:
             printToken(token)
+
     if len(line.comment) != 0:
         printToken("#")
         printToken(line.comment)

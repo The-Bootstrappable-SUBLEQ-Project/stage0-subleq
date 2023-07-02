@@ -25,7 +25,8 @@ import argparse
 lsq_insts = ["var", "label", "addr",
              "abssq", "relsq", "lblsq",
              "subaddr", "zeroaddr",
-             "raw", "raw_ref", "rem"]
+             "raw", "raw_ref", "rem",
+             "end"]
 consts = []
 callCounts = {}
 
